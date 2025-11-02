@@ -3,8 +3,8 @@
 //
 // The game object class for an actor.
 
-import { DataManager, TextManager, SoundManager, BattleManager } from "managers";
-import { Game_Action, Game_Battler, Game_BattlerBase, Game_Item } from "objects";
+import { DataManager, TextManager, SoundManager, BattleManager } from '../managers/index.js';
+import { Game_Action, Game_Battler, Game_BattlerBase, Game_Item } from '../objects/index.js';
 
 export function Game_Actor() {
 	this.initialize(...arguments);

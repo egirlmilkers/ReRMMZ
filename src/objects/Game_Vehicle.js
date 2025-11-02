@@ -3,8 +3,8 @@
 //
 // The game object class for a vehicle.
 
-import { AudioManager, DataManager } from 'managers';
-import { Game_Character } from 'objects';
+import { AudioManager, DataManager } from '../managers/index.js';
+import { Game_Character } from '../objects/index.js';
 
 export function Game_Vehicle() {
 	this.initialize(...arguments);

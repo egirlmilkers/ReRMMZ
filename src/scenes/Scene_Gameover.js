@@ -3,9 +3,9 @@
 //
 // The scene class of the game over screen.
 
-import { Input, Sprite, TouchInput } from 'core';
-import { AudioManager, DataManager, ImageManager, SceneManager } from 'managers';
-import { Scene_Base, Scene_Title } from 'scenes';
+import { Input, Sprite, TouchInput } from '../core/index.js';
+import { AudioManager, DataManager, ImageManager, SceneManager } from '../managers/index.js';
+import { Scene_Base, Scene_Title } from '../scenes/index.js';
 
 export function Scene_Gameover() {
 	this.initialize(...arguments);

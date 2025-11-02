@@ -3,8 +3,8 @@
 //
 // The game object class for a troop and the battle-related data.
 
-import { BattleManager, DataManager } from 'managers';
-import { Game_Enemy, Game_Interpreter, Game_Unit } from 'objects';
+import { BattleManager, DataManager } from '../managers/index.js';
+import { Game_Enemy, Game_Interpreter, Game_Unit } from '../objects/index.js';
 
 export function Game_Troop() {
 	this.initialize(...arguments);

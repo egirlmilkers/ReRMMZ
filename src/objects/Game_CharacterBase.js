@@ -4,9 +4,9 @@
 // The superclass of Game_Character. It handles basic information, such as
 // coordinates and images, shared by all characters.
 
-import { Graphics } from "core";
+import { Graphics } from '../core/index.js';
 
-import { DataManager, ImageManager } from "managers";
+import { DataManager, ImageManager } from '../managers/index.js';
 
 export function Game_CharacterBase() {
 	this.initialize(...arguments);

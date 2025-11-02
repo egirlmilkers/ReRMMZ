@@ -3,11 +3,11 @@
 //
 // The scene class of the item screen.
 
-import { Graphics, Rectangle } from 'core';
+import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager, SoundManager } from 'managers';
-import { Scene_ItemBase } from 'scenes';
-import { Window_ItemCategory, Window_ItemList } from 'windows';
+import { DataManager, SoundManager } from '../managers/index.js';
+import { Scene_ItemBase } from '../scenes/index.js';
+import { Window_ItemCategory, Window_ItemList } from '../windows/index.js';
 
 export function Scene_Item() {
 	this.initialize(...arguments);

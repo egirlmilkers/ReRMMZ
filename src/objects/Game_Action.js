@@ -3,8 +3,8 @@
 //
 // The game object class for a battle action.
 
-import { DataManager } from "managers";
-import { Game_Item } from "objects";
+import { DataManager } from '../managers/index.js';
+import { Game_Item } from '../objects/index.js';
 
 export function Game_Action() {
 	this.initialize(...arguments);

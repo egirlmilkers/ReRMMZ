@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import * as PIXI from 'pixi.js';
-import {Bitmap, ColorFilter, Rectangle} from "core";
+import {Bitmap, ColorFilter, Rectangle} from '../core/index.js';
 
 /**
  * The basic object that is rendered to the game screen.

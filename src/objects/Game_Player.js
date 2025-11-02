@@ -4,9 +4,9 @@
 // The game object class for the player. It contains event starting
 // determinants and map scrolling functions.
 
-import { Input, TouchInput } from "core";
-import { BattleManager, ConfigManager, DataManager } from "managers";
-import { Game_Character, Game_Followers } from "objects";
+import { Input, TouchInput } from '../core/index.js';
+import { BattleManager, ConfigManager, DataManager } from '../managers/index.js';
+import { Game_Character, Game_Followers } from '../objects/index.js';
 
 export function Game_Player() {
 	this.initialize(...arguments);

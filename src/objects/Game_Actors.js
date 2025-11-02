@@ -3,8 +3,8 @@
 //
 // The wrapper class for an actor array.
 
-import { DataManager } from "managers";
-import { Game_Actor } from "objects";
+import { DataManager } from '../managers/index.js';
+import { Game_Actor } from '../objects/index.js';
 
 export function Game_Actors() {
 	this.initialize(...arguments);

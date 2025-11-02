@@ -3,9 +3,9 @@
 //
 // The static class that manages the database and game objects.
 
-import { Graphics, Utils } from 'core';
-import { BattleManager, ImageManager, StorageManager } from 'managers';
-import { Game_Actors, Game_Map, Game_Message, Game_Party, Game_Player, Game_Screen, Game_SelfSwitches, Game_Switches, Game_System, Game_Temp, Game_Timer, Game_Troop, Game_Variables } from 'objects';
+import { Graphics, Utils } from '../core/index.js';
+import { BattleManager, ImageManager, StorageManager } from '../managers/index.js';
+import { Game_Actors, Game_Map, Game_Message, Game_Party, Game_Player, Game_Screen, Game_SelfSwitches, Game_Switches, Game_System, Game_Temp, Game_Timer, Game_Troop, Game_Variables } from '../objects/index.js';
 
 export function DataManager() {
 	throw new Error("This is a static class");
@@ -104,7 +104,7 @@ DataManager.loadDatabase = function () {
 
 DataManager.loadDataFile = function (name, src) {
 	const xhr = new XMLHttpRequest();
-	const url = "data/" + src;
+	const url = "assets/data/" + src;
 	DataManager[name] = null; // Instead of window[name], assign it to a property ON DataManager
 	xhr.open("GET", url);
 	xhr.overrideMimeType("application/json");

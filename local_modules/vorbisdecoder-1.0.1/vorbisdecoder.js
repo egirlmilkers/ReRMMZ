@@ -872,7 +872,7 @@ if (typeof WorkerGlobalScope === "function") {
 	});
 } else {
 	VorbisDecoder.instances = [];
-	VorbisDecoder.worker = new Worker(document.currentScript.src);
+	VorbisDecoder.worker = new Worker(import.meta.url, { type: "module" });
 	VorbisDecoder.worker.addEventListener("message", (e) => {
 		const instances = VorbisDecoder.instances;
 		const id = e.data.id;

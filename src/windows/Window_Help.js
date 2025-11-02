@@ -3,7 +3,7 @@
 //
 // The window for displaying the description of the selected item.
 
-import { Window_Base } from 'windows';
+import { Window_Base } from '../windows/index.js';
 
 export function Window_Help() {
 	this.initialize(...arguments);

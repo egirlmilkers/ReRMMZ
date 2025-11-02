@@ -3,8 +3,8 @@
 //
 // The window for displaying the map name on the map screen.
 
-import { ColorManager, DataManager } from 'managers';
-import { Window_Base } from 'windows';
+import { ColorManager, DataManager } from '../managers/index.js';
+import { Window_Base } from '../windows/index.js';
 
 export function Window_MapName() {
 	this.initialize(...arguments);

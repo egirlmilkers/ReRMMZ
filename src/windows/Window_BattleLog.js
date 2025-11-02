@@ -4,9 +4,9 @@
 // The window for displaying battle progress. No frame is displayed, but it is
 // handled as a window for convenience.
 
-import { Input, Rectangle, TouchInput } from 'core';
-import { DataManager, SoundManager, TextManager } from 'managers';
-import { Window_Base } from 'windows';
+import { Input, Rectangle, TouchInput } from '../core/index.js';
+import { DataManager, SoundManager, TextManager } from '../managers/index.js';
+import { Window_Base } from '../windows/index.js';
 
 export function Window_BattleLog() {
 	this.initialize(...arguments);

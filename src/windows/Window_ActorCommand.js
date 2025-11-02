@@ -3,8 +3,8 @@
 //
 // The window for selecting an actor's action on the battle screen.
 
-import { ConfigManager, DataManager, TextManager } from 'managers';
-import { Window_Command } from 'windows';
+import { ConfigManager, DataManager, TextManager } from '../managers/index.js';
+import { Window_Command } from '../windows/index.js';
 
 export function Window_ActorCommand() {
 	this.initialize(...arguments);

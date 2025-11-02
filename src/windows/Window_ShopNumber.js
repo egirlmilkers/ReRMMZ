@@ -4,10 +4,10 @@
 // The window for inputting quantity of items to buy or sell on the shop
 // screen.
 
-import { Input, Rectangle } from 'core';
-import { ConfigManager, TextManager } from 'managers';
-import { Sprite_Button } from 'sprites';
-import { Window_Selectable } from 'windows';
+import { Input, Rectangle } from '../core/index.js';
+import { ConfigManager, TextManager } from '../managers/index.js';
+import { Sprite_Button } from '../sprites/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_ShopNumber() {
 	this.initialize(...arguments);

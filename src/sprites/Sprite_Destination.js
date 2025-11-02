@@ -3,8 +3,8 @@
 //
 // The sprite for displaying the destination place of the touch input.
 
-import { Bitmap, Sprite } from 'core';
-import { DataManager } from 'managers';
+import { Bitmap, Sprite } from '../core/index.js';
+import { DataManager } from '../managers/index.js';
 
 export function Sprite_Destination() {
 	this.initialize(...arguments);

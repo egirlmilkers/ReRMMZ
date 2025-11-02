@@ -3,7 +3,7 @@
 //
 // The static class that handles terms and messages.
 
-import { DataManager } from "managers";
+import { DataManager } from '../managers/index.js';
 
 export function TextManager() {
 	throw new Error("This is a static class");

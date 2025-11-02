@@ -3,7 +3,7 @@
 //
 // The static class that handles BGM, BGS, ME and SE.
 
-import { Graphics, Utils, WebAudio } from 'core';
+import { Graphics, Utils, WebAudio } from '../core/index.js';
 
 export function AudioManager() {
 	throw new Error("This is a static class");
@@ -21,7 +21,7 @@ AudioManager._meBuffer = null;
 AudioManager._seBuffers = [];
 AudioManager._staticBuffers = [];
 AudioManager._replayFadeTime = 0.5;
-AudioManager._path = "audio/";
+AudioManager._path = "assets/audio/";
 
 Object.defineProperty(AudioManager, "bgmVolume", {
 	get: function () {

@@ -4,10 +4,10 @@
 // The game object class for a map. It contains scrolling and passage
 // determination functions.
 
-import { Graphics } from "core";
+import { Graphics } from '../core/index.js';
 
-import { AudioManager, DataManager, ImageManager } from "managers";
-import { Game_CommonEvent, Game_Event, Game_Interpreter, Game_Vehicle } from "objects";
+import { AudioManager, DataManager, ImageManager } from '../managers/index.js';
+import { Game_CommonEvent, Game_Event, Game_Interpreter, Game_Vehicle } from '../objects/index.js';
 
 export function Game_Map() {
 	this.initialize(...arguments);

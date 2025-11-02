@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import * as PIXI from 'pixi.js';
-import { Graphics, Point } from "core";
+import { Graphics, Point } from '../core/index.js';
 
 /**
  * The tilemap which displays 2D tile-based game map.

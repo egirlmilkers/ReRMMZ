@@ -3,8 +3,8 @@
 //
 // The wrapper class for a follower array.
 
-import { DataManager } from "managers";
-import { Game_Follower } from "objects";
+import { DataManager } from '../managers/index.js';
+import { Game_Follower } from '../objects/index.js';
 
 export function Game_Followers() {
 	this.initialize(...arguments);

@@ -3,11 +3,11 @@
 //
 // The scene class of the menu screen.
 
-import { Graphics, Rectangle } from 'core';
+import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager, SceneManager } from 'managers';
-import { Scene_Equip, Scene_GameEnd, Scene_Item, Scene_MenuBase, Scene_Options, Scene_Save, Scene_Skill, Scene_Status } from 'scenes';
-import { Window_Gold, Window_MenuCommand, Window_MenuStatus } from 'windows';
+import { DataManager, SceneManager } from '../managers/index.js';
+import { Scene_Equip, Scene_GameEnd, Scene_Item, Scene_MenuBase, Scene_Options, Scene_Save, Scene_Skill, Scene_Status } from '../scenes/index.js';
+import { Window_Gold, Window_MenuCommand, Window_MenuStatus } from '../windows/index.js';
 
 export function Scene_Menu() {
 	this.initialize(...arguments);

@@ -3,7 +3,7 @@
 //
 // The game object class for the timer.
 
-import { BattleManager } from 'managers';
+import { BattleManager } from '../managers/index.js';
 
 export function Game_Timer() {
 	this.initialize(...arguments);

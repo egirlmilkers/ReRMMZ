@@ -3,8 +3,8 @@
 //
 // The static class that manages scene transitions.
 
-import { Bitmap, Graphics, Input, TouchInput, Utils, Video, WebAudio } from 'core';
-import { AudioManager, EffectManager, ImageManager, PluginManager } from 'managers';
+import { Bitmap, Graphics, Input, TouchInput, Utils, Video, WebAudio } from '../core/index.js';
+import { AudioManager, EffectManager, ImageManager, PluginManager } from '../managers/index.js';
 
 export function SceneManager() {
 	throw new Error("This is a static class");

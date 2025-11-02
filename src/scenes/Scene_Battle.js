@@ -3,11 +3,11 @@
 //
 // The scene class of the battle screen.
 
-import { Graphics, Rectangle } from 'core';
-import { AudioManager, BattleManager, ConfigManager, DataManager, SceneManager } from 'managers';
-import { Scene_Gameover, Scene_Map, Scene_Message, Scene_Title } from 'scenes';
-import { Spriteset_Battle, Sprite_Button } from 'sprites';
-import { Window_ActorCommand, Window_BattleActor, Window_BattleEnemy, Window_BattleItem, Window_BattleLog, Window_BattleSkill, Window_BattleStatus, Window_Help, Window_PartyCommand } from 'windows';
+import { Graphics, Rectangle } from '../core/index.js';
+import { AudioManager, BattleManager, ConfigManager, DataManager, SceneManager } from '../managers/index.js';
+import { Scene_Gameover, Scene_Map, Scene_Message, Scene_Title } from '../scenes/index.js';
+import { Spriteset_Battle, Sprite_Button } from '../sprites/index.js';
+import { Window_ActorCommand, Window_BattleActor, Window_BattleEnemy, Window_BattleItem, Window_BattleLog, Window_BattleSkill, Window_BattleStatus, Window_Help, Window_PartyCommand } from '../windows/index.js';
 
 export function Scene_Battle() {
 	this.initialize(...arguments);

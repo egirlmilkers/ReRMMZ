@@ -3,9 +3,9 @@
 //
 // The window for selecting text characters on the name input screen.
 
-import { Input, Rectangle } from 'core';
-import { DataManager, SoundManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { Input, Rectangle } from '../core/index.js';
+import { DataManager, SoundManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_NameInput() {
 	this.initialize(...arguments);

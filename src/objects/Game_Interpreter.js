@@ -3,11 +3,11 @@
 //
 // The interpreter for running event commands.
 
-import { Video, Input, Utils, Graphics, Point } from "core";
+import { Video, Input, Utils, Graphics, Point } from '../core/index.js';
 
-import { ImageManager, SceneManager, BattleManager, DataManager, AudioManager, PluginManager } from "managers";
-import { Scene_Battle, Scene_Shop, Scene_Name, Scene_Menu, Scene_Save, Scene_Gameover, Scene_Title } from "scenes";
-import { Window_MenuCommand } from "windows";
+import { ImageManager, SceneManager, BattleManager, DataManager, AudioManager, PluginManager } from '../managers/index.js';
+import { Scene_Battle, Scene_Shop, Scene_Name, Scene_Menu, Scene_Save, Scene_Gameover, Scene_Title } from '../scenes/index.js';
+import { Window_MenuCommand } from '../windows/index.js';
 
 export function Game_Interpreter() {
 	this.initialize(...arguments);
@@ -1361,7 +1361,7 @@ Game_Interpreter.prototype.command261 = function (params) {
 	const name = params[0];
 	if (name.length > 0) {
 		const ext = this.videoFileExt();
-		Video.play("movies/" + name + ext);
+		Video.play("assets/movies/" + name + ext);
 		this.setWaitMode("video");
 	}
 	return true;

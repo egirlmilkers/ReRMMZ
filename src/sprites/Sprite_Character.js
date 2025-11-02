@@ -3,8 +3,8 @@
 //
 // The sprite for displaying a character.
 
-import { Sprite } from 'core';
-import { DataManager, ImageManager } from 'managers';
+import { Sprite } from '../core/index.js';
+import { DataManager, ImageManager } from '../managers/index.js';
 
 export function Sprite_Character() {
 	this.initialize(...arguments);

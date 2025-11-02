@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import * as PIXI from 'pixi.js';
-import { Graphics, Rectangle, Stage, Utils } from "core";
+import { Graphics, Rectangle, Stage, Utils } from '../core/index.js';
 
 /**
  * The basic object that represents an image.

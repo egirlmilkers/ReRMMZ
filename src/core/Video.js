@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 
-import { Graphics } from "core";
+import { Graphics } from '../core/index.js';
 
 /**
  * The static class that handles video playback.

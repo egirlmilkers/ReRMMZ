@@ -3,10 +3,10 @@
 //
 // The scene class of the game end screen.
 
-import { Graphics, Rectangle } from 'core';
-import { SceneManager } from 'managers';
-import { Scene_MenuBase, Scene_Title } from 'scenes';
-import { Window_GameEnd, Window_TitleCommand } from 'windows';
+import { Graphics, Rectangle } from '../core/index.js';
+import { SceneManager } from '../managers/index.js';
+import { Scene_MenuBase, Scene_Title } from '../scenes/index.js';
+import { Window_GameEnd, Window_TitleCommand } from '../windows/index.js';
 
 export function Scene_GameEnd() {
 	this.initialize(...arguments);

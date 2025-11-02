@@ -3,8 +3,8 @@
 //
 // The sprite for displaying the timer.
 
-import { Bitmap, Graphics, Sprite } from 'core';
-import { ColorManager, DataManager } from 'managers';
+import { Bitmap, Graphics, Sprite } from '../core/index.js';
+import { ColorManager, DataManager } from '../managers/index.js';
 
 export function Sprite_Timer() {
 	this.initialize(...arguments);

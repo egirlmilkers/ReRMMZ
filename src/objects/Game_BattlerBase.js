@@ -3,7 +3,7 @@
 //
 // The superclass of Game_Battler. It mainly contains parameters calculation.
 
-import { DataManager } from "managers";
+import { DataManager } from '../managers/index.js';
 
 export function Game_BattlerBase() {
 	this.initialize(...arguments);

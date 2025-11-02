@@ -3,8 +3,8 @@
 //
 // The window for displaying the party's gold.
 
-import { DataManager, TextManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { DataManager, TextManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_Gold() {
 	this.initialize(...arguments);

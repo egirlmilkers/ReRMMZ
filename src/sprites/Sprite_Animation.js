@@ -3,8 +3,8 @@
 //
 // The sprite for displaying an animation.
 
-import { Graphics, Point, Sprite } from 'core';
-import { AudioManager, EffectManager } from 'managers';
+import { Graphics, Point, Sprite } from '../core/index.js';
+import { AudioManager, EffectManager } from '../managers/index.js';
 
 export function Sprite_Animation() {
 	this.initialize(...arguments);

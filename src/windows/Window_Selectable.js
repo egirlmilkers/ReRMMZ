@@ -3,9 +3,9 @@
 //
 // The window class with cursor movement functions.
 
-import { Input, Point, Rectangle, TouchInput } from 'core';
-import { ColorManager, SoundManager } from 'managers';
-import { Window_Scrollable } from 'windows';
+import { Input, Point, Rectangle, TouchInput } from '../core/index.js';
+import { ColorManager, SoundManager } from '../managers/index.js';
+import { Window_Scrollable } from '../windows/index.js';
 
 export function Window_Selectable() {
 	this.initialize(...arguments);

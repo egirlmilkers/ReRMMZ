@@ -3,9 +3,9 @@
 //
 // The scene class of the debug screen.
 
-import { Graphics, Rectangle } from 'core';
-import { Scene_MenuBase } from 'scenes';
-import { Window_Base, Window_DebugEdit, Window_DebugRange } from 'windows';
+import { Graphics, Rectangle } from '../core/index.js';
+import { Scene_MenuBase } from '../scenes/index.js';
+import { Window_Base, Window_DebugEdit, Window_DebugRange } from '../windows/index.js';
 
 export function Scene_Debug() {
 	this.initialize(...arguments);

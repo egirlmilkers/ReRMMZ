@@ -3,11 +3,11 @@
 //
 // The scene class of the name input screen.
 
-import { Graphics, Rectangle } from 'core';
+import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager, ImageManager } from 'managers';
-import { Scene_MenuBase } from 'scenes';
-import { Window_NameEdit, Window_NameInput } from 'windows';
+import { DataManager, ImageManager } from '../managers/index.js';
+import { Scene_MenuBase } from '../scenes/index.js';
+import { Window_NameEdit, Window_NameInput } from '../windows/index.js';
 
 export function Scene_Name() {
 	this.initialize(...arguments);

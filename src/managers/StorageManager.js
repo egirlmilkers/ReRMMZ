@@ -3,9 +3,8 @@
 //
 // The static class that manages storage for saving game data.
 
-import { JsonEx, Utils } from 'core';
-import localforage from 'localforage';
-import { DataManager } from 'managers';
+import { JsonEx, Utils } from '../core/index.js';
+import { DataManager } from '../managers/index.js';
 import pako from 'pako';
 
 export function StorageManager() {
@@ -234,8 +233,8 @@ StorageManager.fsWriteFile = function (path, data) {
 
 StorageManager.fileDirectoryPath = function () {
 	const path = require("path");
-	const base = path.dirname(process.mainModule.filename);
-	return path.join(base, "save/");
+	const base = process.cwd();
+	return path.join(base, "assets/save/");
 };
 
 StorageManager.filePath = function (saveName) {

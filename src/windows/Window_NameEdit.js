@@ -3,9 +3,9 @@
 //
 // The window for editing an actor's name on the name input screen.
 
-import { Rectangle } from 'core';
-import { ColorManager, DataManager, ImageManager } from 'managers';
-import { Window_StatusBase } from 'windows';
+import { Rectangle } from '../core/index.js';
+import { ColorManager, DataManager, ImageManager } from '../managers/index.js';
+import { Window_StatusBase } from '../windows/index.js';
 
 export function Window_NameEdit() {
 	this.initialize(...arguments);

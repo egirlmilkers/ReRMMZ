@@ -3,12 +3,12 @@
 //
 // The scene class of the map screen.
 
-import { Graphics, Input, Rectangle, TouchInput } from 'core';
+import { Graphics, Input, Rectangle, TouchInput } from '../core/index.js';
 
-import { AudioManager, BattleManager, ConfigManager, DataManager, EffectManager, ImageManager, SceneManager, SoundManager } from 'managers';
-import { Scene_Battle, Scene_Debug, Scene_Gameover, Scene_Load, Scene_Menu, Scene_Message, Scene_Title } from 'scenes';
-import { Sprite_Button, Spriteset_Map } from 'sprites';
-import { Window_MapName, Window_MenuCommand } from 'windows';
+import { AudioManager, BattleManager, ConfigManager, DataManager, EffectManager, ImageManager, SceneManager, SoundManager } from '../managers/index.js';
+import { Scene_Battle, Scene_Debug, Scene_Gameover, Scene_Load, Scene_Menu, Scene_Message, Scene_Title } from '../scenes/index.js';
+import { Sprite_Button, Spriteset_Map } from '../sprites/index.js';
+import { Window_MapName, Window_MenuCommand } from '../windows/index.js';
 
 export function Scene_Map() {
 	this.initialize(...arguments);

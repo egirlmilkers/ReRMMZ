@@ -3,9 +3,9 @@
 //
 // The window for selecting a block of switches/variables on the debug screen.
 
-import { Input } from 'core';
-import { DataManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { Input } from '../core/index.js';
+import { DataManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_DebugRange() {
 	this.initialize(...arguments);

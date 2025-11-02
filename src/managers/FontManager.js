@@ -3,7 +3,7 @@
 //
 // The static class that loads font files.
 
-import { Utils } from 'core';
+import { Utils } from '../core/index.js';
 
 export function FontManager() {
 	throw new Error("This is a static class");
@@ -60,5 +60,5 @@ FontManager.throwLoadError = function (family) {
 };
 
 FontManager.makeUrl = function (filename) {
-	return "fonts/" + Utils.encodeURI(filename);
+	return "assets/fonts/" + Utils.encodeURI(filename);
 };

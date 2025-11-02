@@ -3,8 +3,8 @@
 //
 // The window for selecting an item to buy on the shop screen.
 
-import { DataManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { DataManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_ShopBuy() {
 	this.initialize(...arguments);

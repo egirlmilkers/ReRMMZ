@@ -3,8 +3,8 @@
 //
 // The static class that loads images, creates bitmap objects and retains them.
 
-import { Bitmap, Utils } from 'core';
-import { DataManager } from 'managers';
+import { Bitmap, Utils } from '../core/index.js';
+import { DataManager } from '../managers/index.js';
 
 export function ImageManager() {
 	throw new Error("This is a static class");
@@ -121,7 +121,7 @@ ImageManager.loadTitle2 = function (filename) {
 
 ImageManager.loadBitmap = function (folder, filename) {
 	if (filename) {
-		const url = folder + Utils.encodeURI(filename) + ".png";
+		const url = "assets/" + folder + Utils.encodeURI(filename) + ".png";
 		return this.loadBitmapFromUrl(url);
 	} else {
 		return this._emptyBitmap;

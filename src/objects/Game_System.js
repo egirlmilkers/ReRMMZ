@@ -3,8 +3,8 @@
 //
 // The game object class for the system data.
 
-import { Graphics } from 'core';
-import { AudioManager, DataManager } from 'managers';
+import { Graphics } from '../core/index.js';
+import { AudioManager, DataManager } from '../managers/index.js';
 
 export function Game_System() {
 	this.initialize(...arguments);

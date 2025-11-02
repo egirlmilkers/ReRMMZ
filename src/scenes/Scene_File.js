@@ -3,11 +3,11 @@
 //
 // The superclass of Scene_Save and Scene_Load.
 
-import { Graphics, Rectangle } from 'core';
+import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager } from 'managers';
-import { Scene_MenuBase } from 'scenes';
-import { Window_Help, Window_SavefileList } from 'windows';
+import { DataManager } from '../managers/index.js';
+import { Scene_MenuBase } from '../scenes/index.js';
+import { Window_Help, Window_SavefileList } from '../windows/index.js';
 
 export function Scene_File() {
 	this.initialize(...arguments);

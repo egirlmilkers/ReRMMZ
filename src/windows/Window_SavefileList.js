@@ -3,8 +3,8 @@
 //
 // The window for selecting a save file on the save and load screens.
 
-import { DataManager, TextManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { DataManager, TextManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_SavefileList() {
 	this.initialize(...arguments);

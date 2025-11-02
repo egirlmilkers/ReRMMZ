@@ -3,8 +3,8 @@
 //
 // The window for displaying party member status on the menu screen.
 
-import { ColorManager, DataManager, ImageManager } from 'managers';
-import { Window_StatusBase } from 'windows';
+import { ColorManager, DataManager, ImageManager } from '../managers/index.js';
+import { Window_StatusBase } from '../windows/index.js';
 
 export function Window_MenuStatus() {
 	this.initialize(...arguments);

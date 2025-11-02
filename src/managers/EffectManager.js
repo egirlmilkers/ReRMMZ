@@ -3,7 +3,7 @@
 //
 // The static class that loads Effekseer effects.
 
-import { Graphics, Utils } from 'core';
+import { Graphics, Utils } from '../core/index.js';
 
 export function EffectManager() {
 	throw new Error("This is a static class");
@@ -50,7 +50,7 @@ EffectManager.onError = function (url) {
 };
 
 EffectManager.makeUrl = function (filename) {
-	return "effects/" + Utils.encodeURI(filename) + ".efkefc";
+	return "assets/effects/" + Utils.encodeURI(filename) + ".efkefc";
 };
 
 EffectManager.checkErrors = function () {

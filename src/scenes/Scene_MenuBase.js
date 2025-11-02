@@ -3,12 +3,12 @@
 //
 // The superclass of all the menu-type scenes.
 
-import { Graphics, Rectangle, Sprite } from 'core';
+import { Graphics, Rectangle, Sprite } from '../core/index.js';
 
-import { ConfigManager, DataManager, SceneManager, SoundManager } from 'managers';
-import { Scene_Base } from 'scenes';
-import { Sprite_Button } from 'sprites';
-import { Window_Help } from 'windows';
+import { ConfigManager, DataManager, SceneManager, SoundManager } from '../managers/index.js';
+import { Scene_Base } from '../scenes/index.js';
+import { Sprite_Button } from '../sprites/index.js';
+import { Window_Help } from '../windows/index.js';
 
 export function Scene_MenuBase() {
 	this.initialize(...arguments);

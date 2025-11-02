@@ -3,8 +3,8 @@
 //
 // The window for changing various settings on the options screen.
 
-import { ConfigManager, TextManager } from 'managers';
-import { Window_Command } from 'windows';
+import { ConfigManager, TextManager } from '../managers/index.js';
+import { Window_Command } from '../windows/index.js';
 
 export function Window_Options() {
 	this.initialize(...arguments);

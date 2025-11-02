@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
-import { Stage, Utils, Video } from "core";
-import { EffekseerContext } from "@local/effekseer";
+import * as PIXI from 'pixi.js';
+import { Stage, Utils, Video } from '../core/index.js';
 
 /**
  * The static class that carries out graphics processing.

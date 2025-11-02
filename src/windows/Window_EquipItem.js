@@ -3,8 +3,8 @@
 //
 // The window for selecting an equipment item on the equipment screen.
 
-import { JsonEx } from 'core';
-import { Window_ItemList } from 'windows';
+import { JsonEx } from '../core/index.js';
+import { Window_ItemList } from '../windows/index.js';
 
 export function Window_EquipItem() {
 	this.initialize(...arguments);

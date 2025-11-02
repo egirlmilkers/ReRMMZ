@@ -3,8 +3,8 @@
 //
 // The sprite for displaying a status gauge.
 
-import { Bitmap, Sprite } from 'core';
-import { ColorManager, DataManager } from 'managers';
+import { Bitmap, Sprite } from '../core/index.js';
+import { ColorManager, DataManager } from '../managers/index.js';
 
 export function Sprite_Name() {
 	this.initialize(...arguments);

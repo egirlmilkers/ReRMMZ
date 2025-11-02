@@ -3,8 +3,8 @@
 //
 // The window for selecting a command on the menu screen.
 
-import { DataManager, TextManager } from 'managers';
-import { Window_Command } from 'windows';
+import { DataManager, TextManager } from '../managers/index.js';
+import { Window_Command } from '../windows/index.js';
 
 export function Window_MenuCommand() {
 	this.initialize(...arguments);

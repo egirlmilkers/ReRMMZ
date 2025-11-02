@@ -3,8 +3,8 @@
 //
 // The window for displaying parameter changes on the equipment screen.
 
-import { ColorManager, ImageManager, TextManager } from 'managers';
-import { Window_StatusBase } from 'windows';
+import { ColorManager, ImageManager, TextManager } from '../managers/index.js';
+import { Window_StatusBase } from '../windows/index.js';
 
 export function Window_EquipStatus() {
 	this.initialize(...arguments);

@@ -3,9 +3,9 @@
 //
 // The sprite for displaying an actor.
 
-import { Sprite } from 'core';
-import { BattleManager, ImageManager } from 'managers';
-import { Sprite_Battler, Sprite_StateOverlay, Sprite_Weapon } from 'sprites';
+import { Sprite } from '../core/index.js';
+import { BattleManager, ImageManager } from '../managers/index.js';
+import { Sprite_Battler, Sprite_StateOverlay, Sprite_Weapon } from '../sprites/index.js';
 
 export function Sprite_Actor() {
 	this.initialize(...arguments);

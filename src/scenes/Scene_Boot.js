@@ -3,10 +3,10 @@
 //
 // The scene class for initializing the entire game.
 
-import { Graphics, Utils } from 'core';
-import { ColorManager, ConfigManager, DataManager, FontManager, ImageManager, SceneManager, SoundManager, StorageManager } from 'managers';
-import { Scene_Base, Scene_Battle, Scene_Map, Scene_Splash } from 'scenes';
-import { Window_TitleCommand } from 'windows';
+import { Graphics, Utils } from '../core/index.js';
+import { ColorManager, ConfigManager, DataManager, FontManager, ImageManager, SceneManager, SoundManager, StorageManager } from '../managers/index.js';
+import { Scene_Base, Scene_Battle, Scene_Map, Scene_Splash } from '../scenes/index.js';
+import { Window_TitleCommand } from '../windows/index.js';
 
 export function Scene_Boot() {
 	this.initialize(...arguments);

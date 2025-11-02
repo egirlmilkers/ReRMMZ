@@ -3,8 +3,8 @@
 //
 // The game object class for an enemy.
 
-import { DataManager, SoundManager } from "managers";
-import { Game_Battler } from "objects";
+import { DataManager, SoundManager } from '../managers/index.js';
+import { Game_Battler } from '../objects/index.js';
 
 export function Game_Enemy() {
 	this.initialize(...arguments);

@@ -3,8 +3,8 @@
 //
 // The window for selecting a category of items on the item and shop screens.
 
-import { DataManager, TextManager } from 'managers';
-import { Window_HorzCommand } from 'windows';
+import { DataManager, TextManager } from '../managers/index.js';
+import { Window_HorzCommand } from '../windows/index.js';
 
 export function Window_ItemCategory() {
 	this.initialize(...arguments);

@@ -3,9 +3,9 @@
 //
 // The set of sprites on the map screen.
 
-import { Graphics, Sprite, Tilemap, TilingSprite, Weather } from 'core';
-import { DataManager, ImageManager } from 'managers';
-import { Spriteset_Base, Sprite_Balloon, Sprite_Character, Sprite_Destination } from 'sprites';
+import { Graphics, Sprite, Tilemap, TilingSprite, Weather } from '../core/index.js';
+import { DataManager, ImageManager } from '../managers/index.js';
+import { Spriteset_Base, Sprite_Balloon, Sprite_Character, Sprite_Destination } from '../sprites/index.js';
 
 export function Spriteset_Map() {
 	this.initialize(...arguments);

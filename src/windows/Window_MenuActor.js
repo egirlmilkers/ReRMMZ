@@ -3,9 +3,9 @@
 //
 // The window for selecting a target actor on the item and skill screens.
 
-import { DataManager } from 'managers';
-import { Game_Action } from 'objects';
-import { Window_MenuStatus } from 'windows';
+import { DataManager } from '../managers/index.js';
+import { Game_Action } from '../objects/index.js';
+import { Window_MenuStatus } from '../windows/index.js';
 
 export function Window_MenuActor() {
 	this.initialize(...arguments);

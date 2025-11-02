@@ -3,10 +3,10 @@
 //
 // The window used for the event command [Input Number].
 
-import { Graphics, Input, Rectangle } from 'core';
-import { ConfigManager, DataManager } from 'managers';
-import { Sprite_Button } from 'sprites';
-import { Window_Selectable } from 'windows';
+import { Graphics, Input, Rectangle } from '../core/index.js';
+import { ConfigManager, DataManager } from '../managers/index.js';
+import { Sprite_Button } from '../sprites/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_NumberInput() {
 	this.initialize(...arguments);

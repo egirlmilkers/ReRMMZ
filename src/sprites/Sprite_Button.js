@@ -3,9 +3,9 @@
 //
 // The sprite for displaying a button.
 
-import { Input, Rectangle } from 'core';
-import { ImageManager } from 'managers';
-import { Sprite_Clickable } from 'sprites';
+import { Input, Rectangle } from '../core/index.js';
+import { ImageManager } from '../managers/index.js';
+import { Sprite_Clickable } from '../sprites/index.js';
 
 export function Sprite_Button() {
 	this.initialize(...arguments);

@@ -3,8 +3,8 @@
 //
 // The window for selecting buy/sell on the shop screen.
 
-import { TextManager } from 'managers';
-import { Window_HorzCommand } from 'windows';
+import { TextManager } from '../managers/index.js';
+import { Window_HorzCommand } from '../windows/index.js';
 
 export function Window_ShopCommand() {
 	this.initialize(...arguments);

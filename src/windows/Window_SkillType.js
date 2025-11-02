@@ -3,8 +3,8 @@
 //
 // The window for selecting a skill type on the skill screen.
 
-import { DataManager } from 'managers';
-import { Window_Command } from 'windows';
+import { DataManager } from '../managers/index.js';
+import { Window_Command } from '../windows/index.js';
 
 export function Window_SkillType() {
 	this.initialize(...arguments);

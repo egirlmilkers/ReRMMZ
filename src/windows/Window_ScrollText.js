@@ -4,9 +4,9 @@
 // The window for displaying scrolling text. No frame is displayed, but it
 // is handled as a window for convenience.
 
-import { Input, Rectangle, TouchInput } from 'core';
-import { DataManager } from 'managers';
-import { Window_Base } from 'windows';
+import { Input, Rectangle, TouchInput } from '../core/index.js';
+import { DataManager } from '../managers/index.js';
+import { Window_Base } from '../windows/index.js';
 
 export function Window_ScrollText() {
 	this.initialize(...arguments);

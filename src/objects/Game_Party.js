@@ -4,8 +4,8 @@
 // The game object class for the party. Information such as gold and items is
 // included.
 
-import { DataManager, TextManager } from "managers";
-import { Game_Item, Game_Unit } from "objects";
+import { DataManager, TextManager } from '../managers/index.js';
+import { Game_Item, Game_Unit } from '../objects/index.js';
 
 export function Game_Party() {
 	this.initialize(...arguments);

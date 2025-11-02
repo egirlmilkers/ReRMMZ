@@ -3,10 +3,10 @@
 //
 // The window used for the event command [Show Choices].
 
-import { Graphics, Rectangle } from 'core';
-import { ConfigManager, DataManager } from 'managers';
-import { Sprite_Button } from 'sprites';
-import { Window_Command, Window_Selectable } from 'windows';
+import { Graphics, Rectangle } from '../core/index.js';
+import { ConfigManager, DataManager } from '../managers/index.js';
+import { Sprite_Button } from '../sprites/index.js';
+import { Window_Command, Window_Selectable } from '../windows/index.js';
 
 export function Window_ChoiceList() {
 	this.initialize(...arguments);

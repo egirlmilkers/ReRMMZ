@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import * as PIXI from 'pixi.js';
-import { Bitmap, Point, Rectangle, Sprite, TilingSprite } from "core";
+import { Bitmap, Point, Rectangle, Sprite, TilingSprite } from '../core/index.js';
 
 /**
  * The window in the game.

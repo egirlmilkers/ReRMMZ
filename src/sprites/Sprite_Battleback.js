@@ -3,9 +3,9 @@
 //
 // The sprite for displaying a background image in battle.
 
-import { Graphics, TilingSprite } from 'core';
+import { Graphics, TilingSprite } from '../core/index.js';
 
-import { BattleManager, DataManager, ImageManager } from 'managers';
+import { BattleManager, DataManager, ImageManager } from '../managers/index.js';
 
 export function Sprite_Battleback() {
 	this.initialize(...arguments);

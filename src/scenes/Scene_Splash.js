@@ -3,9 +3,9 @@
 //
 // The scene class of the splash screen.
 
-import { Input, Sprite, TouchInput } from 'core';
-import { DataManager, ImageManager, SceneManager } from 'managers';
-import { Scene_Base, Scene_Title } from 'scenes';
+import { Input, Sprite, TouchInput } from '../core/index.js';
+import { DataManager, ImageManager, SceneManager } from '../managers/index.js';
+import { Scene_Base, Scene_Title } from '../scenes/index.js';
 
 export function Scene_Splash() {
 	this.initialize(...arguments);

@@ -4,9 +4,9 @@
 // The window for displaying number of items in possession and the actor's
 // equipment on the shop screen.
 
-import { Input, TouchInput } from 'core';
-import { ColorManager, DataManager, TextManager } from 'managers';
-import { Window_StatusBase } from 'windows';
+import { Input, TouchInput } from '../core/index.js';
+import { ColorManager, DataManager, TextManager } from '../managers/index.js';
+import { Window_StatusBase } from '../windows/index.js';
 
 export function Window_ShopStatus() {
 	this.initialize(...arguments);

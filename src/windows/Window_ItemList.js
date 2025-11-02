@@ -3,8 +3,8 @@
 //
 // The window for selecting an item on the item screen.
 
-import { DataManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { DataManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_ItemList() {
 	this.initialize(...arguments);

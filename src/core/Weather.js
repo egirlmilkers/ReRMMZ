@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import * as PIXI from 'pixi.js';
-import { Bitmap, Graphics, ScreenSprite, Sprite, Point } from "core";
+import { Bitmap, Graphics, ScreenSprite, Sprite, Point } from '../core/index.js';
 
 /**
  * The weather effect which displays rain, storm, or snow.

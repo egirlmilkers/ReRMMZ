@@ -3,9 +3,9 @@
 //
 // The scene class of the status screen.
 
-import { Graphics, Rectangle } from 'core';
-import { Scene_MenuBase } from 'scenes';
-import { Window_Help, Window_Status, Window_StatusEquip, Window_StatusParams } from 'windows';
+import { Graphics, Rectangle } from '../core/index.js';
+import { Scene_MenuBase } from '../scenes/index.js';
+import { Window_Help, Window_Status, Window_StatusEquip, Window_StatusParams } from '../windows/index.js';
 
 export function Scene_Status() {
 	this.initialize(...arguments);

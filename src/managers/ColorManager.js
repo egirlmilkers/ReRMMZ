@@ -3,7 +3,7 @@
 //
 // The static class that handles the window colors.
 
-import { ImageManager } from 'managers';
+import { ImageManager } from '../managers/index.js';
 
 export function ColorManager() {
 	throw new Error("This is a static class");

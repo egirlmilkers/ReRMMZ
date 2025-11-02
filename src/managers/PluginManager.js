@@ -3,7 +3,7 @@
 //
 // The static class that manages the plugins.
 
-import { Utils } from 'core';
+import { Utils } from '../core/index.js';
 
 export function PluginManager() {
 	throw new Error("This is a static class");

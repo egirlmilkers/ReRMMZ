@@ -3,8 +3,8 @@
 //
 // The sprite for displaying an old format animation.
 
-import { ScreenSprite, Sprite } from 'core';
-import { AudioManager, ImageManager } from 'managers';
+import { ScreenSprite, Sprite } from '../core/index.js';
+import { AudioManager, ImageManager } from '../managers/index.js';
 
 export function Sprite_AnimationMV() {
 	this.initialize(...arguments);

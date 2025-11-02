@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import { VorbisDecoder } from "@local/vorbisdecoder";
-import { Utils } from "core";
+import { Utils } from '../core/index.js';
 
 /**
  * The audio object of Web Audio API.

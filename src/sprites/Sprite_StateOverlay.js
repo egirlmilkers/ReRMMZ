@@ -3,8 +3,8 @@
 //
 // The sprite for displaying an overlay image for a state.
 
-import { Sprite } from 'core';
-import { ImageManager } from 'managers';
+import { Sprite } from '../core/index.js';
+import { ImageManager } from '../managers/index.js';
 
 export function Sprite_StateOverlay() {
 	this.initialize(...arguments);

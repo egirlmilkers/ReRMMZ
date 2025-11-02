@@ -3,12 +3,12 @@
 //
 // The superclass of Scene_Item and Scene_Skill.
 
-import { Graphics, Rectangle } from 'core';
+import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager, SceneManager, SoundManager } from 'managers';
-import { Game_Action } from 'objects';
-import { Scene_Map, Scene_MenuBase } from 'scenes';
-import { Window_MenuActor } from 'windows';
+import { DataManager, SceneManager, SoundManager } from '../managers/index.js';
+import { Game_Action } from '../objects/index.js';
+import { Scene_Map, Scene_MenuBase } from '../scenes/index.js';
+import { Window_MenuActor } from '../windows/index.js';
 
 export function Scene_ItemBase() {
 	this.initialize(...arguments);

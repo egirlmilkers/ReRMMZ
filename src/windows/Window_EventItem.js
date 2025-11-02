@@ -3,10 +3,10 @@
 //
 // The window used for the event command [Select Item].
 
-import { Graphics } from 'core';
-import { ConfigManager, DataManager } from 'managers';
-import { Sprite_Button } from 'sprites';
-import { Window_ItemList, Window_Selectable } from 'windows';
+import { Graphics } from '../core/index.js';
+import { ConfigManager, DataManager } from '../managers/index.js';
+import { Sprite_Button } from '../sprites/index.js';
+import { Window_ItemList, Window_Selectable } from '../windows/index.js';
 
 export function Window_EventItem() {
 	this.initialize(...arguments);

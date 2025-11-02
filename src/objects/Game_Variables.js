@@ -3,7 +3,7 @@
 //
 // The game object class for variables.
 
-import { DataManager } from 'managers';
+import { DataManager } from '../managers/index.js';
 
 export function Game_Variables() {
 	this.initialize(...arguments);

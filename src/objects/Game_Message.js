@@ -4,7 +4,7 @@
 // The game object class for the state of the message window that displays text
 // or selections, etc.
 
-import { Utils } from "core";
+import { Utils } from '../core/index.js';
 
 export function Game_Message() {
 	this.initialize(...arguments);

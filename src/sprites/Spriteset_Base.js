@@ -3,9 +3,9 @@
 //
 // The superclass of Spriteset_Map and Spriteset_Battle.
 
-import { ColorFilter, Graphics, Rectangle, ScreenSprite, Sprite } from 'core';
-import { DataManager } from 'managers';
-import { Sprite_Animation, Sprite_AnimationMV, Sprite_Picture, Sprite_Timer } from 'sprites';
+import { ColorFilter, Graphics, Rectangle, ScreenSprite, Sprite } from '../core/index.js';
+import { DataManager } from '../managers/index.js';
+import { Sprite_Animation, Sprite_AnimationMV, Sprite_Picture, Sprite_Timer } from '../sprites/index.js';
 
 export function Spriteset_Base() {
 	this.initialize(...arguments);

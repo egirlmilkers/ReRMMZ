@@ -3,7 +3,7 @@
 //
 // The static class that manages the configuration data.
 
-import { AudioManager, StorageManager } from 'managers';
+import { AudioManager, StorageManager } from '../managers/index.js';
 
 export function ConfigManager() {
 	throw new Error("This is a static class");

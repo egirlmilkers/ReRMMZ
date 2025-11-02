@@ -3,8 +3,8 @@
 //
 // The scene class of the save screen.
 
-import { DataManager, SoundManager, TextManager } from 'managers';
-import { Scene_File } from 'scenes';
+import { DataManager, SoundManager, TextManager } from '../managers/index.js';
+import { Scene_File } from '../scenes/index.js';
 
 export function Scene_Save() {
 	this.initialize(...arguments);

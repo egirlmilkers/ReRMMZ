@@ -3,8 +3,8 @@
 //
 // The window for selecting a skill on the skill screen.
 
-import { ColorManager } from 'managers';
-import { Window_Selectable } from 'windows';
+import { ColorManager } from '../managers/index.js';
+import { Window_Selectable } from '../windows/index.js';
 
 export function Window_SkillList() {
 	this.initialize(...arguments);

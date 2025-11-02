@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 
 import * as PIXI from 'pixi.js';
-import { Bitmap, Point, Rectangle } from "core";
+import { Bitmap, Point, Rectangle } from '../core/index.js';
 
 /**
  * The sprite object for a tiling image.

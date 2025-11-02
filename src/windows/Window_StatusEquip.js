@@ -3,8 +3,8 @@
 //
 // The window for displaying equipment items on the status screen.
 
-import { ColorManager } from 'managers';
-import { Window_StatusBase } from 'windows';
+import { ColorManager } from '../managers/index.js';
+import { Window_StatusBase } from '../windows/index.js';
 
 export function Window_StatusEquip() {
 	this.initialize(...arguments);

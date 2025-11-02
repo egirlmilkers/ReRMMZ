@@ -3,8 +3,8 @@
 //
 // The superclass of all windows within the game.
 
-import { Bitmap, Rectangle, Sprite, Utils, Window } from 'core';
-import { ColorManager, DataManager, ImageManager, SoundManager, TextManager } from 'managers';
+import { Bitmap, Rectangle, Sprite, Utils, Window } from '../core/index.js';
+import { ColorManager, DataManager, ImageManager, SoundManager, TextManager } from '../managers/index.js';
 
 export function Window_Base() {
 	this.initialize(...arguments);

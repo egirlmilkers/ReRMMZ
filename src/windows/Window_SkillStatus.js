@@ -3,7 +3,7 @@
 //
 // The window for displaying the skill user's status on the skill screen.
 
-import { Window_StatusBase } from 'windows';
+import { Window_StatusBase } from '../windows/index.js';
 
 export function Window_SkillStatus() {
 	this.initialize(...arguments);

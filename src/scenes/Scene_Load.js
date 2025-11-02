@@ -3,8 +3,8 @@
 //
 // The scene class of the load screen.
 
-import { DataManager, SceneManager, SoundManager, TextManager } from 'managers';
-import { Scene_File, Scene_Map } from 'scenes';
+import { DataManager, SceneManager, SoundManager, TextManager } from '../managers/index.js';
+import { Scene_File, Scene_Map } from '../scenes/index.js';
 
 export function Scene_Load() {
 	this.initialize(...arguments);

@@ -3,9 +3,9 @@
 //
 // The static class that manages battle progress.
 
-import { AudioManager, DataManager, SceneManager, SoundManager, TextManager } from 'managers';
-import { Game_Action } from 'objects';
-import { Scene_Gameover } from 'scenes';
+import { AudioManager, DataManager, SceneManager, SoundManager, TextManager } from '../managers/index.js';
+import { Game_Action } from '../objects/index.js';
+import { Scene_Gameover } from '../scenes/index.js';
 
 export function BattleManager() {
 	throw new Error("This is a static class");

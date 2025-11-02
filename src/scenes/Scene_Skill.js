@@ -3,10 +3,10 @@
 //
 // The scene class of the skill screen.
 
-import { Graphics, Rectangle } from 'core';
-import { SoundManager } from 'managers';
-import { Scene_ItemBase, Scene_MenuBase } from 'scenes';
-import { Window_SkillList, Window_SkillStatus, Window_SkillType } from 'windows';
+import { Graphics, Rectangle } from '../core/index.js';
+import { SoundManager } from '../managers/index.js';
+import { Scene_ItemBase, Scene_MenuBase } from '../scenes/index.js';
+import { Window_SkillList, Window_SkillStatus, Window_SkillType } from '../windows/index.js';
 
 export function Scene_Skill() {
 	this.initialize(...arguments);
