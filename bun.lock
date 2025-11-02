@@ -4,16 +4,16 @@
     "": {
       "name": "rmmz",
       "dependencies": {
-        "@local/effekseer": "./local_modules/effekseer170b",
+        "@local/effekseer": "./local_modules/effekseer-1.70e",
         "@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1",
-        "@types/nw.js": "^0.92.0",
         "localforage": "^1.10.0",
         "pako": "^2.1.0",
         "pixi.js": "5.3.12",
       },
       "devDependencies": {
         "@types/bun": "latest",
-        "nw": "0.105.0",
+        "@types/nw.js": "^0.92.0",
+        "nw": "^0.105.0-sdk",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -32,7 +32,7 @@
 
     "@isaacs/fs-minipass": ["@isaacs/fs-minipass@4.0.1", "", { "dependencies": { "minipass": "^7.0.4" } }, "sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w=="],
 
-    "@local/effekseer": ["@local/effekseer@file:local_modules/effekseer170b", {}],
+    "@local/effekseer": ["@local/effekseer@file:local_modules/effekseer-1.70e", {}],
 
     "@local/vorbisdecoder": ["@local/vorbisdecoder@file:local_modules/vorbisdecoder-1.0.1", {}],
 
