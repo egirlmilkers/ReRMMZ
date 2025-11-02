@@ -22,5 +22,6 @@
 		"strict": false,
 		"skipLibCheck": true
 	},
-	"include": ["src/**/*", "node_modules/@types/chrome"]
+	"include": ["src/**/*.js", "node_modules/@types/chrome"],
+	"exclude": ["node_modules", "dist", "assets"]
 }

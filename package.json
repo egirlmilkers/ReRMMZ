@@ -1,36 +1,39 @@
 {
-	"name": "rmmz",
-	"module": "src/main.js",
-	"type": "module",
-	"devDependencies": {
-		"@types/bun": "latest",
-		"@types/chrome": "^0.1.27",
-		"nw": "0.48.4-sdk"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
-	},
-	"dependencies": {
-		"@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1",
-		"@types/nw.js": "^0.92.0",
-		"@local/effekseer": "./local_modules/effekseer-1.70e/",
-		"localforage": "^1.10.0",
-		"pako": "^2.1.0",
-		"pixi.js": "5.3.12"
-	},
-	"trustedDependencies": [
-		"nw"
-	],
-	"scripts": {
-		"start": "nw ."
-	},
-	"main": "index.html",
-	"chromium-args": "--force-color-profile=srgb --auto-open-devtools-for-tabs",
-	"window": {
-		"title": "Project1",
-		"width": 816,
-		"height": 624,
-		"position": "center",
-		"icon": "./assets/icon/icon.png"
-	}
+  "name": "rmmz",
+  "version": "1.9.0",
+  "type": "module",
+  "module": "src/main.js",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/chrome": "^0.1.27",
+    "esbuild": "^0.25.12",
+    "nw": "0.105.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1",
+    "@types/nw.js": "^0.92.0",
+    "@local/effekseer": "./local_modules/effekseer-1.70e",
+    "localforage": "^1.10.0",
+    "pako": "^2.1.0",
+    "pixi.js": "5.3.12"
+  },
+  "trustedDependencies": [
+    "esbuild",
+    "nw"
+  ],
+  "scripts": {
+    "start": "nw ."
+  },
+  "main": "index.html",
+  "chromium-args": "--force-color-profile=srgb --auto-open-devtools-for-tabs",
+  "window": {
+    "title": "Project1",
+    "width": 816,
+    "height": 624,
+    "position": "center",
+    "icon": "./assets/icon/icon.png"
+  }
 }

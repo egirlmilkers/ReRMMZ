@@ -7,11 +7,6 @@
 		"type": "git",
 		"url": "https://github.com/effekseer/EffekseerForWebGL"
 	},
-	"main": "effekseer.js",
-	"types": "effekseer.d.ts",
-	"files": [
-		"effekseer.js",
-		"effekseer.wasm",
-		"effekseer.d.ts"
-	]
+	"main": "effekseer.min.js",
+	"types": "effekseer.d.ts"
 }
