@@ -1,6 +1,7 @@
 import {PluginManager, SceneManager} from "managers";
 import {Scene_Boot} from "scenes";
 import {$plugins} from "plugins";
+import "@local/effekseer";
 
 
 const effekseerWasmUrl = "@local/effekseer/effekseer.wasm";

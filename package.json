@@ -5,8 +5,6 @@
   "module": "src/main.js",
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/chrome": "^0.1.27",
-    "esbuild": "^0.25.12",
     "nw": "0.105.0"
   },
   "peerDependencies": {
@@ -15,7 +13,7 @@
   "dependencies": {
     "@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1",
     "@types/nw.js": "^0.92.0",
-    "@local/effekseer": "./local_modules/effekseer-1.70e",
+    "@local/effekseer": "./local_modules/effekseer170b",
     "localforage": "^1.10.0",
     "pako": "^2.1.0",
     "pixi.js": "5.3.12"
@@ -25,7 +23,8 @@
     "nw"
   ],
   "scripts": {
-    "start": "nw ."
+    "start": "nw .",
+    "build": "bun build ./src/main.js --bundle --outfile=./dist/rmmz.js"
   },
   "main": "index.html",
   "chromium-args": "--force-color-profile=srgb --auto-open-devtools-for-tabs",
