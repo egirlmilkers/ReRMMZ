@@ -1,0 +1,49 @@
+//-----------------------------------------------------------------------------
+// Game_CommonEvent
+//
+// The game object class for a common event. It contains functionality for
+// running parallel process events.
+
+import { DataManager } from "managers";
+import { Game_Interpreter } from "objects";
+
+export function Game_CommonEvent() {
+	this.initialize(...arguments);
+}
+
+Game_CommonEvent.prototype.initialize = function (commonEventId) {
+	this._commonEventId = commonEventId;
+	this.refresh();
+};
+
+Game_CommonEvent.prototype.event = function () {
+	return DataManager.$dataCommonEvents[this._commonEventId];
+};
+
+Game_CommonEvent.prototype.list = function () {
+	return this.event().list;
+};
+
+Game_CommonEvent.prototype.refresh = function () {
+	if (this.isActive()) {
+		if (!this._interpreter) {
+			this._interpreter = new Game_Interpreter();
+		}
+	} else {
+		this._interpreter = null;
+	}
+};
+
+Game_CommonEvent.prototype.isActive = function () {
+	const event = this.event();
+	return event.trigger === 2 && DataManager.$gameSwitches.value(event.switchId);
+};
+
+Game_CommonEvent.prototype.update = function () {
+	if (this._interpreter) {
+		if (!this._interpreter.isRunning()) {
+			this._interpreter.setup(this.list());
+		}
+		this._interpreter.update();
+	}
+};
