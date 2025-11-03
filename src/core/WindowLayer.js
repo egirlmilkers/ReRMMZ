@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 
 /**
@@ -9,15 +7,11 @@ import * as PIXI from 'pixi.js';
  * @extends PIXI.Container
  */
 export function WindowLayer() {
-	this.initialize(...arguments);
-}
+	PIXI.Container.call(this);
+};
 
 WindowLayer.prototype = Object.create(PIXI.Container.prototype);
 WindowLayer.prototype.constructor = WindowLayer;
-
-WindowLayer.prototype.initialize = function () {
-	PIXI.Container.call(this);
-};
 
 /**
  * Updates the window layer for each frame.

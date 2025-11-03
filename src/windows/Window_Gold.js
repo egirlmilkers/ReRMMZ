@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Gold
 //
 // The window for displaying the party's gold.
@@ -6,17 +5,13 @@
 import { DataManager, TextManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_Gold() {
-	this.initialize(...arguments);
-}
+export function Window_Gold(rect) {
+	Window_Selectable.call(this, rect);
+	this.refresh();
+};
 
 Window_Gold.prototype = Object.create(Window_Selectable.prototype);
 Window_Gold.prototype.constructor = Window_Gold;
-
-Window_Gold.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
-	this.refresh();
-};
 
 Window_Gold.prototype.colSpacing = function () {
 	return 0;

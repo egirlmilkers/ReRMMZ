@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Name
 //
 // The scene class of the name input screen.
@@ -10,15 +9,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_NameEdit, Window_NameInput } from '../windows/index.js';
 
 export function Scene_Name() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Name.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Name.prototype.constructor = Scene_Name;
-
-Scene_Name.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Name.prototype.prepare = function (actorId, maxLength) {
 	this._actorId = actorId;

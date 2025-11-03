@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // ConfigManager
 //
 // The static class that manages the configuration data.

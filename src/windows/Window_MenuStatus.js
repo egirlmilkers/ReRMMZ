@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_MenuStatus
 //
 // The window for displaying party member status on the menu screen.
@@ -6,19 +5,15 @@
 import { ColorManager, DataManager, ImageManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_MenuStatus() {
-	this.initialize(...arguments);
-}
-
-Window_MenuStatus.prototype = Object.create(Window_StatusBase.prototype);
-Window_MenuStatus.prototype.constructor = Window_MenuStatus;
-
-Window_MenuStatus.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_MenuStatus(rect) {
+	Window_StatusBase.call(this, rect);
 	this._formationMode = false;
 	this._pendingIndex = -1;
 	this.refresh();
 };
+
+Window_MenuStatus.prototype = Object.create(Window_StatusBase.prototype);
+Window_MenuStatus.prototype.constructor = Window_MenuStatus;
 
 Window_MenuStatus.prototype.maxItems = function () {
 	return DataManager.$gameParty.size();

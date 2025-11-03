@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_BattlerBase
 //
 // The superclass of Game_Battler. It mainly contains parameters calculation.
@@ -6,8 +5,8 @@
 import { DataManager } from '../managers/index.js';
 
 export function Game_BattlerBase() {
-	this.initialize(...arguments);
-}
+	this.initMembers();
+};
 
 Game_BattlerBase.TRAIT_ELEMENT_RATE = 11;
 Game_BattlerBase.TRAIT_DEBUFF_RATE = 12;
@@ -260,10 +259,6 @@ Object.defineProperties(Game_BattlerBase.prototype, {
 		configurable: true,
 	},
 });
-
-Game_BattlerBase.prototype.initialize = function () {
-	this.initMembers();
-};
 
 Game_BattlerBase.prototype.initMembers = function () {
 	this._hp = 1;

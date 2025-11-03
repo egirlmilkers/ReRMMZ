@@ -1,23 +1,18 @@
-//-----------------------------------------------------------------------------
 // Window_Command
 //
 // The superclass of windows for selecting a command.
 
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_Command() {
-	this.initialize(...arguments);
-}
-
-Window_Command.prototype = Object.create(Window_Selectable.prototype);
-Window_Command.prototype.constructor = Window_Command;
-
-Window_Command.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
+export function Window_Command(rect) {
+	Window_Selectable.call(this, rect);
 	this.refresh();
 	this.select(0);
 	this.activate();
 };
+
+Window_Command.prototype = Object.create(Window_Selectable.prototype);
+Window_Command.prototype.constructor = Window_Command;
 
 Window_Command.prototype.maxItems = function () {
 	return this._list.length;

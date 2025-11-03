@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_EquipSlot
 //
 // The window for selecting an equipment slot on the equipment screen.
@@ -6,18 +5,14 @@
 import { ColorManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_EquipSlot() {
-	this.initialize(...arguments);
-}
-
-Window_EquipSlot.prototype = Object.create(Window_StatusBase.prototype);
-Window_EquipSlot.prototype.constructor = Window_EquipSlot;
-
-Window_EquipSlot.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_EquipSlot(rect) {
+	Window_StatusBase.call(this, rect);
 	this._actor = null;
 	this.refresh();
 };
+
+Window_EquipSlot.prototype = Object.create(Window_StatusBase.prototype);
+Window_EquipSlot.prototype.constructor = Window_EquipSlot;
 
 Window_EquipSlot.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ShopCommand
 //
 // The window for selecting buy/sell on the shop screen.
@@ -6,16 +5,12 @@
 import { TextManager } from '../managers/index.js';
 import { Window_HorzCommand } from '../windows/index.js';
 
-export function Window_ShopCommand() {
-	this.initialize(...arguments);
-}
+export function Window_ShopCommand(rect) {
+	Window_HorzCommand.call(this, rect);
+};
 
 Window_ShopCommand.prototype = Object.create(Window_HorzCommand.prototype);
 Window_ShopCommand.prototype.constructor = Window_ShopCommand;
-
-Window_ShopCommand.prototype.initialize = function (rect) {
-	Window_HorzCommand.prototype.initialize.call(this, rect);
-};
 
 Window_ShopCommand.prototype.setPurchaseOnly = function (purchaseOnly) {
 	this._purchaseOnly = purchaseOnly;

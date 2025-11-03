@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Spriteset_Map
 //
 // The set of sprites on the map screen.
@@ -8,16 +7,12 @@ import { DataManager, ImageManager } from '../managers/index.js';
 import { Spriteset_Base, Sprite_Balloon, Sprite_Character, Sprite_Destination } from '../sprites/index.js';
 
 export function Spriteset_Map() {
-	this.initialize(...arguments);
-}
+	Spriteset_Base.call(this);
+	this._balloonSprites = [];
+};
 
 Spriteset_Map.prototype = Object.create(Spriteset_Base.prototype);
 Spriteset_Map.prototype.constructor = Spriteset_Map;
-
-Spriteset_Map.prototype.initialize = function () {
-	Spriteset_Base.prototype.initialize.call(this);
-	this._balloonSprites = [];
-};
 
 Spriteset_Map.prototype.destroy = function (options) {
 	this.removeAllBalloons();

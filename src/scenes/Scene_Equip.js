@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Equip
 //
 // The scene class of the equipment screen.
@@ -9,15 +8,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_EquipCommand, Window_EquipItem, Window_EquipSlot, Window_EquipStatus } from '../windows/index.js';
 
 export function Scene_Equip() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Equip.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Equip.prototype.constructor = Scene_Equip;
-
-Scene_Equip.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Equip.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

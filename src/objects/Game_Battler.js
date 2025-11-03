@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Battler
 //
 // The superclass of Game_Actor and Game_Enemy. It contains methods for sprites
@@ -8,15 +7,11 @@ import { BattleManager, DataManager, SoundManager } from '../managers/index.js';
 import { Game_Action, Game_ActionResult, Game_BattlerBase } from '../objects/index.js';
 
 export function Game_Battler() {
-	this.initialize(...arguments);
-}
+	Game_BattlerBase.call(this);
+};
 
 Game_Battler.prototype = Object.create(Game_BattlerBase.prototype);
 Game_Battler.prototype.constructor = Game_Battler;
-
-Game_Battler.prototype.initialize = function () {
-	Game_BattlerBase.prototype.initialize.call(this);
-};
 
 Game_Battler.prototype.initMembers = function () {
 	Game_BattlerBase.prototype.initMembers.call(this);

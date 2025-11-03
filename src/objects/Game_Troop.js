@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Troop
 //
 // The game object class for a troop and the battle-related data.
@@ -7,8 +6,10 @@ import { BattleManager, DataManager } from '../managers/index.js';
 import { Game_Enemy, Game_Interpreter, Game_Unit } from '../objects/index.js';
 
 export function Game_Troop() {
-	this.initialize(...arguments);
-}
+	Game_Unit.call(this);
+	this._interpreter = new Game_Interpreter();
+	this.clear();
+};
 
 Game_Troop.prototype = Object.create(Game_Unit.prototype);
 Game_Troop.prototype.constructor = Game_Troop;
@@ -23,12 +24,6 @@ Game_Troop.LETTER_TABLE_FULL = [
 	"Ａ", "Ｂ", "Ｃ", "Ｄ", "Ｅ", "Ｆ", "Ｇ", "Ｈ", "Ｉ", "Ｊ", "Ｋ", "Ｌ", "Ｍ",
 	"Ｎ", "Ｏ", "Ｐ", "Ｑ", "Ｒ", "Ｓ", "Ｔ", "Ｕ", "Ｖ", "Ｗ", "Ｘ", "Ｙ", "Ｚ"
 ];
-
-Game_Troop.prototype.initialize = function () {
-	Game_Unit.prototype.initialize.call(this);
-	this._interpreter = new Game_Interpreter();
-	this.clear();
-};
 
 Game_Troop.prototype.isEventRunning = function () {
 	return this._interpreter.isRunning();

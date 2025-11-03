@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Message
 //
 // The superclass of Scene_Map and Scene_Battle.
@@ -8,15 +7,11 @@ import { Scene_Base } from '../scenes/index.js';
 import { Window_ChoiceList, Window_EventItem, Window_Gold, Window_Message, Window_NameBox, Window_NumberInput, Window_ScrollText } from '../windows/index.js';
 
 export function Scene_Message() {
-	this.initialize(...arguments);
-}
+	Scene_Base.call(this);
+};
 
 Scene_Message.prototype = Object.create(Scene_Base.prototype);
 Scene_Message.prototype.constructor = Scene_Message;
-
-Scene_Message.prototype.initialize = function () {
-	Scene_Base.prototype.initialize.call(this);
-};
 
 Scene_Message.prototype.isMessageWindowClosing = function () {
 	return this._messageWindow.isClosing();

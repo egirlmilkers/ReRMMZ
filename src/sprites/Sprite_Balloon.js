@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Balloon
 //
 // The sprite for displaying a balloon icon.
@@ -7,17 +6,13 @@ import { Sprite } from '../core/index.js';
 import { ImageManager } from '../managers/index.js';
 
 export function Sprite_Balloon() {
-	this.initialize(...arguments);
-}
-
-Sprite_Balloon.prototype = Object.create(Sprite.prototype);
-Sprite_Balloon.prototype.constructor = Sprite_Balloon;
-
-Sprite_Balloon.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this.initMembers();
 	this.loadBitmap();
 };
+
+Sprite_Balloon.prototype = Object.create(Sprite.prototype);
+Sprite_Balloon.prototype.constructor = Sprite_Balloon;
 
 Sprite_Balloon.prototype.initMembers = function () {
 	this._target = null;

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Clickable
 //
 // The sprite class with click handling functions.
@@ -6,17 +5,13 @@
 import { Point, Rectangle, Sprite, TouchInput } from '../core/index.js';
 
 export function Sprite_Clickable() {
-	this.initialize(...arguments);
-}
-
-Sprite_Clickable.prototype = Object.create(Sprite.prototype);
-Sprite_Clickable.prototype.constructor = Sprite_Clickable;
-
-Sprite_Clickable.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this._pressed = false;
 	this._hovered = false;
 };
+
+Sprite_Clickable.prototype = Object.create(Sprite.prototype);
+Sprite_Clickable.prototype.constructor = Sprite_Clickable;
 
 Sprite_Clickable.prototype.update = function () {
 	Sprite.prototype.update.call(this);

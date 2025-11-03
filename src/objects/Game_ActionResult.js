@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_ActionResult
 //
 // The game object class for a result of a battle action. For convinience, all
@@ -7,10 +6,6 @@
 import { DataManager } from '../managers/index.js';
 
 export function Game_ActionResult() {
-	this.initialize(...arguments);
-}
-
-Game_ActionResult.prototype.initialize = function () {
 	this.clear();
 };
 

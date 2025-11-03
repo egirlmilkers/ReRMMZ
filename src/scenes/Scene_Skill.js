@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Skill
 //
 // The scene class of the skill screen.
@@ -9,15 +8,11 @@ import { Scene_ItemBase, Scene_MenuBase } from '../scenes/index.js';
 import { Window_SkillList, Window_SkillStatus, Window_SkillType } from '../windows/index.js';
 
 export function Scene_Skill() {
-	this.initialize(...arguments);
-}
+	Scene_ItemBase.call(this);
+};
 
 Scene_Skill.prototype = Object.create(Scene_ItemBase.prototype);
 Scene_Skill.prototype.constructor = Scene_Skill;
-
-Scene_Skill.prototype.initialize = function () {
-	Scene_ItemBase.prototype.initialize.call(this);
-};
 
 Scene_Skill.prototype.create = function () {
 	Scene_ItemBase.prototype.create.call(this);

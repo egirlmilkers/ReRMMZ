@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import { Stage, Utils, Video } from '../core/index.js';
 
@@ -598,10 +596,6 @@ Graphics._createEffekseerContext = function () {
 // The original can be found at https://github.com/Darsain/fpsmeter.
 
 Graphics.FPSCounter = function () {
-	this.initialize(...arguments);
-};
-
-Graphics.FPSCounter.prototype.initialize = function () {
 	this._tickCount = 0;
 	this._frameTime = 100;
 	this._frameStart = 0;

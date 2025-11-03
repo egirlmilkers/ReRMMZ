@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 /**
  * The static class that handles JSON with object information.
  *

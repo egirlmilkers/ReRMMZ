@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_StateIcon
 //
 // The sprite for displaying state icons.
@@ -7,17 +6,13 @@ import { Sprite } from '../core/index.js';
 import { ImageManager } from '../managers/index.js';
 
 export function Sprite_StateIcon() {
-	this.initialize(...arguments);
-}
-
-Sprite_StateIcon.prototype = Object.create(Sprite.prototype);
-Sprite_StateIcon.prototype.constructor = Sprite_StateIcon;
-
-Sprite_StateIcon.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this.initMembers();
 	this.loadBitmap();
 };
+
+Sprite_StateIcon.prototype = Object.create(Sprite.prototype);
+Sprite_StateIcon.prototype.constructor = Sprite_StateIcon;
 
 Sprite_StateIcon.prototype.initMembers = function () {
 	this._battler = null;

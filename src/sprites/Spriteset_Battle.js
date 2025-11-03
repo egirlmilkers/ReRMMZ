@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Spriteset_Battle
 //
 // The set of sprites on the battle screen.
@@ -8,16 +7,12 @@ import { DataManager, ImageManager, SceneManager } from '../managers/index.js';
 import { Spriteset_Base, Sprite_Actor, Sprite_Battleback, Sprite_Enemy } from '../sprites/index.js';
 
 export function Spriteset_Battle() {
-	this.initialize(...arguments);
-}
+	Spriteset_Base.call(this);
+	this._battlebackLocated = false;
+};
 
 Spriteset_Battle.prototype = Object.create(Spriteset_Base.prototype);
 Spriteset_Battle.prototype.constructor = Spriteset_Battle;
-
-Spriteset_Battle.prototype.initialize = function () {
-	Spriteset_Base.prototype.initialize.call(this);
-	this._battlebackLocated = false;
-};
 
 Spriteset_Battle.prototype.loadSystemImages = function () {
 	Spriteset_Base.prototype.loadSystemImages.call(this);

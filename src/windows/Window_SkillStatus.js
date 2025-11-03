@@ -1,21 +1,16 @@
-//-----------------------------------------------------------------------------
 // Window_SkillStatus
 //
 // The window for displaying the skill user's status on the skill screen.
 
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_SkillStatus() {
-	this.initialize(...arguments);
-}
+export function Window_SkillStatus(rect) {
+	Window_StatusBase.call(this, rect);
+	this._actor = null;
+};
 
 Window_SkillStatus.prototype = Object.create(Window_StatusBase.prototype);
 Window_SkillStatus.prototype.constructor = Window_SkillStatus;
-
-Window_SkillStatus.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
-	this._actor = null;
-};
 
 Window_SkillStatus.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

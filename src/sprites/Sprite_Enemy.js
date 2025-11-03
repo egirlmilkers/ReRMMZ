@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Enemy
 //
 // The sprite for displaying an enemy.
@@ -6,16 +5,12 @@
 import { DataManager, ImageManager, SoundManager } from '../managers/index.js';
 import { Sprite_Battler, Sprite_StateIcon } from '../sprites/index.js';
 
-export function Sprite_Enemy() {
-	this.initialize(...arguments);
-}
+export function Sprite_Enemy(battler) {
+	Sprite_Battler.call(this, battler);
+};
 
 Sprite_Enemy.prototype = Object.create(Sprite_Battler.prototype);
 Sprite_Enemy.prototype.constructor = Sprite_Enemy;
-
-Sprite_Enemy.prototype.initialize = function (battler) {
-	Sprite_Battler.prototype.initialize.call(this, battler);
-};
 
 Sprite_Enemy.prototype.initMembers = function () {
 	Sprite_Battler.prototype.initMembers.call(this);

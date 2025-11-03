@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Save
 //
 // The scene class of the save screen.
@@ -7,15 +6,11 @@ import { DataManager, SoundManager, TextManager } from '../managers/index.js';
 import { Scene_File } from '../scenes/index.js';
 
 export function Scene_Save() {
-	this.initialize(...arguments);
-}
+	Scene_File.call(this);
+};
 
 Scene_Save.prototype = Object.create(Scene_File.prototype);
 Scene_Save.prototype.constructor = Scene_Save;
-
-Scene_Save.prototype.initialize = function () {
-	Scene_File.prototype.initialize.call(this);
-};
 
 Scene_Save.prototype.mode = function () {
 	return "save";

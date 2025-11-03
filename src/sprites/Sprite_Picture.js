@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Picture
 //
 // The sprite for displaying a picture.
@@ -6,19 +5,15 @@
 import { DataManager, ImageManager } from '../managers/index.js';
 import { Sprite_Clickable } from '../sprites/index.js';
 
-export function Sprite_Picture() {
-	this.initialize(...arguments);
-}
-
-Sprite_Picture.prototype = Object.create(Sprite_Clickable.prototype);
-Sprite_Picture.prototype.constructor = Sprite_Picture;
-
-Sprite_Picture.prototype.initialize = function (pictureId) {
-	Sprite_Clickable.prototype.initialize.call(this);
+export function Sprite_Picture(pictureId) {
+	Sprite_Clickable.call(this);
 	this._pictureId = pictureId;
 	this._pictureName = "";
 	this.update();
 };
+
+Sprite_Picture.prototype = Object.create(Sprite_Clickable.prototype);
+Sprite_Picture.prototype.constructor = Sprite_Picture;
 
 Sprite_Picture.prototype.picture = function () {
 	return DataManager.$gameScreen.picture(this._pictureId);

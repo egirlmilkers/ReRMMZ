@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Actor
 //
 // The sprite for displaying an actor.
@@ -7,9 +6,10 @@ import { Sprite } from '../core/index.js';
 import { BattleManager, ImageManager } from '../managers/index.js';
 import { Sprite_Battler, Sprite_StateOverlay, Sprite_Weapon } from '../sprites/index.js';
 
-export function Sprite_Actor() {
-	this.initialize(...arguments);
-}
+export function Sprite_Actor(battler) {
+	Sprite_Battler.call(this, battler);
+	this.moveToStartPosition();
+};
 
 Sprite_Actor.prototype = Object.create(Sprite_Battler.prototype);
 Sprite_Actor.prototype.constructor = Sprite_Actor;
@@ -33,11 +33,6 @@ Sprite_Actor.MOTIONS = {
 	abnormal: { index: 15, loop: true },
 	sleep: { index: 16, loop: true },
 	dead: { index: 17, loop: true },
-};
-
-Sprite_Actor.prototype.initialize = function (battler) {
-	Sprite_Battler.prototype.initialize.call(this, battler);
-	this.moveToStartPosition();
 };
 
 Sprite_Actor.prototype.initMembers = function () {

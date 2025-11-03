@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_MenuCommand
 //
 // The window for selecting a command on the menu screen.
@@ -6,18 +5,14 @@
 import { DataManager, TextManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_MenuCommand() {
-	this.initialize(...arguments);
-}
-
-Window_MenuCommand.prototype = Object.create(Window_Command.prototype);
-Window_MenuCommand.prototype.constructor = Window_MenuCommand;
-
-Window_MenuCommand.prototype.initialize = function (rect) {
-	Window_Command.prototype.initialize.call(this, rect);
+export function Window_MenuCommand(rect) {
+	Window_Command.call(this, rect);
 	this.selectLast();
 	this._canRepeat = false;
 };
+
+Window_MenuCommand.prototype = Object.create(Window_Command.prototype);
+Window_MenuCommand.prototype.constructor = Window_MenuCommand;
 
 Window_MenuCommand._lastCommandSymbol = null;
 

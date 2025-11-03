@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Title
 //
 // The scene class of the title screen.
@@ -10,15 +9,11 @@ import { Scene_Base, Scene_Load, Scene_Map, Scene_Options } from '../scenes/inde
 import { Window_TitleCommand } from '../windows/index.js';
 
 export function Scene_Title() {
-	this.initialize(...arguments);
-}
+	Scene_Base.call(this);
+};
 
 Scene_Title.prototype = Object.create(Scene_Base.prototype);
 Scene_Title.prototype.constructor = Scene_Title;
-
-Scene_Title.prototype.initialize = function () {
-	Scene_Base.prototype.initialize.call(this);
-};
 
 Scene_Title.prototype.create = function () {
 	Scene_Base.prototype.create.call(this);

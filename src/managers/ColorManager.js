@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // ColorManager
 //
 // The static class that handles the window colors.

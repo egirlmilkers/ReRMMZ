@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Timer
 //
 // The game object class for the timer.
@@ -6,10 +5,6 @@
 import { BattleManager } from '../managers/index.js';
 
 export function Game_Timer() {
-	this.initialize(...arguments);
-}
-
-Game_Timer.prototype.initialize = function () {
 	this._frames = 0;
 	this._working = false;
 };

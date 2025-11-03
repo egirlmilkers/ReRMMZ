@@ -1,5 +1,4 @@
 
-//-----------------------------------------------------------------------------
 // Scene_Shop
 //
 // The scene class of the shop screen.
@@ -11,15 +10,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_Base, Window_Gold, Window_ItemCategory, Window_ShopBuy, Window_ShopCommand, Window_ShopNumber, Window_ShopSell, Window_ShopStatus } from '../windows/index.js';
 
 export function Scene_Shop() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Shop.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Shop.prototype.constructor = Scene_Shop;
-
-Scene_Shop.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Shop.prototype.prepare = function (goods, purchaseOnly) {
 	this._goods = goods;

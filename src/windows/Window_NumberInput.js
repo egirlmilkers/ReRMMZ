@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_NumberInput
 //
 // The window used for the event command [Input Number].
@@ -9,14 +8,7 @@ import { Sprite_Button } from '../sprites/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
 export function Window_NumberInput() {
-	this.initialize(...arguments);
-}
-
-Window_NumberInput.prototype = Object.create(Window_Selectable.prototype);
-Window_NumberInput.prototype.constructor = Window_NumberInput;
-
-Window_NumberInput.prototype.initialize = function () {
-	Window_Selectable.prototype.initialize.call(this, new Rectangle());
+	Window_Selectable.call(this, new Rectangle());
 	this._number = 0;
 	this._maxDigits = 1;
 	this.openness = 0;
@@ -24,6 +16,9 @@ Window_NumberInput.prototype.initialize = function () {
 	this.deactivate();
 	this._canRepeat = false;
 };
+
+Window_NumberInput.prototype = Object.create(Window_Selectable.prototype);
+Window_NumberInput.prototype.constructor = Window_NumberInput;
 
 Window_NumberInput.prototype.setMessageWindow = function (messageWindow) {
 	this._messageWindow = messageWindow;

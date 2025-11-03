@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import { Graphics, Rectangle, Stage, Utils } from '../core/index.js';
 
@@ -10,11 +8,7 @@ import { Graphics, Rectangle, Stage, Utils } from '../core/index.js';
  * @param {number} width - The width of the bitmap.
  * @param {number} height - The height of the bitmap.
  */
-export function Bitmap() {
-	this.initialize(...arguments);
-}
-
-Bitmap.prototype.initialize = function (width, height) {
+export function Bitmap(width, height) {
 	this._canvas = null;
 	this._context = null;
 	this._baseTexture = null;
@@ -88,8 +82,7 @@ Bitmap.prototype.initialize = function (width, height) {
  * @returns {Bitmap} The new bitmap object.
  */
 Bitmap.load = function (url) {
-	const bitmap = Object.create(Bitmap.prototype);
-	bitmap.initialize();
+	const bitmap = new Bitmap(null, null);
 	bitmap._url = url;
 	bitmap._startLoading();
 	return bitmap;

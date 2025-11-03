@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_SkillList
 //
 // The window for selecting a skill on the skill screen.
@@ -6,19 +5,15 @@
 import { ColorManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_SkillList() {
-	this.initialize(...arguments);
-}
-
-Window_SkillList.prototype = Object.create(Window_Selectable.prototype);
-Window_SkillList.prototype.constructor = Window_SkillList;
-
-Window_SkillList.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
+export function Window_SkillList(rect) {
+	Window_Selectable.call(this, rect);
 	this._actor = null;
 	this._stypeId = 0;
 	this._data = [];
 };
+
+Window_SkillList.prototype = Object.create(Window_Selectable.prototype);
+Window_SkillList.prototype.constructor = Window_SkillList;
 
 Window_SkillList.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

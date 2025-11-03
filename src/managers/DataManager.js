@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // DataManager
 //
 // The static class that manages the database and game objects.

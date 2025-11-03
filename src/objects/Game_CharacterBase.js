@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_CharacterBase
 //
 // The superclass of Game_Character. It handles basic information, such as
@@ -9,8 +8,8 @@ import { Graphics } from '../core/index.js';
 import { DataManager, ImageManager } from '../managers/index.js';
 
 export function Game_CharacterBase() {
-	this.initialize(...arguments);
-}
+	this.initMembers();
+};
 
 Object.defineProperties(Game_CharacterBase.prototype, {
 	x: {
@@ -26,10 +25,6 @@ Object.defineProperties(Game_CharacterBase.prototype, {
 		configurable: true,
 	},
 });
-
-Game_CharacterBase.prototype.initialize = function () {
-	this.initMembers();
-};
 
 Game_CharacterBase.prototype.initMembers = function () {
 	this._x = 0;

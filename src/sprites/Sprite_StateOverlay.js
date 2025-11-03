@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_StateOverlay
 //
 // The sprite for displaying an overlay image for a state.
@@ -7,17 +6,13 @@ import { Sprite } from '../core/index.js';
 import { ImageManager } from '../managers/index.js';
 
 export function Sprite_StateOverlay() {
-	this.initialize(...arguments);
-}
-
-Sprite_StateOverlay.prototype = Object.create(Sprite.prototype);
-Sprite_StateOverlay.prototype.constructor = Sprite_StateOverlay;
-
-Sprite_StateOverlay.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this.initMembers();
 	this.loadBitmap();
 };
+
+Sprite_StateOverlay.prototype = Object.create(Sprite.prototype);
+Sprite_StateOverlay.prototype.constructor = Sprite_StateOverlay;
 
 Sprite_StateOverlay.prototype.initMembers = function () {
 	this._battler = null;

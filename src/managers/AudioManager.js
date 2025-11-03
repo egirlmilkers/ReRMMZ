@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // AudioManager
 //
 // The static class that handles BGM, BGS, ME and SE.

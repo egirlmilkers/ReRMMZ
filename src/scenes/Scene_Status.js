@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Status
 //
 // The scene class of the status screen.
@@ -8,15 +7,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_Help, Window_Status, Window_StatusEquip, Window_StatusParams } from '../windows/index.js';
 
 export function Scene_Status() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Status.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Status.prototype.constructor = Scene_Status;
-
-Scene_Status.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Status.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 
 /**
@@ -10,13 +8,9 @@ import * as PIXI from 'pixi.js';
  * @param {number} x - The x coordinate.
  * @param {number} y - The y coordinate.
  */
-export function Point() {
-	this.initialize(...arguments);
-}
+export function Point(x, y) {
+	PIXI.Point.call(this, x, y);
+};
 
 Point.prototype = Object.create(PIXI.Point.prototype);
 Point.prototype.constructor = Point;
-
-Point.prototype.initialize = function (x, y) {
-	PIXI.Point.call(this, x, y);
-};

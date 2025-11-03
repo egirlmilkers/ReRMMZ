@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // EffectManager
 //
 // The static class that loads Effekseer effects.

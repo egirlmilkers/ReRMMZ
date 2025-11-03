@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Selectable
 //
 // The window class with cursor movement functions.
@@ -7,20 +6,16 @@ import { Input, Point, Rectangle, TouchInput } from '../core/index.js';
 import { ColorManager, SoundManager } from '../managers/index.js';
 import { Window_Scrollable } from '../windows/index.js';
 
-export function Window_Selectable() {
-	this.initialize(...arguments);
-}
-
-Window_Selectable.prototype = Object.create(Window_Scrollable.prototype);
-Window_Selectable.prototype.constructor = Window_Selectable;
-
-Window_Selectable.prototype.initialize = function (rect) {
-	Window_Scrollable.prototype.initialize.call(this, rect);
+export function Window_Selectable(rect) {
+	Window_Scrollable.call(this, rect);
 	this._index = -1;
 	this._cursorFixed = false;
 	this._cursorAll = false;
 	this._helpWindow = null;
 	this._handlers = {};
+
+Window_Selectable.prototype = Object.create(Window_Scrollable.prototype);
+Window_Selectable.prototype.constructor = Window_Selectable;
 	this._doubleTouch = false;
 	this._canRepeat = true;
 	this.deactivate();

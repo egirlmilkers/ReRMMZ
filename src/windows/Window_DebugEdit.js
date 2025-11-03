@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_DebugEdit
 //
 // The window for displaying switches and variables on the debug screen.
@@ -7,19 +6,15 @@ import { Input } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_DebugEdit() {
-	this.initialize(...arguments);
-}
-
-Window_DebugEdit.prototype = Object.create(Window_Selectable.prototype);
-Window_DebugEdit.prototype.constructor = Window_DebugEdit;
-
-Window_DebugEdit.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
+export function Window_DebugEdit(rect) {
+	Window_Selectable.call(this, rect);
 	this._mode = "switch";
 	this._topId = 1;
 	this.refresh();
 };
+
+Window_DebugEdit.prototype = Object.create(Window_Selectable.prototype);
+Window_DebugEdit.prototype.constructor = Window_DebugEdit;
 
 Window_DebugEdit.prototype.maxItems = function () {
 	return 10;

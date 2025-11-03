@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_System
 //
 // The game object class for the system data.
@@ -7,10 +6,6 @@ import { Graphics } from '../core/index.js';
 import { AudioManager, DataManager } from '../managers/index.js';
 
 export function Game_System() {
-	this.initialize(...arguments);
-}
-
-Game_System.prototype.initialize = function () {
 	this._saveEnabled = true;
 	this._menuEnabled = true;
 	this._encounterEnabled = true;

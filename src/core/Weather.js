@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import { Bitmap, Graphics, ScreenSprite, Sprite, Point } from '../core/index.js';
 
@@ -10,13 +8,6 @@ import { Bitmap, Graphics, ScreenSprite, Sprite, Point } from '../core/index.js'
  * @extends PIXI.Container
  */
 export function Weather() {
-	this.initialize(...arguments);
-}
-
-Weather.prototype = Object.create(PIXI.Container.prototype);
-Weather.prototype.constructor = Weather;
-
-Weather.prototype.initialize = function () {
 	PIXI.Container.call(this);
 
 	this._width = Graphics.width;
@@ -47,6 +38,9 @@ Weather.prototype.initialize = function () {
 	 */
 	this.origin = new Point();
 };
+
+Weather.prototype = Object.create(PIXI.Container.prototype);
+Weather.prototype.constructor = Weather;
 
 /**
  * Destroys the weather.

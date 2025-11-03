@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import { Graphics, Point } from '../core/index.js';
 
@@ -10,13 +8,6 @@ import { Graphics, Point } from '../core/index.js';
  * @extends PIXI.Container
  */
 export function Tilemap() {
-	this.initialize(...arguments);
-}
-
-Tilemap.prototype = Object.create(PIXI.Container.prototype);
-Tilemap.prototype.constructor = Tilemap;
-
-Tilemap.prototype.initialize = function () {
 	PIXI.Container.call(this);
 
 	this._width = Graphics.width;
@@ -79,6 +70,9 @@ Tilemap.prototype.initialize = function () {
 	this._createLayers();
 	this.refresh();
 };
+
+Tilemap.prototype = Object.create(PIXI.Container.prototype);
+Tilemap.prototype.constructor = Tilemap;
 
 /**
  * The width of the tilemap.
@@ -684,13 +678,6 @@ Tilemap.WATERFALL_AUTOTILE_TABLE = [
 // Internal classes
 
 Tilemap.Layer = function () {
-	this.initialize(...arguments);
-};
-
-Tilemap.Layer.prototype = Object.create(PIXI.Container.prototype);
-Tilemap.Layer.prototype.constructor = Tilemap.Layer;
-
-Tilemap.Layer.prototype.initialize = function () {
 	PIXI.Container.call(this);
 	this._elements = [];
 	this._indexBuffer = null;
@@ -704,6 +691,9 @@ Tilemap.Layer.prototype.initialize = function () {
 	this._state = PIXI.State.for2d();
 	this._createVao();
 };
+
+Tilemap.Layer.prototype = Object.create(PIXI.Container.prototype);
+Tilemap.Layer.prototype.constructor = Tilemap.Layer;
 
 Tilemap.Layer.MAX_GL_TEXTURES = 3;
 Tilemap.Layer.VERTEX_STRIDE = 9 * 4;
@@ -869,18 +859,14 @@ Tilemap.Layer.prototype._updateVertexBuffer = function () {
 };
 
 Tilemap.CombinedLayer = function () {
-	this.initialize(...arguments);
-};
-
-Tilemap.CombinedLayer.prototype = Object.create(PIXI.Container.prototype);
-Tilemap.CombinedLayer.prototype.constructor = Tilemap.CombinedLayer;
-
-Tilemap.CombinedLayer.prototype.initialize = function () {
 	PIXI.Container.call(this);
 	for (let i = 0; i < 2; i++) {
 		this.addChild(new Tilemap.Layer());
 	}
 };
+
+Tilemap.CombinedLayer.prototype = Object.create(PIXI.Container.prototype);
+Tilemap.CombinedLayer.prototype.constructor = Tilemap.CombinedLayer;
 
 Tilemap.CombinedLayer.prototype.destroy = function () {
 	const options = { children: true, texture: true };
@@ -919,14 +905,7 @@ Tilemap.CombinedLayer.prototype.isReady = function () {
 	return this.children.every((child) => child.isReady());
 };
 
-Tilemap.Renderer = function () {
-	this.initialize(...arguments);
-};
-
-Tilemap.Renderer.prototype = Object.create(PIXI.ObjectRenderer.prototype);
-Tilemap.Renderer.prototype.constructor = Tilemap.Renderer;
-
-Tilemap.Renderer.prototype.initialize = function (renderer) {
+Tilemap.Renderer = function (renderer) {
 	PIXI.ObjectRenderer.call(this, renderer);
 	this._shader = null;
 	this._images = [];
@@ -934,6 +913,9 @@ Tilemap.Renderer.prototype.initialize = function (renderer) {
 	this._clearBuffer = new Uint8Array(1024 * 1024 * 4);
 	this.contextChange();
 };
+
+Tilemap.Renderer.prototype = Object.create(PIXI.ObjectRenderer.prototype);
+Tilemap.Renderer.prototype.constructor = Tilemap.Renderer;
 
 Tilemap.Renderer.prototype.destroy = function () {
 	PIXI.ObjectRenderer.prototype.destroy.call(this);

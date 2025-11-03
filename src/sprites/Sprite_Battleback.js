@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Battleback
 //
 // The sprite for displaying a background image in battle.
@@ -7,21 +6,17 @@ import { Graphics, TilingSprite } from '../core/index.js';
 
 import { BattleManager, DataManager, ImageManager } from '../managers/index.js';
 
-export function Sprite_Battleback() {
-	this.initialize(...arguments);
-}
-
-Sprite_Battleback.prototype = Object.create(TilingSprite.prototype);
-Sprite_Battleback.prototype.constructor = Sprite_Battleback;
-
-Sprite_Battleback.prototype.initialize = function (type) {
-	TilingSprite.prototype.initialize.call(this);
+export function Sprite_Battleback(type) {
+	TilingSprite.call(this);
 	if (type === 0) {
 		this.bitmap = this.battleback1Bitmap();
 	} else {
 		this.bitmap = this.battleback2Bitmap();
 	}
 };
+
+Sprite_Battleback.prototype = Object.create(TilingSprite.prototype);
+Sprite_Battleback.prototype.constructor = Sprite_Battleback;
 
 Sprite_Battleback.prototype.adjustPosition = function () {
 	this.width = Math.floor((1000 * Graphics.width) / 816);

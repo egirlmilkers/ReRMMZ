@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Screen
 //
 // The game object class for screen effect data, such as changes in color tone
@@ -8,10 +7,6 @@ import { DataManager } from '../managers/index.js';
 import { Game_Picture } from '../objects/index.js';
 
 export function Game_Screen() {
-	this.initialize(...arguments);
-}
-
-Game_Screen.prototype.initialize = function () {
 	this.clear();
 };
 

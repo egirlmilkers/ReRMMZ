@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import { Bitmap, Point, Rectangle } from '../core/index.js';
 
@@ -10,14 +8,7 @@ import { Bitmap, Point, Rectangle } from '../core/index.js';
  * @extends PIXI.TilingSprite
  * @param {Bitmap} bitmap - The image for the tiling sprite.
  */
-export function TilingSprite() {
-	this.initialize(...arguments);
-}
-
-TilingSprite.prototype = Object.create(PIXI.TilingSprite.prototype);
-TilingSprite.prototype.constructor = TilingSprite;
-
-TilingSprite.prototype.initialize = function (bitmap) {
+export function TilingSprite(bitmap) {
 	if (!TilingSprite._emptyBaseTexture) {
 		TilingSprite._emptyBaseTexture = new PIXI.BaseTexture();
 		TilingSprite._emptyBaseTexture.setSize(1, 1);
@@ -39,6 +30,9 @@ TilingSprite.prototype.initialize = function (bitmap) {
 
 	this._onBitmapChange();
 };
+
+TilingSprite.prototype = Object.create(PIXI.TilingSprite.prototype);
+TilingSprite.prototype.constructor = TilingSprite;
 
 TilingSprite._emptyBaseTexture = null;
 

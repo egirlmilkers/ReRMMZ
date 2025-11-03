@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import { VorbisDecoder } from "@local/vorbisdecoder";
 import { Utils } from '../core/index.js';
 
@@ -9,11 +7,7 @@ import { Utils } from '../core/index.js';
  * @class
  * @param {string} url - The url of the audio file.
  */
-export function WebAudio() {
-	this.initialize(...arguments);
-}
-
-WebAudio.prototype.initialize = function (url) {
+export function WebAudio(url) {
 	this.clear();
 	this._url = url;
 	this._startLoading();

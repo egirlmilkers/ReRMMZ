@@ -1,27 +1,21 @@
-//-----------------------------------------------------------------------------
+import * as PIXI from 'pixi.js';
+
 /**
  * The color filter for WebGL.
  *
  * @class
  * @extends PIXI.Filter
  */
-
-import * as PIXI from 'pixi.js';
-
 export function ColorFilter() {
-	this.initialize(...arguments);
-}
-
-ColorFilter.prototype = Object.create(PIXI.Filter.prototype);
-ColorFilter.prototype.constructor = ColorFilter;
-
-ColorFilter.prototype.initialize = function () {
 	PIXI.Filter.call(this, null, this._fragmentSrc());
 	this.uniforms.hue = 0;
 	this.uniforms.colorTone = [0, 0, 0, 0];
 	this.uniforms.blendColor = [0, 0, 0, 0];
 	this.uniforms.brightness = 255;
 };
+
+ColorFilter.prototype = Object.create(PIXI.Filter.prototype);
+ColorFilter.prototype.constructor = ColorFilter;
 
 /**
  * Sets the hue rotation value.

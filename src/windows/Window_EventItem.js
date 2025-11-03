@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_EventItem
 //
 // The window used for the event command [Select Item].
@@ -8,15 +7,8 @@ import { ConfigManager, DataManager } from '../managers/index.js';
 import { Sprite_Button } from '../sprites/index.js';
 import { Window_ItemList, Window_Selectable } from '../windows/index.js';
 
-export function Window_EventItem() {
-	this.initialize(...arguments);
-}
-
-Window_EventItem.prototype = Object.create(Window_ItemList.prototype);
-Window_EventItem.prototype.constructor = Window_EventItem;
-
-Window_EventItem.prototype.initialize = function (rect) {
-	Window_ItemList.prototype.initialize.call(this, rect);
+export function Window_EventItem(rect) {
+	Window_ItemList.call(this, rect);
 	this.createCancelButton();
 	this.openness = 0;
 	this.deactivate();
@@ -24,6 +16,9 @@ Window_EventItem.prototype.initialize = function (rect) {
 	this.setHandler("cancel", this.onCancel.bind(this));
 	this._canRepeat = false;
 };
+
+Window_EventItem.prototype = Object.create(Window_ItemList.prototype);
+Window_EventItem.prototype.constructor = Window_EventItem;
 
 Window_EventItem.prototype.setMessageWindow = function (messageWindow) {
 	this._messageWindow = messageWindow;

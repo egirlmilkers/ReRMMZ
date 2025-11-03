@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Map
 //
 // The scene class of the map screen.
@@ -11,20 +10,16 @@ import { Sprite_Button, Spriteset_Map } from '../sprites/index.js';
 import { Window_MapName, Window_MenuCommand } from '../windows/index.js';
 
 export function Scene_Map() {
-	this.initialize(...arguments);
-}
-
-Scene_Map.prototype = Object.create(Scene_Message.prototype);
-Scene_Map.prototype.constructor = Scene_Map;
-
-Scene_Map.prototype.initialize = function () {
-	Scene_Message.prototype.initialize.call(this);
+	Scene_Message.call(this);
 	this._waitCount = 0;
 	this._encounterEffectDuration = 0;
 	this._mapLoaded = false;
 	this._touchCount = 0;
 	this._menuEnabled = false;
 };
+
+Scene_Map.prototype = Object.create(Scene_Message.prototype);
+Scene_Map.prototype.constructor = Scene_Map;
 
 Scene_Map.prototype.create = function () {
 	Scene_Message.prototype.create.call(this);

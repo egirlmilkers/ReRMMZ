@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import { Bitmap, Point, Rectangle, Sprite, TilingSprite } from '../core/index.js';
 
@@ -10,13 +8,6 @@ import { Bitmap, Point, Rectangle, Sprite, TilingSprite } from '../core/index.js
  * @extends PIXI.Container
  */
 export function Window() {
-	this.initialize(...arguments);
-}
-
-Window.prototype = Object.create(PIXI.Container.prototype);
-Window.prototype.constructor = Window;
-
-Window.prototype.initialize = function () {
 	PIXI.Container.call(this);
 
 	this._isWindow = true;
@@ -93,6 +84,9 @@ Window.prototype.initialize = function () {
 	 */
 	this.pause = false;
 };
+
+Window.prototype = Object.create(PIXI.Container.prototype);
+Window.prototype.constructor = Window;
 
 /**
  * The image used as a window skin.

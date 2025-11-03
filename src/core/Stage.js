@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 
 /**
@@ -9,15 +7,11 @@ import * as PIXI from 'pixi.js';
  * @extends PIXI.Container
  */
 export function Stage() {
-	this.initialize(...arguments);
-}
+	PIXI.Container.call(this);
+};
 
 Stage.prototype = Object.create(PIXI.Container.prototype);
 Stage.prototype.constructor = Stage;
-
-Stage.prototype.initialize = function () {
-	PIXI.Container.call(this);
-};
 
 /**
  * Destroys the stage.

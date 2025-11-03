@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_DebugRange
 //
 // The window for selecting a block of switches/variables on the debug screen.
@@ -7,25 +6,21 @@ import { Input } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_DebugRange() {
-	this.initialize(...arguments);
-}
+export function Window_DebugRange(rect) {
+	this._maxSwitches = Math.ceil((DataManager.$dataSystem.switches.length - 1) / 10);
+	this._maxVariables = Math.ceil((DataManager.$dataSystem.variables.length - 1) / 10);
+	Window_Selectable.call(this, rect);
+	this.refresh();
+	this.setTopRow(Window_DebugRange.lastTopRow);
+	this.select(Window_DebugRange.lastIndex);
+	this.activate();
+};
 
 Window_DebugRange.prototype = Object.create(Window_Selectable.prototype);
 Window_DebugRange.prototype.constructor = Window_DebugRange;
 
 Window_DebugRange.lastTopRow = 0;
 Window_DebugRange.lastIndex = 0;
-
-Window_DebugRange.prototype.initialize = function (rect) {
-	this._maxSwitches = Math.ceil((DataManager.$dataSystem.switches.length - 1) / 10);
-	this._maxVariables = Math.ceil((DataManager.$dataSystem.variables.length - 1) / 10);
-	Window_Selectable.prototype.initialize.call(this, rect);
-	this.refresh();
-	this.setTopRow(Window_DebugRange.lastTopRow);
-	this.select(Window_DebugRange.lastIndex);
-	this.activate();
-};
 
 Window_DebugRange.prototype.maxItems = function () {
 	return this._maxSwitches + this._maxVariables;

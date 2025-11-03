@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_BattleEnemy
 //
 // The window for selecting a target enemy on the battle screen.
@@ -6,19 +5,15 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_BattleEnemy() {
-	this.initialize(...arguments);
-}
-
-Window_BattleEnemy.prototype = Object.create(Window_Selectable.prototype);
-Window_BattleEnemy.prototype.constructor = Window_BattleEnemy;
-
-Window_BattleEnemy.prototype.initialize = function (rect) {
+export function Window_BattleEnemy(rect) {
 	this._enemies = [];
-	Window_Selectable.prototype.initialize.call(this, rect);
+	Window_Selectable.call(this, rect);
 	this.refresh();
 	this.hide();
 };
+
+Window_BattleEnemy.prototype = Object.create(Window_Selectable.prototype);
+Window_BattleEnemy.prototype.constructor = Window_BattleEnemy;
 
 Window_BattleEnemy.prototype.maxCols = function () {
 	return 2;

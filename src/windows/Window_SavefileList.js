@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_SavefileList
 //
 // The window for selecting a save file on the save and load screens.
@@ -6,19 +5,15 @@
 import { DataManager, TextManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_SavefileList() {
-	this.initialize(...arguments);
-}
-
-Window_SavefileList.prototype = Object.create(Window_Selectable.prototype);
-Window_SavefileList.prototype.constructor = Window_SavefileList;
-
-Window_SavefileList.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
+export function Window_SavefileList(rect) {
+	Window_Selectable.call(this, rect);
 	this.activate();
 	this._mode = null;
 	this._autosave = false;
 };
+
+Window_SavefileList.prototype = Object.create(Window_Selectable.prototype);
+Window_SavefileList.prototype.constructor = Window_SavefileList;
 
 Window_SavefileList.prototype.setMode = function (mode, autosave) {
 	this._mode = mode;
