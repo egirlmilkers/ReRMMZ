@@ -4,31 +4,30 @@
 
 import { Window_Base } from '../windows/index.js';
 
-export function Window_Help(rect) {
-	Window_Base.call(this, rect);
-	this._text = "";
-};
+export class Window_Help extends Window_Base {
+    constructor(rect) {
+        super(rect);
+        this._text = "";
+    }
 
-Window_Help.prototype = Object.create(Window_Base.prototype);
-Window_Help.prototype.constructor = Window_Help;
+    setText(text) {
+        if (this._text !== text) {
+            this._text = text;
+            this.refresh();
+        }
+    }
 
-Window_Help.prototype.setText = function (text) {
-	if (this._text !== text) {
-		this._text = text;
-		this.refresh();
-	}
-};
+    clear() {
+        this.setText("");
+    }
 
-Window_Help.prototype.clear = function () {
-	this.setText("");
-};
+    setItem(item) {
+        this.setText(item ? item.description : "");
+    }
 
-Window_Help.prototype.setItem = function (item) {
-	this.setText(item ? item.description : "");
-};
-
-Window_Help.prototype.refresh = function () {
-	const rect = this.baseTextRect();
-	this.contents.clear();
-	this.drawTextEx(this._text, rect.x, rect.y, rect.width);
-};
+    refresh() {
+        const rect = this.baseTextRect();
+        this.contents.clear();
+        this.drawTextEx(this._text, rect.x, rect.y, rect.width);
+    }
+}

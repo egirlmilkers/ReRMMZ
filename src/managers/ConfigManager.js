@@ -4,108 +4,102 @@
 
 import { AudioManager, StorageManager } from '../managers/index.js';
 
-export function ConfigManager() {
-	throw new Error("This is a static class");
-}
+export class ConfigManager {
+	static alwaysDash = false;
+	static commandRemember = false;
+	static touchUI = true;
+	static _isLoaded = false;
 
-ConfigManager.alwaysDash = false;
-ConfigManager.commandRemember = false;
-ConfigManager.touchUI = true;
-ConfigManager._isLoaded = false;
+    constructor() {
+        throw new Error("This is a static class");
+    }
 
-Object.defineProperty(ConfigManager, "bgmVolume", {
-	get: function () {
+    static get bgmVolume() {
 		return AudioManager._bgmVolume;
-	},
-	set: function (value) {
+	}
+
+    static set bgmVolume(value) {
 		AudioManager.bgmVolume = value;
-	},
-	configurable: true,
-});
+	}
 
-Object.defineProperty(ConfigManager, "bgsVolume", {
-	get: function () {
+    static get bgsVolume() {
 		return AudioManager.bgsVolume;
-	},
-	set: function (value) {
+	}
+
+    static set bgsVolume(value) {
 		AudioManager.bgsVolume = value;
-	},
-	configurable: true,
-});
+	}
 
-Object.defineProperty(ConfigManager, "meVolume", {
-	get: function () {
+    static get meVolume() {
 		return AudioManager.meVolume;
-	},
-	set: function (value) {
+	}
+
+    static set meVolume(value) {
 		AudioManager.meVolume = value;
-	},
-	configurable: true,
-});
+	}
 
-Object.defineProperty(ConfigManager, "seVolume", {
-	get: function () {
+    static get seVolume() {
 		return AudioManager.seVolume;
-	},
-	set: function (value) {
+	}
+
+    static set seVolume(value) {
 		AudioManager.seVolume = value;
-	},
-	configurable: true,
-});
-
-ConfigManager.load = function () {
-	StorageManager.loadObject("config")
-		.then((config) => this.applyData(config || {}))
-		.catch(() => 0)
-		.then(() => {
-			this._isLoaded = true;
-			return 0;
-		})
-		.catch(() => 0);
-};
-
-ConfigManager.save = function () {
-	StorageManager.saveObject("config", this.makeData());
-};
-
-ConfigManager.isLoaded = function () {
-	return this._isLoaded;
-};
-
-ConfigManager.makeData = function () {
-	const config = {};
-	config.alwaysDash = this.alwaysDash;
-	config.commandRemember = this.commandRemember;
-	config.touchUI = this.touchUI;
-	config.bgmVolume = this.bgmVolume;
-	config.bgsVolume = this.bgsVolume;
-	config.meVolume = this.meVolume;
-	config.seVolume = this.seVolume;
-	return config;
-};
-
-ConfigManager.applyData = function (config) {
-	this.alwaysDash = this.readFlag(config, "alwaysDash", false);
-	this.commandRemember = this.readFlag(config, "commandRemember", false);
-	this.touchUI = this.readFlag(config, "touchUI", true);
-	this.bgmVolume = this.readVolume(config, "bgmVolume");
-	this.bgsVolume = this.readVolume(config, "bgsVolume");
-	this.meVolume = this.readVolume(config, "meVolume");
-	this.seVolume = this.readVolume(config, "seVolume");
-};
-
-ConfigManager.readFlag = function (config, name, defaultValue) {
-	if (name in config) {
-		return !!config[name];
-	} else {
-		return defaultValue;
 	}
-};
 
-ConfigManager.readVolume = function (config, name) {
-	if (name in config) {
-		return Number(config[name]).clamp(0, 100);
-	} else {
-		return 100;
-	}
-};
+    static load() {
+        StorageManager.loadObject("config")
+            .then((config) => this.applyData(config || {}))
+            .catch(() => 0)
+            .then(() => {
+                this._isLoaded = true;
+                return 0;
+            })
+            .catch(() => 0);
+    }
+
+    static save() {
+        StorageManager.saveObject("config", this.makeData());
+    }
+
+    static isLoaded() {
+        return this._isLoaded;
+    }
+
+    static makeData() {
+        const config = {};
+        config.alwaysDash = this.alwaysDash;
+        config.commandRemember = this.commandRemember;
+        config.touchUI = this.touchUI;
+        config.bgmVolume = this.bgmVolume;
+        config.bgsVolume = this.bgsVolume;
+        config.meVolume = this.meVolume;
+        config.seVolume = this.seVolume;
+        return config;
+    }
+
+    static applyData(config) {
+        this.alwaysDash = this.readFlag(config, "alwaysDash", false);
+        this.commandRemember = this.readFlag(config, "commandRemember", false);
+        this.touchUI = this.readFlag(config, "touchUI", true);
+        this.bgmVolume = this.readVolume(config, "bgmVolume");
+        this.bgsVolume = this.readVolume(config, "bgsVolume");
+        this.meVolume = this.readVolume(config, "meVolume");
+        this.seVolume = this.readVolume(config, "seVolume");
+    }
+
+    static readFlag(config, name, defaultValue) {
+        if (name in config) {
+            return !!config[name];
+        } else {
+            return defaultValue;
+        }
+    }
+
+    static readVolume(config, name) {
+        if (name in config) {
+            return Number(config[name]).clamp(0, 100);
+        } else {
+            return 100;
+        }
+    }
+}

@@ -6,17 +6,16 @@ import * as PIXI from 'pixi.js';
  * @class
  * @extends PIXI.Container
  */
-export function Stage() {
-	PIXI.Container.call(this);
-};
+export class Stage extends PIXI.Container {
+	constructor() {
+		super();
+	}
 
-Stage.prototype = Object.create(PIXI.Container.prototype);
-Stage.prototype.constructor = Stage;
-
-/**
- * Destroys the stage.
- */
-Stage.prototype.destroy = function () {
-	const options = { children: true, texture: true };
-	PIXI.Container.prototype.destroy.call(this, options);
-};
+	/**
+	 * Destroys the stage.
+	 */
+	destroy() {
+		const options = { children: true, texture: true };
+		super.destroy(options);
+	}
+}

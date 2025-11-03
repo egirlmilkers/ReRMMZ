@@ -4,17 +4,16 @@
 
 import { Window_Command } from '../windows/index.js';
 
-export function Window_HorzCommand(rect) {
-	Window_Command.call(this, rect);
-};
+export class Window_HorzCommand extends Window_Command {
+    constructor(rect) {
+        super(rect);
+    }
 
-Window_HorzCommand.prototype = Object.create(Window_Command.prototype);
-Window_HorzCommand.prototype.constructor = Window_HorzCommand;
+    maxCols() {
+        return 4;
+    }
 
-Window_HorzCommand.prototype.maxCols = function () {
-	return 4;
-};
-
-Window_HorzCommand.prototype.itemTextAlign = function () {
-	return "center";
-};
+    itemTextAlign() {
+        return "center";
+    }
+}

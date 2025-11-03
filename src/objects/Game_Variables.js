@@ -4,28 +4,30 @@
 
 import { DataManager } from '../managers/index.js';
 
-export function Game_Variables() {
-	this.clear();
-};
+export class Game_Variables {
+    constructor() {
+        this.clear();
+    }
 
-Game_Variables.prototype.clear = function () {
-	this._data = [];
-};
+    clear() {
+        this._data = [];
+    }
 
-Game_Variables.prototype.value = function (variableId) {
-	return this._data[variableId] || 0;
-};
+    value(variableId) {
+        return this._data[variableId] || 0;
+    }
 
-Game_Variables.prototype.setValue = function (variableId, value) {
-	if (variableId > 0 && variableId < DataManager.$dataSystem.variables.length) {
-		if (typeof value === "number") {
-			value = Math.floor(value);
-		}
-		this._data[variableId] = value;
-		this.onChange();
-	}
-};
+    setValue(variableId, value) {
+        if (variableId > 0 && variableId < DataManager.$dataSystem.variables.length) {
+            if (typeof value === "number") {
+                value = Math.floor(value);
+            }
+            this._data[variableId] = value;
+            this.onChange();
+        }
+    }
 
-Game_Variables.prototype.onChange = function () {
-	DataManager.$gameMap.requestRefresh();
-};
+    onChange() {
+        DataManager.$gameMap.requestRefresh();
+    }
+}

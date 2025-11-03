@@ -5,100 +5,99 @@
 import { ColorManager, DataManager, ImageManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_MenuStatus(rect) {
-	Window_StatusBase.call(this, rect);
-	this._formationMode = false;
-	this._pendingIndex = -1;
-	this.refresh();
-};
+export class Window_MenuStatus extends Window_StatusBase {
+    constructor(rect) {
+        super(rect);
+        this._formationMode = false;
+        this._pendingIndex = -1;
+        this.refresh();
+    }
 
-Window_MenuStatus.prototype = Object.create(Window_StatusBase.prototype);
-Window_MenuStatus.prototype.constructor = Window_MenuStatus;
+    maxItems() {
+        return DataManager.$gameParty.size();
+    }
 
-Window_MenuStatus.prototype.maxItems = function () {
-	return DataManager.$gameParty.size();
-};
+    numVisibleRows() {
+        return 4;
+    }
 
-Window_MenuStatus.prototype.numVisibleRows = function () {
-	return 4;
-};
+    itemHeight() {
+        return Math.floor(this.innerHeight / this.numVisibleRows());
+    }
 
-Window_MenuStatus.prototype.itemHeight = function () {
-	return Math.floor(this.innerHeight / this.numVisibleRows());
-};
+    actor(index) {
+        return DataManager.$gameParty.members()[index];
+    }
 
-Window_MenuStatus.prototype.actor = function (index) {
-	return DataManager.$gameParty.members()[index];
-};
+    drawItem(index) {
+        this.drawPendingItemBackground(index);
+        this.drawItemImage(index);
+        this.drawItemStatus(index);
+    }
 
-Window_MenuStatus.prototype.drawItem = function (index) {
-	this.drawPendingItemBackground(index);
-	this.drawItemImage(index);
-	this.drawItemStatus(index);
-};
+    drawPendingItemBackground(index) {
+        if (index === this._pendingIndex) {
+            const rect = this.itemRect(index);
+            const color = ColorManager.pendingColor();
+            this.changePaintOpacity(false);
+            this.contents.fillRect(rect.x, rect.y, rect.width, rect.height, color);
+            this.changePaintOpacity(true);
+        }
+    }
 
-Window_MenuStatus.prototype.drawPendingItemBackground = function (index) {
-	if (index === this._pendingIndex) {
-		const rect = this.itemRect(index);
-		const color = ColorManager.pendingColor();
-		this.changePaintOpacity(false);
-		this.contents.fillRect(rect.x, rect.y, rect.width, rect.height, color);
-		this.changePaintOpacity(true);
-	}
-};
+    drawItemImage(index) {
+        const actor = this.actor(index);
+        const rect = this.itemRect(index);
+        const width = ImageManager.standardFaceWidth;
+        const height = rect.height - 2;
+        this.changePaintOpacity(actor.isBattleMember());
+        this.drawActorFace(actor, rect.x + 1, rect.y + 1, width, height);
+        this.changePaintOpacity(true);
+    }
 
-Window_MenuStatus.prototype.drawItemImage = function (index) {
-	const actor = this.actor(index);
-	const rect = this.itemRect(index);
-	const width = ImageManager.standardFaceWidth;
-	const height = rect.height - 2;
-	this.changePaintOpacity(actor.isBattleMember());
-	this.drawActorFace(actor, rect.x + 1, rect.y + 1, width, height);
-	this.changePaintOpacity(true);
-};
+    drawItemStatus(index) {
+        const actor = this.actor(index);
+        const rect = this.itemRect(index);
+        const x = rect.x + 180;
+        const y = rect.y + Math.floor(rect.height / 2 - this.lineHeight() * 1.5);
+        this.drawActorSimpleStatus(actor, x, y);
+    }
 
-Window_MenuStatus.prototype.drawItemStatus = function (index) {
-	const actor = this.actor(index);
-	const rect = this.itemRect(index);
-	const x = rect.x + 180;
-	const y = rect.y + Math.floor(rect.height / 2 - this.lineHeight() * 1.5);
-	this.drawActorSimpleStatus(actor, x, y);
-};
+    processOk() {
+        super.processOk();
+        const actor = this.actor(this.index());
+        DataManager.$gameParty.setMenuActor(actor);
+    }
 
-Window_MenuStatus.prototype.processOk = function () {
-	Window_StatusBase.prototype.processOk.call(this);
-	const actor = this.actor(this.index());
-	DataManager.$gameParty.setMenuActor(actor);
-};
+    isCurrentItemEnabled() {
+        if (this._formationMode) {
+            const actor = this.actor(this.index());
+            return actor && actor.isFormationChangeOk();
+        } else {
+            return true;
+        }
+    }
 
-Window_MenuStatus.prototype.isCurrentItemEnabled = function () {
-	if (this._formationMode) {
-		const actor = this.actor(this.index());
-		return actor && actor.isFormationChangeOk();
-	} else {
-		return true;
-	}
-};
+    selectLast() {
+        this.smoothSelect(DataManager.$gameParty.menuActor().index() || 0);
+    }
 
-Window_MenuStatus.prototype.selectLast = function () {
-	this.smoothSelect(DataManager.$gameParty.menuActor().index() || 0);
-};
+    formationMode() {
+        return this._formationMode;
+    }
 
-Window_MenuStatus.prototype.formationMode = function () {
-	return this._formationMode;
-};
+    setFormationMode(formationMode) {
+        this._formationMode = formationMode;
+    }
 
-Window_MenuStatus.prototype.setFormationMode = function (formationMode) {
-	this._formationMode = formationMode;
-};
+    pendingIndex() {
+        return this._pendingIndex;
+    }
 
-Window_MenuStatus.prototype.pendingIndex = function () {
-	return this._pendingIndex;
-};
-
-Window_MenuStatus.prototype.setPendingIndex = function (index) {
-	const lastPendingIndex = this._pendingIndex;
-	this._pendingIndex = index;
-	this.redrawItem(this._pendingIndex);
-	this.redrawItem(lastPendingIndex);
-};
+    setPendingIndex(index) {
+        const lastPendingIndex = this._pendingIndex;
+        this._pendingIndex = index;
+        this.redrawItem(this._pendingIndex);
+        this.redrawItem(lastPendingIndex);
+    }
+}

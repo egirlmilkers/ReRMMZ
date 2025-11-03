@@ -4,74 +4,76 @@
 
 import { Utils } from '../core/index.js';
 
-export function PluginManager() {
-	throw new Error("This is a static class");
+export class PluginManager {
+	static _scripts = [];
+	static _errorUrls = [];
+	static _parameters = {};
+	static _commands = {};
+
+    constructor() {
+        throw new Error("This is a static class");
+    }
+
+    static setup(plugins) {
+        for (const plugin of plugins) {
+            const pluginName = Utils.extractFileName(plugin.name);
+            if (plugin.status && !this._scripts.includes(pluginName)) {
+                this.setParameters(pluginName, plugin.parameters);
+                this.loadScript(plugin.name);
+                this._scripts.push(pluginName);
+            }
+        }
+    }
+
+    static parameters(name) {
+        return this._parameters[name.toLowerCase()] || {};
+    }
+
+    static setParameters(name, parameters) {
+        this._parameters[name.toLowerCase()] = parameters;
+    }
+
+    static loadScript(filename) {
+        const url = this.makeUrl(filename);
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = url;
+        script.async = false;
+        script.defer = true;
+        script.onerror = this.onError.bind(this);
+        script._url = url;
+        document.body.appendChild(script);
+    }
+
+    static onError(e) {
+        this._errorUrls.push(e.target._url);
+    }
+
+    static makeUrl(filename) {
+        return "js/plugins/" + Utils.encodeURI(filename) + ".js";
+    }
+
+    static checkErrors() {
+        const url = this._errorUrls.shift();
+        if (url) {
+            this.throwLoadError(url);
+        }
+    }
+
+    static throwLoadError(url) {
+        throw new Error("Failed to load: " + url);
+    }
+
+    static registerCommand(pluginName, commandName, func) {
+        const key = pluginName + ":" + commandName;
+        this._commands[key] = func;
+    }
+
+    static callCommand(self, pluginName, commandName, args) {
+        const key = pluginName + ":" + commandName;
+        const func = this._commands[key];
+        if (typeof func === "function") {
+            func.bind(self)(args);
+        }
+    }
 }
-
-PluginManager._scripts = [];
-PluginManager._errorUrls = [];
-PluginManager._parameters = {};
-PluginManager._commands = {};
-
-PluginManager.setup = function (plugins) {
-	for (const plugin of plugins) {
-		const pluginName = Utils.extractFileName(plugin.name);
-		if (plugin.status && !this._scripts.includes(pluginName)) {
-			this.setParameters(pluginName, plugin.parameters);
-			this.loadScript(plugin.name);
-			this._scripts.push(pluginName);
-		}
-	}
-};
-
-PluginManager.parameters = function (name) {
-	return this._parameters[name.toLowerCase()] || {};
-};
-
-PluginManager.setParameters = function (name, parameters) {
-	this._parameters[name.toLowerCase()] = parameters;
-};
-
-PluginManager.loadScript = function (filename) {
-	const url = this.makeUrl(filename);
-	const script = document.createElement("script");
-	script.type = "text/javascript";
-	script.src = url;
-	script.async = false;
-	script.defer = true;
-	script.onerror = this.onError.bind(this);
-	script._url = url;
-	document.body.appendChild(script);
-};
-
-PluginManager.onError = function (e) {
-	this._errorUrls.push(e.target._url);
-};
-
-PluginManager.makeUrl = function (filename) {
-	return "js/plugins/" + Utils.encodeURI(filename) + ".js";
-};
-
-PluginManager.checkErrors = function () {
-	const url = this._errorUrls.shift();
-	if (url) {
-		this.throwLoadError(url);
-	}
-};
-
-PluginManager.throwLoadError = function (url) {
-	throw new Error("Failed to load: " + url);
-};
-
-PluginManager.registerCommand = function (pluginName, commandName, func) {
-	const key = pluginName + ":" + commandName;
-	this._commands[key] = func;
-};
-
-PluginManager.callCommand = function (self, pluginName, commandName, args) {
-	const key = pluginName + ":" + commandName;
-	const func = this._commands[key];
-	if (typeof func === "function") {
-		func.bind(self)(args);
-	}
-};

@@ -5,52 +5,51 @@
 import { DataManager, TextManager } from '../managers/index.js';
 import { Window_HorzCommand } from '../windows/index.js';
 
-export function Window_ItemCategory(rect) {
-	Window_HorzCommand.call(this, rect);
-};
+export class Window_ItemCategory extends Window_HorzCommand {
+    constructor(rect) {
+        super(rect);
+    }
 
-Window_ItemCategory.prototype = Object.create(Window_HorzCommand.prototype);
-Window_ItemCategory.prototype.constructor = Window_ItemCategory;
+    maxCols() {
+        return 4;
+    }
 
-Window_ItemCategory.prototype.maxCols = function () {
-	return 4;
-};
+    update() {
+        super.update();
+        if (this._itemWindow) {
+            this._itemWindow.setCategory(this.currentSymbol());
+        }
+    }
 
-Window_ItemCategory.prototype.update = function () {
-	Window_HorzCommand.prototype.update.call(this);
-	if (this._itemWindow) {
-		this._itemWindow.setCategory(this.currentSymbol());
-	}
-};
+    makeCommandList() {
+        if (this.needsCommand("item")) {
+            this.addCommand(TextManager.item, "item");
+        }
+        if (this.needsCommand("weapon")) {
+            this.addCommand(TextManager.weapon, "weapon");
+        }
+        if (this.needsCommand("armor")) {
+            this.addCommand(TextManager.armor, "armor");
+        }
+        if (this.needsCommand("keyItem")) {
+            this.addCommand(TextManager.keyItem, "keyItem");
+        }
+    }
 
-Window_ItemCategory.prototype.makeCommandList = function () {
-	if (this.needsCommand("item")) {
-		this.addCommand(TextManager.item, "item");
-	}
-	if (this.needsCommand("weapon")) {
-		this.addCommand(TextManager.weapon, "weapon");
-	}
-	if (this.needsCommand("armor")) {
-		this.addCommand(TextManager.armor, "armor");
-	}
-	if (this.needsCommand("keyItem")) {
-		this.addCommand(TextManager.keyItem, "keyItem");
-	}
-};
+    needsCommand(name) {
+        const table = ["item", "weapon", "armor", "keyItem"];
+        const index = table.indexOf(name);
+        if (index >= 0) {
+            return DataManager.$dataSystem.itemCategories[index];
+        }
+        return true;
+    }
 
-Window_ItemCategory.prototype.needsCommand = function (name) {
-	const table = ["item", "weapon", "armor", "keyItem"];
-	const index = table.indexOf(name);
-	if (index >= 0) {
-		return DataManager.$dataSystem.itemCategories[index];
-	}
-	return true;
-};
+    setItemWindow(itemWindow) {
+        this._itemWindow = itemWindow;
+    }
 
-Window_ItemCategory.prototype.setItemWindow = function (itemWindow) {
-	this._itemWindow = itemWindow;
-};
-
-Window_ItemCategory.prototype.needsSelection = function () {
-	return this.maxItems() >= 2;
-};
+    needsSelection() {
+        return this.maxItems() >= 2;
+    }
+}

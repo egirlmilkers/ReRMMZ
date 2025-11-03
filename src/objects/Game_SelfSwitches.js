@@ -4,27 +4,29 @@
 
 import { DataManager } from '../managers/index.js';
 
-export function Game_SelfSwitches() {
-	this.clear();
-};
+export class Game_SelfSwitches {
+    constructor() {
+        this.clear();
+    }
 
-Game_SelfSwitches.prototype.clear = function () {
-	this._data = {};
-};
+    clear() {
+        this._data = {};
+    }
 
-Game_SelfSwitches.prototype.value = function (key) {
-	return !!this._data[key];
-};
+    value(key) {
+        return !!this._data[key];
+    }
 
-Game_SelfSwitches.prototype.setValue = function (key, value) {
-	if (value) {
-		this._data[key] = true;
-	} else {
-		delete this._data[key];
-	}
-	this.onChange();
-};
+    setValue(key, value) {
+        if (value) {
+            this._data[key] = true;
+        } else {
+            delete this._data[key];
+        }
+        this.onChange();
+    }
 
-Game_SelfSwitches.prototype.onChange = function () {
-	DataManager.$gameMap.requestRefresh();
-};
+    onChange() {
+        DataManager.$gameMap.requestRefresh();
+    }
+}

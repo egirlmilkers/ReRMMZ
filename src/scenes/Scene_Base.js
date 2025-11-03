@@ -7,229 +7,228 @@ import { AudioManager, DataManager, EffectManager, FontManager, ImageManager, Sc
 import { Scene_Gameover } from '../scenes/index.js';
 import { Window_Base, Window_Selectable } from '../windows/index.js';
 
-export function Scene_Base() {
-	Stage.call(this);
-	this._started = false;
-	this._active = false;
-	this._fadeSign = 0;
-	this._fadeDuration = 0;
-	this._fadeWhite = 0;
-	this._fadeOpacity = 0;
-	this.createColorFilter();
-};
+export class Scene_Base extends Stage {
+    constructor() {
+        super();
+        this._started = false;
+        this._active = false;
+        this._fadeSign = 0;
+        this._fadeDuration = 0;
+        this._fadeWhite = 0;
+        this._fadeOpacity = 0;
+        this.createColorFilter();
+    }
 
-Scene_Base.prototype = Object.create(Stage.prototype);
-Scene_Base.prototype.constructor = Scene_Base;
+    create() {
+        //
+    }
 
-Scene_Base.prototype.create = function () {
-	//
-};
+    isActive() {
+        return this._active;
+    }
 
-Scene_Base.prototype.isActive = function () {
-	return this._active;
-};
+    isReady() {
+        return ImageManager.isReady() && EffectManager.isReady() && FontManager.isReady();
+    }
 
-Scene_Base.prototype.isReady = function () {
-	return ImageManager.isReady() && EffectManager.isReady() && FontManager.isReady();
-};
+    start() {
+        this._started = true;
+        this._active = true;
+    }
 
-Scene_Base.prototype.start = function () {
-	this._started = true;
-	this._active = true;
-};
+    update() {
+        this.updateFade();
+        this.updateColorFilter();
+        this.updateChildren();
+        AudioManager.checkErrors();
+    }
 
-Scene_Base.prototype.update = function () {
-	this.updateFade();
-	this.updateColorFilter();
-	this.updateChildren();
-	AudioManager.checkErrors();
-};
+    stop() {
+        this._active = false;
+    }
 
-Scene_Base.prototype.stop = function () {
-	this._active = false;
-};
+    isStarted() {
+        return this._started;
+    }
 
-Scene_Base.prototype.isStarted = function () {
-	return this._started;
-};
+    isBusy() {
+        return this.isFading();
+    }
 
-Scene_Base.prototype.isBusy = function () {
-	return this.isFading();
-};
+    isFading() {
+        return this._fadeDuration > 0;
+    }
 
-Scene_Base.prototype.isFading = function () {
-	return this._fadeDuration > 0;
-};
+    terminate() {
+        //
+    }
 
-Scene_Base.prototype.terminate = function () {
-	//
-};
+    createWindowLayer() {
+        this._windowLayer = new WindowLayer();
+        this._windowLayer.x = (Graphics.width - Graphics.boxWidth) / 2;
+        this._windowLayer.y = (Graphics.height - Graphics.boxHeight) / 2;
+        this.addChild(this._windowLayer);
+    }
 
-Scene_Base.prototype.createWindowLayer = function () {
-	this._windowLayer = new WindowLayer();
-	this._windowLayer.x = (Graphics.width - Graphics.boxWidth) / 2;
-	this._windowLayer.y = (Graphics.height - Graphics.boxHeight) / 2;
-	this.addChild(this._windowLayer);
-};
+    addWindow(window) {
+        this._windowLayer.addChild(window);
+    }
 
-Scene_Base.prototype.addWindow = function (window) {
-	this._windowLayer.addChild(window);
-};
+    startFadeIn(duration, white) {
+        this._fadeSign = 1;
+        this._fadeDuration = duration || 30;
+        this._fadeWhite = white;
+        this._fadeOpacity = 255;
+        this.updateColorFilter();
+    }
 
-Scene_Base.prototype.startFadeIn = function (duration, white) {
-	this._fadeSign = 1;
-	this._fadeDuration = duration || 30;
-	this._fadeWhite = white;
-	this._fadeOpacity = 255;
-	this.updateColorFilter();
-};
+    startFadeOut(duration, white) {
+        this._fadeSign = -1;
+        this._fadeDuration = duration || 30;
+        this._fadeWhite = white;
+        this._fadeOpacity = 0;
+        this.updateColorFilter();
+    }
 
-Scene_Base.prototype.startFadeOut = function (duration, white) {
-	this._fadeSign = -1;
-	this._fadeDuration = duration || 30;
-	this._fadeWhite = white;
-	this._fadeOpacity = 0;
-	this.updateColorFilter();
-};
+    createColorFilter() {
+        this._colorFilter = new ColorFilter();
+        this.filters = [this._colorFilter];
+    }
 
-Scene_Base.prototype.createColorFilter = function () {
-	this._colorFilter = new ColorFilter();
-	this.filters = [this._colorFilter];
-};
+    updateColorFilter() {
+        const c = this._fadeWhite ? 255 : 0;
+        const blendColor = [c, c, c, this._fadeOpacity];
+        this._colorFilter.setBlendColor(blendColor);
+    }
 
-Scene_Base.prototype.updateColorFilter = function () {
-	const c = this._fadeWhite ? 255 : 0;
-	const blendColor = [c, c, c, this._fadeOpacity];
-	this._colorFilter.setBlendColor(blendColor);
-};
+    updateFade() {
+        if (this._fadeDuration > 0) {
+            const d = this._fadeDuration;
+            if (this._fadeSign > 0) {
+                this._fadeOpacity -= this._fadeOpacity / d;
+            } else {
+                this._fadeOpacity += (255 - this._fadeOpacity) / d;
+            }
+            this._fadeDuration--;
+        }
+    }
 
-Scene_Base.prototype.updateFade = function () {
-	if (this._fadeDuration > 0) {
-		const d = this._fadeDuration;
-		if (this._fadeSign > 0) {
-			this._fadeOpacity -= this._fadeOpacity / d;
-		} else {
-			this._fadeOpacity += (255 - this._fadeOpacity) / d;
-		}
-		this._fadeDuration--;
-	}
-};
+    updateChildren() {
+        for (const child of this.children) {
+            if (child.update) {
+                child.update();
+            }
+        }
+    }
 
-Scene_Base.prototype.updateChildren = function () {
-	for (const child of this.children) {
-		if (child.update) {
-			child.update();
-		}
-	}
-};
+    popScene() {
+        SceneManager.pop();
+    }
 
-Scene_Base.prototype.popScene = function () {
-	SceneManager.pop();
-};
+    checkGameover() {
+        if (DataManager.$gameParty.isAllDead()) {
+            SceneManager.goto(Scene_Gameover);
+        }
+    }
 
-Scene_Base.prototype.checkGameover = function () {
-	if (DataManager.$gameParty.isAllDead()) {
-		SceneManager.goto(Scene_Gameover);
-	}
-};
+    fadeOutAll() {
+        const time = this.slowFadeSpeed() / 60;
+        AudioManager.fadeOutBgm(time);
+        AudioManager.fadeOutBgs(time);
+        AudioManager.fadeOutMe(time);
+        this.startFadeOut(this.slowFadeSpeed());
+    }
 
-Scene_Base.prototype.fadeOutAll = function () {
-	const time = this.slowFadeSpeed() / 60;
-	AudioManager.fadeOutBgm(time);
-	AudioManager.fadeOutBgs(time);
-	AudioManager.fadeOutMe(time);
-	this.startFadeOut(this.slowFadeSpeed());
-};
+    fadeSpeed() {
+        return 24;
+    }
 
-Scene_Base.prototype.fadeSpeed = function () {
-	return 24;
-};
+    slowFadeSpeed() {
+        return this.fadeSpeed() * 2;
+    }
 
-Scene_Base.prototype.slowFadeSpeed = function () {
-	return this.fadeSpeed() * 2;
-};
+    scaleSprite(sprite) {
+        const ratioX = Graphics.width / sprite.bitmap.width;
+        const ratioY = Graphics.height / sprite.bitmap.height;
+        const scale = Math.max(ratioX, ratioY, 1.0);
+        sprite.scale.x = scale;
+        sprite.scale.y = scale;
+    }
 
-Scene_Base.prototype.scaleSprite = function (sprite) {
-	const ratioX = Graphics.width / sprite.bitmap.width;
-	const ratioY = Graphics.height / sprite.bitmap.height;
-	const scale = Math.max(ratioX, ratioY, 1.0);
-	sprite.scale.x = scale;
-	sprite.scale.y = scale;
-};
+    centerSprite(sprite) {
+        sprite.x = Graphics.width / 2;
+        sprite.y = Graphics.height / 2;
+        sprite.anchor.x = 0.5;
+        sprite.anchor.y = 0.5;
+    }
 
-Scene_Base.prototype.centerSprite = function (sprite) {
-	sprite.x = Graphics.width / 2;
-	sprite.y = Graphics.height / 2;
-	sprite.anchor.x = 0.5;
-	sprite.anchor.y = 0.5;
-};
+    isBottomHelpMode() {
+        return true;
+    }
 
-Scene_Base.prototype.isBottomHelpMode = function () {
-	return true;
-};
+    isBottomButtonMode() {
+        return false;
+    }
 
-Scene_Base.prototype.isBottomButtonMode = function () {
-	return false;
-};
+    isRightInputMode() {
+        return true;
+    }
 
-Scene_Base.prototype.isRightInputMode = function () {
-	return true;
-};
+    mainCommandWidth() {
+        return 240;
+    }
 
-Scene_Base.prototype.mainCommandWidth = function () {
-	return 240;
-};
+    buttonAreaTop() {
+        if (this.isBottomButtonMode()) {
+            return Graphics.boxHeight - this.buttonAreaHeight();
+        } else {
+            return 0;
+        }
+    }
 
-Scene_Base.prototype.buttonAreaTop = function () {
-	if (this.isBottomButtonMode()) {
-		return Graphics.boxHeight - this.buttonAreaHeight();
-	} else {
-		return 0;
-	}
-};
+    buttonAreaBottom() {
+        return this.buttonAreaTop() + this.buttonAreaHeight();
+    }
 
-Scene_Base.prototype.buttonAreaBottom = function () {
-	return this.buttonAreaTop() + this.buttonAreaHeight();
-};
+    buttonAreaHeight() {
+        return 52;
+    }
 
-Scene_Base.prototype.buttonAreaHeight = function () {
-	return 52;
-};
+    buttonY() {
+        const offsetY = Math.floor((this.buttonAreaHeight() - 48) / 2);
+        return this.buttonAreaTop() + offsetY;
+    }
 
-Scene_Base.prototype.buttonY = function () {
-	const offsetY = Math.floor((this.buttonAreaHeight() - 48) / 2);
-	return this.buttonAreaTop() + offsetY;
-};
+    calcWindowHeight(numLines, selectable) {
+        if (selectable) {
+            return Window_Selectable.prototype.fittingHeight(numLines);
+        } else {
+            return Window_Base.prototype.fittingHeight(numLines);
+        }
+    }
 
-Scene_Base.prototype.calcWindowHeight = function (numLines, selectable) {
-	if (selectable) {
-		return Window_Selectable.prototype.fittingHeight(numLines);
-	} else {
-		return Window_Base.prototype.fittingHeight(numLines);
-	}
-};
+    requestAutosave() {
+        if (this.isAutosaveEnabled()) {
+            this.executeAutosave();
+        }
+    }
 
-Scene_Base.prototype.requestAutosave = function () {
-	if (this.isAutosaveEnabled()) {
-		this.executeAutosave();
-	}
-};
+    isAutosaveEnabled() {
+        return !DataManager.isBattleTest() && !DataManager.isEventTest() && DataManager.$gameSystem.isAutosaveEnabled() && DataManager.$gameSystem.isSaveEnabled();
+    }
 
-Scene_Base.prototype.isAutosaveEnabled = function () {
-	return !DataManager.isBattleTest() && !DataManager.isEventTest() && DataManager.$gameSystem.isAutosaveEnabled() && DataManager.$gameSystem.isSaveEnabled();
-};
+    executeAutosave() {
+        DataManager.$gameSystem.onBeforeSave();
+        DataManager.saveGame(0)
+            .then(() => this.onAutosaveSuccess())
+            .catch(() => this.onAutosaveFailure());
+    }
 
-Scene_Base.prototype.executeAutosave = function () {
-	DataManager.$gameSystem.onBeforeSave();
-	DataManager.saveGame(0)
-		.then(() => this.onAutosaveSuccess())
-		.catch(() => this.onAutosaveFailure());
-};
+    onAutosaveSuccess() {
+        //
+    }
 
-Scene_Base.prototype.onAutosaveSuccess = function () {
-	//
-};
-
-Scene_Base.prototype.onAutosaveFailure = function () {
-	//
-};
+    onAutosaveFailure() {
+        //
+    }
+}

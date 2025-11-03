@@ -5,76 +5,75 @@
 import { JsonEx } from '../core/index.js';
 import { Window_ItemList } from '../windows/index.js';
 
-export function Window_EquipItem(rect) {
-	Window_ItemList.call(this, rect);
-	this._actor = null;
-	this._slotId = 0;
-};
+export class Window_EquipItem extends Window_ItemList {
+    constructor(rect) {
+        super(rect);
+        this._actor = null;
+        this._slotId = 0;
+    }
 
-Window_EquipItem.prototype = Object.create(Window_ItemList.prototype);
-Window_EquipItem.prototype.constructor = Window_EquipItem;
+    maxCols() {
+        return 1;
+    }
 
-Window_EquipItem.prototype.maxCols = function () {
-	return 1;
-};
+    colSpacing() {
+        return 8;
+    }
 
-Window_EquipItem.prototype.colSpacing = function () {
-	return 8;
-};
+    setActor(actor) {
+        if (this._actor !== actor) {
+            this._actor = actor;
+            this.refresh();
+            this.scrollTo(0, 0);
+        }
+    }
 
-Window_EquipItem.prototype.setActor = function (actor) {
-	if (this._actor !== actor) {
-		this._actor = actor;
-		this.refresh();
-		this.scrollTo(0, 0);
-	}
-};
+    setSlotId(slotId) {
+        if (this._slotId !== slotId) {
+            this._slotId = slotId;
+            this.refresh();
+            this.scrollTo(0, 0);
+        }
+    }
 
-Window_EquipItem.prototype.setSlotId = function (slotId) {
-	if (this._slotId !== slotId) {
-		this._slotId = slotId;
-		this.refresh();
-		this.scrollTo(0, 0);
-	}
-};
+    includes(item) {
+        if (item === null) {
+            return true;
+        }
+        return this._actor && this._actor.canEquip(item) && item.etypeId === this.etypeId();
+    }
 
-Window_EquipItem.prototype.includes = function (item) {
-	if (item === null) {
-		return true;
-	}
-	return this._actor && this._actor.canEquip(item) && item.etypeId === this.etypeId();
-};
+    etypeId() {
+        if (this._actor && this._slotId >= 0) {
+            return this._actor.equipSlots()[this._slotId];
+        } else {
+            return 0;
+        }
+    }
 
-Window_EquipItem.prototype.etypeId = function () {
-	if (this._actor && this._slotId >= 0) {
-		return this._actor.equipSlots()[this._slotId];
-	} else {
-		return 0;
-	}
-};
+    isEnabled() /*item*/{
+        return true;
+    }
 
-Window_EquipItem.prototype.isEnabled = function (/*item*/) {
-	return true;
-};
+    selectLast() {
+        //
+    }
 
-Window_EquipItem.prototype.selectLast = function () {
-	//
-};
+    setStatusWindow(statusWindow) {
+        this._statusWindow = statusWindow;
+        this.callUpdateHelp();
+    }
 
-Window_EquipItem.prototype.setStatusWindow = function (statusWindow) {
-	this._statusWindow = statusWindow;
-	this.callUpdateHelp();
-};
+    updateHelp() {
+        super.updateHelp();
+        if (this._actor && this._statusWindow && this._slotId >= 0) {
+            const actor = JsonEx.makeDeepCopy(this._actor);
+            actor.forceChangeEquip(this._slotId, this.item());
+            this._statusWindow.setTempActor(actor);
+        }
+    }
 
-Window_EquipItem.prototype.updateHelp = function () {
-	Window_ItemList.prototype.updateHelp.call(this);
-	if (this._actor && this._statusWindow && this._slotId >= 0) {
-		const actor = JsonEx.makeDeepCopy(this._actor);
-		actor.forceChangeEquip(this._slotId, this.item());
-		this._statusWindow.setTempActor(actor);
-	}
-};
-
-Window_EquipItem.prototype.playOkSound = function () {
-	//
-};
+    playOkSound() {
+        //
+    }
+}

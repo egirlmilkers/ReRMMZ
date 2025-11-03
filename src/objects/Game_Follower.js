@@ -6,54 +6,53 @@
 import { DataManager } from '../managers/index.js';
 import { Game_Character } from '../objects/index.js';
 
-export function Game_Follower(memberIndex) {
-	Game_Character.call(this);
-	this._memberIndex = memberIndex;
-	this.setTransparent(DataManager.$dataSystem.optTransparent);
-	this.setThrough(true);
-};
+export class Game_Follower extends Game_Character {
+    constructor(memberIndex) {
+        super();
+        this._memberIndex = memberIndex;
+        this.setTransparent(DataManager.$dataSystem.optTransparent);
+        this.setThrough(true);
+    }
 
-Game_Follower.prototype = Object.create(Game_Character.prototype);
-Game_Follower.prototype.constructor = Game_Follower;
+    refresh() {
+        const characterName = this.isVisible() ? this.actor().characterName() : "";
+        const characterIndex = this.isVisible() ? this.actor().characterIndex() : 0;
+        this.setImage(characterName, characterIndex);
+    }
 
-Game_Follower.prototype.refresh = function () {
-	const characterName = this.isVisible() ? this.actor().characterName() : "";
-	const characterIndex = this.isVisible() ? this.actor().characterIndex() : 0;
-	this.setImage(characterName, characterIndex);
-};
+    actor() {
+        return DataManager.$gameParty.battleMembers()[this._memberIndex];
+    }
 
-Game_Follower.prototype.actor = function () {
-	return DataManager.$gameParty.battleMembers()[this._memberIndex];
-};
+    isVisible() {
+        return this.actor() && DataManager.$gamePlayer.followers().isVisible();
+    }
 
-Game_Follower.prototype.isVisible = function () {
-	return this.actor() && DataManager.$gamePlayer.followers().isVisible();
-};
+    isGathered() {
+        return !this.isMoving() && this.pos(DataManager.$gamePlayer.x, DataManager.$gamePlayer.y);
+    }
 
-Game_Follower.prototype.isGathered = function () {
-	return !this.isMoving() && this.pos(DataManager.$gamePlayer.x, DataManager.$gamePlayer.y);
-};
+    update() {
+        super.update();
+        this.setMoveSpeed(DataManager.$gamePlayer.realMoveSpeed());
+        this.setOpacity(DataManager.$gamePlayer.opacity());
+        this.setBlendMode(DataManager.$gamePlayer.blendMode());
+        this.setWalkAnime(DataManager.$gamePlayer.hasWalkAnime());
+        this.setStepAnime(DataManager.$gamePlayer.hasStepAnime());
+        this.setDirectionFix(DataManager.$gamePlayer.isDirectionFixed());
+        this.setTransparent(DataManager.$gamePlayer.isTransparent());
+    }
 
-Game_Follower.prototype.update = function () {
-	Game_Character.prototype.update.call(this);
-	this.setMoveSpeed(DataManager.$gamePlayer.realMoveSpeed());
-	this.setOpacity(DataManager.$gamePlayer.opacity());
-	this.setBlendMode(DataManager.$gamePlayer.blendMode());
-	this.setWalkAnime(DataManager.$gamePlayer.hasWalkAnime());
-	this.setStepAnime(DataManager.$gamePlayer.hasStepAnime());
-	this.setDirectionFix(DataManager.$gamePlayer.isDirectionFixed());
-	this.setTransparent(DataManager.$gamePlayer.isTransparent());
-};
-
-Game_Follower.prototype.chaseCharacter = function (character) {
-	const sx = this.deltaXFrom(character.x);
-	const sy = this.deltaYFrom(character.y);
-	if (sx !== 0 && sy !== 0) {
-		this.moveDiagonally(sx > 0 ? 4 : 6, sy > 0 ? 8 : 2);
-	} else if (sx !== 0) {
-		this.moveStraight(sx > 0 ? 4 : 6);
-	} else if (sy !== 0) {
-		this.moveStraight(sy > 0 ? 8 : 2);
-	}
-	this.setMoveSpeed(DataManager.$gamePlayer.realMoveSpeed());
-};
+    chaseCharacter(character) {
+        const sx = this.deltaXFrom(character.x);
+        const sy = this.deltaYFrom(character.y);
+        if (sx !== 0 && sy !== 0) {
+            this.moveDiagonally(sx > 0 ? 4 : 6, sy > 0 ? 8 : 2);
+        } else if (sx !== 0) {
+            this.moveStraight(sx > 0 ? 4 : 6);
+        } else if (sy !== 0) {
+            this.moveStraight(sy > 0 ? 8 : 2);
+        }
+        this.setMoveSpeed(DataManager.$gamePlayer.realMoveSpeed());
+    }
+}

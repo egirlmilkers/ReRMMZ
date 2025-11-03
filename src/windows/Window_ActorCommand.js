@@ -5,78 +5,77 @@
 import { ConfigManager, DataManager, TextManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_ActorCommand(rect) {
-	Window_Command.call(this, rect);
-	this.openness = 0;
-	this.deactivate();
-	this._actor = null;
-};
+export class Window_ActorCommand extends Window_Command {
+    constructor(rect) {
+        super(rect);
+        this.openness = 0;
+        this.deactivate();
+        this._actor = null;
+    }
 
-Window_ActorCommand.prototype = Object.create(Window_Command.prototype);
-Window_ActorCommand.prototype.constructor = Window_ActorCommand;
+    makeCommandList() {
+        if (this._actor) {
+            this.addAttackCommand();
+            this.addSkillCommands();
+            this.addGuardCommand();
+            this.addItemCommand();
+        }
+    }
 
-Window_ActorCommand.prototype.makeCommandList = function () {
-	if (this._actor) {
-		this.addAttackCommand();
-		this.addSkillCommands();
-		this.addGuardCommand();
-		this.addItemCommand();
-	}
-};
+    addAttackCommand() {
+        this.addCommand(TextManager.attack, "attack", this._actor.canAttack());
+    }
 
-Window_ActorCommand.prototype.addAttackCommand = function () {
-	this.addCommand(TextManager.attack, "attack", this._actor.canAttack());
-};
+    addSkillCommands() {
+        const skillTypes = this._actor.skillTypes();
+        for (const stypeId of skillTypes) {
+            const name = DataManager.$dataSystem.skillTypes[stypeId];
+            this.addCommand(name, "skill", true, stypeId);
+        }
+    }
 
-Window_ActorCommand.prototype.addSkillCommands = function () {
-	const skillTypes = this._actor.skillTypes();
-	for (const stypeId of skillTypes) {
-		const name = DataManager.$dataSystem.skillTypes[stypeId];
-		this.addCommand(name, "skill", true, stypeId);
-	}
-};
+    addGuardCommand() {
+        this.addCommand(TextManager.guard, "guard", this._actor.canGuard());
+    }
 
-Window_ActorCommand.prototype.addGuardCommand = function () {
-	this.addCommand(TextManager.guard, "guard", this._actor.canGuard());
-};
+    addItemCommand() {
+        this.addCommand(TextManager.item, "item");
+    }
 
-Window_ActorCommand.prototype.addItemCommand = function () {
-	this.addCommand(TextManager.item, "item");
-};
+    setup(actor) {
+        this._actor = actor;
+        this.refresh();
+        this.selectLast();
+        this.activate();
+        this.open();
+    }
 
-Window_ActorCommand.prototype.setup = function (actor) {
-	this._actor = actor;
-	this.refresh();
-	this.selectLast();
-	this.activate();
-	this.open();
-};
+    actor() {
+        return this._actor;
+    }
 
-Window_ActorCommand.prototype.actor = function () {
-	return this._actor;
-};
+    processOk() {
+        if (this._actor) {
+            if (ConfigManager.commandRemember) {
+                this._actor.setLastCommandSymbol(this.currentSymbol());
+            } else {
+                this._actor.setLastCommandSymbol("");
+            }
+        }
+        super.processOk();
+    }
 
-Window_ActorCommand.prototype.processOk = function () {
-	if (this._actor) {
-		if (ConfigManager.commandRemember) {
-			this._actor.setLastCommandSymbol(this.currentSymbol());
-		} else {
-			this._actor.setLastCommandSymbol("");
-		}
-	}
-	Window_Command.prototype.processOk.call(this);
-};
-
-Window_ActorCommand.prototype.selectLast = function () {
-	this.forceSelect(0);
-	if (this._actor && ConfigManager.commandRemember) {
-		const symbol = this._actor.lastCommandSymbol();
-		this.selectSymbol(symbol);
-		if (symbol === "skill") {
-			const skill = this._actor.lastBattleSkill();
-			if (skill) {
-				this.selectExt(skill.stypeId);
-			}
-		}
-	}
-};
+    selectLast() {
+        this.forceSelect(0);
+        if (this._actor && ConfigManager.commandRemember) {
+            const symbol = this._actor.lastCommandSymbol();
+            this.selectSymbol(symbol);
+            if (symbol === "skill") {
+                const skill = this._actor.lastBattleSkill();
+                if (skill) {
+                    this.selectExt(skill.stypeId);
+                }
+            }
+        }
+    }
+}

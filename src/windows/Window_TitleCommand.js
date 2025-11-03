@@ -5,41 +5,40 @@
 import { DataManager, TextManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_TitleCommand(rect) {
-	Window_Command.call(this, rect);
-	this.openness = 0;
-	this.selectLast();
-};
+export class Window_TitleCommand extends Window_Command {
+	static _lastCommandSymbol = null;
 
-Window_TitleCommand.prototype = Object.create(Window_Command.prototype);
-Window_TitleCommand.prototype.constructor = Window_TitleCommand;
+    constructor(rect) {
+        super(rect);
+        this.openness = 0;
+        this.selectLast();
+    }
 
-Window_TitleCommand._lastCommandSymbol = null;
+    static initCommandPosition() {
+        this._lastCommandSymbol = null;
+    }
 
-Window_TitleCommand.initCommandPosition = function () {
-	this._lastCommandSymbol = null;
-};
+    makeCommandList() {
+        const continueEnabled = this.isContinueEnabled();
+        this.addCommand(TextManager.newGame, "newGame");
+        this.addCommand(TextManager.continue_, "continue", continueEnabled);
+        this.addCommand(TextManager.options, "options");
+    }
 
-Window_TitleCommand.prototype.makeCommandList = function () {
-	const continueEnabled = this.isContinueEnabled();
-	this.addCommand(TextManager.newGame, "newGame");
-	this.addCommand(TextManager.continue_, "continue", continueEnabled);
-	this.addCommand(TextManager.options, "options");
-};
+    isContinueEnabled() {
+        return DataManager.isAnySavefileExists();
+    }
 
-Window_TitleCommand.prototype.isContinueEnabled = function () {
-	return DataManager.isAnySavefileExists();
-};
+    processOk() {
+        Window_TitleCommand._lastCommandSymbol = this.currentSymbol();
+        super.processOk();
+    }
 
-Window_TitleCommand.prototype.processOk = function () {
-	Window_TitleCommand._lastCommandSymbol = this.currentSymbol();
-	Window_Command.prototype.processOk.call(this);
-};
-
-Window_TitleCommand.prototype.selectLast = function () {
-	if (Window_TitleCommand._lastCommandSymbol) {
-		this.selectSymbol(Window_TitleCommand._lastCommandSymbol);
-	} else if (this.isContinueEnabled()) {
-		this.selectSymbol("continue");
-	}
-};
+    selectLast() {
+        if (Window_TitleCommand._lastCommandSymbol) {
+            this.selectSymbol(Window_TitleCommand._lastCommandSymbol);
+        } else if (this.isContinueEnabled()) {
+            this.selectSymbol("continue");
+        }
+    }
+}

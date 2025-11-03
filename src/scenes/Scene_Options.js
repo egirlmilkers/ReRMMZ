@@ -8,44 +8,43 @@ import { ConfigManager } from '../managers/index.js';
 import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_Options } from '../windows/index.js';
 
-export function Scene_Options() {
-	Scene_MenuBase.call(this);
-};
+export class Scene_Options extends Scene_MenuBase {
+    constructor() {
+        super();
+    }
 
-Scene_Options.prototype = Object.create(Scene_MenuBase.prototype);
-Scene_Options.prototype.constructor = Scene_Options;
+    create() {
+        super.create();
+        this.createOptionsWindow();
+    }
 
-Scene_Options.prototype.create = function () {
-	Scene_MenuBase.prototype.create.call(this);
-	this.createOptionsWindow();
-};
+    terminate() {
+        super.terminate();
+        ConfigManager.save();
+    }
 
-Scene_Options.prototype.terminate = function () {
-	Scene_MenuBase.prototype.terminate.call(this);
-	ConfigManager.save();
-};
+    createOptionsWindow() {
+        const rect = this.optionsWindowRect();
+        this._optionsWindow = new Window_Options(rect);
+        this._optionsWindow.setHandler("cancel", this.popScene.bind(this));
+        this.addWindow(this._optionsWindow);
+    }
 
-Scene_Options.prototype.createOptionsWindow = function () {
-	const rect = this.optionsWindowRect();
-	this._optionsWindow = new Window_Options(rect);
-	this._optionsWindow.setHandler("cancel", this.popScene.bind(this));
-	this.addWindow(this._optionsWindow);
-};
+    optionsWindowRect() {
+        const n = Math.min(this.maxCommands(), this.maxVisibleCommands());
+        const ww = 400;
+        const wh = this.calcWindowHeight(n, true);
+        const wx = (Graphics.boxWidth - ww) / 2;
+        const wy = (Graphics.boxHeight - wh) / 2;
+        return new Rectangle(wx, wy, ww, wh);
+    }
 
-Scene_Options.prototype.optionsWindowRect = function () {
-	const n = Math.min(this.maxCommands(), this.maxVisibleCommands());
-	const ww = 400;
-	const wh = this.calcWindowHeight(n, true);
-	const wx = (Graphics.boxWidth - ww) / 2;
-	const wy = (Graphics.boxHeight - wh) / 2;
-	return new Rectangle(wx, wy, ww, wh);
-};
+    maxCommands() {
+        // Increase this value when adding option items.
+        return 7;
+    }
 
-Scene_Options.prototype.maxCommands = function () {
-	// Increase this value when adding option items.
-	return 7;
-};
-
-Scene_Options.prototype.maxVisibleCommands = function () {
-	return 12;
-};
+    maxVisibleCommands() {
+        return 12;
+    }
+}

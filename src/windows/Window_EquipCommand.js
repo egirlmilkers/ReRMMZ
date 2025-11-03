@@ -5,19 +5,18 @@
 import { TextManager } from '../managers/index.js';
 import { Window_HorzCommand } from '../windows/index.js';
 
-export function Window_EquipCommand(rect) {
-	Window_HorzCommand.call(this, rect);
-};
+export class Window_EquipCommand extends Window_HorzCommand {
+    constructor(rect) {
+        super(rect);
+    }
 
-Window_EquipCommand.prototype = Object.create(Window_HorzCommand.prototype);
-Window_EquipCommand.prototype.constructor = Window_EquipCommand;
+    maxCols() {
+        return 3;
+    }
 
-Window_EquipCommand.prototype.maxCols = function () {
-	return 3;
-};
-
-Window_EquipCommand.prototype.makeCommandList = function () {
-	this.addCommand(TextManager.equip2, "equip");
-	this.addCommand(TextManager.optimize, "optimize");
-	this.addCommand(TextManager.clear, "clear");
-};
+    makeCommandList() {
+        this.addCommand(TextManager.equip2, "equip");
+        this.addCommand(TextManager.optimize, "optimize");
+        this.addCommand(TextManager.clear, "clear");
+    }
+}

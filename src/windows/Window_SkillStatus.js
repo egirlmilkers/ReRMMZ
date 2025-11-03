@@ -4,28 +4,27 @@
 
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_SkillStatus(rect) {
-	Window_StatusBase.call(this, rect);
-	this._actor = null;
-};
+export class Window_SkillStatus extends Window_StatusBase {
+    constructor(rect) {
+        super(rect);
+        this._actor = null;
+    }
 
-Window_SkillStatus.prototype = Object.create(Window_StatusBase.prototype);
-Window_SkillStatus.prototype.constructor = Window_SkillStatus;
+    setActor(actor) {
+        if (this._actor !== actor) {
+            this._actor = actor;
+            this.refresh();
+        }
+    }
 
-Window_SkillStatus.prototype.setActor = function (actor) {
-	if (this._actor !== actor) {
-		this._actor = actor;
-		this.refresh();
-	}
-};
-
-Window_SkillStatus.prototype.refresh = function () {
-	Window_StatusBase.prototype.refresh.call(this);
-	if (this._actor) {
-		const x = this.colSpacing() / 2;
-		const h = this.innerHeight;
-		const y = h / 2 - this.lineHeight() * 1.5;
-		this.drawActorFace(this._actor, x + 1, 0, 144, h);
-		this.drawActorSimpleStatus(this._actor, x + 180, y);
-	}
-};
+    refresh() {
+        super.refresh();
+        if (this._actor) {
+            const x = this.colSpacing() / 2;
+            const h = this.innerHeight;
+            const y = h / 2 - this.lineHeight() * 1.5;
+            this.drawActorFace(this._actor, x + 1, 0, 144, h);
+            this.drawActorSimpleStatus(this._actor, x + 180, y);
+        }
+    }
+}

@@ -6,74 +6,73 @@ import { Graphics, Rectangle } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 import { Window_Base } from '../windows/index.js';
 
-export function Window_NameBox() {
-	Window_Base.call(this, new Rectangle());
-	this.openness = 0;
-	this._name = "";
-};
+export class Window_NameBox extends Window_Base {
+    constructor() {
+        super(new Rectangle());
+        this.openness = 0;
+        this._name = "";
+    }
 
-Window_NameBox.prototype = Object.create(Window_Base.prototype);
-Window_NameBox.prototype.constructor = Window_NameBox;
+    setMessageWindow(messageWindow) {
+        this._messageWindow = messageWindow;
+    }
 
-Window_NameBox.prototype.setMessageWindow = function (messageWindow) {
-	this._messageWindow = messageWindow;
-};
+    setName(name) {
+        if (this._name !== name) {
+            this._name = name;
+            this.refresh();
+        }
+    }
 
-Window_NameBox.prototype.setName = function (name) {
-	if (this._name !== name) {
-		this._name = name;
-		this.refresh();
-	}
-};
+    clear() {
+        this.setName("");
+    }
 
-Window_NameBox.prototype.clear = function () {
-	this.setName("");
-};
+    start() {
+        this.updatePlacement();
+        this.updateBackground();
+        this.createContents();
+        this.refresh();
+    }
 
-Window_NameBox.prototype.start = function () {
-	this.updatePlacement();
-	this.updateBackground();
-	this.createContents();
-	this.refresh();
-};
+    updatePlacement() {
+        this.width = this.windowWidth();
+        this.height = this.windowHeight();
+        const messageWindow = this._messageWindow;
+        if (DataManager.$gameMessage.isRTL()) {
+            this.x = messageWindow.x + messageWindow.width - this.width;
+        } else {
+            this.x = messageWindow.x;
+        }
+        if (messageWindow.y > 0) {
+            this.y = messageWindow.y - this.height;
+        } else {
+            this.y = messageWindow.y + messageWindow.height;
+        }
+    }
 
-Window_NameBox.prototype.updatePlacement = function () {
-	this.width = this.windowWidth();
-	this.height = this.windowHeight();
-	const messageWindow = this._messageWindow;
-	if (DataManager.$gameMessage.isRTL()) {
-		this.x = messageWindow.x + messageWindow.width - this.width;
-	} else {
-		this.x = messageWindow.x;
-	}
-	if (messageWindow.y > 0) {
-		this.y = messageWindow.y - this.height;
-	} else {
-		this.y = messageWindow.y + messageWindow.height;
-	}
-};
+    updateBackground() {
+        this.setBackgroundType(DataManager.$gameMessage.background());
+    }
 
-Window_NameBox.prototype.updateBackground = function () {
-	this.setBackgroundType(DataManager.$gameMessage.background());
-};
+    windowWidth() {
+        if (this._name) {
+            const textWidth = this.textSizeEx(this._name).width;
+            const padding = this.padding + this.itemPadding();
+            const width = Math.ceil(textWidth) + padding * 2;
+            return Math.min(width, Graphics.boxWidth);
+        } else {
+            return 0;
+        }
+    }
 
-Window_NameBox.prototype.windowWidth = function () {
-	if (this._name) {
-		const textWidth = this.textSizeEx(this._name).width;
-		const padding = this.padding + this.itemPadding();
-		const width = Math.ceil(textWidth) + padding * 2;
-		return Math.min(width, Graphics.boxWidth);
-	} else {
-		return 0;
-	}
-};
+    windowHeight() {
+        return this.fittingHeight(1);
+    }
 
-Window_NameBox.prototype.windowHeight = function () {
-	return this.fittingHeight(1);
-};
-
-Window_NameBox.prototype.refresh = function () {
-	const rect = this.baseTextRect();
-	this.contents.clear();
-	this.drawTextEx(this._name, rect.x, rect.y, rect.width);
-};
+    refresh() {
+        const rect = this.baseTextRect();
+        this.contents.clear();
+        this.drawTextEx(this._name, rect.x, rect.y, rect.width);
+    }
+}

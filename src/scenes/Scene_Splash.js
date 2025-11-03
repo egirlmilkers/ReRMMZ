@@ -6,83 +6,82 @@ import { Input, Sprite, TouchInput } from '../core/index.js';
 import { DataManager, ImageManager, SceneManager } from '../managers/index.js';
 import { Scene_Base, Scene_Title } from '../scenes/index.js';
 
-export function Scene_Splash() {
-	Scene_Base.call(this);
-	this.initWaitCount();
-};
+export class Scene_Splash extends Scene_Base {
+    constructor() {
+        super();
+        this.initWaitCount();
+    }
 
-Scene_Splash.prototype = Object.create(Scene_Base.prototype);
-Scene_Splash.prototype.constructor = Scene_Splash;
+    create() {
+        super.create();
+        if (this.isEnabled()) {
+            this.createBackground();
+        }
+    }
 
-Scene_Splash.prototype.create = function () {
-	Scene_Base.prototype.create.call(this);
-	if (this.isEnabled()) {
-		this.createBackground();
-	}
-};
+    start() {
+        super.start();
+        if (this.isEnabled()) {
+            this.adjustBackground();
+            this.startFadeIn(this.fadeSpeed(), false);
+        }
+    }
 
-Scene_Splash.prototype.start = function () {
-	Scene_Base.prototype.start.call(this);
-	if (this.isEnabled()) {
-		this.adjustBackground();
-		this.startFadeIn(this.fadeSpeed(), false);
-	}
-};
+    update() {
+        super.update();
+        if (this.isActive()) {
+            if (!this.updateWaitCount()) {
+                this.gotoTitle();
+            }
+            this.checkSkip();
+        }
+    }
 
-Scene_Splash.prototype.update = function () {
-	Scene_Base.prototype.update.call(this);
-	if (this.isActive()) {
-		if (!this.updateWaitCount()) {
-			this.gotoTitle();
-		}
-		this.checkSkip();
-	}
-};
+    stop() {
+        super.stop();
+        if (this.isEnabled()) {
+            this.startFadeOut(this.fadeSpeed());
+        }
+    }
 
-Scene_Splash.prototype.stop = function () {
-	Scene_Base.prototype.stop.call(this);
-	if (this.isEnabled()) {
-		this.startFadeOut(this.fadeSpeed());
-	}
-};
+    createBackground() {
+        this._backSprite = new Sprite();
+        this._backSprite.bitmap = ImageManager.loadSystem("Splash");
+        this.addChild(this._backSprite);
+    }
 
-Scene_Splash.prototype.createBackground = function () {
-	this._backSprite = new Sprite();
-	this._backSprite.bitmap = ImageManager.loadSystem("Splash");
-	this.addChild(this._backSprite);
-};
+    adjustBackground() {
+        this.scaleSprite(this._backSprite);
+        this.centerSprite(this._backSprite);
+    }
 
-Scene_Splash.prototype.adjustBackground = function () {
-	this.scaleSprite(this._backSprite);
-	this.centerSprite(this._backSprite);
-};
+    isEnabled() {
+        return DataManager.$dataSystem.optSplashScreen;
+    }
 
-Scene_Splash.prototype.isEnabled = function () {
-	return DataManager.$dataSystem.optSplashScreen;
-};
+    initWaitCount() {
+        if (this.isEnabled()) {
+            this._waitCount = 120;
+        } else {
+            this._waitCount = 0;
+        }
+    }
 
-Scene_Splash.prototype.initWaitCount = function () {
-	if (this.isEnabled()) {
-		this._waitCount = 120;
-	} else {
-		this._waitCount = 0;
-	}
-};
+    updateWaitCount() {
+        if (this._waitCount > 0) {
+            this._waitCount--;
+            return true;
+        }
+        return false;
+    }
 
-Scene_Splash.prototype.updateWaitCount = function () {
-	if (this._waitCount > 0) {
-		this._waitCount--;
-		return true;
-	}
-	return false;
-};
+    checkSkip() {
+        if (Input.isTriggered("ok") || TouchInput.isTriggered()) {
+            this._waitCount = 0;
+        }
+    }
 
-Scene_Splash.prototype.checkSkip = function () {
-	if (Input.isTriggered("ok") || TouchInput.isTriggered()) {
-		this._waitCount = 0;
-	}
-};
-
-Scene_Splash.prototype.gotoTitle = function () {
-	SceneManager.goto(Scene_Title);
-};
+    gotoTitle() {
+        SceneManager.goto(Scene_Title);
+    }
+}

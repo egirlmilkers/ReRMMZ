@@ -6,210 +6,209 @@ import { Graphics, Sprite, Tilemap, TilingSprite, Weather } from '../core/index.
 import { DataManager, ImageManager } from '../managers/index.js';
 import { Spriteset_Base, Sprite_Balloon, Sprite_Character, Sprite_Destination } from '../sprites/index.js';
 
-export function Spriteset_Map() {
-	Spriteset_Base.call(this);
-	this._balloonSprites = [];
-};
+export class Spriteset_Map extends Spriteset_Base {
+    constructor() {
+        super();
+        this._balloonSprites = [];
+    }
 
-Spriteset_Map.prototype = Object.create(Spriteset_Base.prototype);
-Spriteset_Map.prototype.constructor = Spriteset_Map;
+    destroy(options) {
+        this.removeAllBalloons();
+        super.destroy(options);
+    }
 
-Spriteset_Map.prototype.destroy = function (options) {
-	this.removeAllBalloons();
-	Spriteset_Base.prototype.destroy.call(this, options);
-};
+    loadSystemImages() {
+        super.loadSystemImages();
+        ImageManager.loadSystem("Balloon");
+        ImageManager.loadSystem("Shadow1");
+    }
 
-Spriteset_Map.prototype.loadSystemImages = function () {
-	Spriteset_Base.prototype.loadSystemImages.call(this);
-	ImageManager.loadSystem("Balloon");
-	ImageManager.loadSystem("Shadow1");
-};
+    createLowerLayer() {
+        super.createLowerLayer();
+        this.createParallax();
+        this.createTilemap();
+        this.createCharacters();
+        this.createShadow();
+        this.createDestination();
+        this.createWeather();
+    }
 
-Spriteset_Map.prototype.createLowerLayer = function () {
-	Spriteset_Base.prototype.createLowerLayer.call(this);
-	this.createParallax();
-	this.createTilemap();
-	this.createCharacters();
-	this.createShadow();
-	this.createDestination();
-	this.createWeather();
-};
+    update() {
+        super.update();
+        this.updateTileset();
+        this.updateParallax();
+        this.updateTilemap();
+        this.updateShadow();
+        this.updateWeather();
+        this.updateAnimations();
+        this.updateBalloons();
+    }
 
-Spriteset_Map.prototype.update = function () {
-	Spriteset_Base.prototype.update.call(this);
-	this.updateTileset();
-	this.updateParallax();
-	this.updateTilemap();
-	this.updateShadow();
-	this.updateWeather();
-	this.updateAnimations();
-	this.updateBalloons();
-};
+    hideCharacters() {
+        for (const sprite of this._characterSprites) {
+            if (!sprite.isTile() && !sprite.isObjectCharacter()) {
+                sprite.hide();
+            }
+        }
+    }
 
-Spriteset_Map.prototype.hideCharacters = function () {
-	for (const sprite of this._characterSprites) {
-		if (!sprite.isTile() && !sprite.isObjectCharacter()) {
-			sprite.hide();
-		}
-	}
-};
+    createParallax() {
+        this._parallax = new TilingSprite();
+        this._parallax.move(0, 0, Graphics.width, Graphics.height);
+        this._baseSprite.addChild(this._parallax);
+    }
 
-Spriteset_Map.prototype.createParallax = function () {
-	this._parallax = new TilingSprite();
-	this._parallax.move(0, 0, Graphics.width, Graphics.height);
-	this._baseSprite.addChild(this._parallax);
-};
+    createTilemap() {
+        const tilemap = new Tilemap();
+        tilemap.tileWidth = DataManager.$gameMap.tileWidth();
+        tilemap.tileHeight = DataManager.$gameMap.tileHeight();
+        tilemap.setData(DataManager.$gameMap.width(), DataManager.$gameMap.height(), DataManager.$gameMap.data());
+        tilemap.horizontalWrap = DataManager.$gameMap.isLoopHorizontal();
+        tilemap.verticalWrap = DataManager.$gameMap.isLoopVertical();
+        this._baseSprite.addChild(tilemap);
+        this._effectsContainer = tilemap;
+        this._tilemap = tilemap;
+        this.loadTileset();
+    }
 
-Spriteset_Map.prototype.createTilemap = function () {
-	const tilemap = new Tilemap();
-	tilemap.tileWidth = DataManager.$gameMap.tileWidth();
-	tilemap.tileHeight = DataManager.$gameMap.tileHeight();
-	tilemap.setData(DataManager.$gameMap.width(), DataManager.$gameMap.height(), DataManager.$gameMap.data());
-	tilemap.horizontalWrap = DataManager.$gameMap.isLoopHorizontal();
-	tilemap.verticalWrap = DataManager.$gameMap.isLoopVertical();
-	this._baseSprite.addChild(tilemap);
-	this._effectsContainer = tilemap;
-	this._tilemap = tilemap;
-	this.loadTileset();
-};
+    loadTileset() {
+        this._tileset = DataManager.$gameMap.tileset();
+        if (this._tileset) {
+            const bitmaps = [];
+            const tilesetNames = this._tileset.tilesetNames;
+            for (const name of tilesetNames) {
+                bitmaps.push(ImageManager.loadTileset(name));
+            }
+            this._tilemap.setBitmaps(bitmaps);
+            this._tilemap.flags = DataManager.$gameMap.tilesetFlags();
+        }
+    }
 
-Spriteset_Map.prototype.loadTileset = function () {
-	this._tileset = DataManager.$gameMap.tileset();
-	if (this._tileset) {
-		const bitmaps = [];
-		const tilesetNames = this._tileset.tilesetNames;
-		for (const name of tilesetNames) {
-			bitmaps.push(ImageManager.loadTileset(name));
-		}
-		this._tilemap.setBitmaps(bitmaps);
-		this._tilemap.flags = DataManager.$gameMap.tilesetFlags();
-	}
-};
+    createCharacters() {
+        this._characterSprites = [];
+        for (const event of DataManager.$gameMap.events()) {
+            this._characterSprites.push(new Sprite_Character(event));
+        }
+        for (const vehicle of DataManager.$gameMap.vehicles()) {
+            this._characterSprites.push(new Sprite_Character(vehicle));
+        }
+        for (const follower of DataManager.$gamePlayer.followers().reverseData()) {
+            this._characterSprites.push(new Sprite_Character(follower));
+        }
+        this._characterSprites.push(new Sprite_Character(DataManager.$gamePlayer));
+        for (const sprite of this._characterSprites) {
+            this._tilemap.addChild(sprite);
+        }
+    }
 
-Spriteset_Map.prototype.createCharacters = function () {
-	this._characterSprites = [];
-	for (const event of DataManager.$gameMap.events()) {
-		this._characterSprites.push(new Sprite_Character(event));
-	}
-	for (const vehicle of DataManager.$gameMap.vehicles()) {
-		this._characterSprites.push(new Sprite_Character(vehicle));
-	}
-	for (const follower of DataManager.$gamePlayer.followers().reverseData()) {
-		this._characterSprites.push(new Sprite_Character(follower));
-	}
-	this._characterSprites.push(new Sprite_Character(DataManager.$gamePlayer));
-	for (const sprite of this._characterSprites) {
-		this._tilemap.addChild(sprite);
-	}
-};
+    createShadow() {
+        this._shadowSprite = new Sprite();
+        this._shadowSprite.bitmap = ImageManager.loadSystem("Shadow1");
+        this._shadowSprite.anchor.x = 0.5;
+        this._shadowSprite.anchor.y = 1;
+        this._shadowSprite.z = 6;
+        this._tilemap.addChild(this._shadowSprite);
+    }
 
-Spriteset_Map.prototype.createShadow = function () {
-	this._shadowSprite = new Sprite();
-	this._shadowSprite.bitmap = ImageManager.loadSystem("Shadow1");
-	this._shadowSprite.anchor.x = 0.5;
-	this._shadowSprite.anchor.y = 1;
-	this._shadowSprite.z = 6;
-	this._tilemap.addChild(this._shadowSprite);
-};
+    createDestination() {
+        this._destinationSprite = new Sprite_Destination();
+        this._destinationSprite.z = 9;
+        this._tilemap.addChild(this._destinationSprite);
+    }
 
-Spriteset_Map.prototype.createDestination = function () {
-	this._destinationSprite = new Sprite_Destination();
-	this._destinationSprite.z = 9;
-	this._tilemap.addChild(this._destinationSprite);
-};
+    createWeather() {
+        this._weather = new Weather();
+        this.addChild(this._weather);
+    }
 
-Spriteset_Map.prototype.createWeather = function () {
-	this._weather = new Weather();
-	this.addChild(this._weather);
-};
+    updateTileset() {
+        if (this._tileset !== DataManager.$gameMap.tileset()) {
+            this.loadTileset();
+        }
+    }
 
-Spriteset_Map.prototype.updateTileset = function () {
-	if (this._tileset !== DataManager.$gameMap.tileset()) {
-		this.loadTileset();
-	}
-};
+    updateParallax() {
+        if (this._parallaxName !== DataManager.$gameMap.parallaxName()) {
+            this._parallaxName = DataManager.$gameMap.parallaxName();
+            this._parallax.bitmap = ImageManager.loadParallax(this._parallaxName);
+        }
+        if (this._parallax.bitmap) {
+            const bitmap = this._parallax.bitmap;
+            this._parallax.origin.x = DataManager.$gameMap.parallaxOx() % bitmap.width;
+            this._parallax.origin.y = DataManager.$gameMap.parallaxOy() % bitmap.height;
+        }
+    }
 
-Spriteset_Map.prototype.updateParallax = function () {
-	if (this._parallaxName !== DataManager.$gameMap.parallaxName()) {
-		this._parallaxName = DataManager.$gameMap.parallaxName();
-		this._parallax.bitmap = ImageManager.loadParallax(this._parallaxName);
-	}
-	if (this._parallax.bitmap) {
-		const bitmap = this._parallax.bitmap;
-		this._parallax.origin.x = DataManager.$gameMap.parallaxOx() % bitmap.width;
-		this._parallax.origin.y = DataManager.$gameMap.parallaxOy() % bitmap.height;
-	}
-};
+    updateTilemap() {
+        this._tilemap.origin.x = DataManager.$gameMap.displayX() * DataManager.$gameMap.tileWidth();
+        this._tilemap.origin.y = DataManager.$gameMap.displayY() * DataManager.$gameMap.tileHeight();
+    }
 
-Spriteset_Map.prototype.updateTilemap = function () {
-	this._tilemap.origin.x = DataManager.$gameMap.displayX() * DataManager.$gameMap.tileWidth();
-	this._tilemap.origin.y = DataManager.$gameMap.displayY() * DataManager.$gameMap.tileHeight();
-};
+    updateShadow() {
+        const airship = DataManager.$gameMap.airship();
+        this._shadowSprite.x = airship.shadowX();
+        this._shadowSprite.y = airship.shadowY();
+        this._shadowSprite.opacity = airship.shadowOpacity();
+    }
 
-Spriteset_Map.prototype.updateShadow = function () {
-	const airship = DataManager.$gameMap.airship();
-	this._shadowSprite.x = airship.shadowX();
-	this._shadowSprite.y = airship.shadowY();
-	this._shadowSprite.opacity = airship.shadowOpacity();
-};
+    updateWeather() {
+        this._weather.type = DataManager.$gameScreen.weatherType();
+        this._weather.power = DataManager.$gameScreen.weatherPower();
+        this._weather.origin.x = DataManager.$gameMap.displayX() * DataManager.$gameMap.tileWidth();
+        this._weather.origin.y = DataManager.$gameMap.displayY() * DataManager.$gameMap.tileHeight();
+    }
 
-Spriteset_Map.prototype.updateWeather = function () {
-	this._weather.type = DataManager.$gameScreen.weatherType();
-	this._weather.power = DataManager.$gameScreen.weatherPower();
-	this._weather.origin.x = DataManager.$gameMap.displayX() * DataManager.$gameMap.tileWidth();
-	this._weather.origin.y = DataManager.$gameMap.displayY() * DataManager.$gameMap.tileHeight();
-};
+    updateBalloons() {
+        for (const sprite of this._balloonSprites) {
+            if (!sprite.isPlaying()) {
+                this.removeBalloon(sprite);
+            }
+        }
+        this.processBalloonRequests();
+    }
 
-Spriteset_Map.prototype.updateBalloons = function () {
-	for (const sprite of this._balloonSprites) {
-		if (!sprite.isPlaying()) {
-			this.removeBalloon(sprite);
-		}
-	}
-	this.processBalloonRequests();
-};
+    processBalloonRequests() {
+        for (;;) {
+            const request = DataManager.$gameTemp.retrieveBalloon();
+            if (request) {
+                this.createBalloon(request);
+            } else {
+                break;
+            }
+        }
+    }
 
-Spriteset_Map.prototype.processBalloonRequests = function () {
-	for (;;) {
-		const request = DataManager.$gameTemp.retrieveBalloon();
-		if (request) {
-			this.createBalloon(request);
-		} else {
-			break;
-		}
-	}
-};
+    createBalloon(request) {
+        const targetSprite = this.findTargetSprite(request.target);
+        if (targetSprite) {
+            const sprite = new Sprite_Balloon();
+            sprite.targetObject = request.target;
+            sprite.setup(targetSprite, request.balloonId);
+            this._effectsContainer.addChild(sprite);
+            this._balloonSprites.push(sprite);
+        }
+    }
 
-Spriteset_Map.prototype.createBalloon = function (request) {
-	const targetSprite = this.findTargetSprite(request.target);
-	if (targetSprite) {
-		const sprite = new Sprite_Balloon();
-		sprite.targetObject = request.target;
-		sprite.setup(targetSprite, request.balloonId);
-		this._effectsContainer.addChild(sprite);
-		this._balloonSprites.push(sprite);
-	}
-};
+    removeBalloon(sprite) {
+        this._balloonSprites.remove(sprite);
+        this._effectsContainer.removeChild(sprite);
+        if (sprite.targetObject.endBalloon) {
+            sprite.targetObject.endBalloon();
+        }
+        sprite.destroy();
+    }
 
-Spriteset_Map.prototype.removeBalloon = function (sprite) {
-	this._balloonSprites.remove(sprite);
-	this._effectsContainer.removeChild(sprite);
-	if (sprite.targetObject.endBalloon) {
-		sprite.targetObject.endBalloon();
-	}
-	sprite.destroy();
-};
+    removeAllBalloons() {
+        for (const sprite of this._balloonSprites.clone()) {
+            this.removeBalloon(sprite);
+        }
+    }
 
-Spriteset_Map.prototype.removeAllBalloons = function () {
-	for (const sprite of this._balloonSprites.clone()) {
-		this.removeBalloon(sprite);
-	}
-};
+    findTargetSprite(target) {
+        return this._characterSprites.find((sprite) => sprite.checkCharacter(target));
+    }
 
-Spriteset_Map.prototype.findTargetSprite = function (target) {
-	return this._characterSprites.find((sprite) => sprite.checkCharacter(target));
-};
-
-Spriteset_Map.prototype.animationBaseDelay = function () {
-	return 0;
-};
+    animationBaseDelay() {
+        return 0;
+    }
+}

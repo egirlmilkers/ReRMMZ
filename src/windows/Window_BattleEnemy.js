@@ -5,74 +5,73 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_BattleEnemy(rect) {
-	this._enemies = [];
-	Window_Selectable.call(this, rect);
-	this.refresh();
-	this.hide();
-};
+export class Window_BattleEnemy extends Window_Selectable {
+    constructor(rect) {
+        this._enemies = [];
+        super(rect);
+        this.refresh();
+        this.hide();
+    }
 
-Window_BattleEnemy.prototype = Object.create(Window_Selectable.prototype);
-Window_BattleEnemy.prototype.constructor = Window_BattleEnemy;
+    maxCols() {
+        return 2;
+    }
 
-Window_BattleEnemy.prototype.maxCols = function () {
-	return 2;
-};
+    maxItems() {
+        return this._enemies.length;
+    }
 
-Window_BattleEnemy.prototype.maxItems = function () {
-	return this._enemies.length;
-};
+    enemy() {
+        return this._enemies[this.index()];
+    }
 
-Window_BattleEnemy.prototype.enemy = function () {
-	return this._enemies[this.index()];
-};
+    enemyIndex() {
+        const enemy = this.enemy();
+        return enemy ? enemy.index() : -1;
+    }
 
-Window_BattleEnemy.prototype.enemyIndex = function () {
-	const enemy = this.enemy();
-	return enemy ? enemy.index() : -1;
-};
+    drawItem(index) {
+        this.resetTextColor();
+        const name = this._enemies[index].name();
+        const rect = this.itemLineRect(index);
+        this.drawText(name, rect.x, rect.y, rect.width);
+    }
 
-Window_BattleEnemy.prototype.drawItem = function (index) {
-	this.resetTextColor();
-	const name = this._enemies[index].name();
-	const rect = this.itemLineRect(index);
-	this.drawText(name, rect.x, rect.y, rect.width);
-};
+    show() {
+        this.refresh();
+        this.forceSelect(0);
+        DataManager.$gameTemp.clearTouchState();
+        super.show();
+    }
 
-Window_BattleEnemy.prototype.show = function () {
-	this.refresh();
-	this.forceSelect(0);
-	DataManager.$gameTemp.clearTouchState();
-	Window_Selectable.prototype.show.call(this);
-};
+    hide() {
+        super.hide();
+        DataManager.$gameTroop.select(null);
+    }
 
-Window_BattleEnemy.prototype.hide = function () {
-	Window_Selectable.prototype.hide.call(this);
-	DataManager.$gameTroop.select(null);
-};
+    refresh() {
+        this._enemies = DataManager.$gameTroop.aliveMembers();
+        super.refresh();
+    }
 
-Window_BattleEnemy.prototype.refresh = function () {
-	this._enemies = DataManager.$gameTroop.aliveMembers();
-	Window_Selectable.prototype.refresh.call(this);
-};
+    select(index) {
+        super.select(index);
+        DataManager.$gameTroop.select(this.enemy());
+    }
 
-Window_BattleEnemy.prototype.select = function (index) {
-	Window_Selectable.prototype.select.call(this, index);
-	DataManager.$gameTroop.select(this.enemy());
-};
-
-Window_BattleEnemy.prototype.processTouch = function () {
-	Window_Selectable.prototype.processTouch.call(this);
-	if (this.isOpenAndActive()) {
-		const target = DataManager.$gameTemp.touchTarget();
-		if (target) {
-			if (this._enemies.includes(target)) {
-				this.select(this._enemies.indexOf(target));
-				if (DataManager.$gameTemp.touchState() === "click") {
-					this.processOk();
-				}
-			}
-			DataManager.$gameTemp.clearTouchState();
-		}
-	}
-};
+    processTouch() {
+        super.processTouch();
+        if (this.isOpenAndActive()) {
+            const target = DataManager.$gameTemp.touchTarget();
+            if (target) {
+                if (this._enemies.includes(target)) {
+                    this.select(this._enemies.indexOf(target));
+                    if (DataManager.$gameTemp.touchState() === "click") {
+                        this.processOk();
+                    }
+                }
+                DataManager.$gameTemp.clearTouchState();
+            }
+        }
+    }
+}

@@ -5,40 +5,39 @@
 import { ColorManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_StatusEquip(rect) {
-	Window_StatusBase.call(this, rect);
-	this._actor = null;
-};
+export class Window_StatusEquip extends Window_StatusBase {
+    constructor(rect) {
+        super(rect);
+        this._actor = null;
+    }
 
-Window_StatusEquip.prototype = Object.create(Window_StatusBase.prototype);
-Window_StatusEquip.prototype.constructor = Window_StatusEquip;
+    setActor(actor) {
+        if (this._actor !== actor) {
+            this._actor = actor;
+            this.refresh();
+        }
+    }
 
-Window_StatusEquip.prototype.setActor = function (actor) {
-	if (this._actor !== actor) {
-		this._actor = actor;
-		this.refresh();
-	}
-};
+    maxItems() {
+        return this._actor ? this._actor.equipSlots().length : 0;
+    }
 
-Window_StatusEquip.prototype.maxItems = function () {
-	return this._actor ? this._actor.equipSlots().length : 0;
-};
+    itemHeight() {
+        return this.lineHeight();
+    }
 
-Window_StatusEquip.prototype.itemHeight = function () {
-	return this.lineHeight();
-};
+    drawItem(index) {
+        const rect = this.itemLineRect(index);
+        const equips = this._actor.equips();
+        const item = equips[index];
+        const slotName = this.actorSlotName(this._actor, index);
+        const sw = 138;
+        this.changeTextColor(ColorManager.systemColor());
+        this.drawText(slotName, rect.x, rect.y, sw, rect.height);
+        this.drawItemName(item, rect.x + sw, rect.y, rect.width - sw);
+    }
 
-Window_StatusEquip.prototype.drawItem = function (index) {
-	const rect = this.itemLineRect(index);
-	const equips = this._actor.equips();
-	const item = equips[index];
-	const slotName = this.actorSlotName(this._actor, index);
-	const sw = 138;
-	this.changeTextColor(ColorManager.systemColor());
-	this.drawText(slotName, rect.x, rect.y, sw, rect.height);
-	this.drawItemName(item, rect.x + sw, rect.y, rect.width - sw);
-};
-
-Window_StatusEquip.prototype.drawItemBackground = function (/*index*/) {
-	//
-};
+    drawItemBackground() /*index*/{
+        //
+    }
+}

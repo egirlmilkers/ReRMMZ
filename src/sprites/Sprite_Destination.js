@@ -5,57 +5,56 @@
 import { Bitmap, Sprite } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 
-export function Sprite_Destination() {
-	Sprite.call(this);
-	this.createBitmap();
-	this._frameCount = 0;
-};
+export class Sprite_Destination extends Sprite {
+    constructor() {
+        super();
+        this.createBitmap();
+        this._frameCount = 0;
+    }
 
-Sprite_Destination.prototype = Object.create(Sprite.prototype);
-Sprite_Destination.prototype.constructor = Sprite_Destination;
+    destroy(options) {
+        if (this.bitmap) {
+            this.bitmap.destroy();
+        }
+        super.destroy(options);
+    }
 
-Sprite_Destination.prototype.destroy = function (options) {
-	if (this.bitmap) {
-		this.bitmap.destroy();
-	}
-	Sprite.prototype.destroy.call(this, options);
-};
+    update() {
+        super.update();
+        if (DataManager.$gameTemp.isDestinationValid()) {
+            this.updatePosition();
+            this.updateAnimation();
+            this.visible = true;
+        } else {
+            this._frameCount = 0;
+            this.visible = false;
+        }
+    }
 
-Sprite_Destination.prototype.update = function () {
-	Sprite.prototype.update.call(this);
-	if (DataManager.$gameTemp.isDestinationValid()) {
-		this.updatePosition();
-		this.updateAnimation();
-		this.visible = true;
-	} else {
-		this._frameCount = 0;
-		this.visible = false;
-	}
-};
+    createBitmap() {
+        const tileWidth = DataManager.$gameMap.tileWidth();
+        const tileHeight = DataManager.$gameMap.tileHeight();
+        this.bitmap = new Bitmap(tileWidth, tileHeight);
+        this.bitmap.fillAll("white");
+        this.anchor.x = 0.5;
+        this.anchor.y = 0.5;
+        this.blendMode = 1;
+    }
 
-Sprite_Destination.prototype.createBitmap = function () {
-	const tileWidth = DataManager.$gameMap.tileWidth();
-	const tileHeight = DataManager.$gameMap.tileHeight();
-	this.bitmap = new Bitmap(tileWidth, tileHeight);
-	this.bitmap.fillAll("white");
-	this.anchor.x = 0.5;
-	this.anchor.y = 0.5;
-	this.blendMode = 1;
-};
+    updatePosition() {
+        const tileWidth = DataManager.$gameMap.tileWidth();
+        const tileHeight = DataManager.$gameMap.tileHeight();
+        const x = DataManager.$gameTemp.destinationX();
+        const y = DataManager.$gameTemp.destinationY();
+        this.x = (DataManager.$gameMap.adjustX(x) + 0.5) * tileWidth;
+        this.y = (DataManager.$gameMap.adjustY(y) + 0.5) * tileHeight;
+    }
 
-Sprite_Destination.prototype.updatePosition = function () {
-	const tileWidth = DataManager.$gameMap.tileWidth();
-	const tileHeight = DataManager.$gameMap.tileHeight();
-	const x = DataManager.$gameTemp.destinationX();
-	const y = DataManager.$gameTemp.destinationY();
-	this.x = (DataManager.$gameMap.adjustX(x) + 0.5) * tileWidth;
-	this.y = (DataManager.$gameMap.adjustY(y) + 0.5) * tileHeight;
-};
-
-Sprite_Destination.prototype.updateAnimation = function () {
-	this._frameCount++;
-	this._frameCount %= 20;
-	this.opacity = (20 - this._frameCount) * 6;
-	this.scale.x = 1 + this._frameCount / 20;
-	this.scale.y = this.scale.x;
-};
+    updateAnimation() {
+        this._frameCount++;
+        this._frameCount %= 20;
+        this.opacity = (20 - this._frameCount) * 6;
+        this.scale.x = 1 + this._frameCount / 20;
+        this.scale.y = this.scale.x;
+    }
+}

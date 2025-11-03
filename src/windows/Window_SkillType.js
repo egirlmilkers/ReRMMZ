@@ -5,48 +5,47 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_SkillType(rect) {
-	Window_Command.call(this, rect);
-	this._actor = null;
-};
+export class Window_SkillType extends Window_Command {
+    constructor(rect) {
+        super(rect);
+        this._actor = null;
+    }
 
-Window_SkillType.prototype = Object.create(Window_Command.prototype);
-Window_SkillType.prototype.constructor = Window_SkillType;
+    setActor(actor) {
+        if (this._actor !== actor) {
+            this._actor = actor;
+            this.refresh();
+            this.selectLast();
+        }
+    }
 
-Window_SkillType.prototype.setActor = function (actor) {
-	if (this._actor !== actor) {
-		this._actor = actor;
-		this.refresh();
-		this.selectLast();
-	}
-};
+    makeCommandList() {
+        if (this._actor) {
+            const skillTypes = this._actor.skillTypes();
+            for (const stypeId of skillTypes) {
+                const name = DataManager.$dataSystem.skillTypes[stypeId];
+                this.addCommand(name, "skill", true, stypeId);
+            }
+        }
+    }
 
-Window_SkillType.prototype.makeCommandList = function () {
-	if (this._actor) {
-		const skillTypes = this._actor.skillTypes();
-		for (const stypeId of skillTypes) {
-			const name = DataManager.$dataSystem.skillTypes[stypeId];
-			this.addCommand(name, "skill", true, stypeId);
-		}
-	}
-};
+    update() {
+        super.update();
+        if (this._skillWindow) {
+            this._skillWindow.setStypeId(this.currentExt());
+        }
+    }
 
-Window_SkillType.prototype.update = function () {
-	Window_Command.prototype.update.call(this);
-	if (this._skillWindow) {
-		this._skillWindow.setStypeId(this.currentExt());
-	}
-};
+    setSkillWindow(skillWindow) {
+        this._skillWindow = skillWindow;
+    }
 
-Window_SkillType.prototype.setSkillWindow = function (skillWindow) {
-	this._skillWindow = skillWindow;
-};
-
-Window_SkillType.prototype.selectLast = function () {
-	const skill = this._actor.lastMenuSkill();
-	if (skill) {
-		this.selectExt(skill.stypeId);
-	} else {
-		this.forceSelect(0);
-	}
-};
+    selectLast() {
+        const skill = this._actor.lastMenuSkill();
+        if (skill) {
+            this.selectExt(skill.stypeId);
+        } else {
+            this.forceSelect(0);
+        }
+    }
+}

@@ -5,24 +5,23 @@
 import { TextManager } from '../managers/index.js';
 import { Window_HorzCommand } from '../windows/index.js';
 
-export function Window_ShopCommand(rect) {
-	Window_HorzCommand.call(this, rect);
-};
+export class Window_ShopCommand extends Window_HorzCommand {
+    constructor(rect) {
+        super(rect);
+    }
 
-Window_ShopCommand.prototype = Object.create(Window_HorzCommand.prototype);
-Window_ShopCommand.prototype.constructor = Window_ShopCommand;
+    setPurchaseOnly(purchaseOnly) {
+        this._purchaseOnly = purchaseOnly;
+        this.refresh();
+    }
 
-Window_ShopCommand.prototype.setPurchaseOnly = function (purchaseOnly) {
-	this._purchaseOnly = purchaseOnly;
-	this.refresh();
-};
+    maxCols() {
+        return 3;
+    }
 
-Window_ShopCommand.prototype.maxCols = function () {
-	return 3;
-};
-
-Window_ShopCommand.prototype.makeCommandList = function () {
-	this.addCommand(TextManager.buy, "buy");
-	this.addCommand(TextManager.sell, "sell", !this._purchaseOnly);
-	this.addCommand(TextManager.cancel, "cancel");
-};
+    makeCommandList() {
+        this.addCommand(TextManager.buy, "buy");
+        this.addCommand(TextManager.sell, "sell", !this._purchaseOnly);
+        this.addCommand(TextManager.cancel, "cancel");
+    }
+}

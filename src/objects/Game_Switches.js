@@ -4,25 +4,27 @@
 
 import { DataManager } from '../managers/index.js';
 
-export function Game_Switches() {
-	this.clear();
-};
+export class Game_Switches {
+    constructor() {
+        this.clear();
+    }
 
-Game_Switches.prototype.clear = function () {
-	this._data = [];
-};
+    clear() {
+        this._data = [];
+    }
 
-Game_Switches.prototype.value = function (switchId) {
-	return !!this._data[switchId];
-};
+    value(switchId) {
+        return !!this._data[switchId];
+    }
 
-Game_Switches.prototype.setValue = function (switchId, value) {
-	if (switchId > 0 && switchId < DataManager.$dataSystem.switches.length) {
-		this._data[switchId] = value;
-		this.onChange();
-	}
-};
+    setValue(switchId, value) {
+        if (switchId > 0 && switchId < DataManager.$dataSystem.switches.length) {
+            this._data[switchId] = value;
+            this.onChange();
+        }
+    }
 
-Game_Switches.prototype.onChange = function () {
-	DataManager.$gameMap.requestRefresh();
-};
+    onChange() {
+        DataManager.$gameMap.requestRefresh();
+    }
+}

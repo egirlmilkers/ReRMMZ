@@ -4,13 +4,12 @@
 
 import { Window_ItemList } from '../windows/index.js';
 
-export function Window_ShopSell(rect) {
-	Window_ItemList.call(this, rect);
-};
+export class Window_ShopSell extends Window_ItemList {
+    constructor(rect) {
+        super(rect);
+    }
 
-Window_ShopSell.prototype = Object.create(Window_ItemList.prototype);
-Window_ShopSell.prototype.constructor = Window_ShopSell;
-
-Window_ShopSell.prototype.isEnabled = function (item) {
-	return item && item.price > 0;
-};
+    isEnabled(item) {
+        return item && item.price > 0;
+    }
+}

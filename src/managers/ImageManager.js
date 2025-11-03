@@ -5,174 +5,164 @@
 import { Bitmap, Utils } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 
-export function ImageManager() {
-	throw new Error("This is a static class");
+export class ImageManager {
+	static standardIconWidth = 32;
+	static standardIconHeight = 32;
+	static standardFaceWidth = 144;
+	static standardFaceHeight = 144;
+
+	static _cache = {};
+	static _system = {};
+	static _emptyBitmap = new Bitmap(1, 1);
+
+    constructor() {
+        throw new Error("This is a static class");
+    }
+
+    static get iconWidth() {
+		return this.getIconSize();
+	}
+
+    static get iconHeight() {
+		return this.getIconSize();
+	}
+
+    static get faceWidth() {
+		return this.getFaceSize();
+	}
+
+    static get faceHeight() {
+		return this.getFaceSize();
+	}
+
+    static getIconSize() {
+        if ("iconSize" in DataManager.$dataSystem) {
+            return DataManager.$dataSystem.iconSize;
+        } else {
+            return this.defaultIconWidth;
+        }
+    }
+
+    static getFaceSize() {
+        if ("faceSize" in DataManager.$dataSystem) {
+            return DataManager.$dataSystem.faceSize;
+        } else {
+            return this.defaultFaceWidth;
+        }
+    }
+
+    static loadAnimation(filename) {
+        return this.loadBitmap("img/animations/", filename);
+    }
+
+    static loadBattleback1(filename) {
+        return this.loadBitmap("img/battlebacks1/", filename);
+    }
+
+    static loadBattleback2(filename) {
+        return this.loadBitmap("img/battlebacks2/", filename);
+    }
+
+    static loadEnemy(filename) {
+        return this.loadBitmap("img/enemies/", filename);
+    }
+
+    static loadCharacter(filename) {
+        return this.loadBitmap("img/characters/", filename);
+    }
+
+    static loadFace(filename) {
+        return this.loadBitmap("img/faces/", filename);
+    }
+
+    static loadParallax(filename) {
+        return this.loadBitmap("img/parallaxes/", filename);
+    }
+
+    static loadPicture(filename) {
+        return this.loadBitmap("img/pictures/", filename);
+    }
+
+    static loadSvActor(filename) {
+        return this.loadBitmap("img/sv_actors/", filename);
+    }
+
+    static loadSvEnemy(filename) {
+        return this.loadBitmap("img/sv_enemies/", filename);
+    }
+
+    static loadSystem(filename) {
+        return this.loadBitmap("img/system/", filename);
+    }
+
+    static loadTileset(filename) {
+        return this.loadBitmap("img/tilesets/", filename);
+    }
+
+    static loadTitle1(filename) {
+        return this.loadBitmap("img/titles1/", filename);
+    }
+
+    static loadTitle2(filename) {
+        return this.loadBitmap("img/titles2/", filename);
+    }
+
+    static loadBitmap(folder, filename) {
+        if (filename) {
+            const url = "assets/" + folder + Utils.encodeURI(filename) + ".png";
+            return this.loadBitmapFromUrl(url);
+        } else {
+            return this._emptyBitmap;
+        }
+    }
+
+    static loadBitmapFromUrl(url) {
+        const cache = url.includes("/system/") ? this._system : this._cache;
+        if (!cache[url]) {
+            cache[url] = Bitmap.load(url);
+        }
+        return cache[url];
+    }
+
+    static clear() {
+        const cache = this._cache;
+        for (const url in cache) {
+            cache[url].destroy();
+        }
+        this._cache = {};
+    }
+
+    static isReady() {
+        for (const cache of [this._cache, this._system]) {
+            for (const url in cache) {
+                const bitmap = cache[url];
+                if (bitmap.isError()) {
+                    this.throwLoadError(bitmap);
+                }
+                if (!bitmap.isReady()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    static throwLoadError(bitmap) {
+        const retry = bitmap.retry.bind(bitmap);
+        throw ["LoadError", bitmap.url, retry];
+    }
+
+    static isObjectCharacter(filename) {
+        const sign = Utils.extractFileName(filename).match(/^[!$]+/);
+        return sign && sign[0].includes("!");
+    }
+
+    static isBigCharacter(filename) {
+        const sign = Utils.extractFileName(filename).match(/^[!$]+/);
+        return sign && sign[0].includes("$");
+    }
+
+    static isZeroParallax(filename) {
+        return Utils.extractFileName(filename).charAt(0) === "!";
+    }
 }
-
-ImageManager.standardIconWidth = 32;
-ImageManager.standardIconHeight = 32;
-ImageManager.standardFaceWidth = 144;
-ImageManager.standardFaceHeight = 144;
-
-ImageManager._cache = {};
-ImageManager._system = {};
-ImageManager._emptyBitmap = new Bitmap(1, 1);
-
-Object.defineProperty(ImageManager, "iconWidth", {
-	get: function () {
-		return this.getIconSize();
-	},
-	configurable: true,
-});
-
-Object.defineProperty(ImageManager, "iconHeight", {
-	get: function () {
-		return this.getIconSize();
-	},
-	configurable: true,
-});
-
-Object.defineProperty(ImageManager, "faceWidth", {
-	get: function () {
-		return this.getFaceSize();
-	},
-	configurable: true,
-});
-
-Object.defineProperty(ImageManager, "faceHeight", {
-	get: function () {
-		return this.getFaceSize();
-	},
-	configurable: true,
-});
-
-ImageManager.getIconSize = function () {
-	if ("iconSize" in DataManager.$dataSystem) {
-		return DataManager.$dataSystem.iconSize;
-	} else {
-		return this.defaultIconWidth;
-	}
-};
-
-ImageManager.getFaceSize = function () {
-	if ("faceSize" in DataManager.$dataSystem) {
-		return DataManager.$dataSystem.faceSize;
-	} else {
-		return this.defaultFaceWidth;
-	}
-};
-
-ImageManager.loadAnimation = function (filename) {
-	return this.loadBitmap("img/animations/", filename);
-};
-
-ImageManager.loadBattleback1 = function (filename) {
-	return this.loadBitmap("img/battlebacks1/", filename);
-};
-
-ImageManager.loadBattleback2 = function (filename) {
-	return this.loadBitmap("img/battlebacks2/", filename);
-};
-
-ImageManager.loadEnemy = function (filename) {
-	return this.loadBitmap("img/enemies/", filename);
-};
-
-ImageManager.loadCharacter = function (filename) {
-	return this.loadBitmap("img/characters/", filename);
-};
-
-ImageManager.loadFace = function (filename) {
-	return this.loadBitmap("img/faces/", filename);
-};
-
-ImageManager.loadParallax = function (filename) {
-	return this.loadBitmap("img/parallaxes/", filename);
-};
-
-ImageManager.loadPicture = function (filename) {
-	return this.loadBitmap("img/pictures/", filename);
-};
-
-ImageManager.loadSvActor = function (filename) {
-	return this.loadBitmap("img/sv_actors/", filename);
-};
-
-ImageManager.loadSvEnemy = function (filename) {
-	return this.loadBitmap("img/sv_enemies/", filename);
-};
-
-ImageManager.loadSystem = function (filename) {
-	return this.loadBitmap("img/system/", filename);
-};
-
-ImageManager.loadTileset = function (filename) {
-	return this.loadBitmap("img/tilesets/", filename);
-};
-
-ImageManager.loadTitle1 = function (filename) {
-	return this.loadBitmap("img/titles1/", filename);
-};
-
-ImageManager.loadTitle2 = function (filename) {
-	return this.loadBitmap("img/titles2/", filename);
-};
-
-ImageManager.loadBitmap = function (folder, filename) {
-	if (filename) {
-		const url = "assets/" + folder + Utils.encodeURI(filename) + ".png";
-		return this.loadBitmapFromUrl(url);
-	} else {
-		return this._emptyBitmap;
-	}
-};
-
-ImageManager.loadBitmapFromUrl = function (url) {
-	const cache = url.includes("/system/") ? this._system : this._cache;
-	if (!cache[url]) {
-		cache[url] = Bitmap.load(url);
-	}
-	return cache[url];
-};
-
-ImageManager.clear = function () {
-	const cache = this._cache;
-	for (const url in cache) {
-		cache[url].destroy();
-	}
-	this._cache = {};
-};
-
-ImageManager.isReady = function () {
-	for (const cache of [this._cache, this._system]) {
-		for (const url in cache) {
-			const bitmap = cache[url];
-			if (bitmap.isError()) {
-				this.throwLoadError(bitmap);
-			}
-			if (!bitmap.isReady()) {
-				return false;
-			}
-		}
-	}
-	return true;
-};
-
-ImageManager.throwLoadError = function (bitmap) {
-	const retry = bitmap.retry.bind(bitmap);
-	throw ["LoadError", bitmap.url, retry];
-};
-
-ImageManager.isObjectCharacter = function (filename) {
-	const sign = Utils.extractFileName(filename).match(/^[!$]+/);
-	return sign && sign[0].includes("!");
-};
-
-ImageManager.isBigCharacter = function (filename) {
-	const sign = Utils.extractFileName(filename).match(/^[!$]+/);
-	return sign && sign[0].includes("$");
-};
-
-ImageManager.isZeroParallax = function (filename) {
-	return Utils.extractFileName(filename).charAt(0) === "!";
-};

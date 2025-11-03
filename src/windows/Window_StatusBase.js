@@ -6,145 +6,143 @@ import { BattleManager, ColorManager, DataManager, ImageManager, TextManager } f
 import { Sprite_Gauge, Sprite_Name, Sprite_StateIcon } from '../sprites/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_StatusBase(rect) {
-	Window_Selectable.call(this, rect);
-	this._additionalSprites = {};
+export class Window_StatusBase extends Window_Selectable {
+    constructor(rect) {
+        super(rect);
+        this._additionalSprites = {};
 
-Window_StatusBase.prototype = Object.create(Window_Selectable.prototype);
-Window_StatusBase.prototype.constructor = Window_StatusBase;
-	this.loadFaceImages();
-};
+        this.loadFaceImages();
+    }
 
-Window_StatusBase.prototype.loadFaceImages = function () {
-	for (const actor of DataManager.$gameParty.members()) {
-		ImageManager.loadFace(actor.faceName());
-	}
-};
+    loadFaceImages() {
+        for (const actor of DataManager.$gameParty.members()) {
+            ImageManager.loadFace(actor.faceName());
+        }
+    }
 
-Window_StatusBase.prototype.refresh = function () {
-	this.hideAdditionalSprites();
-	Window_Selectable.prototype.refresh.call(this);
-};
+    refresh() {
+        this.hideAdditionalSprites();
+        super.refresh();
+    }
 
-Window_StatusBase.prototype.hideAdditionalSprites = function () {
-	for (const sprite of Object.values(this._additionalSprites)) {
-		sprite.hide();
-	}
-};
+    hideAdditionalSprites() {
+        for (const sprite of Object.values(this._additionalSprites)) {
+            sprite.hide();
+        }
+    }
 
-Window_StatusBase.prototype.placeActorName = function (actor, x, y) {
-	const key = "actor%1-name".format(actor.actorId());
-	const sprite = this.createInnerSprite(key, Sprite_Name);
-	sprite.setup(actor);
-	sprite.move(x, y);
-	sprite.show();
-};
+    placeActorName(actor, x, y) {
+        const key = "actor%1-name".format(actor.actorId());
+        const sprite = this.createInnerSprite(key, Sprite_Name);
+        sprite.setup(actor);
+        sprite.move(x, y);
+        sprite.show();
+    }
 
-Window_StatusBase.prototype.placeStateIcon = function (actor, x, y) {
-	const key = "actor%1-stateIcon".format(actor.actorId());
-	const sprite = this.createInnerSprite(key, Sprite_StateIcon);
-	sprite.setup(actor);
-	sprite.move(x, y);
-	sprite.show();
-};
+    placeStateIcon(actor, x, y) {
+        const key = "actor%1-stateIcon".format(actor.actorId());
+        const sprite = this.createInnerSprite(key, Sprite_StateIcon);
+        sprite.setup(actor);
+        sprite.move(x, y);
+        sprite.show();
+    }
 
-Window_StatusBase.prototype.placeGauge = function (actor, type, x, y) {
-	const key = "actor%1-gauge-%2".format(actor.actorId(), type);
-	const sprite = this.createInnerSprite(key, Sprite_Gauge);
-	sprite.setup(actor, type);
-	sprite.move(x, y);
-	sprite.show();
-};
+    placeGauge(actor, type, x, y) {
+        const key = "actor%1-gauge-%2".format(actor.actorId(), type);
+        const sprite = this.createInnerSprite(key, Sprite_Gauge);
+        sprite.setup(actor, type);
+        sprite.move(x, y);
+        sprite.show();
+    }
 
-Window_StatusBase.prototype.createInnerSprite = function (key, spriteClass) {
-	const dict = this._additionalSprites;
-	if (dict[key]) {
-		return dict[key];
-	} else {
-		const sprite = new spriteClass();
-		dict[key] = sprite;
-		this.addInnerChild(sprite);
-		return sprite;
-	}
-};
+    createInnerSprite(key, spriteClass) {
+        const dict = this._additionalSprites;
+        if (dict[key]) {
+            return dict[key];
+        } else {
+            const sprite = new spriteClass();
+            dict[key] = sprite;
+            this.addInnerChild(sprite);
+            return sprite;
+        }
+    }
 
-Window_StatusBase.prototype.placeTimeGauge = function (actor, x, y) {
-	if (BattleManager.isTpb()) {
-		this.placeGauge(actor, "time", x, y);
-	}
-};
+    placeTimeGauge(actor, x, y) {
+        if (BattleManager.isTpb()) {
+            this.placeGauge(actor, "time", x, y);
+        }
+    }
 
-Window_StatusBase.prototype.placeBasicGauges = function (actor, x, y) {
-	this.placeGauge(actor, "hp", x, y);
-	this.placeGauge(actor, "mp", x, y + this.gaugeLineHeight());
-	if (DataManager.$dataSystem.optDisplayTp) {
-		this.placeGauge(actor, "tp", x, y + this.gaugeLineHeight() * 2);
-	}
-};
+    placeBasicGauges(actor, x, y) {
+        this.placeGauge(actor, "hp", x, y);
+        this.placeGauge(actor, "mp", x, y + this.gaugeLineHeight());
+        if (DataManager.$dataSystem.optDisplayTp) {
+            this.placeGauge(actor, "tp", x, y + this.gaugeLineHeight() * 2);
+        }
+    }
 
-Window_StatusBase.prototype.gaugeLineHeight = function () {
-	return 24;
-};
+    gaugeLineHeight() {
+        return 24;
+    }
 
-Window_StatusBase.prototype.drawActorCharacter = function (actor, x, y) {
-	this.drawCharacter(actor.characterName(), actor.characterIndex(), x, y);
-};
+    drawActorCharacter(actor, x, y) {
+        this.drawCharacter(actor.characterName(), actor.characterIndex(), x, y);
+    }
 
-// prettier-ignore
-Window_StatusBase.prototype.drawActorFace = function (
-	actor, x, y, width, height
-) {
-	this.drawFace(actor.faceName(), actor.faceIndex(), x, y, width, height);
-};
+    // prettier-ignore
+    drawActorFace(actor, x, y, width, height) {
+        this.drawFace(actor.faceName(), actor.faceIndex(), x, y, width, height);
+    }
 
-Window_StatusBase.prototype.drawActorName = function (actor, x, y, width) {
-	width = width || 168;
-	this.changeTextColor(ColorManager.hpColor(actor));
-	this.drawText(actor.name(), x, y, width);
-};
+    drawActorName(actor, x, y, width) {
+        width = width || 168;
+        this.changeTextColor(ColorManager.hpColor(actor));
+        this.drawText(actor.name(), x, y, width);
+    }
 
-Window_StatusBase.prototype.drawActorClass = function (actor, x, y, width) {
-	width = width || 168;
-	this.resetTextColor();
-	this.drawText(actor.currentClass().name, x, y, width);
-};
+    drawActorClass(actor, x, y, width) {
+        width = width || 168;
+        this.resetTextColor();
+        this.drawText(actor.currentClass().name, x, y, width);
+    }
 
-Window_StatusBase.prototype.drawActorNickname = function (actor, x, y, width) {
-	width = width || 270;
-	this.resetTextColor();
-	this.drawText(actor.nickname(), x, y, width);
-};
+    drawActorNickname(actor, x, y, width) {
+        width = width || 270;
+        this.resetTextColor();
+        this.drawText(actor.nickname(), x, y, width);
+    }
 
-Window_StatusBase.prototype.drawActorLevel = function (actor, x, y) {
-	this.changeTextColor(ColorManager.systemColor());
-	this.drawText(TextManager.levelA, x, y, 48);
-	this.resetTextColor();
-	this.drawText(actor.level, x + 84, y, 36, "right");
-};
+    drawActorLevel(actor, x, y) {
+        this.changeTextColor(ColorManager.systemColor());
+        this.drawText(TextManager.levelA, x, y, 48);
+        this.resetTextColor();
+        this.drawText(actor.level, x + 84, y, 36, "right");
+    }
 
-Window_StatusBase.prototype.drawActorIcons = function (actor, x, y, width) {
-	width = width || 144;
-	const delta = ImageManager.standardIconWidth - ImageManager.iconWidth;
-	const iconWidth = ImageManager.standardIconWidth;
-	const icons = actor.allIcons().slice(0, Math.floor(width / iconWidth));
-	let iconX = x + delta / 2;
-	for (const icon of icons) {
-		this.drawIcon(icon, iconX, y + 2);
-		iconX += iconWidth;
-	}
-};
+    drawActorIcons(actor, x, y, width) {
+        width = width || 144;
+        const delta = ImageManager.standardIconWidth - ImageManager.iconWidth;
+        const iconWidth = ImageManager.standardIconWidth;
+        const icons = actor.allIcons().slice(0, Math.floor(width / iconWidth));
+        let iconX = x + delta / 2;
+        for (const icon of icons) {
+            this.drawIcon(icon, iconX, y + 2);
+            iconX += iconWidth;
+        }
+    }
 
-Window_StatusBase.prototype.drawActorSimpleStatus = function (actor, x, y) {
-	const lineHeight = this.lineHeight();
-	const x2 = x + 180;
-	this.drawActorName(actor, x, y);
-	this.drawActorLevel(actor, x, y + lineHeight * 1);
-	this.drawActorIcons(actor, x, y + lineHeight * 2);
-	this.drawActorClass(actor, x2, y);
-	this.placeBasicGauges(actor, x2, y + lineHeight);
-};
+    drawActorSimpleStatus(actor, x, y) {
+        const lineHeight = this.lineHeight();
+        const x2 = x + 180;
+        this.drawActorName(actor, x, y);
+        this.drawActorLevel(actor, x, y + lineHeight * 1);
+        this.drawActorIcons(actor, x, y + lineHeight * 2);
+        this.drawActorClass(actor, x2, y);
+        this.placeBasicGauges(actor, x2, y + lineHeight);
+    }
 
-Window_StatusBase.prototype.actorSlotName = function (actor, index) {
-	const slots = actor.equipSlots();
-	return DataManager.$dataSystem.equipTypes[slots[index]];
-};
+    actorSlotName(actor, index) {
+        const slots = actor.equipSlots();
+        return DataManager.$dataSystem.equipTypes[slots[index]];
+    }
+}

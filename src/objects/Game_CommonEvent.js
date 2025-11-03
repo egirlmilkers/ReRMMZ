@@ -6,39 +6,41 @@
 import { DataManager } from '../managers/index.js';
 import { Game_Interpreter } from '../objects/index.js';
 
-export function Game_CommonEvent(commonEventId) {
-	this._commonEventId = commonEventId;
-	this.refresh();
-};
+export class Game_CommonEvent {
+    constructor(commonEventId) {
+        this._commonEventId = commonEventId;
+        this.refresh();
+    }
 
-Game_CommonEvent.prototype.event = function () {
-	return DataManager.$dataCommonEvents[this._commonEventId];
-};
+    event() {
+        return DataManager.$dataCommonEvents[this._commonEventId];
+    }
 
-Game_CommonEvent.prototype.list = function () {
-	return this.event().list;
-};
+    list() {
+        return this.event().list;
+    }
 
-Game_CommonEvent.prototype.refresh = function () {
-	if (this.isActive()) {
-		if (!this._interpreter) {
-			this._interpreter = new Game_Interpreter();
-		}
-	} else {
-		this._interpreter = null;
-	}
-};
+    refresh() {
+        if (this.isActive()) {
+            if (!this._interpreter) {
+                this._interpreter = new Game_Interpreter();
+            }
+        } else {
+            this._interpreter = null;
+        }
+    }
 
-Game_CommonEvent.prototype.isActive = function () {
-	const event = this.event();
-	return event.trigger === 2 && DataManager.$gameSwitches.value(event.switchId);
-};
+    isActive() {
+        const event = this.event();
+        return event.trigger === 2 && DataManager.$gameSwitches.value(event.switchId);
+    }
 
-Game_CommonEvent.prototype.update = function () {
-	if (this._interpreter) {
-		if (!this._interpreter.isRunning()) {
-			this._interpreter.setup(this.list());
-		}
-		this._interpreter.update();
-	}
-};
+    update() {
+        if (this._interpreter) {
+            if (!this._interpreter.isRunning()) {
+                this._interpreter.setup(this.list());
+            }
+            this._interpreter.update();
+        }
+    }
+}

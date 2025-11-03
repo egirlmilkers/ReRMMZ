@@ -5,104 +5,103 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_ShopBuy(rect) {
-	Window_Selectable.call(this, rect);
-	this._money = 0;
-};
+export class Window_ShopBuy extends Window_Selectable {
+    constructor(rect) {
+        super(rect);
+        this._money = 0;
+    }
 
-Window_ShopBuy.prototype = Object.create(Window_Selectable.prototype);
-Window_ShopBuy.prototype.constructor = Window_ShopBuy;
+    setupGoods(shopGoods) {
+        this._shopGoods = shopGoods;
+        this.refresh();
+        this.select(0);
+    }
 
-Window_ShopBuy.prototype.setupGoods = function (shopGoods) {
-	this._shopGoods = shopGoods;
-	this.refresh();
-	this.select(0);
-};
+    maxItems() {
+        return this._data ? this._data.length : 1;
+    }
 
-Window_ShopBuy.prototype.maxItems = function () {
-	return this._data ? this._data.length : 1;
-};
+    item() {
+        return this.itemAt(this.index());
+    }
 
-Window_ShopBuy.prototype.item = function () {
-	return this.itemAt(this.index());
-};
+    itemAt(index) {
+        return this._data && index >= 0 ? this._data[index] : null;
+    }
 
-Window_ShopBuy.prototype.itemAt = function (index) {
-	return this._data && index >= 0 ? this._data[index] : null;
-};
+    setMoney(money) {
+        this._money = money;
+        this.refresh();
+    }
 
-Window_ShopBuy.prototype.setMoney = function (money) {
-	this._money = money;
-	this.refresh();
-};
+    isCurrentItemEnabled() {
+        return this.isEnabled(this._data[this.index()]);
+    }
 
-Window_ShopBuy.prototype.isCurrentItemEnabled = function () {
-	return this.isEnabled(this._data[this.index()]);
-};
+    price(item) {
+        return this._price[this._data.indexOf(item)] || 0;
+    }
 
-Window_ShopBuy.prototype.price = function (item) {
-	return this._price[this._data.indexOf(item)] || 0;
-};
+    isEnabled(item) {
+        return item && this.price(item) <= this._money && !DataManager.$gameParty.hasMaxItems(item);
+    }
 
-Window_ShopBuy.prototype.isEnabled = function (item) {
-	return item && this.price(item) <= this._money && !DataManager.$gameParty.hasMaxItems(item);
-};
+    refresh() {
+        this.makeItemList();
+        super.refresh();
+    }
 
-Window_ShopBuy.prototype.refresh = function () {
-	this.makeItemList();
-	Window_Selectable.prototype.refresh.call(this);
-};
+    makeItemList() {
+        this._data = [];
+        this._price = [];
+        for (const goods of this._shopGoods) {
+            const item = this.goodsToItem(goods);
+            if (item) {
+                this._data.push(item);
+                this._price.push(goods[2] === 0 ? item.price : goods[3]);
+            }
+        }
+    }
 
-Window_ShopBuy.prototype.makeItemList = function () {
-	this._data = [];
-	this._price = [];
-	for (const goods of this._shopGoods) {
-		const item = this.goodsToItem(goods);
-		if (item) {
-			this._data.push(item);
-			this._price.push(goods[2] === 0 ? item.price : goods[3]);
-		}
-	}
-};
+    goodsToItem(goods) {
+        switch (goods[0]) {
+            case 0:
+                return DataManager.$dataItems[goods[1]];
+            case 1:
+                return DataManager.$dataWeapons[goods[1]];
+            case 2:
+                return DataManager.$dataArmors[goods[1]];
+            default:
+                return null;
+        }
+    }
 
-Window_ShopBuy.prototype.goodsToItem = function (goods) {
-	switch (goods[0]) {
-		case 0:
-			return DataManager.$dataItems[goods[1]];
-		case 1:
-			return DataManager.$dataWeapons[goods[1]];
-		case 2:
-			return DataManager.$dataArmors[goods[1]];
-		default:
-			return null;
-	}
-};
+    drawItem(index) {
+        const item = this.itemAt(index);
+        const price = this.price(item);
+        const rect = this.itemLineRect(index);
+        const priceWidth = this.priceWidth();
+        const priceX = rect.x + rect.width - priceWidth;
+        const nameWidth = rect.width - priceWidth;
+        this.changePaintOpacity(this.isEnabled(item));
+        this.drawItemName(item, rect.x, rect.y, nameWidth);
+        this.drawText(price, priceX, rect.y, priceWidth, "right");
+        this.changePaintOpacity(true);
+    }
 
-Window_ShopBuy.prototype.drawItem = function (index) {
-	const item = this.itemAt(index);
-	const price = this.price(item);
-	const rect = this.itemLineRect(index);
-	const priceWidth = this.priceWidth();
-	const priceX = rect.x + rect.width - priceWidth;
-	const nameWidth = rect.width - priceWidth;
-	this.changePaintOpacity(this.isEnabled(item));
-	this.drawItemName(item, rect.x, rect.y, nameWidth);
-	this.drawText(price, priceX, rect.y, priceWidth, "right");
-	this.changePaintOpacity(true);
-};
+    priceWidth() {
+        return 96;
+    }
 
-Window_ShopBuy.prototype.priceWidth = function () {
-	return 96;
-};
+    setStatusWindow(statusWindow) {
+        this._statusWindow = statusWindow;
+        this.callUpdateHelp();
+    }
 
-Window_ShopBuy.prototype.setStatusWindow = function (statusWindow) {
-	this._statusWindow = statusWindow;
-	this.callUpdateHelp();
-};
-
-Window_ShopBuy.prototype.updateHelp = function () {
-	this.setHelpWindowItem(this.item());
-	if (this._statusWindow) {
-		this._statusWindow.setItem(this.item());
-	}
-};
+    updateHelp() {
+        this.setHelpWindowItem(this.item());
+        if (this._statusWindow) {
+            this._statusWindow.setItem(this.item());
+        }
+    }
+}
