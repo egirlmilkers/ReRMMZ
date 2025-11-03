@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_EquipStatus
 //
 // The window for displaying parameter changes on the equipment screen.
@@ -6,19 +5,15 @@
 import { ColorManager, ImageManager, TextManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_EquipStatus() {
-	this.initialize(...arguments);
-}
-
-Window_EquipStatus.prototype = Object.create(Window_StatusBase.prototype);
-Window_EquipStatus.prototype.constructor = Window_EquipStatus;
-
-Window_EquipStatus.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_EquipStatus(rect) {
+	Window_StatusBase.call(this, rect);
 	this._actor = null;
 	this._tempActor = null;
 	this.refresh();
 };
+
+Window_EquipStatus.prototype = Object.create(Window_StatusBase.prototype);
+Window_EquipStatus.prototype.constructor = Window_EquipStatus;
 
 Window_EquipStatus.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

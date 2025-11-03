@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_ItemBase
 //
 // The superclass of Scene_Item and Scene_Skill.
@@ -11,15 +10,11 @@ import { Scene_Map, Scene_MenuBase } from '../scenes/index.js';
 import { Window_MenuActor } from '../windows/index.js';
 
 export function Scene_ItemBase() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_ItemBase.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_ItemBase.prototype.constructor = Scene_ItemBase;
-
-Scene_ItemBase.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_ItemBase.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Map
 //
 // The game object class for a map. It contains scrolling and passage
@@ -10,10 +9,6 @@ import { AudioManager, DataManager, ImageManager } from '../managers/index.js';
 import { Game_CommonEvent, Game_Event, Game_Interpreter, Game_Vehicle } from '../objects/index.js';
 
 export function Game_Map() {
-	this.initialize(...arguments);
-}
-
-Game_Map.prototype.initialize = function () {
 	this._interpreter = new Game_Interpreter();
 	this._mapId = 0;
 	this._tilesetId = 0;

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_GameEnd
 //
 // The scene class of the game end screen.
@@ -9,15 +8,11 @@ import { Scene_MenuBase, Scene_Title } from '../scenes/index.js';
 import { Window_GameEnd, Window_TitleCommand } from '../windows/index.js';
 
 export function Scene_GameEnd() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_GameEnd.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_GameEnd.prototype.constructor = Scene_GameEnd;
-
-Scene_GameEnd.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_GameEnd.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

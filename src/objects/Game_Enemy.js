@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Enemy
 //
 // The game object class for an enemy.
@@ -6,17 +5,13 @@
 import { DataManager, SoundManager } from '../managers/index.js';
 import { Game_Battler } from '../objects/index.js';
 
-export function Game_Enemy() {
-	this.initialize(...arguments);
-}
+export function Game_Enemy(enemyId, x, y) {
+	Game_Battler.call(this);
+	this.setup(enemyId, x, y);
+};
 
 Game_Enemy.prototype = Object.create(Game_Battler.prototype);
 Game_Enemy.prototype.constructor = Game_Enemy;
-
-Game_Enemy.prototype.initialize = function (enemyId, x, y) {
-	Game_Battler.prototype.initialize.call(this);
-	this.setup(enemyId, x, y);
-};
 
 Game_Enemy.prototype.initMembers = function () {
 	Game_Battler.prototype.initMembers.call(this);

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_StatusParams
 //
 // The window for displaying parameters on the status screen.
@@ -6,17 +5,13 @@
 import { ColorManager, TextManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_StatusParams() {
-	this.initialize(...arguments);
-}
+export function Window_StatusParams(rect) {
+	Window_StatusBase.call(this, rect);
+	this._actor = null;
+};
 
 Window_StatusParams.prototype = Object.create(Window_StatusBase.prototype);
 Window_StatusParams.prototype.constructor = Window_StatusParams;
-
-Window_StatusParams.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
-	this._actor = null;
-};
 
 Window_StatusParams.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

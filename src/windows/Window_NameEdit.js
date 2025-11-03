@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_NameEdit
 //
 // The window for editing an actor's name on the name input screen.
@@ -7,15 +6,8 @@ import { Rectangle } from '../core/index.js';
 import { ColorManager, DataManager, ImageManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_NameEdit() {
-	this.initialize(...arguments);
-}
-
-Window_NameEdit.prototype = Object.create(Window_StatusBase.prototype);
-Window_NameEdit.prototype.constructor = Window_NameEdit;
-
-Window_NameEdit.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_NameEdit(rect) {
+	Window_StatusBase.call(this, rect);
 	this._actor = null;
 	this._maxLength = 0;
 	this._name = "";
@@ -23,6 +15,9 @@ Window_NameEdit.prototype.initialize = function (rect) {
 	this._defaultName = 0;
 	this.deactivate();
 };
+
+Window_NameEdit.prototype = Object.create(Window_StatusBase.prototype);
+Window_NameEdit.prototype.constructor = Window_NameEdit;
 
 Window_NameEdit.prototype.setup = function (actor, maxLength) {
 	this._actor = actor;

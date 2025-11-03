@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Battle
 //
 // The scene class of the battle screen.
@@ -10,15 +9,11 @@ import { Spriteset_Battle, Sprite_Button } from '../sprites/index.js';
 import { Window_ActorCommand, Window_BattleActor, Window_BattleEnemy, Window_BattleItem, Window_BattleLog, Window_BattleSkill, Window_BattleStatus, Window_Help, Window_PartyCommand } from '../windows/index.js';
 
 export function Scene_Battle() {
-	this.initialize(...arguments);
-}
+	Scene_Message.call(this);
+};
 
 Scene_Battle.prototype = Object.create(Scene_Message.prototype);
 Scene_Battle.prototype.constructor = Scene_Battle;
-
-Scene_Battle.prototype.initialize = function () {
-	Scene_Message.prototype.initialize.call(this);
-};
 
 Scene_Battle.prototype.create = function () {
 	Scene_Message.prototype.create.call(this);

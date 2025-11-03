@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Followers
 //
 // The wrapper class for a follower array.
@@ -7,10 +6,6 @@ import { DataManager } from '../managers/index.js';
 import { Game_Follower } from '../objects/index.js';
 
 export function Game_Followers() {
-	this.initialize(...arguments);
-}
-
-Game_Followers.prototype.initialize = function () {
 	this._visible = DataManager.$dataSystem.optFollowers;
 	this._gathering = false;
 	this._data = [];

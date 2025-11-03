@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 
 /**
@@ -12,13 +10,9 @@ import * as PIXI from 'pixi.js';
  * @param {number} width - The width of the rectangle.
  * @param {number} height - The height of the rectangle.
  */
-export function Rectangle() {
-	this.initialize(...arguments);
-}
+export function Rectangle(x, y, width, height) {
+	PIXI.Rectangle.call(this, x, y, width, height);
+};
 
 Rectangle.prototype = Object.create(PIXI.Rectangle.prototype);
 Rectangle.prototype.constructor = Rectangle;
-
-Rectangle.prototype.initialize = function (x, y, width, height) {
-	PIXI.Rectangle.call(this, x, y, width, height);
-};

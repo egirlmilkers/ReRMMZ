@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Player
 //
 // The game object class for the player. It contains event starting
@@ -9,16 +8,12 @@ import { BattleManager, ConfigManager, DataManager } from '../managers/index.js'
 import { Game_Character, Game_Followers } from '../objects/index.js';
 
 export function Game_Player() {
-	this.initialize(...arguments);
-}
+	Game_Character.call(this);
+	this.setTransparent(DataManager.$dataSystem.optTransparent);
+};
 
 Game_Player.prototype = Object.create(Game_Character.prototype);
 Game_Player.prototype.constructor = Game_Player;
-
-Game_Player.prototype.initialize = function () {
-	Game_Character.prototype.initialize.call(this);
-	this.setTransparent(DataManager.$dataSystem.optTransparent);
-};
 
 Game_Player.prototype.initMembers = function () {
 	Game_Character.prototype.initMembers.call(this);

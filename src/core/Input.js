@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 /**
  * The static class that handles input data from the keyboard and gamepads.
  *

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ChoiceList
 //
 // The window used for the event command [Show Choices].
@@ -9,20 +8,16 @@ import { Sprite_Button } from '../sprites/index.js';
 import { Window_Command, Window_Selectable } from '../windows/index.js';
 
 export function Window_ChoiceList() {
-	this.initialize(...arguments);
-}
-
-Window_ChoiceList.prototype = Object.create(Window_Command.prototype);
-Window_ChoiceList.prototype.constructor = Window_ChoiceList;
-
-Window_ChoiceList.prototype.initialize = function () {
-	Window_Command.prototype.initialize.call(this, new Rectangle());
+	Window_Command.call(this, new Rectangle());
 	this.createCancelButton();
 	this.openness = 0;
 	this.deactivate();
 	this._background = 0;
 	this._canRepeat = false;
 };
+
+Window_ChoiceList.prototype = Object.create(Window_Command.prototype);
+Window_ChoiceList.prototype.constructor = Window_ChoiceList;
 
 Window_ChoiceList.prototype.setMessageWindow = function (messageWindow) {
 	this._messageWindow = messageWindow;

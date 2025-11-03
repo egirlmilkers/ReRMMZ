@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Destination
 //
 // The sprite for displaying the destination place of the touch input.
@@ -7,17 +6,13 @@ import { Bitmap, Sprite } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 
 export function Sprite_Destination() {
-	this.initialize(...arguments);
-}
-
-Sprite_Destination.prototype = Object.create(Sprite.prototype);
-Sprite_Destination.prototype.constructor = Sprite_Destination;
-
-Sprite_Destination.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this.createBitmap();
 	this._frameCount = 0;
 };
+
+Sprite_Destination.prototype = Object.create(Sprite.prototype);
+Sprite_Destination.prototype.constructor = Sprite_Destination;
 
 Sprite_Destination.prototype.destroy = function (options) {
 	if (this.bitmap) {

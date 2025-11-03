@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_SkillType
 //
 // The window for selecting a skill type on the skill screen.
@@ -6,17 +5,13 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_SkillType() {
-	this.initialize(...arguments);
-}
+export function Window_SkillType(rect) {
+	Window_Command.call(this, rect);
+	this._actor = null;
+};
 
 Window_SkillType.prototype = Object.create(Window_Command.prototype);
 Window_SkillType.prototype.constructor = Window_SkillType;
-
-Window_SkillType.prototype.initialize = function (rect) {
-	Window_Command.prototype.initialize.call(this, rect);
-	this._actor = null;
-};
 
 Window_SkillType.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

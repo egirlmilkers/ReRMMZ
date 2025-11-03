@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // StorageManager
 //
 // The static class that manages storage for saving game data.

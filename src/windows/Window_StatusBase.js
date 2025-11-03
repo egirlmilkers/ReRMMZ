@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_StatusBase
 //
 // The superclass of windows for displaying actor status.
@@ -7,16 +6,12 @@ import { BattleManager, ColorManager, DataManager, ImageManager, TextManager } f
 import { Sprite_Gauge, Sprite_Name, Sprite_StateIcon } from '../sprites/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_StatusBase() {
-	this.initialize(...arguments);
-}
+export function Window_StatusBase(rect) {
+	Window_Selectable.call(this, rect);
+	this._additionalSprites = {};
 
 Window_StatusBase.prototype = Object.create(Window_Selectable.prototype);
 Window_StatusBase.prototype.constructor = Window_StatusBase;
-
-Window_StatusBase.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
-	this._additionalSprites = {};
 	this.loadFaceImages();
 };
 

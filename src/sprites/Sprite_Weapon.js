@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Weapon
 //
 // The sprite for displaying a weapon image for attacking.
@@ -7,16 +6,12 @@ import { Sprite } from '../core/index.js';
 import { ImageManager } from '../managers/index.js';
 
 export function Sprite_Weapon() {
-	this.initialize(...arguments);
-}
+	Sprite.call(this);
+	this.initMembers();
+};
 
 Sprite_Weapon.prototype = Object.create(Sprite.prototype);
 Sprite_Weapon.prototype.constructor = Sprite_Weapon;
-
-Sprite_Weapon.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
-	this.initMembers();
-};
 
 Sprite_Weapon.prototype.initMembers = function () {
 	this._weaponImageId = 0;

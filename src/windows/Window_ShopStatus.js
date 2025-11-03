@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ShopStatus
 //
 // The window for displaying number of items in possession and the actor's
@@ -8,19 +7,15 @@ import { Input, TouchInput } from '../core/index.js';
 import { ColorManager, DataManager, TextManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_ShopStatus() {
-	this.initialize(...arguments);
-}
-
-Window_ShopStatus.prototype = Object.create(Window_StatusBase.prototype);
-Window_ShopStatus.prototype.constructor = Window_ShopStatus;
-
-Window_ShopStatus.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_ShopStatus(rect) {
+	Window_StatusBase.call(this, rect);
 	this._item = null;
 	this._pageIndex = 0;
 	this.refresh();
 };
+
+Window_ShopStatus.prototype = Object.create(Window_StatusBase.prototype);
+Window_ShopStatus.prototype.constructor = Window_ShopStatus;
 
 Window_ShopStatus.prototype.refresh = function () {
 	this.contents.clear();

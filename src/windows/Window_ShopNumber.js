@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ShopNumber
 //
 // The window for inputting quantity of items to buy or sell on the shop
@@ -9,15 +8,8 @@ import { ConfigManager, TextManager } from '../managers/index.js';
 import { Sprite_Button } from '../sprites/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_ShopNumber() {
-	this.initialize(...arguments);
-}
-
-Window_ShopNumber.prototype = Object.create(Window_Selectable.prototype);
-Window_ShopNumber.prototype.constructor = Window_ShopNumber;
-
-Window_ShopNumber.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
+export function Window_ShopNumber(rect) {
+	Window_Selectable.call(this, rect);
 	this._item = null;
 	this._max = 1;
 	this._price = 0;
@@ -27,6 +19,9 @@ Window_ShopNumber.prototype.initialize = function (rect) {
 	this.select(0);
 	this._canRepeat = false;
 };
+
+Window_ShopNumber.prototype = Object.create(Window_Selectable.prototype);
+Window_ShopNumber.prototype.constructor = Window_ShopNumber;
 
 Window_ShopNumber.prototype.isScrollEnabled = function () {
 	return false;

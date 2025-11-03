@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Character
 //
 // The superclass of Game_Player, Game_Follower, GameVehicle, and Game_Event.
@@ -7,8 +6,8 @@ import { AudioManager, DataManager } from '../managers/index.js';
 import { Game_CharacterBase } from '../objects/index.js';
 
 export function Game_Character() {
-	this.initialize(...arguments);
-}
+	Game_CharacterBase.call(this);
+};
 
 Game_Character.prototype = Object.create(Game_CharacterBase.prototype);
 Game_Character.prototype.constructor = Game_Character;
@@ -59,10 +58,6 @@ Game_Character.ROUTE_CHANGE_OPACITY = 42;
 Game_Character.ROUTE_CHANGE_BLEND_MODE = 43;
 Game_Character.ROUTE_PLAY_SE = 44;
 Game_Character.ROUTE_SCRIPT = 45;
-
-Game_Character.prototype.initialize = function () {
-	Game_CharacterBase.prototype.initialize.call(this);
-};
 
 Game_Character.prototype.initMembers = function () {
 	Game_CharacterBase.prototype.initMembers.call(this);

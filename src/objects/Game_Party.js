@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Party
 //
 // The game object class for the party. Information such as gold and items is
@@ -8,8 +7,15 @@ import { DataManager, TextManager } from '../managers/index.js';
 import { Game_Item, Game_Unit } from '../objects/index.js';
 
 export function Game_Party() {
-	this.initialize(...arguments);
-}
+	Game_Unit.call(this);
+	this._gold = 0;
+	this._steps = 0;
+	this._lastItem = new Game_Item();
+	this._menuActorId = 0;
+	this._targetActorId = 0;
+	this._actors = [];
+	this.initAllItems();
+};
 
 Game_Party.prototype = Object.create(Game_Unit.prototype);
 Game_Party.prototype.constructor = Game_Party;
@@ -20,17 +26,6 @@ Game_Party.ABILITY_CANCEL_SURPRISE = 2;
 Game_Party.ABILITY_RAISE_PREEMPTIVE = 3;
 Game_Party.ABILITY_GOLD_DOUBLE = 4;
 Game_Party.ABILITY_DROP_ITEM_DOUBLE = 5;
-
-Game_Party.prototype.initialize = function () {
-	Game_Unit.prototype.initialize.call(this);
-	this._gold = 0;
-	this._steps = 0;
-	this._lastItem = new Game_Item();
-	this._menuActorId = 0;
-	this._targetActorId = 0;
-	this._actors = [];
-	this.initAllItems();
-};
 
 Game_Party.prototype.initAllItems = function () {
 	this._items = {};

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Message
 //
 // The window for displaying text messages.
@@ -7,18 +6,14 @@ import { Graphics, Input, TouchInput } from '../core/index.js';
 import { DataManager, ImageManager } from '../managers/index.js';
 import { Window_Base } from '../windows/index.js';
 
-export function Window_Message() {
-	this.initialize(...arguments);
-}
-
-Window_Message.prototype = Object.create(Window_Base.prototype);
-Window_Message.prototype.constructor = Window_Message;
-
-Window_Message.prototype.initialize = function (rect) {
-	Window_Base.prototype.initialize.call(this, rect);
+export function Window_Message(rect) {
+	Window_Base.call(this, rect);
 	this.openness = 0;
 	this.initMembers();
 };
+
+Window_Message.prototype = Object.create(Window_Base.prototype);
+Window_Message.prototype.constructor = Window_Message;
 
 Window_Message.prototype.initMembers = function () {
 	this._background = 0;

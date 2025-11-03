@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Follower
 //
 // The game object class for a follower. A follower is an allied character,
@@ -7,19 +6,15 @@
 import { DataManager } from '../managers/index.js';
 import { Game_Character } from '../objects/index.js';
 
-export function Game_Follower() {
-	this.initialize(...arguments);
-}
-
-Game_Follower.prototype = Object.create(Game_Character.prototype);
-Game_Follower.prototype.constructor = Game_Follower;
-
-Game_Follower.prototype.initialize = function (memberIndex) {
-	Game_Character.prototype.initialize.call(this);
+export function Game_Follower(memberIndex) {
+	Game_Character.call(this);
 	this._memberIndex = memberIndex;
 	this.setTransparent(DataManager.$dataSystem.optTransparent);
 	this.setThrough(true);
 };
+
+Game_Follower.prototype = Object.create(Game_Character.prototype);
+Game_Follower.prototype.constructor = Game_Follower;
 
 Game_Follower.prototype.refresh = function () {
 	const characterName = this.isVisible() ? this.actor().characterName() : "";

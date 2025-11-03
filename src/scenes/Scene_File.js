@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_File
 //
 // The superclass of Scene_Save and Scene_Load.
@@ -10,15 +9,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_Help, Window_SavefileList } from '../windows/index.js';
 
 export function Scene_File() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_File.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_File.prototype.constructor = Scene_File;
-
-Scene_File.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_File.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

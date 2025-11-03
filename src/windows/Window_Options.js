@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Options
 //
 // The window for changing various settings on the options screen.
@@ -6,16 +5,12 @@
 import { ConfigManager, TextManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_Options() {
-	this.initialize(...arguments);
-}
+export function Window_Options(rect) {
+	Window_Command.call(this, rect);
+};
 
 Window_Options.prototype = Object.create(Window_Command.prototype);
 Window_Options.prototype.constructor = Window_Options;
-
-Window_Options.prototype.initialize = function (rect) {
-	Window_Command.prototype.initialize.call(this, rect);
-};
 
 Window_Options.prototype.makeCommandList = function () {
 	this.addGeneralOptions();

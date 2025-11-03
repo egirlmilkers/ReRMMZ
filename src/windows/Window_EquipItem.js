@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_EquipItem
 //
 // The window for selecting an equipment item on the equipment screen.
@@ -6,18 +5,14 @@
 import { JsonEx } from '../core/index.js';
 import { Window_ItemList } from '../windows/index.js';
 
-export function Window_EquipItem() {
-	this.initialize(...arguments);
-}
-
-Window_EquipItem.prototype = Object.create(Window_ItemList.prototype);
-Window_EquipItem.prototype.constructor = Window_EquipItem;
-
-Window_EquipItem.prototype.initialize = function (rect) {
-	Window_ItemList.prototype.initialize.call(this, rect);
+export function Window_EquipItem(rect) {
+	Window_ItemList.call(this, rect);
 	this._actor = null;
 	this._slotId = 0;
 };
+
+Window_EquipItem.prototype = Object.create(Window_ItemList.prototype);
+Window_EquipItem.prototype.constructor = Window_EquipItem;
 
 Window_EquipItem.prototype.maxCols = function () {
 	return 1;

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ItemList
 //
 // The window for selecting an item on the item screen.
@@ -6,18 +5,14 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_ItemList() {
-	this.initialize(...arguments);
-}
-
-Window_ItemList.prototype = Object.create(Window_Selectable.prototype);
-Window_ItemList.prototype.constructor = Window_ItemList;
-
-Window_ItemList.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
+export function Window_ItemList(rect) {
+	Window_Selectable.call(this, rect);
 	this._category = "none";
 	this._data = [];
 };
+
+Window_ItemList.prototype = Object.create(Window_Selectable.prototype);
+Window_ItemList.prototype.constructor = Window_ItemList;
 
 Window_ItemList.prototype.setCategory = function (category) {
 	if (this._category !== category) {

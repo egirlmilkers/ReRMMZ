@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Debug
 //
 // The scene class of the debug screen.
@@ -8,15 +7,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_Base, Window_DebugEdit, Window_DebugRange } from '../windows/index.js';
 
 export function Scene_Debug() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Debug.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Debug.prototype.constructor = Scene_Debug;
-
-Scene_Debug.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Debug.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

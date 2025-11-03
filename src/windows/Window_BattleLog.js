@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_BattleLog
 //
 // The window for displaying battle progress. No frame is displayed, but it is
@@ -8,15 +7,8 @@ import { Input, Rectangle, TouchInput } from '../core/index.js';
 import { DataManager, SoundManager, TextManager } from '../managers/index.js';
 import { Window_Base } from '../windows/index.js';
 
-export function Window_BattleLog() {
-	this.initialize(...arguments);
-}
-
-Window_BattleLog.prototype = Object.create(Window_Base.prototype);
-Window_BattleLog.prototype.constructor = Window_BattleLog;
-
-Window_BattleLog.prototype.initialize = function (rect) {
-	Window_Base.prototype.initialize.call(this, rect);
+export function Window_BattleLog(rect) {
+	Window_Base.call(this, rect);
 	this.opacity = 0;
 	this._lines = [];
 	this._methods = [];
@@ -26,6 +18,9 @@ Window_BattleLog.prototype.initialize = function (rect) {
 	this._spriteset = null;
 	this.refresh();
 };
+
+Window_BattleLog.prototype = Object.create(Window_Base.prototype);
+Window_BattleLog.prototype.constructor = Window_BattleLog;
 
 Window_BattleLog.prototype.setSpriteset = function (spriteset) {
 	this._spriteset = spriteset;

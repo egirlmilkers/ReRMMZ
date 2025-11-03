@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_MapName
 //
 // The window for displaying the map name on the map screen.
@@ -6,20 +5,16 @@
 import { ColorManager, DataManager } from '../managers/index.js';
 import { Window_Base } from '../windows/index.js';
 
-export function Window_MapName() {
-	this.initialize(...arguments);
-}
-
-Window_MapName.prototype = Object.create(Window_Base.prototype);
-Window_MapName.prototype.constructor = Window_MapName;
-
-Window_MapName.prototype.initialize = function (rect) {
-	Window_Base.prototype.initialize.call(this, rect);
+export function Window_MapName(rect) {
+	Window_Base.call(this, rect);
 	this.opacity = 0;
 	this.contentsOpacity = 0;
 	this._showCount = 0;
 	this.refresh();
 };
+
+Window_MapName.prototype = Object.create(Window_Base.prototype);
+Window_MapName.prototype.constructor = Window_MapName;
 
 Window_MapName.prototype.update = function () {
 	Window_Base.prototype.update.call(this);

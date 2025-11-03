@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Timer
 //
 // The sprite for displaying the timer.
@@ -7,18 +6,14 @@ import { Bitmap, Graphics, Sprite } from '../core/index.js';
 import { ColorManager, DataManager } from '../managers/index.js';
 
 export function Sprite_Timer() {
-	this.initialize(...arguments);
-}
-
-Sprite_Timer.prototype = Object.create(Sprite.prototype);
-Sprite_Timer.prototype.constructor = Sprite_Timer;
-
-Sprite_Timer.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this._seconds = 0;
 	this.createBitmap();
 	this.update();
 };
+
+Sprite_Timer.prototype = Object.create(Sprite.prototype);
+Sprite_Timer.prototype.constructor = Sprite_Timer;
 
 Sprite_Timer.prototype.destroy = function (options) {
 	this.bitmap.destroy();

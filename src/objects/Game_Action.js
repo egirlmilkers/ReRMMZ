@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Action
 //
 // The game object class for a battle action.
@@ -6,9 +5,13 @@
 import { DataManager } from '../managers/index.js';
 import { Game_Item } from '../objects/index.js';
 
-export function Game_Action() {
-	this.initialize(...arguments);
-}
+export function Game_Action(subject, forcing) {
+	this._subjectActorId = 0;
+	this._subjectEnemyIndex = -1;
+	this._forcing = forcing || false;
+	this.setSubject(subject);
+	this.clear();
+};
 
 Game_Action.EFFECT_RECOVER_HP = 11;
 Game_Action.EFFECT_RECOVER_MP = 12;
@@ -27,14 +30,6 @@ Game_Action.SPECIAL_EFFECT_ESCAPE = 0;
 Game_Action.HITTYPE_CERTAIN = 0;
 Game_Action.HITTYPE_PHYSICAL = 1;
 Game_Action.HITTYPE_MAGICAL = 2;
-
-Game_Action.prototype.initialize = function (subject, forcing) {
-	this._subjectActorId = 0;
-	this._subjectEnemyIndex = -1;
-	this._forcing = forcing || false;
-	this.setSubject(subject);
-	this.clear();
-};
 
 Game_Action.prototype.clear = function () {
 	this._item = new Game_Item();

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_AnimationMV
 //
 // The sprite for displaying an old format animation.
@@ -7,16 +6,12 @@ import { ScreenSprite, Sprite } from '../core/index.js';
 import { AudioManager, ImageManager } from '../managers/index.js';
 
 export function Sprite_AnimationMV() {
-	this.initialize(...arguments);
-}
+	Sprite.call(this);
+	this.initMembers();
+};
 
 Sprite_AnimationMV.prototype = Object.create(Sprite.prototype);
 Sprite_AnimationMV.prototype.constructor = Sprite_AnimationMV;
-
-Sprite_AnimationMV.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
-	this.initMembers();
-};
 
 Sprite_AnimationMV.prototype.initMembers = function () {
 	this._targets = [];

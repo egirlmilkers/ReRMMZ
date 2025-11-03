@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Damage
 //
 // The sprite for displaying a popup damage.
@@ -7,19 +6,15 @@ import { Bitmap, Sprite } from '../core/index.js';
 import { ColorManager, DataManager } from '../managers/index.js';
 
 export function Sprite_Damage() {
-	this.initialize(...arguments);
-}
-
-Sprite_Damage.prototype = Object.create(Sprite.prototype);
-Sprite_Damage.prototype.constructor = Sprite_Damage;
-
-Sprite_Damage.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this._duration = 90;
 	this._flashColor = [0, 0, 0, 0];
 	this._flashDuration = 0;
 	this._colorType = 0;
 };
+
+Sprite_Damage.prototype = Object.create(Sprite.prototype);
+Sprite_Damage.prototype.constructor = Sprite_Damage;
 
 Sprite_Damage.prototype.destroy = function (options) {
 	for (const child of this.children) {

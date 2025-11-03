@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Item
 //
 // The scene class of the item screen.
@@ -10,15 +9,11 @@ import { Scene_ItemBase } from '../scenes/index.js';
 import { Window_ItemCategory, Window_ItemList } from '../windows/index.js';
 
 export function Scene_Item() {
-	this.initialize(...arguments);
-}
+	Scene_ItemBase.call(this);
+};
 
 Scene_Item.prototype = Object.create(Scene_ItemBase.prototype);
 Scene_Item.prototype.constructor = Scene_Item;
-
-Scene_Item.prototype.initialize = function () {
-	Scene_ItemBase.prototype.initialize.call(this);
-};
 
 Scene_Item.prototype.create = function () {
 	Scene_ItemBase.prototype.create.call(this);

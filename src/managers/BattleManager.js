@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // BattleManager
 //
 // The static class that manages battle progress.

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Event
 //
 // The game object class for an event. It contains functionality for event page
@@ -7,20 +6,16 @@
 import { DataManager } from '../managers/index.js';
 import { Game_Character, Game_Interpreter } from '../objects/index.js';
 
-export function Game_Event() {
-	this.initialize(...arguments);
-}
-
-Game_Event.prototype = Object.create(Game_Character.prototype);
-Game_Event.prototype.constructor = Game_Event;
-
-Game_Event.prototype.initialize = function (mapId, eventId) {
-	Game_Character.prototype.initialize.call(this);
+export function Game_Event(mapId, eventId) {
+	Game_Character.call(this);
 	this._mapId = mapId;
 	this._eventId = eventId;
 	this.locate(this.event().x, this.event().y);
 	this.refresh();
 };
+
+Game_Event.prototype = Object.create(Game_Character.prototype);
+Game_Event.prototype.constructor = Game_Event;
 
 Game_Event.prototype.initMembers = function () {
 	Game_Character.prototype.initMembers.call(this);

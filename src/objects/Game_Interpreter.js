@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Interpreter
 //
 // The interpreter for running event commands.
@@ -9,11 +8,7 @@ import { ImageManager, SceneManager, BattleManager, DataManager, AudioManager, P
 import { Scene_Battle, Scene_Shop, Scene_Name, Scene_Menu, Scene_Save, Scene_Gameover, Scene_Title } from '../scenes/index.js';
 import { Window_MenuCommand } from '../windows/index.js';
 
-export function Game_Interpreter() {
-	this.initialize(...arguments);
-}
-
-Game_Interpreter.prototype.initialize = function (depth) {
+export function Game_Interpreter(depth) {
 	this._depth = depth || 0;
 	this.checkOverflow();
 	this.clear();

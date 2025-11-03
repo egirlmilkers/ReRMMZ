@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_TitleCommand
 //
 // The window for selecting New Game/Continue on the title screen.
@@ -6,18 +5,14 @@
 import { DataManager, TextManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_TitleCommand() {
-	this.initialize(...arguments);
-}
-
-Window_TitleCommand.prototype = Object.create(Window_Command.prototype);
-Window_TitleCommand.prototype.constructor = Window_TitleCommand;
-
-Window_TitleCommand.prototype.initialize = function (rect) {
-	Window_Command.prototype.initialize.call(this, rect);
+export function Window_TitleCommand(rect) {
+	Window_Command.call(this, rect);
 	this.openness = 0;
 	this.selectLast();
 };
+
+Window_TitleCommand.prototype = Object.create(Window_Command.prototype);
+Window_TitleCommand.prototype.constructor = Window_TitleCommand;
 
 Window_TitleCommand._lastCommandSymbol = null;
 

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Boot
 //
 // The scene class for initializing the entire game.
@@ -9,16 +8,12 @@ import { Scene_Base, Scene_Battle, Scene_Map, Scene_Splash } from '../scenes/ind
 import { Window_TitleCommand } from '../windows/index.js';
 
 export function Scene_Boot() {
-	this.initialize(...arguments);
-}
+	Scene_Base.call(this);
+	this._databaseLoaded = false;
+};
 
 Scene_Boot.prototype = Object.create(Scene_Base.prototype);
 Scene_Boot.prototype.constructor = Scene_Boot;
-
-Scene_Boot.prototype.initialize = function () {
-	Scene_Base.prototype.initialize.call(this);
-	this._databaseLoaded = false;
-};
 
 Scene_Boot.prototype.create = function () {
 	Scene_Base.prototype.create.call(this);

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ShopBuy
 //
 // The window for selecting an item to buy on the shop screen.
@@ -6,17 +5,13 @@
 import { DataManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_ShopBuy() {
-	this.initialize(...arguments);
-}
+export function Window_ShopBuy(rect) {
+	Window_Selectable.call(this, rect);
+	this._money = 0;
+};
 
 Window_ShopBuy.prototype = Object.create(Window_Selectable.prototype);
 Window_ShopBuy.prototype.constructor = Window_ShopBuy;
-
-Window_ShopBuy.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
-	this._money = 0;
-};
 
 Window_ShopBuy.prototype.setupGoods = function (shopGoods) {
 	this._shopGoods = shopGoods;

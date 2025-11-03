@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 
 /**
@@ -9,13 +7,6 @@ import * as PIXI from 'pixi.js';
  * @extends PIXI.Container
  */
 export function ScreenSprite() {
-	this.initialize(...arguments);
-}
-
-ScreenSprite.prototype = Object.create(PIXI.Container.prototype);
-ScreenSprite.prototype.constructor = ScreenSprite;
-
-ScreenSprite.prototype.initialize = function () {
 	PIXI.Container.call(this);
 	this._graphics = new PIXI.Graphics();
 	this.addChild(this._graphics);
@@ -25,6 +16,9 @@ ScreenSprite.prototype.initialize = function () {
 	this._blue = -1;
 	this.setBlack();
 };
+
+ScreenSprite.prototype = Object.create(PIXI.Container.prototype);
+ScreenSprite.prototype.constructor = ScreenSprite;
 
 /**
  * The opacity of the sprite (0 to 255).

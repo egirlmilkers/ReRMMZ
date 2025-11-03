@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Base
 //
 // The superclass of all scenes within the game.
@@ -9,14 +8,7 @@ import { Scene_Gameover } from '../scenes/index.js';
 import { Window_Base, Window_Selectable } from '../windows/index.js';
 
 export function Scene_Base() {
-	this.initialize(...arguments);
-}
-
-Scene_Base.prototype = Object.create(Stage.prototype);
-Scene_Base.prototype.constructor = Scene_Base;
-
-Scene_Base.prototype.initialize = function () {
-	Stage.prototype.initialize.call(this);
+	Stage.call(this);
 	this._started = false;
 	this._active = false;
 	this._fadeSign = 0;
@@ -25,6 +17,9 @@ Scene_Base.prototype.initialize = function () {
 	this._fadeOpacity = 0;
 	this.createColorFilter();
 };
+
+Scene_Base.prototype = Object.create(Stage.prototype);
+Scene_Base.prototype.constructor = Scene_Base;
 
 Scene_Base.prototype.create = function () {
 	//

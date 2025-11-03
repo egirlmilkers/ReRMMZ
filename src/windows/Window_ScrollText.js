@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ScrollText
 //
 // The window for displaying scrolling text. No frame is displayed, but it
@@ -8,15 +7,8 @@ import { Input, Rectangle, TouchInput } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
 import { Window_Base } from '../windows/index.js';
 
-export function Window_ScrollText() {
-	this.initialize(...arguments);
-}
-
-Window_ScrollText.prototype = Object.create(Window_Base.prototype);
-Window_ScrollText.prototype.constructor = Window_ScrollText;
-
-Window_ScrollText.prototype.initialize = function (rect) {
-	Window_Base.prototype.initialize.call(this, new Rectangle());
+export function Window_ScrollText(rect) {
+	Window_Base.call(this, new Rectangle());
 	this.opacity = 0;
 	this.hide();
 	this._reservedRect = rect;
@@ -27,6 +19,9 @@ Window_ScrollText.prototype.initialize = function (rect) {
 	this._blockIndex = 0;
 	this._scrollY = 0;
 };
+
+Window_ScrollText.prototype = Object.create(Window_Base.prototype);
+Window_ScrollText.prototype.constructor = Window_ScrollText;
 
 Window_ScrollText.prototype.update = function () {
 	Window_Base.prototype.update.call(this);

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // PluginManager
 //
 // The static class that manages the plugins.

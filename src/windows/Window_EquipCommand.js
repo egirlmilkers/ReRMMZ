@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_EquipCommand
 //
 // The window for selecting a command on the equipment screen.
@@ -6,16 +5,12 @@
 import { TextManager } from '../managers/index.js';
 import { Window_HorzCommand } from '../windows/index.js';
 
-export function Window_EquipCommand() {
-	this.initialize(...arguments);
-}
+export function Window_EquipCommand(rect) {
+	Window_HorzCommand.call(this, rect);
+};
 
 Window_EquipCommand.prototype = Object.create(Window_HorzCommand.prototype);
 Window_EquipCommand.prototype.constructor = Window_EquipCommand;
-
-Window_EquipCommand.prototype.initialize = function (rect) {
-	Window_HorzCommand.prototype.initialize.call(this, rect);
-};
 
 Window_EquipCommand.prototype.maxCols = function () {
 	return 3;

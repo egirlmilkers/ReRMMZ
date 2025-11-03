@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // FontManager
 //
 // The static class that loads font files.

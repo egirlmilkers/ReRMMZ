@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_NameInput
 //
 // The window for selecting text characters on the name input screen.
@@ -7,9 +6,12 @@ import { Input, Rectangle } from '../core/index.js';
 import { DataManager, SoundManager } from '../managers/index.js';
 import { Window_Selectable } from '../windows/index.js';
 
-export function Window_NameInput() {
-	this.initialize(...arguments);
-}
+export function Window_NameInput(rect) {
+	Window_Selectable.call(this, rect);
+	this._editWindow = null;
+	this._page = 0;
+	this._index = 0;
+};
 
 Window_NameInput.prototype = Object.create(Window_Selectable.prototype);
 Window_NameInput.prototype.constructor = Window_NameInput;
@@ -80,13 +82,6 @@ Window_NameInput.JAPAN3 =
 		"０", "１", "２", "３", "４", "！", "＃", "＄", "％", "＆",
 		"５", "６", "７", "８", "９", "（", "）", "＊", "＋", "－",
 		"／", "＝", "＠", "＜", "＞", "：", "；", "　", "かな", "決定"];
-
-Window_NameInput.prototype.initialize = function (rect) {
-	Window_Selectable.prototype.initialize.call(this, rect);
-	this._editWindow = null;
-	this._page = 0;
-	this._index = 0;
-};
 
 Window_NameInput.prototype.setEditWindow = function (editWindow) {
 	this._editWindow = editWindow;

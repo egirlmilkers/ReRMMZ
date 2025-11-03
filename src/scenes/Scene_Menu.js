@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Menu
 //
 // The scene class of the menu screen.
@@ -10,15 +9,11 @@ import { Scene_Equip, Scene_GameEnd, Scene_Item, Scene_MenuBase, Scene_Options, 
 import { Window_Gold, Window_MenuCommand, Window_MenuStatus } from '../windows/index.js';
 
 export function Scene_Menu() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Menu.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Menu.prototype.constructor = Scene_Menu;
-
-Scene_Menu.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Menu.prototype.helpAreaHeight = function () {
 	return 0;

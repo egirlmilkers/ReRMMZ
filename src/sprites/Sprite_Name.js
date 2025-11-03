@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Name
 //
 // The sprite for displaying a status gauge.
@@ -7,17 +6,13 @@ import { Bitmap, Sprite } from '../core/index.js';
 import { ColorManager, DataManager } from '../managers/index.js';
 
 export function Sprite_Name() {
-	this.initialize(...arguments);
-}
-
-Sprite_Name.prototype = Object.create(Sprite.prototype);
-Sprite_Name.prototype.constructor = Sprite_Name;
-
-Sprite_Name.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
+	Sprite.call(this);
 	this.initMembers();
 	this.createBitmap();
 };
+
+Sprite_Name.prototype = Object.create(Sprite.prototype);
+Sprite_Name.prototype.constructor = Sprite_Name;
 
 Sprite_Name.prototype.initMembers = function () {
 	this._battler = null;

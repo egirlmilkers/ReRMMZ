@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_MenuBase
 //
 // The superclass of all the menu-type scenes.
@@ -11,15 +10,11 @@ import { Sprite_Button } from '../sprites/index.js';
 import { Window_Help } from '../windows/index.js';
 
 export function Scene_MenuBase() {
-	this.initialize(...arguments);
-}
+	Scene_Base.call(this);
+};
 
 Scene_MenuBase.prototype = Object.create(Scene_Base.prototype);
 Scene_MenuBase.prototype.constructor = Scene_MenuBase;
-
-Scene_MenuBase.prototype.initialize = function () {
-	Scene_Base.prototype.initialize.call(this);
-};
 
 Scene_MenuBase.prototype.create = function () {
 	Scene_Base.prototype.create.call(this);

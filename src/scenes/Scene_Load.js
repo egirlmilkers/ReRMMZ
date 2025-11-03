@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Load
 //
 // The scene class of the load screen.
@@ -7,16 +6,12 @@ import { DataManager, SceneManager, SoundManager, TextManager } from '../manager
 import { Scene_File, Scene_Map } from '../scenes/index.js';
 
 export function Scene_Load() {
-	this.initialize(...arguments);
-}
+	Scene_File.call(this);
+	this._loadSuccess = false;
+};
 
 Scene_Load.prototype = Object.create(Scene_File.prototype);
 Scene_Load.prototype.constructor = Scene_Load;
-
-Scene_Load.prototype.initialize = function () {
-	Scene_File.prototype.initialize.call(this);
-	this._loadSuccess = false;
-};
 
 Scene_Load.prototype.terminate = function () {
 	Scene_File.prototype.terminate.call(this);

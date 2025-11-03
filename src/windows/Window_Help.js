@@ -1,21 +1,16 @@
-//-----------------------------------------------------------------------------
 // Window_Help
 //
 // The window for displaying the description of the selected item.
 
 import { Window_Base } from '../windows/index.js';
 
-export function Window_Help() {
-	this.initialize(...arguments);
-}
+export function Window_Help(rect) {
+	Window_Base.call(this, rect);
+	this._text = "";
+};
 
 Window_Help.prototype = Object.create(Window_Base.prototype);
 Window_Help.prototype.constructor = Window_Help;
-
-Window_Help.prototype.initialize = function (rect) {
-	Window_Base.prototype.initialize.call(this, rect);
-	this._text = "";
-};
 
 Window_Help.prototype.setText = function (text) {
 	if (this._text !== text) {

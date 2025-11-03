@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_CommonEvent
 //
 // The game object class for a common event. It contains functionality for
@@ -7,11 +6,7 @@
 import { DataManager } from '../managers/index.js';
 import { Game_Interpreter } from '../objects/index.js';
 
-export function Game_CommonEvent() {
-	this.initialize(...arguments);
-}
-
-Game_CommonEvent.prototype.initialize = function (commonEventId) {
+export function Game_CommonEvent(commonEventId) {
 	this._commonEventId = commonEventId;
 	this.refresh();
 };

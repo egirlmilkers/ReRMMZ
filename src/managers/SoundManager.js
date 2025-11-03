@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // SoundManager
 //
 // The static class that plays sound effects defined in the database.

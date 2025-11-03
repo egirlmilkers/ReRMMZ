@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // SceneManager
 //
 // The static class that manages scene transitions.

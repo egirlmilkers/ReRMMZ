@@ -1,5 +1,3 @@
-//-----------------------------------------------------------------------------
-
 import * as PIXI from 'pixi.js';
 import {Bitmap, ColorFilter, Rectangle} from '../core/index.js';
 
@@ -10,14 +8,7 @@ import {Bitmap, ColorFilter, Rectangle} from '../core/index.js';
  * @extends PIXI.Sprite
  * @param {Bitmap} bitmap - The image for the sprite.
  */
-export function Sprite() {
-	this.initialize(...arguments);
-}
-
-Sprite.prototype = Object.create(PIXI.Sprite.prototype);
-Sprite.prototype.constructor = Sprite;
-
-Sprite.prototype.initialize = function (bitmap) {
+export function Sprite(bitmap) {
 	if (!Sprite._emptyBaseTexture) {
 		Sprite._emptyBaseTexture = new PIXI.BaseTexture();
 		Sprite._emptyBaseTexture.setSize(1, 1);
@@ -36,6 +27,9 @@ Sprite.prototype.initialize = function (bitmap) {
 	this._hidden = false;
 	this._onBitmapChange();
 };
+
+Sprite.prototype = Object.create(PIXI.Sprite.prototype);
+Sprite.prototype.constructor = Sprite;
 
 Sprite._emptyBaseTexture = null;
 Sprite._counter = 0;

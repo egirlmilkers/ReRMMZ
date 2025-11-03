@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Vehicle
 //
 // The game object class for a vehicle.
@@ -6,20 +5,16 @@
 import { AudioManager, DataManager } from '../managers/index.js';
 import { Game_Character } from '../objects/index.js';
 
-export function Game_Vehicle() {
-	this.initialize(...arguments);
-}
-
-Game_Vehicle.prototype = Object.create(Game_Character.prototype);
-Game_Vehicle.prototype.constructor = Game_Vehicle;
-
-Game_Vehicle.prototype.initialize = function (type) {
-	Game_Character.prototype.initialize.call(this);
+export function Game_Vehicle(type) {
+	Game_Character.call(this);
 	this._type = type;
 	this.resetDirection();
 	this.initMoveSpeed();
 	this.loadSystemSettings();
 };
+
+Game_Vehicle.prototype = Object.create(Game_Character.prototype);
+Game_Vehicle.prototype.constructor = Game_Vehicle;
 
 Game_Vehicle.prototype.initMembers = function () {
 	Game_Character.prototype.initMembers.call(this);

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_SelfSwitches
 //
 // The game object class for self switches.
@@ -6,10 +5,6 @@
 import { DataManager } from '../managers/index.js';
 
 export function Game_SelfSwitches() {
-	this.initialize(...arguments);
-}
-
-Game_SelfSwitches.prototype.initialize = function () {
 	this.clear();
 };
 

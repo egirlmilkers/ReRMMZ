@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Splash
 //
 // The scene class of the splash screen.
@@ -8,16 +7,12 @@ import { DataManager, ImageManager, SceneManager } from '../managers/index.js';
 import { Scene_Base, Scene_Title } from '../scenes/index.js';
 
 export function Scene_Splash() {
-	this.initialize(...arguments);
-}
+	Scene_Base.call(this);
+	this.initWaitCount();
+};
 
 Scene_Splash.prototype = Object.create(Scene_Base.prototype);
 Scene_Splash.prototype.constructor = Scene_Splash;
-
-Scene_Splash.prototype.initialize = function () {
-	Scene_Base.prototype.initialize.call(this);
-	this.initWaitCount();
-};
 
 Scene_Splash.prototype.create = function () {
 	Scene_Base.prototype.create.call(this);

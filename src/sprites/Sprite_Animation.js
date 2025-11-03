@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Animation
 //
 // The sprite for displaying an animation.
@@ -7,16 +6,12 @@ import { Graphics, Point, Sprite } from '../core/index.js';
 import { AudioManager, EffectManager } from '../managers/index.js';
 
 export function Sprite_Animation() {
-	this.initialize(...arguments);
-}
+	Sprite.call(this);
+	this.initMembers();
+};
 
 Sprite_Animation.prototype = Object.create(Sprite.prototype);
 Sprite_Animation.prototype.constructor = Sprite_Animation;
-
-Sprite_Animation.prototype.initialize = function () {
-	Sprite.prototype.initialize.call(this);
-	this.initMembers();
-};
 
 Sprite_Animation.prototype.initMembers = function () {
 	this._targets = [];

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Switches
 //
 // The game object class for switches.
@@ -6,10 +5,6 @@
 import { DataManager } from '../managers/index.js';
 
 export function Game_Switches() {
-	this.initialize(...arguments);
-}
-
-Game_Switches.prototype.initialize = function () {
 	this.clear();
 };
 

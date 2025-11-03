@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Item
 //
 // The game object class for handling skills, items, weapons, and armor. It is
@@ -6,11 +5,7 @@
 
 import { DataManager } from '../managers/index.js';
 
-export function Game_Item() {
-	this.initialize(...arguments);
-}
-
-Game_Item.prototype.initialize = function (item) {
+export function Game_Item(item) {
 	this._dataClass = "";
 	this._itemId = 0;
 	if (item) {

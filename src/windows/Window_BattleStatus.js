@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_BattleStatus
 //
 // The window for displaying the status of party members on the battle screen.
@@ -6,20 +5,16 @@
 import { DataManager, ImageManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_BattleStatus() {
-	this.initialize(...arguments);
-}
-
-Window_BattleStatus.prototype = Object.create(Window_StatusBase.prototype);
-Window_BattleStatus.prototype.constructor = Window_BattleStatus;
-
-Window_BattleStatus.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_BattleStatus(rect) {
+	Window_StatusBase.call(this, rect);
 	this.frameVisible = false;
 	this.openness = 0;
 	this._bitmapsReady = 0;
 	this.preparePartyRefresh();
 };
+
+Window_BattleStatus.prototype = Object.create(Window_StatusBase.prototype);
+Window_BattleStatus.prototype.constructor = Window_BattleStatus;
 
 Window_BattleStatus.prototype.extraHeight = function () {
 	return 10;

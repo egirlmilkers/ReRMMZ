@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_StatusEquip
 //
 // The window for displaying equipment items on the status screen.
@@ -6,17 +5,13 @@
 import { ColorManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_StatusEquip() {
-	this.initialize(...arguments);
-}
+export function Window_StatusEquip(rect) {
+	Window_StatusBase.call(this, rect);
+	this._actor = null;
+};
 
 Window_StatusEquip.prototype = Object.create(Window_StatusBase.prototype);
 Window_StatusEquip.prototype.constructor = Window_StatusEquip;
-
-Window_StatusEquip.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
-	this._actor = null;
-};
 
 Window_StatusEquip.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

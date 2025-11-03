@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Unit
 //
 // The superclass of Game_Party and Game_Troop.
@@ -6,10 +5,6 @@
 import { BattleManager } from '../managers/index.js';
 
 export function Game_Unit() {
-	this.initialize(...arguments);
-}
-
-Game_Unit.prototype.initialize = function () {
 	this._inBattle = false;
 };
 

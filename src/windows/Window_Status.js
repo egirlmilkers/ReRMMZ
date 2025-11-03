@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Status
 //
 // The window for displaying full status on the status screen.
@@ -6,19 +5,15 @@
 import { ColorManager, TextManager } from '../managers/index.js';
 import { Window_StatusBase } from '../windows/index.js';
 
-export function Window_Status() {
-	this.initialize(...arguments);
-}
-
-Window_Status.prototype = Object.create(Window_StatusBase.prototype);
-Window_Status.prototype.constructor = Window_Status;
-
-Window_Status.prototype.initialize = function (rect) {
-	Window_StatusBase.prototype.initialize.call(this, rect);
+export function Window_Status(rect) {
+	Window_StatusBase.call(this, rect);
 	this._actor = null;
 	this.refresh();
 	this.activate();
 };
+
+Window_Status.prototype = Object.create(Window_StatusBase.prototype);
+Window_Status.prototype.constructor = Window_Status;
 
 Window_Status.prototype.setActor = function (actor) {
 	if (this._actor !== actor) {

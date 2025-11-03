@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_ActorCommand
 //
 // The window for selecting an actor's action on the battle screen.
@@ -6,19 +5,15 @@
 import { ConfigManager, DataManager, TextManager } from '../managers/index.js';
 import { Window_Command } from '../windows/index.js';
 
-export function Window_ActorCommand() {
-	this.initialize(...arguments);
-}
-
-Window_ActorCommand.prototype = Object.create(Window_Command.prototype);
-Window_ActorCommand.prototype.constructor = Window_ActorCommand;
-
-Window_ActorCommand.prototype.initialize = function (rect) {
-	Window_Command.prototype.initialize.call(this, rect);
+export function Window_ActorCommand(rect) {
+	Window_Command.call(this, rect);
 	this.openness = 0;
 	this.deactivate();
 	this._actor = null;
 };
+
+Window_ActorCommand.prototype = Object.create(Window_Command.prototype);
+Window_ActorCommand.prototype.constructor = Window_ActorCommand;
 
 Window_ActorCommand.prototype.makeCommandList = function () {
 	if (this._actor) {

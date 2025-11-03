@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_MenuActor
 //
 // The window for selecting a target actor on the item and skill screens.
@@ -7,17 +6,13 @@ import { DataManager } from '../managers/index.js';
 import { Game_Action } from '../objects/index.js';
 import { Window_MenuStatus } from '../windows/index.js';
 
-export function Window_MenuActor() {
-	this.initialize(...arguments);
-}
+export function Window_MenuActor(rect) {
+	Window_MenuStatus.call(this, rect);
+	this.hide();
+};
 
 Window_MenuActor.prototype = Object.create(Window_MenuStatus.prototype);
 Window_MenuActor.prototype.constructor = Window_MenuActor;
-
-Window_MenuActor.prototype.initialize = function (rect) {
-	Window_MenuStatus.prototype.initialize.call(this, rect);
-	this.hide();
-};
 
 Window_MenuActor.prototype.processOk = function () {
 	if (!this.cursorAll()) {

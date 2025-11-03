@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Battler
 //
 // The superclass of Sprite_Actor and Sprite_Enemy.
@@ -6,18 +5,14 @@
 import { DataManager } from '../managers/index.js';
 import { Sprite_Clickable, Sprite_Damage } from '../sprites/index.js';
 
-export function Sprite_Battler() {
-	this.initialize(...arguments);
-}
-
-Sprite_Battler.prototype = Object.create(Sprite_Clickable.prototype);
-Sprite_Battler.prototype.constructor = Sprite_Battler;
-
-Sprite_Battler.prototype.initialize = function (battler) {
-	Sprite_Clickable.prototype.initialize.call(this);
+export function Sprite_Battler(battler) {
+	Sprite_Clickable.call(this);
 	this.initMembers();
 	this.setBattler(battler);
 };
+
+Sprite_Battler.prototype = Object.create(Sprite_Clickable.prototype);
+Sprite_Battler.prototype.constructor = Sprite_Battler;
 
 Sprite_Battler.prototype.initMembers = function () {
 	this.anchor.x = 0.5;

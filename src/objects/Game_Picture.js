@@ -1,13 +1,8 @@
-//-----------------------------------------------------------------------------
 // Game_Picture
 //
 // The game object class for a picture.
 
 export function Game_Picture() {
-	this.initialize(...arguments);
-}
-
-Game_Picture.prototype.initialize = function () {
 	this.initBasic();
 	this.initTarget();
 	this.initTone();

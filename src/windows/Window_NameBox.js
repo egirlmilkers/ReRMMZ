@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_NameBox
 //
 // The window for displaying a speaker name above the message window.
@@ -8,17 +7,13 @@ import { DataManager } from '../managers/index.js';
 import { Window_Base } from '../windows/index.js';
 
 export function Window_NameBox() {
-	this.initialize(...arguments);
-}
-
-Window_NameBox.prototype = Object.create(Window_Base.prototype);
-Window_NameBox.prototype.constructor = Window_NameBox;
-
-Window_NameBox.prototype.initialize = function () {
-	Window_Base.prototype.initialize.call(this, new Rectangle());
+	Window_Base.call(this, new Rectangle());
 	this.openness = 0;
 	this._name = "";
 };
+
+Window_NameBox.prototype = Object.create(Window_Base.prototype);
+Window_NameBox.prototype.constructor = Window_NameBox;
 
 Window_NameBox.prototype.setMessageWindow = function (messageWindow) {
 	this._messageWindow = messageWindow;

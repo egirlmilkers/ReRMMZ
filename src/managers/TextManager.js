@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // TextManager
 //
 // The static class that handles terms and messages.

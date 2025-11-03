@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Button
 //
 // The sprite for displaying a button.
@@ -7,21 +6,17 @@ import { Input, Rectangle } from '../core/index.js';
 import { ImageManager } from '../managers/index.js';
 import { Sprite_Clickable } from '../sprites/index.js';
 
-export function Sprite_Button() {
-	this.initialize(...arguments);
-}
-
-Sprite_Button.prototype = Object.create(Sprite_Clickable.prototype);
-Sprite_Button.prototype.constructor = Sprite_Button;
-
-Sprite_Button.prototype.initialize = function (buttonType) {
-	Sprite_Clickable.prototype.initialize.call(this);
+export function Sprite_Button(buttonType) {
+	Sprite_Clickable.call(this);
 	this._buttonType = buttonType;
 	this._clickHandler = null;
 	this._coldFrame = null;
 	this._hotFrame = null;
 	this.setupFrames();
 };
+
+Sprite_Button.prototype = Object.create(Sprite_Clickable.prototype);
+Sprite_Button.prototype.constructor = Sprite_Button;
 
 Sprite_Button.prototype.setupFrames = function () {
 	const data = this.buttonData();

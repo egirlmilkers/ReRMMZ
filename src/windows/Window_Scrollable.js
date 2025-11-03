@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Scrollable
 //
 // The window class with scroll functions.
@@ -6,21 +5,17 @@
 import { Input, Point, TouchInput } from '../core/index.js';
 import { Window_Base } from '../windows/index.js';
 
-export function Window_Scrollable() {
-	this.initialize(...arguments);
-}
-
-Window_Scrollable.prototype = Object.create(Window_Base.prototype);
-Window_Scrollable.prototype.constructor = Window_Scrollable;
-
-Window_Scrollable.prototype.initialize = function (rect) {
-	Window_Base.prototype.initialize.call(this, rect);
+export function Window_Scrollable(rect) {
+	Window_Base.call(this, rect);
 	this._scrollX = 0;
 	this._scrollY = 0;
 	this._scrollBaseX = 0;
 	this._scrollBaseY = 0;
 	this.clearScrollStatus();
 };
+
+Window_Scrollable.prototype = Object.create(Window_Base.prototype);
+Window_Scrollable.prototype.constructor = Window_Scrollable;
 
 Window_Scrollable.prototype.clearScrollStatus = function () {
 	this._scrollTargetX = 0;

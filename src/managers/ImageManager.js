@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // ImageManager
 //
 // The static class that loads images, creates bitmap objects and retains them.

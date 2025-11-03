@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Scene_Gameover
 //
 // The scene class of the game over screen.
@@ -8,15 +7,11 @@ import { AudioManager, DataManager, ImageManager, SceneManager } from '../manage
 import { Scene_Base, Scene_Title } from '../scenes/index.js';
 
 export function Scene_Gameover() {
-	this.initialize(...arguments);
-}
+	Scene_Base.call(this);
+};
 
 Scene_Gameover.prototype = Object.create(Scene_Base.prototype);
 Scene_Gameover.prototype.constructor = Scene_Gameover;
-
-Scene_Gameover.prototype.initialize = function () {
-	Scene_Base.prototype.initialize.call(this);
-};
 
 Scene_Gameover.prototype.create = function () {
 	Scene_Base.prototype.create.call(this);

@@ -1,5 +1,4 @@
 
-//-----------------------------------------------------------------------------
 // Scene_Options
 //
 // The scene class of the options screen.
@@ -10,15 +9,11 @@ import { Scene_MenuBase } from '../scenes/index.js';
 import { Window_Options } from '../windows/index.js';
 
 export function Scene_Options() {
-	this.initialize(...arguments);
-}
+	Scene_MenuBase.call(this);
+};
 
 Scene_Options.prototype = Object.create(Scene_MenuBase.prototype);
 Scene_Options.prototype.constructor = Scene_Options;
-
-Scene_Options.prototype.initialize = function () {
-	Scene_MenuBase.prototype.initialize.call(this);
-};
 
 Scene_Options.prototype.create = function () {
 	Scene_MenuBase.prototype.create.call(this);

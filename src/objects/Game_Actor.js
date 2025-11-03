@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Actor
 //
 // The game object class for an actor.
@@ -6,9 +5,10 @@
 import { DataManager, TextManager, SoundManager, BattleManager } from '../managers/index.js';
 import { Game_Action, Game_Battler, Game_BattlerBase, Game_Item } from '../objects/index.js';
 
-export function Game_Actor() {
-	this.initialize(...arguments);
-}
+export function Game_Actor(actorId) {
+	Game_Battler.call(this);
+	this.setup(actorId);
+};
 
 Game_Actor.prototype = Object.create(Game_Battler.prototype);
 Game_Actor.prototype.constructor = Game_Actor;
@@ -19,11 +19,6 @@ Object.defineProperty(Game_Actor.prototype, "level", {
 	},
 	configurable: true,
 });
-
-Game_Actor.prototype.initialize = function (actorId) {
-	Game_Battler.prototype.initialize.call(this);
-	this.setup(actorId);
-};
 
 Game_Actor.prototype.initMembers = function () {
 	Game_Battler.prototype.initMembers.call(this);

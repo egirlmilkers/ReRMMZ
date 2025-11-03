@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Sprite_Character
 //
 // The sprite for displaying a character.
@@ -6,18 +5,14 @@
 import { Sprite } from '../core/index.js';
 import { DataManager, ImageManager } from '../managers/index.js';
 
-export function Sprite_Character() {
-	this.initialize(...arguments);
-}
-
-Sprite_Character.prototype = Object.create(Sprite.prototype);
-Sprite_Character.prototype.constructor = Sprite_Character;
-
-Sprite_Character.prototype.initialize = function (character) {
-	Sprite.prototype.initialize.call(this);
+export function Sprite_Character(character) {
+	Sprite.call(this);
 	this.initMembers();
 	this.setCharacter(character);
 };
+
+Sprite_Character.prototype = Object.create(Sprite.prototype);
+Sprite_Character.prototype.constructor = Sprite_Character;
 
 Sprite_Character.prototype.initMembers = function () {
 	this.anchor.x = 0.5;

@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Game_Message
 //
 // The game object class for the state of the message window that displays text
@@ -7,10 +6,6 @@
 import { Utils } from '../core/index.js';
 
 export function Game_Message() {
-	this.initialize(...arguments);
-}
-
-Game_Message.prototype.initialize = function () {
 	this.clear();
 };
 

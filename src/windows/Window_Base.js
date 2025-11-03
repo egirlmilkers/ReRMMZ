@@ -1,4 +1,3 @@
-//-----------------------------------------------------------------------------
 // Window_Base
 //
 // The superclass of all windows within the game.
@@ -6,15 +5,8 @@
 import { Bitmap, Rectangle, Sprite, Utils, Window } from '../core/index.js';
 import { ColorManager, DataManager, ImageManager, SoundManager, TextManager } from '../managers/index.js';
 
-export function Window_Base() {
-	this.initialize(...arguments);
-}
-
-Window_Base.prototype = Object.create(Window.prototype);
-Window_Base.prototype.constructor = Window_Base;
-
-Window_Base.prototype.initialize = function (rect) {
-	Window.prototype.initialize.call(this);
+export function Window_Base(rect) {
+	Window.call(this);
 	this.loadWindowskin();
 	this.checkRectObject(rect);
 	this.move(rect.x, rect.y, rect.width, rect.height);
@@ -26,6 +18,9 @@ Window_Base.prototype.initialize = function (rect) {
 	this._closing = false;
 	this._dimmerSprite = null;
 };
+
+Window_Base.prototype = Object.create(Window.prototype);
+Window_Base.prototype.constructor = Window_Base;
 
 Window_Base.prototype.destroy = function (options) {
 	this.destroyContents();
