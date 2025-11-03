@@ -109,7 +109,7 @@ export class Bitmap {
             canvas.width = 0;
             canvas.height = 0;
         }
-        renderTexture.destroy({ destroyBase: true });
+        renderTexture.destroy(true);
         bitmap.baseTexture.update();
         return bitmap;
     }
@@ -280,8 +280,8 @@ export class Bitmap {
         height = Math.max(height || 0, 1);
         this.canvas.width = width;
         this.canvas.height = height;
-        this.baseTexture.width = width;
-        this.baseTexture.height = height;
+        // this.baseTexture.width = width;
+        // this.baseTexture.height = height;
     }
 
     /**

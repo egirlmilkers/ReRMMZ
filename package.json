@@ -20,7 +20,7 @@
 		"@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1",
 		"localforage": "^1.10.0",
 		"pako": "^2.1.0",
-		"pixi.js": "6.0.4"
+		"pixi.js": "5.3.12"
 	},
 	"trustedDependencies": [
 		"nw"
