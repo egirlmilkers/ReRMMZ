@@ -2,13 +2,10 @@ import * as PIXI from "pixi.js";
 
 /**
  * The color filter for WebGL.
- *
- * @class
- * @extends PIXI.Filter
  */
 export class ColorFilter extends PIXI.Filter {
 	constructor() {
-		super(null, this._fragmentSrc());
+		super(undefined, ColorFilter._fragmentSrc());
 		this.uniforms.hue = 0;
 		this.uniforms.colorTone = [0, 0, 0, 0];
 		this.uniforms.blendColor = [0, 0, 0, 0];
@@ -17,49 +14,60 @@ export class ColorFilter extends PIXI.Filter {
 
 	/**
 	 * Sets the hue rotation value.
-	 *
-	 * @param {number} hue - The hue value (-360, 360).
+	 * @param hue The hue value (-360, 360).
 	 */
-	setHue(hue) {
-		this.uniforms.hue = Number(hue);
+	setHue(hue: number): void {
+		if (hue < -360 || hue > 360) {
+			throw new Error("Hue outside of range -360 to 360.")
+		}
+		this.uniforms.hue = hue;
 	}
 
 	/**
 	 * Sets the color tone.
-	 *
-	 * @param {array} tone - The color tone [r, g, b, gray].
+	 * @param tone The color tone [r, g, b, gray].
 	 */
-	setColorTone(tone) {
-		if (!(tone instanceof Array)) {
-			throw new Error("Argument must be an array");
+	setColorTone(tone: ColorArray): void {
+		// if (!(tone instanceof Array)) {
+		// 	throw new Error("Argument must be an array");
+		// }
+		for (const c of tone) {
+			if (0 < c || c > 255) {
+				throw new Error("Value outside of range 0 to 255.")
+			}
 		}
-		this.uniforms.colorTone = tone.clone();
+		this.uniforms.colorTone = [...tone];
 	}
 
 	/**
 	 * Sets the blend color.
-	 *
-	 * @param {array} color - The blend color [r, g, b, a].
+	 * @param color The blend color [r, g, b, a].
 	 */
-	setBlendColor(color) {
-		if (!(color instanceof Array)) {
-			throw new Error("Argument must be an array");
+	setBlendColor(color: ColorArray): void {
+		// if (!(color instanceof Array)) {
+		// 	throw new Error("Argument must be an array");
+		// }
+		for (const c of color) {
+			if (0 < c || c > 255) {
+				throw new Error("Value outside of range 0 to 255.")
+			}
 		}
-		this.uniforms.blendColor = color.clone();
+		this.uniforms.blendColor = [...color];
 	}
 
 	/**
 	 * Sets the brightness.
-	 *
-	 * @param {number} brightness - The brightness (0 to 255).
+	 * @param brightness - The brightness (0 to 255).
 	 */
-	setBrightness(brightness) {
+	setBrightness(brightness: number): void {
+		if (brightness < 0 || brightness > 255) {
+			throw new Error("Brightness outside of range 0 to 255.")
+		}
 		this.uniforms.brightness = Number(brightness);
 	}
 
-	_fragmentSrc() {
-		const src =
-			"varying vec2 vTextureCoord;" +
+	private static _fragmentSrc(): string {
+		return "varying vec2 vTextureCoord;" +
 			"uniform sampler2D uSampler;" +
 			"uniform float hue;" +
 			"uniform vec4 colorTone;" +
@@ -141,6 +149,5 @@ export class ColorFilter extends PIXI.Filter {
 			"  b = b * brightness / 255.0;" +
 			"  gl_FragColor = vec4(r, g, b, a);" +
 			"}";
-		return src;
 	}
 }
