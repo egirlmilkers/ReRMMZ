@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    // --- The "Cutting Edge" Stuff ---
+    "target": "ES2024", // Compile to the latest possible spec
+    "module": "ESNext", // Use the latest module syntax (import/export)
+    "moduleResolution": "Bundler", // The NEW hotness. Tells TS to resolve modules like Bun/Vite do.
+    "lib": ["ES2024", "DOM", "DOM.Iterable"], // Include all ES2025 and Browser APIs
+    "strict": true, // This is non-negotiable. Turns on all strict-checking. "Best results."
+    "verbatimModuleSyntax": true, // New in 5.0. Prevents module syntax ambiguity.
+
+    // --- Project Setup & Pathing ---
+    "baseUrl": ".", // Required for the path aliases below
+    "paths": {
+      // This is how you'll import your custom libs
+      "@effekseer": ["lib/effekseer/effekseer.js"],
+      "@vorbis": ["lib/vorbisdecoder.js"]
+    },
+    "rootDir": "src", // Tell TS where your source code *starts*
+    "outDir": "dist", // Where your compiled JS will go (same as Bun)
+
+    // --- Quality of Life & Interop ---
+    "esModuleInterop": true, // Helps with importing old CommonJS-style modules
+    "forceConsistentCasingInFileNames": true, // Prevents case-related import bugs
+    "skipLibCheck": true, // Don't type-check your (potentially messy) .d.ts files
+    "allowJs": true, // Allows TS to see .js files (like your vorbisdecoder.js)
+    "checkJs": false // ...but don't *type-check* them.
+  },
+  "include": [
+    "src", // Lint all your source code...
+    "lib/effekseer/effekseer.d.ts" // ...and *explicitly* include the Effekseer types
+  ],
+  "exclude": ["node_modules", "dist"]
+}

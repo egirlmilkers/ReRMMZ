@@ -1,8 +1,0 @@
-{
-	"name": "@local/vorbisdecoder",
-	"version": "1.0.1",
-	"main": "vorbisdecoder.js",
-	"files": [
-		"vorbisdecoder.js"
-	]
-}

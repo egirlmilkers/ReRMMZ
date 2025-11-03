@@ -1,40 +1,58 @@
 import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
+import ts from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import unicorn from "eslint-plugin-unicorn";
 import esx from "eslint-plugin-es-x";
 
 export default defineConfig([
-	// 1. Base ESLint recommended rules (catches common bugs)
+	// 1. Base rules
 	js.configs.recommended,
 
-	// enforces ES6 (2015) syntax only
-	// will error on ES5 syntax AND any syntax newer than ES6
-	esx.configs["recommended-style-2015"],
+	// 2. Enforce ES2025 syntax (errors on old syntax)
+	esx.configs["recommended-style-2025"],
 
+	// 3. This is the OVERKILL.
+	// Runs all strict, type-checking-required rules.
+	// This will lint based on your tsconfig.json.
+	...ts.configs["strict-type-checked"],
+
+	// 4. Aggressive modernization (optional chaining, etc.)
+	unicorn.configs["flat/recommended"],
+
+	// 5. Your main project configuration
 	{
-		name: "rermmz/js-es6",
-		files: ["src/**/*.js"],
+		name: "rermmz/typescript-main",
+		files: ["src/**/*.ts"], // <-- IMPORTANT: Only lints .ts files
 		languageOptions: {
-			// Explicitly set the parser to ES6 (2015)
-			ecmaVersion: 2015,
+			ecmaVersion: "latest",
 			sourceType: "module",
+
+			// Tell ESLint to use the TS parser
+			parser: tsParser,
+			parserOptions: {
+				// Tell the parser where your tsconfig is for type-aware rules
+				project: true,
+				tsconfigRootDir: ".",
+			},
 			globals: {
-				// Globals
+				// Add your known globals (Pixi, etc.)
+				// Note: effekseer is here as a global from its .d.ts
+				"effekseer": "readonly",
 				"window": "readonly",
-				"document": "readonly",
-				"effekseer": "readonly"
-			}
+				"document": "readonly"
+			},
 		},
-		rules: {
-			// key ES6 upgrades
-			"no-var": "error", // Fail on 'var'
-			"prefer-const": "error", // Require 'const' or 'let'
-			"object-shorthand": "warn", // { a: a } should be { a }
-			"prefer-arrow-callback": "warn", // Use () => {} for callbacks
-			"prefer-template": "warn", // Use string templates over '+'
-		}
+		plugins: {
+			// Define the plugins
+			"@typescript-eslint": ts,
+			"unicorn": unicorn,
+			"es-x": esx,
+		},
 	},
 
+	// 6. Global ignores
 	{
-		ignores: ["dist/", "local_modules/", "node_modules/"]
-	}
+		ignores: ["dist/", "lib/", "node_modules/", "eslint.config.js"],
+	},
 ]);
