@@ -1,4 +1,3 @@
-import { VorbisDecoder } from "@local/vorbisdecoder";
 import { Utils } from '../core/index.js';
 
 /**

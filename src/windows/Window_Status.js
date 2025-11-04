@@ -3,7 +3,7 @@
 // The window for displaying full status on the status screen.
 
 import { ColorManager, TextManager } from '../managers/index.js';
-import { Window_StatusBase } from '../windows/index.js';
+import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_Status extends Window_StatusBase {
     constructor(rect) {

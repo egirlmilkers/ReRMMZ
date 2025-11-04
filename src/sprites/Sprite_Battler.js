@@ -3,7 +3,8 @@
 // The superclass of Sprite_Actor and Sprite_Enemy.
 
 import { DataManager } from '../managers/index.js';
-import { Sprite_Clickable, Sprite_Damage } from '../sprites/index.js';
+import { Sprite_Clickable } from './Sprite_Clickable.js';
+import { Sprite_Damage } from './Sprite_Damage.js';
 
 export class Sprite_Battler extends Sprite_Clickable {
     constructor(battler) {

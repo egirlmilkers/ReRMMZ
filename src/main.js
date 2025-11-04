@@ -1,7 +1,9 @@
-import { PluginManager, SceneManager } from "./managers/index.js";
-import { Scene_Boot } from "./scenes/index.js";
+import { PluginManager } from './managers/PluginManager.js';
+import { SceneManager } from './managers/SceneManager.js';
+
+import { Scene_Boot } from "./scenes/Scene_Boot.js";
+
 import { $plugins } from "./plugins.js";
-// import "../local_modules/effekseer-1.70e/effekseer.js";
 
 const scriptUrls = [
 	"js/libs/pixi.js",

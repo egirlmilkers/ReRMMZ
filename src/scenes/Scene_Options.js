@@ -5,7 +5,7 @@
 
 import { Graphics, Rectangle } from '../core/index.js';
 import { ConfigManager } from '../managers/index.js';
-import { Scene_MenuBase } from '../scenes/index.js';
+import { Scene_MenuBase } from './Scene_MenuBase.js';
 import { Window_Options } from '../windows/index.js';
 
 export class Scene_Options extends Scene_MenuBase {

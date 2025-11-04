@@ -4,7 +4,8 @@
 
 import { Graphics, Rectangle } from '../core/index.js';
 import { SceneManager } from '../managers/index.js';
-import { Scene_MenuBase, Scene_Title } from '../scenes/index.js';
+import { Scene_MenuBase } from './Scene_MenuBase.js';
+import { Scene_Title } from './Scene_Title.js';
 import { Window_GameEnd, Window_TitleCommand } from '../windows/index.js';
 
 export class Scene_GameEnd extends Scene_MenuBase {

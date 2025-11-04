@@ -3,7 +3,7 @@
 // The window for selecting a target enemy on the battle screen.
 
 import { DataManager } from '../managers/index.js';
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_BattleEnemy extends Window_Selectable {
     constructor(rect) {

@@ -6,7 +6,7 @@
 import { Graphics, Rectangle } from '../core/index.js';
 
 import { DataManager, SoundManager } from '../managers/index.js';
-import { Scene_MenuBase } from '../scenes/index.js';
+import { Scene_MenuBase } from './Scene_MenuBase.js';
 import { Window_Base, Window_Gold, Window_ItemCategory, Window_ShopBuy, Window_ShopCommand, Window_ShopNumber, Window_ShopSell, Window_ShopStatus } from '../windows/index.js';
 
 export class Scene_Shop extends Scene_MenuBase {

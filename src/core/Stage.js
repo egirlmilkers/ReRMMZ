@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 
 /**
  * The root object of the display tree.

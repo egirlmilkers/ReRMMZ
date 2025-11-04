@@ -4,7 +4,8 @@
 
 import { Graphics, Rectangle } from '../core/index.js';
 import { SoundManager } from '../managers/index.js';
-import { Scene_ItemBase, Scene_MenuBase } from '../scenes/index.js';
+import { Scene_ItemBase } from './Scene_ItemBase.js';
+import { Scene_MenuBase } from './Scene_MenuBase.js';
 import { Window_SkillList, Window_SkillStatus, Window_SkillType } from '../windows/index.js';
 
 export class Scene_Skill extends Scene_ItemBase {

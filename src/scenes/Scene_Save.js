@@ -3,7 +3,7 @@
 // The scene class of the save screen.
 
 import { DataManager, SoundManager, TextManager } from '../managers/index.js';
-import { Scene_File } from '../scenes/index.js';
+import { Scene_File } from './Scene_File.js';
 
 export class Scene_Save extends Scene_File {
     constructor() {

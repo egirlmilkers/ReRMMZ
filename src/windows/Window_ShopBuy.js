@@ -3,7 +3,7 @@
 // The window for selecting an item to buy on the shop screen.
 
 import { DataManager } from '../managers/index.js';
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_ShopBuy extends Window_Selectable {
     constructor(rect) {

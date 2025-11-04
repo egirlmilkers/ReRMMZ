@@ -3,7 +3,7 @@
 // The superclass of Scene_Map and Scene_Battle.
 
 import { Graphics, Rectangle } from '../core/index.js';
-import { Scene_Base } from '../scenes/index.js';
+import { Scene_Base } from './Scene_Base.js';
 import { Window_ChoiceList, Window_EventItem, Window_Gold, Window_Message, Window_NameBox, Window_NumberInput, Window_ScrollText } from '../windows/index.js';
 
 export class Scene_Message extends Scene_Base {

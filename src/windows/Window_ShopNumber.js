@@ -6,7 +6,7 @@
 import { Input, Rectangle } from '../core/index.js';
 import { ConfigManager, TextManager } from '../managers/index.js';
 import { Sprite_Button } from '../sprites/index.js';
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_ShopNumber extends Window_Selectable {
     constructor(rect) {

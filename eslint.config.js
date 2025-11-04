@@ -17,6 +17,7 @@ export default defineConfig([
 			// Explicitly set the parser to ES6 (2015)
 			ecmaVersion: 2015,
 			sourceType: "module",
+
 			globals: {
 				// Globals
 				"window": "readonly",
@@ -29,8 +30,8 @@ export default defineConfig([
 			"no-var": "error", // Fail on 'var'
 			"prefer-const": "error", // Require 'const' or 'let'
 			"object-shorthand": "warn", // { a: a } should be { a }
-			"prefer-arrow-callback": "warn", // Use () => {} for callbacks
-			"prefer-template": "warn", // Use string templates over '+'
+			"prefer-arrow-callback": "error", // Use () => {} for callbacks
+			"prefer-template": "error", // Use string templates over '+'
 		}
 	},
 

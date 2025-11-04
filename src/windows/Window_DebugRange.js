@@ -4,7 +4,7 @@
 
 import { Input } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_DebugRange extends Window_Selectable {
 	static lastTopRow = 0;

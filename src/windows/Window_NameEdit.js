@@ -4,7 +4,7 @@
 
 import { Rectangle } from '../core/index.js';
 import { ColorManager, DataManager, ImageManager } from '../managers/index.js';
-import { Window_StatusBase } from '../windows/index.js';
+import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_NameEdit extends Window_StatusBase {
     constructor(rect) {

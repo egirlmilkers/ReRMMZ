@@ -3,7 +3,7 @@
 // The window for selecting a command on the equipment screen.
 
 import { TextManager } from '../managers/index.js';
-import { Window_HorzCommand } from '../windows/index.js';
+import { Window_HorzCommand } from './Window_HorzCommand.js';
 
 export class Window_EquipCommand extends Window_HorzCommand {
     constructor(rect) {

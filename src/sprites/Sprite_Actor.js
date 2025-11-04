@@ -4,7 +4,8 @@
 
 import { Sprite } from '../core/index.js';
 import { BattleManager, ImageManager } from '../managers/index.js';
-import { Sprite_Battler, Sprite_StateOverlay, Sprite_Weapon } from '../sprites/index.js';
+import { Sprite_Battler } from './Sprite_Battler.js';
+import { Sprite_StateOverlay, Sprite_Weapon } from '../sprites/index.js';
 
 export class Sprite_Actor extends Sprite_Battler {
 	static MOTIONS = {

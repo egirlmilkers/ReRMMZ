@@ -2,7 +2,7 @@
 //
 // The superclass of windows for selecting a command.
 
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_Command extends Window_Selectable {
     constructor(rect) {

@@ -3,7 +3,8 @@
 // The scene class of the load screen.
 
 import { DataManager, SceneManager, SoundManager, TextManager } from '../managers/index.js';
-import { Scene_File, Scene_Map } from '../scenes/index.js';
+import { Scene_File } from './Scene_File.js';
+import { Scene_Map } from './Scene_Map.js';
 
 export class Scene_Load extends Scene_File {
     constructor() {

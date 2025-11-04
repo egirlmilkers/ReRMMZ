@@ -4,7 +4,7 @@
 
 import { Graphics, Input, TouchInput } from '../core/index.js';
 import { DataManager, ImageManager } from '../managers/index.js';
-import { Window_Base } from '../windows/index.js';
+import { Window_Base } from './Window_Base.js';
 
 export class Window_Message extends Window_Base {
     constructor(rect) {

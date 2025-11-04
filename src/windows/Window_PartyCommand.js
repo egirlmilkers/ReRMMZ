@@ -3,7 +3,7 @@
 // The window for selecting whether to fight or escape on the battle screen.
 
 import { BattleManager, TextManager } from '../managers/index.js';
-import { Window_Command } from '../windows/index.js';
+import { Window_Command } from './Window_Command.js';
 
 export class Window_PartyCommand extends Window_Command {
     constructor(rect) {

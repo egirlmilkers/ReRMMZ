@@ -4,7 +4,7 @@
 
 import { DataManager } from '../managers/index.js';
 import { Game_Action } from '../objects/index.js';
-import { Window_MenuStatus } from '../windows/index.js';
+import { Window_MenuStatus } from './Window_MenuStatus.js';
 
 export class Window_MenuActor extends Window_MenuStatus {
     constructor(rect) {

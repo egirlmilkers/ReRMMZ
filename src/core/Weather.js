@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import { Bitmap, Graphics, ScreenSprite, Sprite, Point } from '../core/index.js';
 
 /**

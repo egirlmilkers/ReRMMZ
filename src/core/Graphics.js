@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import { Stage, Utils, Video } from '../core/index.js';
 
 /**

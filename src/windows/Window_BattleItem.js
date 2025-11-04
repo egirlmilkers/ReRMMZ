@@ -3,7 +3,7 @@
 // The window for selecting an item to use on the battle screen.
 
 import { DataManager } from '../managers/index.js';
-import { Window_ItemList } from '../windows/index.js';
+import { Window_ItemList } from './Window_ItemList.js';
 
 export class Window_BattleItem extends Window_ItemList {
     constructor(rect) {

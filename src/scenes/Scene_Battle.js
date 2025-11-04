@@ -4,9 +4,13 @@
 
 import { Graphics, Rectangle } from '../core/index.js';
 import { AudioManager, BattleManager, ConfigManager, DataManager, SceneManager } from '../managers/index.js';
-import { Scene_Gameover, Scene_Map, Scene_Message, Scene_Title } from '../scenes/index.js';
 import { Spriteset_Battle, Sprite_Button } from '../sprites/index.js';
 import { Window_ActorCommand, Window_BattleActor, Window_BattleEnemy, Window_BattleItem, Window_BattleLog, Window_BattleSkill, Window_BattleStatus, Window_Help, Window_PartyCommand } from '../windows/index.js';
+
+import { Scene_Gameover } from './Scene_Gameover.js';
+import { Scene_Map } from './Scene_Map.js';
+import { Scene_Message } from './Scene_Message.js';
+import { Scene_Title } from './Scene_Title.js';
 
 export class Scene_Battle extends Scene_Message {
     constructor() {

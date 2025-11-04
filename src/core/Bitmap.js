@@ -1,5 +1,7 @@
-import * as PIXI from 'pixi.js';
-import { Graphics, Rectangle, Stage, Utils } from '../core/index.js';
+import { Graphics } from "./Graphics.js";
+import { Rectangle } from "./Rectangle.js";
+import { Stage } from "./Stage.js";
+import { Utils } from "./Utils.js";
 
 /**
  * The basic object that represents an image.
@@ -99,7 +101,7 @@ export class Bitmap {
         const width = Graphics.width;
         const height = Graphics.height;
         const bitmap = new Bitmap(width, height);
-        const renderTexture = PIXI.RenderTexture.create(width, height);
+        const renderTexture = PIXI.RenderTexture.create({width, height});
         if (stage) {
             const renderer = Graphics.app.renderer;
             renderer.render(stage, renderTexture);
@@ -321,7 +323,7 @@ export class Bitmap {
         const data = this.context.getImageData(x, y, 1, 1).data;
         let result = "#";
         for (let i = 0; i < 3; i++) {
-            result += data[i].toString(16).padZero(2);
+            result += data[i].toString(16).padStart(2, "0");
         }
         return result;
     }
@@ -331,7 +333,7 @@ export class Bitmap {
      *
      * @param {number} x - The x coordinate of the pixel in the bitmap.
      * @param {number} y - The y coordinate of the pixel in the bitmap.
-     * @returns {string} The alpha value.
+     * @returns {number} The alpha value.
      */
     getAlphaPixel(x, y) {
         const data = this.context.getImageData(x, y, 1, 1).data;

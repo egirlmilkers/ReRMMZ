@@ -3,7 +3,7 @@
 // The window for selecting an equipment slot on the equipment screen.
 
 import { ColorManager } from '../managers/index.js';
-import { Window_StatusBase } from '../windows/index.js';
+import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_EquipSlot extends Window_StatusBase {
     constructor(rect) {

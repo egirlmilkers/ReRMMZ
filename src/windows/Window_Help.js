@@ -2,7 +2,7 @@
 //
 // The window for displaying the description of the selected item.
 
-import { Window_Base } from '../windows/index.js';
+import { Window_Base } from './Window_Base.js';
 
 export class Window_Help extends Window_Base {
     constructor(rect) {

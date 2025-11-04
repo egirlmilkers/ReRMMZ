@@ -4,7 +4,7 @@
 
 import { Input, Rectangle } from '../core/index.js';
 import { ImageManager } from '../managers/index.js';
-import { Sprite_Clickable } from '../sprites/index.js';
+import { Sprite_Clickable } from './Sprite_Clickable.js';
 
 export class Sprite_Button extends Sprite_Clickable {
     constructor(buttonType) {

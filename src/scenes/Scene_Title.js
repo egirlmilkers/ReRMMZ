@@ -5,8 +5,12 @@
 import { Bitmap, Graphics, Rectangle, Sprite } from '../core/index.js';
 
 import { AudioManager, DataManager, ImageManager, SceneManager } from '../managers/index.js';
-import { Scene_Base, Scene_Load, Scene_Map, Scene_Options } from '../scenes/index.js';
 import { Window_TitleCommand } from '../windows/index.js';
+
+import { Scene_Base } from './Scene_Base.js';
+import { Scene_Load } from './Scene_Load.js';
+import { Scene_Map } from './Scene_Map.js';
+import { Scene_Options } from './Scene_Options.js';
 
 export class Scene_Title extends Scene_Base {
     constructor() {

@@ -4,7 +4,8 @@
 // and actions.
 
 import { BattleManager, DataManager, SoundManager } from '../managers/index.js';
-import { Game_Action, Game_ActionResult, Game_BattlerBase } from '../objects/index.js';
+import { Game_BattlerBase } from './Game_BattlerBase.js'; // fixes circular dependency
+import { Game_Action, Game_ActionResult } from '../objects/index.js';
 
 export class Game_Battler extends Game_BattlerBase {
     constructor() {

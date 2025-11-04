@@ -3,7 +3,7 @@
 // The window for displaying the status of party members on the battle screen.
 
 import { DataManager, ImageManager } from '../managers/index.js';
-import { Window_StatusBase } from '../windows/index.js';
+import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_BattleStatus extends Window_StatusBase {
     constructor(rect) {

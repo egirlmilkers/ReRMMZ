@@ -3,7 +3,7 @@
 // The window for selecting a command on the menu screen.
 
 import { DataManager, TextManager } from '../managers/index.js';
-import { Window_Command } from '../windows/index.js';
+import { Window_Command } from './Window_Command.js';
 
 export class Window_MenuCommand extends Window_Command {
 	static _lastCommandSymbol = null;

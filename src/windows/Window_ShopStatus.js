@@ -5,7 +5,7 @@
 
 import { Input, TouchInput } from '../core/index.js';
 import { ColorManager, DataManager, TextManager } from '../managers/index.js';
-import { Window_StatusBase } from '../windows/index.js';
+import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_ShopStatus extends Window_StatusBase {
     constructor(rect) {

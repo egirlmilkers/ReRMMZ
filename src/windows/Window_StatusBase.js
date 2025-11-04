@@ -4,7 +4,7 @@
 
 import { BattleManager, ColorManager, DataManager, ImageManager, TextManager } from '../managers/index.js';
 import { Sprite_Gauge, Sprite_Name, Sprite_StateIcon } from '../sprites/index.js';
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_StatusBase extends Window_Selectable {
     constructor(rect) {

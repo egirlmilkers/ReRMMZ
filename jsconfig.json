@@ -2,16 +2,27 @@
 	"compilerOptions": {
 		"target": "es6",
 		"module": "es6",
-		"moduleResolution": "node",
+		"moduleResolution": "Bundler",
+		"lib": ["es6", "dom", "dom.iterable"],
+
+		"strict": true,
 		"checkJs": true,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+
+		"baseUrl": ".",
+		"paths": {
+			"@effekseer": ["lib/effekseer/effekseer.js"],
+			"@vorbis": ["lib/vorbisdecoder.js"]
+		},
+		"rootDir": "src",
+		"outDir": "dist"
 	},
 	"include": [
-		"src/**/*"
+		"src",
+		"lib/effekseer/effekseer.d.ts"
 	],
 	"exclude": [
 		"node_modules",
-		"dist",
-		"local_modules"
+		"dist"
 	]
 }

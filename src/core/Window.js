@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import { Bitmap, Point, Rectangle, Sprite, TilingSprite } from '../core/index.js';
 
 /**

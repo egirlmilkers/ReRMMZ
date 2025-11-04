@@ -3,35 +3,34 @@
 
 <head>
 	<meta charset="UTF-8" />
+	<!-- icons -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="viewport" content="user-scalable=no" />
 	<link rel="icon" href="./assets/icon/icon.png" type="image/png" />
 	<link rel="apple-touch-icon" href="./assets/icon/icon.png" />
-	<link rel="stylesheet" type="text/css" href="./assets/css/game.css" />
 	<title>RMMZ</title>
+
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/game.css" />
+
+	<!-- javascript -->
+	<script src="./node_modules/pixi.js/dist/pixi.js"></script>
+	<script src="./node_modules/localforage/dist/localforage.js"></script>
+	<script src="./lib/effekseer/effekseer.min.js"></script>
+	<script src="./lib/vorbisdecoder.js"></script>
+
 	<script type="importmap">
 		{
 			"imports": {
-				"pixi.js": "./node_modules/pixi.js/dist/pixi.js",
-				"pako": "./node_modules/pako/dist/pako.esm.mjs",
-				
-				"@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1/vorbisdecoder.js"
+				"pako": "./node_modules/pako/dist/pako.esm.mjs"
 			}
 		}
 	</script>
 </head>
 
 <body style="background-color: black">
-	<script>
-		let __dirname = process.cwd();
-	</script>
-
-	<script src="./local_modules/effekseer-1.70e/effekseer.js"></script>
-	<script src="./node_modules/localforage/dist/localforage.js"></script>
-
 	<script type="module" src="./src/main.js"></script>
-	<!-- <script src="./dist/rmmz.js"></script> -->
 </body>
 
 </html>

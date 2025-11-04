@@ -3,7 +3,7 @@
 // The window for displaying parameter changes on the equipment screen.
 
 import { ColorManager, ImageManager, TextManager } from '../managers/index.js';
-import { Window_StatusBase } from '../windows/index.js';
+import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_EquipStatus extends Window_StatusBase {
     constructor(rect) {

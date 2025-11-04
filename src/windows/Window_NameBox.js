@@ -4,7 +4,7 @@
 
 import { Graphics, Rectangle } from '../core/index.js';
 import { DataManager } from '../managers/index.js';
-import { Window_Base } from '../windows/index.js';
+import { Window_Base } from './Window_Base.js';
 
 export class Window_NameBox extends Window_Base {
     constructor() {

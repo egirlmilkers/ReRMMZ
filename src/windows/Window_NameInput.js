@@ -4,7 +4,7 @@
 
 import { Input, Rectangle } from '../core/index.js';
 import { DataManager, SoundManager } from '../managers/index.js';
-import { Window_Selectable } from '../windows/index.js';
+import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_NameInput extends Window_Selectable {
 	// prettier-ignore

@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import { Graphics, Point } from '../core/index.js';
 
 /**

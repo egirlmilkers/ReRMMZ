@@ -3,7 +3,7 @@
 // The sprite for displaying a picture.
 
 import { DataManager, ImageManager } from '../managers/index.js';
-import { Sprite_Clickable } from '../sprites/index.js';
+import { Sprite_Clickable } from './Sprite_Clickable.js';
 
 export class Sprite_Picture extends Sprite_Clickable {
     constructor(pictureId) {

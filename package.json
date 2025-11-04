@@ -9,22 +9,16 @@
 		"@types/nw.js": "^0.92.0",
 		"eslint": "^9.39.0",
 		"eslint-plugin-es-x": "^9.1.2",
-		"nw": "^0.105.0-sdk",
 		"prettier": "^3.6.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5"
 	},
 	"dependencies": {
-		"@local/effekseer": "./local_modules/effekseer-1.70e",
-		"@local/vorbisdecoder": "./local_modules/vorbisdecoder-1.0.1",
 		"localforage": "^1.10.0",
 		"pako": "^2.1.0",
 		"pixi.js": "5.3.12"
 	},
-	"trustedDependencies": [
-		"nw"
-	],
 	"scripts": {
 		"start": "nw . --enable-features=NWESM",
 		"build": "bun build ./src/main.js --target browser --outfile=./dist/rmmz.js"

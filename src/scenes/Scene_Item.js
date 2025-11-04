@@ -5,7 +5,7 @@
 import { Graphics, Rectangle } from '../core/index.js';
 
 import { DataManager, SoundManager } from '../managers/index.js';
-import { Scene_ItemBase } from '../scenes/index.js';
+import { Scene_ItemBase } from './Scene_ItemBase.js';
 import { Window_ItemCategory, Window_ItemList } from '../windows/index.js';
 
 export class Scene_Item extends Scene_ItemBase {

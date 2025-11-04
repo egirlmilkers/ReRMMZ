@@ -5,7 +5,7 @@
 import { Graphics, Rectangle } from '../core/index.js';
 
 import { DataManager } from '../managers/index.js';
-import { Scene_MenuBase } from '../scenes/index.js';
+import { Scene_MenuBase } from './Scene_MenuBase.js';
 import { Window_Help, Window_SavefileList } from '../windows/index.js';
 
 export class Scene_File extends Scene_MenuBase {

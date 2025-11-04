@@ -4,7 +4,8 @@
 
 import { Input, Sprite, TouchInput } from '../core/index.js';
 import { AudioManager, DataManager, ImageManager, SceneManager } from '../managers/index.js';
-import { Scene_Base, Scene_Title } from '../scenes/index.js';
+import { Scene_Base } from './Scene_Base.js';
+import { Scene_Title } from './Scene_Title.js';
 
 export class Scene_Gameover extends Scene_Base {
     constructor() {

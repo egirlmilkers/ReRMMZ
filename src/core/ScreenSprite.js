@@ -1,5 +1,3 @@
-import * as PIXI from 'pixi.js';
-
 /**
  * The sprite which covers the entire game screen.
  *

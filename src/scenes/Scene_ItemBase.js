@@ -6,7 +6,8 @@ import { Graphics, Rectangle } from '../core/index.js';
 
 import { DataManager, SceneManager, SoundManager } from '../managers/index.js';
 import { Game_Action } from '../objects/index.js';
-import { Scene_Map, Scene_MenuBase } from '../scenes/index.js';
+import { Scene_Map } from './Scene_Map.js';
+import { Scene_MenuBase } from './Scene_MenuBase.js';
 import { Window_MenuActor } from '../windows/index.js';
 
 export class Scene_ItemBase extends Scene_MenuBase {

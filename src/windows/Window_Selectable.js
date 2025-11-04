@@ -4,7 +4,7 @@
 
 import { Input, Point, Rectangle, TouchInput } from '../core/index.js';
 import { ColorManager, SoundManager } from '../managers/index.js';
-import { Window_Scrollable } from '../windows/index.js';
+import { Window_Scrollable } from './Window_Scrollable.js';
 
 export class Window_Selectable extends Window_Scrollable {
     constructor(rect) {

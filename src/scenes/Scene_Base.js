@@ -4,8 +4,9 @@
 
 import { ColorFilter, Graphics, Stage, WindowLayer } from '../core/index.js';
 import { AudioManager, DataManager, EffectManager, FontManager, ImageManager, SceneManager } from '../managers/index.js';
-import { Scene_Gameover } from '../scenes/index.js';
 import { Window_Base, Window_Selectable } from '../windows/index.js';
+
+import { Scene_Gameover } from './Scene_Gameover.js';
 
 export class Scene_Base extends Stage {
     constructor() {
