@@ -21,6 +21,7 @@ import { Game_Variables } from "../objects/Game_Variables.js";
 
 import { BattleManager } from "./BattleManager.js";
 import { ImageManager } from "./ImageManager.js";
+import { StorageManager } from "./StorageManager.js";
 
 export class DataManager {
 	static $dataActors = null;
