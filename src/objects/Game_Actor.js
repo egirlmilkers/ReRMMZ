@@ -2,6 +2,8 @@
 //
 // The game object class for an actor.
 
+import { clamp } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 import { BattleManager } from "../managers/BattleManager.js";
 import { SoundManager } from "../managers/SoundManager.js";
@@ -568,7 +570,7 @@ export class Game_Actor extends Game_Battler {
 	}
 
 	changeLevel(level, show) {
-		level = level.clamp(1, this.maxLevel());
+		level = clamp(level, 1, this.maxLevel());
 		this.changeExp(this.expForLevel(level), show);
 	}
 

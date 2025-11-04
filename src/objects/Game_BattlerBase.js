@@ -2,6 +2,8 @@
 //
 // The superclass of Game_Battler. It mainly contains parameters calculation.
 
+import { clamp } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 
 export class Game_BattlerBase {
@@ -453,7 +455,7 @@ export class Game_BattlerBase {
 			this.paramBuffRate(paramId);
 		const maxValue = this.paramMax(paramId);
 		const minValue = this.paramMin(paramId);
-		return Math.round(value.clamp(minValue, maxValue));
+		return Math.round(clamp(value, minValue, maxValue));
 	}
 
 	xparam(xparamId) {
@@ -637,9 +639,9 @@ export class Game_BattlerBase {
 		for (const stateId of this.stateResistSet()) {
 			this.eraseState(stateId);
 		}
-		this._hp = this._hp.clamp(0, this.mhp);
-		this._mp = this._mp.clamp(0, this.mmp);
-		this._tp = this._tp.clamp(0, this.maxTp());
+		this._hp = clamp(this._hp, 0, this.mhp);
+		this._mp = clamp(this._mp, 0, this.mmp);
+		this._tp = clamp(this._tp, 0, this.maxTp());
 	}
 
 	recoverAll() {

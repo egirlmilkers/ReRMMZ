@@ -1,3 +1,5 @@
+import { clamp } from "./JsExtensions.js";
+
 /**
  * The sprite which covers the entire game screen.
  *
@@ -27,7 +29,7 @@ export class ScreenSprite extends PIXI.Container {
 	}
 
 	set opacity(value) {
-		this.alpha = value.clamp(0, 255) / 255;
+		this.alpha = clamp(value, 0, 255) / 255;
 	}
 
 	/**
@@ -61,9 +63,9 @@ export class ScreenSprite extends PIXI.Container {
 	 */
 	setColor(r, g, b) {
 		if (this._red !== r || this._green !== g || this._blue !== b) {
-			r = Math.round(r || 0).clamp(0, 255);
-			g = Math.round(g || 0).clamp(0, 255);
-			b = Math.round(b || 0).clamp(0, 255);
+			r = clamp(Math.round(r || 0), 0, 255);
+			g = clamp(Math.round(g || 0), 0, 255);
+			b = clamp(Math.round(b || 0), 0, 255);
 			this._red = r;
 			this._green = g;
 			this._blue = b;

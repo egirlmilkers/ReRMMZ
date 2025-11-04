@@ -1,3 +1,4 @@
+import { clamp } from "./JsExtensions.js";
 import { Bitmap } from "./Bitmap.js";
 import { Point } from "./Point.js";
 import { Rectangle } from "./Rectangle.js";
@@ -205,7 +206,7 @@ export class Window extends PIXI.Container {
 	}
 
 	set opacity(value) {
-		this._container.alpha = value.clamp(0, 255) / 255;
+		this._container.alpha = clamp(value, 0, 255) / 255;
 	}
 
 	/**
@@ -219,7 +220,7 @@ export class Window extends PIXI.Container {
 	}
 
 	set backOpacity(value) {
-		this._backSprite.alpha = value.clamp(0, 255) / 255;
+		this._backSprite.alpha = clamp(value, 0, 255) / 255;
 	}
 
 	/**
@@ -233,7 +234,7 @@ export class Window extends PIXI.Container {
 	}
 
 	set contentsOpacity(value) {
-		this._contentsSprite.alpha = value.clamp(0, 255) / 255;
+		this._contentsSprite.alpha = clamp(value, 0, 255) / 255;
 	}
 
 	/**
@@ -248,7 +249,7 @@ export class Window extends PIXI.Container {
 
 	set openness(value) {
 		if (this._openness !== value) {
-			this._openness = value.clamp(0, 255);
+			this._openness = clamp(value, 0, 255);
 			this._container.scale.y = this._openness / 255;
 			this._container.y = (this.height / 2) * (1 - this._openness / 255);
 		}

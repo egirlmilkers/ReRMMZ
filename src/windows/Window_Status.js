@@ -2,6 +2,8 @@
 //
 // The window for displaying full status on the status screen.
 
+import { clamp } from "../core/JsExtensions.js";
+
 import { ColorManager } from "../managers/ColorManager.js";
 import { TextManager } from "../managers/TextManager.js";
 
@@ -52,7 +54,7 @@ export class Window_Status extends Window_StatusBase {
 		const lineHeight = this.lineHeight();
 		const min = lineHeight;
 		const max = this.innerHeight - lineHeight * 4;
-		return Math.floor((lineHeight * 1.4).clamp(min, max));
+		return Math.floor(clamp(lineHeight * 1.4, min, max));
 	}
 
 	drawBasicInfo(x, y) {

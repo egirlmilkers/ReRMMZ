@@ -2,6 +2,8 @@
 //
 // The static class that manages the configuration data.
 
+import { clamp } from "../core/JsExtensions.js";
+
 import { AudioManager } from "./AudioManager.js";
 import { StorageManager } from "./StorageManager.js";
 
@@ -98,7 +100,7 @@ export class ConfigManager {
 
 	static readVolume(config, name) {
 		if (name in config) {
-			return Number(config[name]).clamp(0, 100);
+			return clamp(Number(config[name]), 0, 100);
 		} else {
 			return 100;
 		}

@@ -1,3 +1,4 @@
+import { clamp } from "./JsExtensions.js";
 import { Bitmap } from "./Bitmap.js";
 import { Point } from "./Point.js";
 import { Rectangle } from "./Rectangle.js";
@@ -63,7 +64,7 @@ export class TilingSprite extends PIXI.TilingSprite {
 	}
 
 	set opacity(value) {
-		this.alpha = value.clamp(0, 255) / 255;
+		this.alpha = clamp(value, 0, 255) / 255;
 	}
 
 	/**

@@ -4,6 +4,7 @@
 // determination functions.
 
 import { Graphics } from "../core/Graphics.js";
+import { clamp } from "../core/JsExtensions.js";
 
 import { AudioManager } from "../managers/AudioManager.js";
 import { DataManager } from "../managers/DataManager.js";
@@ -233,7 +234,7 @@ export class Game_Map {
 			this._parallaxX = x;
 		} else {
 			const endX = this.width() - this.screenTileX();
-			this._displayX = endX < 0 ? endX / 2 : x.clamp(0, endX);
+			this._displayX = endX < 0 ? endX / 2 : clamp(x, 0, endX);
 			this._parallaxX = this._displayX;
 		}
 		if (this.isLoopVertical()) {
@@ -241,7 +242,7 @@ export class Game_Map {
 			this._parallaxY = y;
 		} else {
 			const endY = this.height() - this.screenTileY();
-			this._displayY = endY < 0 ? endY / 2 : y.clamp(0, endY);
+			this._displayY = endY < 0 ? endY / 2 : clamp(y, 0, endY);
 			this._parallaxY = this._displayY;
 		}
 	}

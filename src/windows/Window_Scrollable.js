@@ -2,6 +2,7 @@
 //
 // The window class with scroll functions.
 
+import { clamp } from "../core/JsExtensions.js";
 import { Input } from "../core/Input.js";
 import { Point } from "../core/Point.js";
 import { TouchInput } from "../core/TouchInput.js";
@@ -47,8 +48,8 @@ export class Window_Scrollable extends Window_Base {
 	}
 
 	scrollTo(x, y) {
-		const scrollX = x.clamp(0, this.maxScrollX());
-		const scrollY = y.clamp(0, this.maxScrollY());
+		const scrollX = clamp(x, 0, this.maxScrollX());
+		const scrollY = clamp(y, 0, this.maxScrollY());
 		if (this._scrollX !== scrollX || this._scrollY !== scrollY) {
 			this._scrollX = scrollX;
 			this._scrollY = scrollY;
@@ -61,8 +62,8 @@ export class Window_Scrollable extends Window_Base {
 	}
 
 	smoothScrollTo(x, y) {
-		this._scrollTargetX = x.clamp(0, this.maxScrollX());
-		this._scrollTargetY = y.clamp(0, this.maxScrollY());
+		this._scrollTargetX = clamp(x, 0, this.maxScrollX());
+		this._scrollTargetY = clamp(y, 0, this.maxScrollY());
 		this._scrollDuration = Input.keyRepeatInterval;
 	}
 

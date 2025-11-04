@@ -3,6 +3,8 @@
 // The game object class for the party. Information such as gold and items is
 // included.
 
+import { clamp } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 import { TextManager } from "../managers/TextManager.js";
 
@@ -211,7 +213,7 @@ export class Game_Party extends Game_Unit {
 	}
 
 	gainGold(amount) {
-		this._gold = (this._gold + amount).clamp(0, this.maxGold());
+		this._gold = clamp((this._gold + amount), 0, this.maxGold());
 	}
 
 	loseGold(amount) {
@@ -262,7 +264,7 @@ export class Game_Party extends Game_Unit {
 		if (container) {
 			const lastNumber = this.numItems(item);
 			const newNumber = lastNumber + amount;
-			container[item.id] = newNumber.clamp(0, this.maxItems(item));
+			container[item.id] = clamp(newNumber, 0, this.maxItems(item));
 			if (container[item.id] === 0) {
 				delete container[item.id];
 			}

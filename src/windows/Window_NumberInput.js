@@ -2,6 +2,7 @@
 //
 // The window used for the event command [Input Number].
 
+import { clamp } from "../core/JsExtensions.js";
 import { Graphics } from "../core/Graphics.js";
 import { Input } from "../core/Input.js";
 import { Rectangle } from "../core/Rectangle.js";
@@ -33,7 +34,7 @@ export class Window_NumberInput extends Window_Selectable {
 		this._number = DataManager.$gameVariables.value(
 			DataManager.$gameMessage.numInputVariableId(),
 		);
-		this._number = this._number.clamp(0, Math.pow(10, this._maxDigits) - 1);
+		this._number = clamp(this._number, 0, Math.pow(10, this._maxDigits) - 1);
 		this.updatePlacement();
 		this.placeButtons();
 		this.createContents();

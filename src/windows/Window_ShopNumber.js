@@ -3,6 +3,7 @@
 // The window for inputting quantity of items to buy or sell on the shop
 // screen.
 
+import { clamp } from "../core/JsExtensions.js";
 import { Input } from "../core/Input.js";
 import { Rectangle } from "../core/Rectangle.js";
 
@@ -203,7 +204,7 @@ export class Window_ShopNumber extends Window_Selectable {
 
 	changeNumber(amount) {
 		const lastNumber = this._number;
-		this._number = (this._number + amount).clamp(1, this._max);
+		this._number = clamp(this._number + amount, 1, this._max);
 		if (this._number !== lastNumber) {
 			this.playCursorSound();
 			this.refresh();

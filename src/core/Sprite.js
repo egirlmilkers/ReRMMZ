@@ -1,3 +1,4 @@
+import { clamp } from "./JsExtensions.js";
 import { Bitmap } from "./Bitmap.js";
 import { ColorFilter } from "./ColorFilter.js";
 import { Rectangle } from "./Rectangle.js";
@@ -91,7 +92,7 @@ export class Sprite extends PIXI.Sprite {
 	}
 
 	set opacity(value) {
-		this.alpha = value.clamp(0, 255) / 255;
+		this.alpha = clamp(value, 0, 255) / 255;
 	}
 
 	/**
@@ -283,10 +284,10 @@ export class Sprite extends PIXI.Sprite {
 		const baseTexture = this._bitmap ? this._bitmap.baseTexture : null;
 		const baseTextureW = baseTexture ? baseTexture.width : 0;
 		const baseTextureH = baseTexture ? baseTexture.height : 0;
-		const realX = frameX.clamp(0, baseTextureW);
-		const realY = frameY.clamp(0, baseTextureH);
-		const realW = (frameW - realX + frameX).clamp(0, baseTextureW - realX);
-		const realH = (frameH - realY + frameY).clamp(0, baseTextureH - realY);
+		const realX = clamp(frameX, 0, baseTextureW);
+		const realY = clamp(frameY, 0, baseTextureH);
+		const realW = clamp(frameW - realX + frameX, 0, baseTextureW - realX);
+		const realH = clamp(frameH - realY + frameY, 0, baseTextureH - realY);
 		const frame = new Rectangle(realX, realY, realW, realH);
 		if (texture) {
 			this.pivot.x = frameX - realX;

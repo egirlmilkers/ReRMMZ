@@ -2,6 +2,8 @@
 //
 // The window for changing various settings on the options screen.
 
+import { clamp } from "../core/JsExtensions.js";
+
 import { ConfigManager } from "../managers/ConfigManager.js";
 import { TextManager } from "../managers/TextManager.js";
 
@@ -111,7 +113,7 @@ export class Window_Options extends Window_Command {
 		if (value > 100 && wrap) {
 			this.changeValue(symbol, 0);
 		} else {
-			this.changeValue(symbol, value.clamp(0, 100));
+			this.changeValue(symbol, clamp(value, 0, 100));
 		}
 	}
 
