@@ -3,6 +3,7 @@
 // The game object class for the player. It contains event starting
 // determinants and map scrolling functions.
 
+import { randomInt } from "../core/JsExtensions.js";
 import { Input } from "../core/Input.js";
 import { TouchInput } from "../core/TouchInput.js";
 
@@ -194,7 +195,7 @@ export class Game_Player extends Game_Character {
 
 	makeEncounterCount() {
 		const n = DataManager.$gameMap.encounterStep();
-		this._encounterCount = Math.randomInt(n) + Math.randomInt(n) + 1;
+		this._encounterCount = randomInt(n) + randomInt(n) + 1;
 	}
 
 	makeEncounterTroopId() {
@@ -207,7 +208,7 @@ export class Game_Player extends Game_Character {
 			}
 		}
 		if (weightSum > 0) {
-			let value = Math.randomInt(weightSum);
+			let value = randomInt(weightSum);
 			for (const encounter of encounterList) {
 				value -= encounter.weight;
 				if (value < 0) {

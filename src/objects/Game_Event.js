@@ -3,6 +3,8 @@
 // The game object class for an event. It contains functionality for event page
 // switching and running parallel process events.
 
+import { randomInt } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 
 import { Game_Character } from "./Game_Character.js";
@@ -117,7 +119,7 @@ export class Game_Event extends Game_Character {
 	}
 
 	moveTypeRandom() {
-		switch (Math.randomInt(6)) {
+		switch (randomInt(6)) {
 			case 0:
 			case 1:
 				this.moveRandom();
@@ -135,7 +137,7 @@ export class Game_Event extends Game_Character {
 
 	moveTypeTowardPlayer() {
 		if (this.isNearThePlayer()) {
-			switch (Math.randomInt(6)) {
+			switch (randomInt(6)) {
 				case 0:
 				case 1:
 				case 2:

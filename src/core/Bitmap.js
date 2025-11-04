@@ -458,9 +458,9 @@ export class Bitmap {
 	 * @param {number} y - The y coordinate for the top of the text.
 	 * @param {number} maxWidth - The maximum allowed width of the text.
 	 * @param {number} lineHeight - The height of the text line.
-	 * @param {string} align - The alignment of the text.
+	 * @param {CanvasTextAlign} align - The alignment of the text.
 	 */
-	drawText(text, x, y, maxWidth, lineHeight, align) {
+	drawText(text, x, y, maxWidth, lineHeight, align = "start") {
 		// [Note] Different browser makes different rendering with
 		//   textBaseline == 'top'. So we use 'alphabetic' here.
 		const context = this.context;

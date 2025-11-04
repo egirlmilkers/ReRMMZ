@@ -2,6 +2,8 @@
 //
 // The superclass of Sprite_Actor and Sprite_Enemy.
 
+import { remove } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 
 import { Sprite_Clickable } from "./Sprite_Clickable.js";
@@ -154,7 +156,7 @@ export class Sprite_Battler extends Sprite_Clickable {
 
 	destroyDamageSprite(sprite) {
 		this.parent.removeChild(sprite);
-		this._damages.remove(sprite);
+		remove(this._damages, sprite);
 		sprite.destroy();
 	}
 

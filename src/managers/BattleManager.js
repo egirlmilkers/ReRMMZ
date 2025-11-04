@@ -2,6 +2,8 @@
 //
 // The static class that manages battle progress.
 
+import { remove } from "../core/JsExtensions.js";
+
 import { AudioManager } from "./AudioManager.js";
 import { DataManager } from "./DataManager.js";
 import { SceneManager } from "./SceneManager.js";
@@ -634,7 +636,7 @@ export class BattleManager {
 	static forceAction(battler) {
 		if (battler.numActions() > 0) {
 			this._actionForcedBattler = battler;
-			this._actionBattlers.remove(battler);
+			remove(this._actionBattlers, battler);
 		}
 	}
 

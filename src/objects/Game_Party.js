@@ -3,7 +3,7 @@
 // The game object class for the party. Information such as gold and items is
 // included.
 
-import { clamp } from "../core/JsExtensions.js";
+import { clamp, remove } from "../core/JsExtensions.js";
 
 import { DataManager } from "../managers/DataManager.js";
 import { TextManager } from "../managers/TextManager.js";
@@ -79,7 +79,7 @@ export class Game_Party extends Game_Unit {
 	removeInvalidMembers() {
 		for (const actorId of this._actors) {
 			if (!DataManager.$dataActors[actorId]) {
-				this._actors.remove(actorId);
+				remove(this._actors, actorId);
 			}
 		}
 	}
@@ -198,7 +198,7 @@ export class Game_Party extends Game_Unit {
 		if (this._actors.includes(actorId)) {
 			const actor = DataManager.$gameActors.actor(actorId);
 			const wasBattleMember = this.battleMembers().includes(actor);
-			this._actors.remove(actorId);
+			remove(this._actors, actorId);
 			DataManager.$gamePlayer.refresh();
 			DataManager.$gameMap.requestRefresh();
 			DataManager.$gameTemp.requestBattleRefresh();

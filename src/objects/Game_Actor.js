@@ -2,7 +2,7 @@
 //
 // The game object class for an actor.
 
-import { clamp } from "../core/JsExtensions.js";
+import { clamp, remove } from "../core/JsExtensions.js";
 
 import { DataManager } from "../managers/DataManager.js";
 import { BattleManager } from "../managers/BattleManager.js";
@@ -529,7 +529,7 @@ export class Game_Actor extends Game_Battler {
 	findNewSkills(lastSkills) {
 		const newSkills = this.skills();
 		for (const lastSkill of lastSkills) {
-			newSkills.remove(lastSkill);
+			remove(newSkills, lastSkill);
 		}
 		return newSkills;
 	}
@@ -582,7 +582,7 @@ export class Game_Actor extends Game_Battler {
 	}
 
 	forgetSkill(skillId) {
-		this._skills.remove(skillId);
+		remove(this._skills, skillId);
 	}
 
 	isLearnedSkill(skillId) {

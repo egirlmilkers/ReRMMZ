@@ -2,6 +2,8 @@
 //
 // The game object class for an enemy.
 
+import { randomInt } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 import { SoundManager } from "../managers/SoundManager.js";
 
@@ -251,7 +253,7 @@ export class Game_Enemy extends Game_Battler {
 	selectAction(actionList, ratingZero) {
 		const sum = actionList.reduce((r, a) => r + a.rating - ratingZero, 0);
 		if (sum > 0) {
-			let value = Math.randomInt(sum);
+			let value = randomInt(sum);
 			for (const action of actionList) {
 				value -= action.rating - ratingZero;
 				if (value < 0) {

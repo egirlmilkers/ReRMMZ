@@ -2,6 +2,7 @@
 //
 // The superclass of Spriteset_Map and Spriteset_Battle.
 
+import { remove } from "../core/JsExtensions.js";
 import { ColorFilter } from "../core/ColorFilter.js";
 import { Graphics } from "../core/Graphics.js";
 import { Rectangle } from "../core/Rectangle.js";
@@ -211,7 +212,7 @@ export class Spriteset_Base extends Sprite {
 	}
 
 	removeAnimation(sprite) {
-		this._animationSprites.remove(sprite);
+		remove(this._animationSprites, sprite);
 		this._effectsContainer.removeChild(sprite);
 		for (const target of sprite.targetObjects) {
 			if (target.endAnimation) {
@@ -222,7 +223,7 @@ export class Spriteset_Base extends Sprite {
 	}
 
 	removeAllAnimations() {
-		for (const sprite of this._animationSprites.clone()) {
+		for (const sprite of [...this._animationSprites]) {
 			this.removeAnimation(sprite);
 		}
 	}

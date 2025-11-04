@@ -3,6 +3,8 @@
 // The superclass of Game_Actor and Game_Enemy. It contains methods for sprites
 // and actions.
 
+import { randomInt } from "../core/JsExtensions.js";
+
 import { BattleManager } from "../managers/BattleManager.js";
 import { DataManager } from "../managers/DataManager.js";
 import { SoundManager } from "../managers/SoundManager.js";
@@ -478,7 +480,7 @@ export class Game_Battler extends Game_BattlerBase {
 		for (const state of this.states()) {
 			if (
 				state.removeByDamage &&
-				Math.randomInt(100) < state.chanceByDamage
+				randomInt(100) < state.chanceByDamage
 			) {
 				this.removeState(state.id);
 			}
@@ -574,7 +576,7 @@ export class Game_Battler extends Game_BattlerBase {
 	}
 
 	initTp() {
-		this.setTp(Math.randomInt(25));
+		this.setTp(randomInt(25));
 	}
 
 	clearTp() {

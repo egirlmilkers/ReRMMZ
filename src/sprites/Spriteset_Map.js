@@ -2,6 +2,7 @@
 //
 // The set of sprites on the map screen.
 
+import { remove } from "../core/JsExtensions.js";
 import { Graphics } from "../core/Graphics.js";
 import { Sprite } from "../core/Sprite.js";
 import { Tilemap } from "../core/Tilemap.js";
@@ -216,7 +217,7 @@ export class Spriteset_Map extends Spriteset_Base {
 	}
 
 	removeBalloon(sprite) {
-		this._balloonSprites.remove(sprite);
+		remove(this._balloonSprites, sprite);
 		this._effectsContainer.removeChild(sprite);
 		if (sprite.targetObject.endBalloon) {
 			sprite.targetObject.endBalloon();
@@ -225,7 +226,7 @@ export class Spriteset_Map extends Spriteset_Base {
 	}
 
 	removeAllBalloons() {
-		for (const sprite of this._balloonSprites.clone()) {
+		for (const sprite of [...this._balloonSprites]) {
 			this.removeBalloon(sprite);
 		}
 	}

@@ -1,3 +1,4 @@
+import { mod } from "./JsExtensions.js";
 import { Graphics } from "./Graphics.js";
 import { Point } from "./Point.js";
 
@@ -443,10 +444,10 @@ export class Tilemap extends PIXI.Container {
 			const width = this._mapWidth;
 			const height = this._mapHeight;
 			if (this.horizontalWrap) {
-				x = x.mod(width);
+				x = mod(x, width);
 			}
 			if (this.verticalWrap) {
-				y = y.mod(height);
+				y = mod(y, height);
 			}
 			if (x >= 0 && x < width && y >= 0 && y < height) {
 				return this._mapData[(z * height + y) * width + x] || 0;

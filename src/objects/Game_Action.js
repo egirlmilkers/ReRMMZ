@@ -2,6 +2,8 @@
 //
 // The game object class for a battle action.
 
+import { randomInt } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 
 import { Game_Item } from "./Game_Item.js";
@@ -266,7 +268,7 @@ export class Game_Action {
 
 	speed() {
 		const agi = this.subject().agi;
-		let speed = agi + Math.randomInt(Math.floor(5 + agi / 4));
+		let speed = agi + randomInt(Math.floor(5 + agi / 4));
 		if (this.item()) {
 			speed += this.item().speed;
 		}
@@ -308,7 +310,7 @@ export class Game_Action {
 			case 1:
 				return this.opponentsUnit().randomTarget();
 			case 2:
-				if (Math.randomInt(2) === 0) {
+				if (randomInt(2) === 0) {
 					return this.opponentsUnit().randomTarget();
 				}
 				return this.friendsUnit().randomTarget();
@@ -616,7 +618,7 @@ export class Game_Action {
 		const amp = Math.floor(
 			Math.max((Math.abs(damage) * variance) / 100, 0),
 		);
-		const v = Math.randomInt(amp + 1) + Math.randomInt(amp + 1) - amp;
+		const v = randomInt(amp + 1) + randomInt(amp + 1) - amp;
 		return damage >= 0 ? damage + v : damage - v;
 	}
 

@@ -2,7 +2,7 @@
 //
 // The superclass of Game_Battler. It mainly contains parameters calculation.
 
-import { clamp } from "../core/JsExtensions.js";
+import { clamp, randomInt, remove } from "../core/JsExtensions.js";
 
 import { DataManager } from "../managers/DataManager.js";
 
@@ -218,7 +218,7 @@ export class Game_BattlerBase {
 	}
 
 	eraseState(stateId) {
-		this._states.remove(stateId);
+		remove(this._states, stateId);
 		delete this._stateTurns[stateId];
 	}
 
@@ -237,7 +237,7 @@ export class Game_BattlerBase {
 	resetStateCounts(stateId) {
 		const state = DataManager.$dataStates[stateId];
 		const variance = 1 + Math.max(state.maxTurns - state.minTurns, 0);
-		this._stateTurns[stateId] = state.minTurns + Math.randomInt(variance);
+		this._stateTurns[stateId] = state.minTurns + randomInt(variance);
 	}
 
 	isStateExpired(stateId) {

@@ -2,6 +2,7 @@
 //
 // The superclass of Game_Party and Game_Troop.
 
+import { randomInt } from "../core/JsExtensions.js";
 import { BattleManager } from "../managers/BattleManager.js";
 
 export class Game_Unit {
@@ -59,7 +60,7 @@ export class Game_Unit {
 
 	randomDeadTarget() {
 		const members = this.deadMembers();
-		return members.length ? members[Math.randomInt(members.length)] : null;
+		return members.length ? members[randomInt(members.length)] : null;
 	}
 
 	smoothTarget(index) {

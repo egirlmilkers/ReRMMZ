@@ -2,6 +2,8 @@
 //
 // The superclass of Game_Player, Game_Follower, GameVehicle, and Game_Event.
 
+import { randomInt } from "../core/JsExtensions.js";
+
 import { DataManager } from "../managers/DataManager.js";
 import { AudioManager } from "../managers/AudioManager.js";
 
@@ -278,7 +280,7 @@ export class Game_Character extends Game_CharacterBase {
 	}
 
 	moveRandom() {
-		const d = 2 + Math.randomInt(4) * 2;
+		const d = 2 + randomInt(4) * 2;
 		if (this.canPass(this.x, this.y, d)) {
 			this.moveStraight(d);
 		}
@@ -423,7 +425,7 @@ export class Game_Character extends Game_CharacterBase {
 	}
 
 	turnRightOrLeft90() {
-		switch (Math.randomInt(2)) {
+		switch (randomInt(2)) {
 			case 0:
 				this.turnRight90();
 				break;
@@ -434,7 +436,7 @@ export class Game_Character extends Game_CharacterBase {
 	}
 
 	turnRandom() {
-		this.setDirection(2 + Math.randomInt(4) * 2);
+		this.setDirection(2 + randomInt(4) * 2);
 	}
 
 	swap(character) {

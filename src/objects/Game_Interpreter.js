@@ -2,6 +2,7 @@
 //
 // The interpreter for running event commands.
 
+import { randomInt } from "../core/JsExtensions.js";
 import { Graphics } from "../core/Graphics.js";
 import { Point } from "../core/Point.js";
 import { Input } from "../core/Input.js";
@@ -766,7 +767,7 @@ export class Game_Interpreter {
 		}
 		for (let i = startId; i <= endId; i++) {
 			if (typeof value === "number") {
-				const realValue = value + Math.randomInt(randomMax);
+				const realValue = value + randomInt(randomMax);
 				this.operateVariable(i, operationType, realValue);
 			} else {
 				this.operateVariable(i, operationType, value);

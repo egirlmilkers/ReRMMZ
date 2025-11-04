@@ -1,3 +1,4 @@
+import { randomInt } from "./JsExtensions.js";
 import { Bitmap } from "./Bitmap.js";
 import { Graphics } from "./Graphics.js";
 import { Point } from "./Point.js";
@@ -149,8 +150,8 @@ export class Weather extends PIXI.Container {
 	}
 
 	_rebornSprite(sprite) {
-		sprite.ax = Math.randomInt(Graphics.width + 100) - 100 + this.origin.x;
-		sprite.ay = Math.randomInt(Graphics.height + 200) - 200 + this.origin.y;
-		sprite.opacity = 160 + Math.randomInt(60);
+		sprite.ax = randomInt(Graphics.width + 100) - 100 + this.origin.x;
+		sprite.ay = randomInt(Graphics.height + 200) - 200 + this.origin.y;
+		sprite.opacity = 160 + randomInt(60);
 	}
 }

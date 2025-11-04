@@ -310,7 +310,7 @@ export class Window_BattleLog extends Window_Base {
 		this.push("performActionStart", subject, action);
 		this.push("waitForMovement");
 		this.push("performAction", subject, action);
-		this.push("showAnimation", subject, targets.clone(), item.animationId);
+		this.push("showAnimation", subject, [...targets], item.animationId);
 		this.displayAction(subject, item);
 	}
 

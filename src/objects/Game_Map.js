@@ -4,7 +4,7 @@
 // determination functions.
 
 import { Graphics } from "../core/Graphics.js";
-import { clamp } from "../core/JsExtensions.js";
+import { clamp, mod } from "../core/JsExtensions.js";
 
 import { AudioManager } from "../managers/AudioManager.js";
 import { DataManager } from "../managers/DataManager.js";
@@ -230,7 +230,7 @@ export class Game_Map {
 
 	setDisplayPos(x, y) {
 		if (this.isLoopHorizontal()) {
-			this._displayX = x.mod(this.width());
+			this._displayX = mod(x, this.width());
 			this._parallaxX = x;
 		} else {
 			const endX = this.width() - this.screenTileX();
@@ -238,7 +238,7 @@ export class Game_Map {
 			this._parallaxX = this._displayX;
 		}
 		if (this.isLoopVertical()) {
-			this._displayY = y.mod(this.height());
+			this._displayY = mod(y, this.height());
 			this._parallaxY = y;
 		} else {
 			const endY = this.height() - this.screenTileY();
@@ -357,11 +357,11 @@ export class Game_Map {
 	}
 
 	roundX(x) {
-		return this.isLoopHorizontal() ? x.mod(this.width()) : x;
+		return this.isLoopHorizontal() ? mod(x, this.width()) : x;
 	}
 
 	roundY(y) {
-		return this.isLoopVertical() ? y.mod(this.height()) : y;
+		return this.isLoopVertical() ? mod(y, this.height()) : y;
 	}
 
 	xWithDirection(x, d) {
