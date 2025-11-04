@@ -2,8 +2,11 @@
 //
 // The static class that loads images, creates bitmap objects and retains them.
 
-import { Bitmap, Utils } from '../core/index.js';
-import { DataManager } from '../managers/index.js';
+import { Bitmap } from "../core/Bitmap";
+import { Utils } from "../core/Utils";
+
+import { DataManager } from "./DataManager";
+
 
 export class ImageManager {
 	static standardIconWidth = 32;

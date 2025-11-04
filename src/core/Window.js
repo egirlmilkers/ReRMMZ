@@ -1,4 +1,8 @@
-import { Bitmap, Point, Rectangle, Sprite, TilingSprite } from '../core/index.js';
+import { Bitmap } from "./Bitmap";
+import { Point } from "./Point";
+import { Rectangle } from "./Rectangle";
+import { Sprite } from "./Sprite";
+import { TilingSprite } from "./TilingSprite";
 
 /**
  * The window in the game.

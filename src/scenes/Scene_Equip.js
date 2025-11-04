@@ -2,10 +2,17 @@
 //
 // The scene class of the equipment screen.
 
-import { Graphics, Rectangle } from '../core/index.js';
-import { SoundManager } from '../managers/index.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+import { Graphics } from 'src/core/Graphics.js';
+
+import { SoundManager } from 'src/managers/SoundManager.js';
+
+import { Window_EquipCommand } from 'src/windows/Window_EquipCommand.js';
+import { Window_EquipItem } from 'src/windows/Window_EquipItem.js';
+import { Window_EquipSlot } from 'src/windows/Window_EquipSlot.js';
+import { Window_EquipStatus } from 'src/windows/Window_EquipStatus.js';
+
 import { Scene_MenuBase } from './Scene_MenuBase.js';
-import { Window_EquipCommand, Window_EquipItem, Window_EquipSlot, Window_EquipStatus } from '../windows/index.js';
 
 export class Scene_Equip extends Scene_MenuBase {
     constructor() {

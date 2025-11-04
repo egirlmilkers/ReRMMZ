@@ -2,9 +2,14 @@
 //
 // The scene class of the debug screen.
 
-import { Graphics, Rectangle } from '../core/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { Window_Base } from 'src/windows/Window_Base.js';
+import { Window_DebugEdit } from 'src/windows/Window_DebugEdit.js';
+import { Window_DebugRange } from 'src/windows/Window_DebugRange.js';
+
 import { Scene_MenuBase } from './Scene_MenuBase.js';
-import { Window_Base, Window_DebugEdit, Window_DebugRange } from '../windows/index.js';
 
 export class Scene_Debug extends Scene_MenuBase {
     constructor() {

@@ -1,4 +1,4 @@
-import { Graphics } from '../core/index.js';
+import { Graphics } from "./Graphics";
 
 /**
  * The static class that handles input data from the mouse and touchscreen.

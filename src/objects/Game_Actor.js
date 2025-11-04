@@ -2,9 +2,15 @@
 //
 // The game object class for an actor.
 
-import { DataManager, TextManager, SoundManager, BattleManager } from '../managers/index.js';
-import { Game_Battler } from './Game_Battler.js'; // fixes circular dependency
-import { Game_Action, Game_BattlerBase, Game_Item } from '../objects/index.js';
+import { DataManager } from '../managers/DataManager.js';
+import { BattleManager } from '../managers/BattleManager.js';
+import { SoundManager } from '../managers/SoundManager.js';
+import { TextManager } from '../managers/TextManager.js';
+
+import { Game_Action } from './Game_Action.js';
+import { Game_BattlerBase } from './Game_BattlerBase.js';
+import { Game_Battler } from './Game_Battler.js';
+import { Game_Item } from './Game_Item.js';
 
 export class Game_Actor extends Game_Battler {
     constructor(actorId) {

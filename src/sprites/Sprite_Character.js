@@ -2,8 +2,11 @@
 //
 // The sprite for displaying a character.
 
-import { Sprite } from '../core/index.js';
-import { DataManager, ImageManager } from '../managers/index.js';
+import { Sprite } from "src/core/Sprite";
+
+import { DataManager } from "src/managers/DataManager";
+import { ImageManager } from "src/managers/ImageManager";
+
 
 export class Sprite_Character extends Sprite {
     constructor(character) {

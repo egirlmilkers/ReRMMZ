@@ -1,4 +1,3 @@
-
 /**
  * The layer which contains game windows.
  *

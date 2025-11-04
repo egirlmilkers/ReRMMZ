@@ -2,8 +2,13 @@
 //
 // The game object class for a troop and the battle-related data.
 
-import { BattleManager, DataManager } from '../managers/index.js';
-import { Game_Enemy, Game_Interpreter, Game_Unit } from '../objects/index.js';
+import { BattleManager } from "../managers/BattleManager";
+import { DataManager } from "../managers/DataManager";
+
+import { Game_Enemy } from "./Game_Enemy";
+import { Game_Interpreter } from "./Game_Interpreter";
+import { Game_Unit } from "./Game_Unit";
+
 
 export class Game_Troop extends Game_Unit {
 	// prettier-ignore

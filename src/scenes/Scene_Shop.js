@@ -3,11 +3,23 @@
 //
 // The scene class of the shop screen.
 
-import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager, SoundManager } from '../managers/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { DataManager } from 'src/managers/DataManager.js';
+import { SoundManager } from 'src/managers/SoundManager.js';
+
+import { Window_Base } from 'src/windows/Window_Base.js';
+import { Window_Gold } from 'src/windows/Window_Gold.js';
+import { Window_ItemCategory } from 'src/windows/Window_ItemCategory.js';
+import { Window_ShopBuy } from 'src/windows/Window_ShopBuy.js';
+import { Window_ShopCommand } from 'src/windows/Window_ShopCommand.js';
+import { Window_ShopNumber } from 'src/windows/Window_ShopNumber.js';
+import { Window_ShopSell } from 'src/windows/Window_ShopSell.js';
+import { Window_ShopStatus } from 'src/windows/Window_ShopStatus.js';
+
 import { Scene_MenuBase } from './Scene_MenuBase.js';
-import { Window_Base, Window_Gold, Window_ItemCategory, Window_ShopBuy, Window_ShopCommand, Window_ShopNumber, Window_ShopSell, Window_ShopStatus } from '../windows/index.js';
 
 export class Scene_Shop extends Scene_MenuBase {
     constructor() {

@@ -2,7 +2,9 @@
 //
 // The window for changing various settings on the options screen.
 
-import { ConfigManager, TextManager } from '../managers/index.js';
+import { ConfigManager } from 'src/managers/ConfigManager.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Window_Command } from './Window_Command.js';
 
 export class Window_Options extends Window_Command {

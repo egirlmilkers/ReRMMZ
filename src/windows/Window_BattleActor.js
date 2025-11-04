@@ -2,7 +2,8 @@
 //
 // The window for selecting a target actor on the battle screen.
 
-import { DataManager } from '../managers/index.js';
+import { DataManager } from 'src/managers/DataManager.js';
+
 import { Window_BattleStatus } from './Window_BattleStatus.js';
 
 export class Window_BattleActor extends Window_BattleStatus {

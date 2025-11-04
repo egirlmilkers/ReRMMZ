@@ -2,8 +2,10 @@
 //
 // The window for displaying switches and variables on the debug screen.
 
-import { Input } from '../core/index.js';
-import { DataManager } from '../managers/index.js';
+import { Input } from 'src/core/Input.js';
+
+import { DataManager } from 'src/managers/DataManager.js';
+
 import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_DebugEdit extends Window_Selectable {

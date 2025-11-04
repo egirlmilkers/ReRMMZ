@@ -2,8 +2,13 @@
 //
 // The window for displaying text messages.
 
-import { Graphics, Input, TouchInput } from '../core/index.js';
-import { DataManager, ImageManager } from '../managers/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Input } from 'src/core/Input.js';
+import { TouchInput } from 'src/core/TouchInput.js';
+
+import { DataManager } from 'src/managers/DataManager.js';
+import { ImageManager } from 'src/managers/ImageManager.js';
+
 import { Window_Base } from './Window_Base.js';
 
 export class Window_Message extends Window_Base {

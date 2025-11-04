@@ -2,11 +2,17 @@
 //
 // The scene class of the skill screen.
 
-import { Graphics, Rectangle } from '../core/index.js';
-import { SoundManager } from '../managers/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { SoundManager } from 'src/managers/SoundManager.js';
+
+import { Window_SkillList } from 'src/windows/Window_SkillList.js';
+import { Window_SkillStatus } from 'src/windows/Window_SkillStatus.js';
+import { Window_SkillType } from 'src/windows/Window_SkillType.js';
+
 import { Scene_ItemBase } from './Scene_ItemBase.js';
 import { Scene_MenuBase } from './Scene_MenuBase.js';
-import { Window_SkillList, Window_SkillStatus, Window_SkillType } from '../windows/index.js';
 
 export class Scene_Skill extends Scene_ItemBase {
     constructor() {

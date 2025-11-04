@@ -3,8 +3,12 @@
 // The game object class for the party. Information such as gold and items is
 // included.
 
-import { DataManager, TextManager } from '../managers/index.js';
-import { Game_Item, Game_Unit } from '../objects/index.js';
+import { DataManager } from "../managers/DataManager";
+import { TextManager } from "../managers/TextManager";
+
+import { Game_Item } from "./Game_Item";
+import { Game_Unit } from "./Game_Unit";
+
 
 export class Game_Party extends Game_Unit {
 	static ABILITY_ENCOUNTER_HALF = 0;

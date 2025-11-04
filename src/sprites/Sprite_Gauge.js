@@ -2,8 +2,13 @@
 //
 // The sprite for displaying a status gauge.
 
-import { Bitmap, Sprite } from '../core/index.js';
-import { ColorManager, DataManager, TextManager } from '../managers/index.js';
+import { Bitmap } from "src/core/Bitmap";
+import { Sprite } from "src/core/Sprite";
+
+import { ColorManager } from "src/managers/ColorManager";
+import { DataManager } from "src/managers/DataManager";
+import { TextManager } from "src/managers/TextManager";
+
 
 export class Sprite_Gauge extends Sprite {
     constructor() {

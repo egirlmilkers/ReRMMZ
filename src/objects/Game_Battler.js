@@ -3,9 +3,13 @@
 // The superclass of Game_Actor and Game_Enemy. It contains methods for sprites
 // and actions.
 
-import { BattleManager, DataManager, SoundManager } from '../managers/index.js';
+import { BattleManager } from '../managers/BattleManager.js';
+import { DataManager } from '../managers/DataManager.js';
+import { SoundManager } from '../managers/SoundManager.js';
+
+import { Game_Action } from './Game_Action.js';
+import { Game_ActionResult } from './Game_ActionResult.js';
 import { Game_BattlerBase } from './Game_BattlerBase.js'; // fixes circular dependency
-import { Game_Action, Game_ActionResult } from '../objects/index.js';
 
 export class Game_Battler extends Game_BattlerBase {
     constructor() {

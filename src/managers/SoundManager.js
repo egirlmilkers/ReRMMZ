@@ -2,7 +2,9 @@
 //
 // The static class that plays sound effects defined in the database.
 
-import { AudioManager, DataManager } from '../managers/index.js';
+import { AudioManager } from "./AudioManager";
+import { DataManager } from "./DataManager";
+
 
 export class SoundManager {
     constructor() {

@@ -2,8 +2,10 @@
 //
 // The game object class for a battle action.
 
-import { DataManager } from '../managers/index.js';
-import { Game_Item } from '../objects/index.js';
+import { DataManager } from "../managers/DataManager";
+
+import { Game_Item } from "./Game_Item";
+
 
 export class Game_Action {
 	static EFFECT_RECOVER_HP = 11;

@@ -2,8 +2,11 @@
 //
 // The window for displaying a speaker name above the message window.
 
-import { Graphics, Rectangle } from '../core/index.js';
-import { DataManager } from '../managers/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { DataManager } from 'src/managers/DataManager.js';
+
 import { Window_Base } from './Window_Base.js';
 
 export class Window_NameBox extends Window_Base {

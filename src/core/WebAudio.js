@@ -1,4 +1,4 @@
-import { Utils } from '../core/index.js';
+import { Utils } from "./Utils";
 
 /**
  * The audio object of Web Audio API.

@@ -2,8 +2,11 @@
 //
 // The game object class for the system data.
 
-import { Graphics } from '../core/index.js';
-import { AudioManager, DataManager } from '../managers/index.js';
+import { Graphics } from "../core/Graphics";
+
+import { AudioManager } from "../managers/AudioManager";
+import { DataManager } from "../managers/DataManager";
+
 
 export class Game_System {
     constructor() {

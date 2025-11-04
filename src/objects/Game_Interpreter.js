@@ -2,11 +2,29 @@
 //
 // The interpreter for running event commands.
 
-import { Video, Input, Utils, Graphics, Point } from '../core/index.js';
+import { Graphics } from "../core/Graphics";
+import { Point } from "../core/Point";
+import { Input } from "../core/Input";
+import { Utils } from "../core/Utils";
+import { Video } from "../core/Video";
 
-import { ImageManager, SceneManager, BattleManager, DataManager, AudioManager, PluginManager } from '../managers/index.js';
-import { Scene_Battle, Scene_Shop, Scene_Name, Scene_Menu, Scene_Save, Scene_Gameover, Scene_Title } from '../scenes/index.js';
-import { Window_MenuCommand } from '../windows/index.js';
+import { AudioManager } from "../managers/AudioManager";
+import { BattleManager } from "../managers/BattleManager";
+import { DataManager } from "../managers/DataManager";
+import { ImageManager } from "../managers/ImageManager";
+import { PluginManager } from "../managers/PluginManager";
+import { SceneManager } from "../managers/SceneManager";
+import { Scene_Battle } from "../scenes/Scene_Battle";
+import { Scene_Gameover } from "../scenes/Scene_Gameover";
+import { Scene_Menu } from "../scenes/Scene_Menu";
+import { Scene_Name } from "../scenes/Scene_Name";
+import { Scene_Save } from "../scenes/Scene_Save";
+import { Scene_Shop } from "../scenes/Scene_Shop";
+import { Scene_Title } from "../scenes/Scene_Title";
+
+import { Window_MenuCommand } from "../windows/Window_MenuCommand";
+
+
 
 export class Game_Interpreter {
     constructor(depth) {

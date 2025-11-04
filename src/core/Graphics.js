@@ -1,4 +1,8 @@
-import { Stage, Utils, Video } from '../core/index.js';
+import { EffekseerContext } from "effekseer";
+
+import { Stage } from "./Stage";
+import { Utils } from "./Utils";
+import { Video } from "./Video";
 
 /**
  * The static class that carries out graphics processing.

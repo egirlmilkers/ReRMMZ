@@ -2,7 +2,9 @@
 //
 // The window for selecting New Game/Continue on the title screen.
 
-import { DataManager, TextManager } from '../managers/index.js';
+import { DataManager } from 'src/managers/DataManager.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Window_Command } from './Window_Command.js';
 
 export class Window_TitleCommand extends Window_Command {

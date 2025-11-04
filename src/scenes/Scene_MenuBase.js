@@ -12,7 +12,9 @@ import { SceneManager } from '../managers/SceneManager.js';
 import { SoundManager } from '../managers/SoundManager.js';
 
 import { Sprite_Button } from '../sprites/Sprite_Button.js';
+
 import { Window_Help } from '../windows/Window_Help.js';
+
 import { Scene_Base } from "./Scene_Base.js";
 
 export class Scene_MenuBase extends Scene_Base {

@@ -2,9 +2,26 @@
 //
 // The static class that manages the database and game objects.
 
-import { Graphics, Utils } from '../core/index.js';
-import { BattleManager, ImageManager, StorageManager } from '../managers/index.js';
-import { Game_Actors, Game_Map, Game_Message, Game_Party, Game_Player, Game_Screen, Game_SelfSwitches, Game_Switches, Game_System, Game_Temp, Game_Timer, Game_Troop, Game_Variables } from '../objects/index.js';
+import { Utils } from "../core/Utils";
+import { Graphics } from "../core/Graphics";
+
+import { Game_Actors } from "../objects/Game_Actors";
+import { Game_Map } from "../objects/Game_Map";
+import { Game_Message } from "../objects/Game_Message";
+import { Game_Party } from "../objects/Game_Party";
+import { Game_Player } from "../objects/Game_Player";
+import { Game_Screen } from "../objects/Game_Screen";
+import { Game_SelfSwitches } from "../objects/Game_SelfSwitches";
+import { Game_Switches } from "../objects/Game_Switches";
+import { Game_System } from "../objects/Game_System";
+import { Game_Temp } from "../objects/Game_Temp";
+import { Game_Timer } from "../objects/Game_Timer";
+import { Game_Troop } from "../objects/Game_Troop";
+import { Game_Variables } from "../objects/Game_Variables";
+
+import { BattleManager } from "./BattleManager";
+import { ImageManager } from "./ImageManager";
+
 
 export class DataManager {
 	static $dataActors = null;

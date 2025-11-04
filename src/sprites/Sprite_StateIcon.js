@@ -2,8 +2,10 @@
 //
 // The sprite for displaying state icons.
 
-import { Sprite } from '../core/index.js';
-import { ImageManager } from '../managers/index.js';
+import { Sprite } from "src/core/Sprite";
+
+import { ImageManager } from "src/managers/ImageManager";
+
 
 export class Sprite_StateIcon extends Sprite {
     constructor() {

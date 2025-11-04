@@ -2,8 +2,13 @@
 //
 // The sprite for displaying an enemy.
 
-import { DataManager, ImageManager, SoundManager } from '../managers/index.js';
-import { Sprite_Battler, Sprite_StateIcon } from '../sprites/index.js';
+import { DataManager } from "src/managers/DataManager";
+import { ImageManager } from "src/managers/ImageManager";
+import { SoundManager } from "src/managers/SoundManager";
+
+import { Sprite_Battler } from "./Sprite_Battler";
+import { Sprite_StateIcon } from "./Sprite_StateIcon";
+
 
 export class Sprite_Enemy extends Sprite_Battler {
     constructor(battler) {

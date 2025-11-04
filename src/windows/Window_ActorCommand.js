@@ -2,7 +2,10 @@
 //
 // The window for selecting an actor's action on the battle screen.
 
-import { ConfigManager, DataManager, TextManager } from '../managers/index.js';
+import { ConfigManager } from 'src/managers/ConfigManager.js';
+import { DataManager } from 'src/managers/DataManager.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Window_Command } from './Window_Command.js';
 
 export class Window_ActorCommand extends Window_Command {

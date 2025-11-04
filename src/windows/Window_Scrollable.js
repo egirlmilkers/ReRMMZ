@@ -2,7 +2,10 @@
 //
 // The window class with scroll functions.
 
-import { Input, Point, TouchInput } from '../core/index.js';
+import { Input } from 'src/core/Input.js';
+import { Point } from 'src/core/Point.js';
+import { TouchInput } from 'src/core/TouchInput.js';
+
 import { Window_Base } from './Window_Base.js';
 
 export class Window_Scrollable extends Window_Base {

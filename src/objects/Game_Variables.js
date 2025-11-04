@@ -2,7 +2,8 @@
 //
 // The game object class for variables.
 
-import { DataManager } from '../managers/index.js';
+import { DataManager } from "../managers/DataManager";
+
 
 export class Game_Variables {
     constructor() {

@@ -2,7 +2,9 @@
 //
 // The window for displaying parameters on the status screen.
 
-import { ColorManager, TextManager } from '../managers/index.js';
+import { ColorManager } from 'src/managers/ColorManager.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Window_StatusBase } from './Window_StatusBase.js';
 
 export class Window_StatusParams extends Window_StatusBase {

@@ -2,7 +2,8 @@
 //
 // The window for selecting "Go to Title" on the game end screen.
 
-import { TextManager } from '../managers/index.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Window_Command } from './Window_Command.js';
 
 export class Window_GameEnd extends Window_Command {

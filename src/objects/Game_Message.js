@@ -3,7 +3,8 @@
 // The game object class for the state of the message window that displays text
 // or selections, etc.
 
-import { Utils } from '../core/index.js';
+import { Utils } from "../core/Utils";
+
 
 export class Game_Message {
     constructor() {

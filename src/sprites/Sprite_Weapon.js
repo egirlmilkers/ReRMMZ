@@ -2,8 +2,10 @@
 //
 // The sprite for displaying a weapon image for attacking.
 
-import { Sprite } from '../core/index.js';
-import { ImageManager } from '../managers/index.js';
+import { Sprite } from "src/core/Sprite";
+
+import { ImageManager } from "src/managers/ImageManager";
+
 
 export class Sprite_Weapon extends Sprite {
     constructor() {

@@ -2,11 +2,26 @@
 //
 // The scene class of the menu screen.
 
-import { Graphics, Rectangle } from '../core/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
 
-import { DataManager, SceneManager } from '../managers/index.js';
-import { Scene_Equip, Scene_GameEnd, Scene_Item, Scene_MenuBase, Scene_Options, Scene_Save, Scene_Skill, Scene_Status } from '../scenes/index.js';
-import { Window_Gold, Window_MenuCommand, Window_MenuStatus } from '../windows/index.js';
+import { DataManager } from "src/managers/DataManager";
+import { SceneManager } from "src/managers/SceneManager";
+
+import { Window_Gold } from "src/windows/Window_Gold";
+import { Window_MenuCommand } from "src/windows/Window_MenuCommand";
+import { Window_MenuStatus } from "src/windows/Window_MenuStatus";
+
+import { Scene_Equip } from "./Scene_Equip";
+import { Scene_GameEnd } from "./Scene_GameEnd";
+import { Scene_Item } from "./Scene_Item";
+import { Scene_MenuBase } from "./Scene_MenuBase";
+import { Scene_Options } from "./Scene_Options";
+import { Scene_Save } from "./Scene_Save";
+import { Scene_Skill } from "./Scene_Skill";
+import { Scene_Status } from "./Scene_Status";
+
+
 
 export class Scene_Menu extends Scene_MenuBase {
     constructor() {

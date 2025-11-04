@@ -2,7 +2,8 @@
 //
 // The static class that loads font files.
 
-import { Utils } from '../core/index.js';
+import { Utils } from "../core/Utils";
+
 
 export class FontManager {
 	static _urls = {};

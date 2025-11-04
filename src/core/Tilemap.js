@@ -1,4 +1,5 @@
-import { Graphics, Point } from '../core/index.js';
+import { Graphics } from "./Graphics";
+import { Point } from "./Point";
 
 /**
  * The tilemap which displays 2D tile-based game map.

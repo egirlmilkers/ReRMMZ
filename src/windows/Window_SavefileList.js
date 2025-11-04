@@ -2,7 +2,9 @@
 //
 // The window for selecting a save file on the save and load screens.
 
-import { DataManager, TextManager } from '../managers/index.js';
+import { DataManager } from 'src/managers/DataManager.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_SavefileList extends Window_Selectable {

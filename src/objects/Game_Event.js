@@ -3,8 +3,11 @@
 // The game object class for an event. It contains functionality for event page
 // switching and running parallel process events.
 
-import { DataManager } from '../managers/index.js';
-import { Game_Character, Game_Interpreter } from '../objects/index.js';
+import { DataManager } from "../managers/DataManager";
+
+import { Game_Character } from "./Game_Character";
+import { Game_Interpreter } from "./Game_Interpreter";
+
 
 export class Game_Event extends Game_Character {
     constructor(mapId, eventId) {

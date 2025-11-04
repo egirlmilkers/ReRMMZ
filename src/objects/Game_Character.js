@@ -2,7 +2,9 @@
 //
 // The superclass of Game_Player, Game_Follower, GameVehicle, and Game_Event.
 
-import { AudioManager, DataManager } from '../managers/index.js';
+import { DataManager } from '../managers/DataManager.js';
+import { AudioManager } from '../managers/AudioManager.js';
+
 import { Game_CharacterBase } from './Game_CharacterBase.js';
 
 export class Game_Character extends Game_CharacterBase {

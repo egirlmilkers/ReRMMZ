@@ -2,8 +2,12 @@
 //
 // The sprite for displaying a popup damage.
 
-import { Bitmap, Sprite } from '../core/index.js';
-import { ColorManager, DataManager } from '../managers/index.js';
+import { Bitmap } from "src/core/Bitmap";
+import { Sprite } from "src/core/Sprite";
+
+import { ColorManager } from "src/managers/ColorManager";
+import { DataManager } from "src/managers/DataManager";
+
 
 export class Sprite_Damage extends Sprite {
     constructor() {

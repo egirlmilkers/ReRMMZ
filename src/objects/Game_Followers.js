@@ -2,8 +2,10 @@
 //
 // The wrapper class for a follower array.
 
-import { DataManager } from '../managers/index.js';
-import { Game_Follower } from '../objects/index.js';
+import { DataManager } from "../managers/DataManager";
+
+import { Game_Follower } from "./Game_Follower";
+
 
 export class Game_Followers {
     constructor() {

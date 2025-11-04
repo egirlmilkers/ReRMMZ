@@ -2,8 +2,11 @@
 //
 // The sprite for displaying a button.
 
-import { Input, Rectangle } from '../core/index.js';
-import { ImageManager } from '../managers/index.js';
+import { Input } from 'src/core/Input.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { ImageManager } from 'src/managers/ImageManager.js';
+
 import { Sprite_Clickable } from './Sprite_Clickable.js';
 
 export class Sprite_Button extends Sprite_Clickable {

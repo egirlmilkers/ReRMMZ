@@ -2,9 +2,14 @@
 //
 // The sprite for displaying a background image in battle.
 
-import { Graphics, TilingSprite } from '../core/index.js';
+import { Graphics } from "src/core/Graphics";
+import { TilingSprite } from "src/core/TilingSprite";
 
-import { BattleManager, DataManager, ImageManager } from '../managers/index.js';
+import { BattleManager } from "src/managers/BattleManager";
+import { DataManager } from "src/managers/DataManager";
+import { ImageManager } from "src/managers/ImageManager";
+
+
 
 export class Sprite_Battleback extends TilingSprite {
     constructor(type) {

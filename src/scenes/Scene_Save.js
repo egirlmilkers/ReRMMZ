@@ -2,7 +2,10 @@
 //
 // The scene class of the save screen.
 
-import { DataManager, SoundManager, TextManager } from '../managers/index.js';
+import { DataManager } from 'src/managers/DataManager.js';
+import { SoundManager } from 'src/managers/SoundManager.js';
+import { TextManager } from 'src/managers/TextManager.js';
+
 import { Scene_File } from './Scene_File.js';
 
 export class Scene_Save extends Scene_File {

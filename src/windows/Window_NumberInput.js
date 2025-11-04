@@ -2,9 +2,15 @@
 //
 // The window used for the event command [Input Number].
 
-import { Graphics, Input, Rectangle } from '../core/index.js';
-import { ConfigManager, DataManager } from '../managers/index.js';
-import { Sprite_Button } from '../sprites/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Input } from 'src/core/Input.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { ConfigManager } from 'src/managers/ConfigManager.js';
+import { DataManager } from 'src/managers/DataManager.js';
+
+import { Sprite_Button } from 'src/sprites/Sprite_Button.js';
+
 import { Window_Selectable } from './Window_Selectable.js';
 
 export class Window_NumberInput extends Window_Selectable {

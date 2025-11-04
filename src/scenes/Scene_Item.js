@@ -2,11 +2,17 @@
 //
 // The scene class of the item screen.
 
-import { Graphics, Rectangle } from '../core/index.js';
 
-import { DataManager, SoundManager } from '../managers/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { DataManager } from 'src/managers/DataManager.js';
+import { SoundManager } from 'src/managers/SoundManager.js';
+
+import { Window_ItemCategory } from 'src/windows/Window_ItemCategory.js';
+import { Window_ItemList } from 'src/windows/Window_ItemList.js';
+
 import { Scene_ItemBase } from './Scene_ItemBase.js';
-import { Window_ItemCategory, Window_ItemList } from '../windows/index.js';
 
 export class Scene_Item extends Scene_ItemBase {
     constructor() {

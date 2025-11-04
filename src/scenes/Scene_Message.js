@@ -2,9 +2,18 @@
 //
 // The superclass of Scene_Map and Scene_Battle.
 
-import { Graphics, Rectangle } from '../core/index.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Rectangle } from 'src/core/Rectangle.js';
+
+import { Window_ChoiceList } from 'src/windows/Window_ChoiceList.js';
+import { Window_EventItem } from 'src/windows/Window_EventItem.js';
+import { Window_Gold } from 'src/windows/Window_Gold.js';
+import { Window_Message } from 'src/windows/Window_Message.js';
+import { Window_NameBox } from 'src/windows/Window_NameBox.js';
+import { Window_NumberInput } from 'src/windows/Window_NumberInput.js';
+import { Window_ScrollText } from 'src/windows/Window_ScrollText.js';
+
 import { Scene_Base } from './Scene_Base.js';
-import { Window_ChoiceList, Window_EventItem, Window_Gold, Window_Message, Window_NameBox, Window_NumberInput, Window_ScrollText } from '../windows/index.js';
 
 export class Scene_Message extends Scene_Base {
     constructor() {

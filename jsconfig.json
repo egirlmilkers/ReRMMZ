@@ -19,7 +19,8 @@
 	},
 	"include": [
 		"src",
-		"lib/effekseer/effekseer.d.ts"
+		"lib/effekseer/effekseer.d.ts",
+		"node_modules/pixi.js/pixi.js.d.ts"
 	],
 	"exclude": [
 		"node_modules",

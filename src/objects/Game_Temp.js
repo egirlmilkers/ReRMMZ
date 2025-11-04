@@ -2,8 +2,10 @@
 //
 // The game object class for temporary data that is not included in save data.
 
-import { Utils } from '../core/index.js';
-import { DataManager } from '../managers/index.js';
+import { Utils } from "../core/Utils";
+
+import { DataManager } from "../managers/DataManager";
+
 
 export class Game_Temp {
     constructor() {

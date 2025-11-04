@@ -1,4 +1,8 @@
-import { Bitmap, Graphics, ScreenSprite, Sprite, Point } from '../core/index.js';
+import { Bitmap } from "./Bitmap";
+import { Graphics } from "./Graphics";
+import { Point } from "./Point";
+import { ScreenSprite } from "./ScreenSprite";
+import { Sprite } from "./Sprite";
 
 /**
  * The weather effect which displays rain, storm, or snow.

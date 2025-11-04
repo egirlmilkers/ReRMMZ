@@ -2,12 +2,35 @@
 //
 // The scene class of the map screen.
 
-import { Graphics, Input, Rectangle, TouchInput } from '../core/index.js';
+import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "src/core/Graphics";
+import { Input } from "src/core/Input";
+import { TouchInput } from "src/core/TouchInput";
 
-import { AudioManager, BattleManager, ConfigManager, DataManager, EffectManager, ImageManager, SceneManager, SoundManager } from '../managers/index.js';
-import { Scene_Battle, Scene_Debug, Scene_Gameover, Scene_Load, Scene_Menu, Scene_Message, Scene_Title } from '../scenes/index.js';
-import { Sprite_Button, Spriteset_Map } from '../sprites/index.js';
-import { Window_MapName, Window_MenuCommand } from '../windows/index.js';
+import { AudioManager } from "src/managers/AudioManager";
+import { BattleManager } from "src/managers/BattleManager";
+import { ConfigManager } from "src/managers/ConfigManager";
+import { DataManager } from "src/managers/DataManager";
+import { EffectManager } from "src/managers/EffectManager";
+import { ImageManager } from "src/managers/ImageManager";
+import { SceneManager } from "src/managers/SceneManager";
+import { SoundManager } from "src/managers/SoundManager";
+
+import { Sprite_Button } from "src/sprites/Sprite_Button";
+import { Spriteset_Map } from "src/sprites/Spriteset_Map";
+
+import { Window_MapName } from "src/windows/Window_MapName";
+import { Window_MenuCommand } from "src/windows/Window_MenuCommand";
+
+import { Scene_Battle } from "./Scene_Battle";
+import { Scene_Debug } from "./Scene_Debug";
+import { Scene_Gameover } from "./Scene_Gameover";
+import { Scene_Load } from "./Scene_Load";
+import { Scene_Menu } from "./Scene_Menu";
+import { Scene_Message } from "./Scene_Message";
+import { Scene_Title } from "./Scene_Title";
+
+
 
 export class Scene_Map extends Scene_Message {
     constructor() {

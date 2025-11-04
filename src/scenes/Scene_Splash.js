@@ -2,8 +2,14 @@
 //
 // The scene class of the splash screen.
 
-import { Input, Sprite, TouchInput } from '../core/index.js';
-import { DataManager, ImageManager, SceneManager } from '../managers/index.js';
+import { Sprite } from 'src/core/Sprite.js';
+import { Input } from 'src/core/Input.js';
+import { TouchInput } from 'src/core/TouchInput.js';
+
+import { DataManager } from 'src/managers/DataManager.js';
+import { ImageManager } from 'src/managers/ImageManager.js';
+import { SceneManager } from 'src/managers/SceneManager.js';
+
 import { Scene_Base } from './Scene_Base.js';
 import { Scene_Title } from './Scene_Title.js';
 

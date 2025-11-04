@@ -2,9 +2,21 @@
 //
 // The superclass of all scenes within the game.
 
-import { ColorFilter, Graphics, Stage, WindowLayer } from '../core/index.js';
-import { AudioManager, DataManager, EffectManager, FontManager, ImageManager, SceneManager } from '../managers/index.js';
-import { Window_Base, Window_Selectable } from '../windows/index.js';
+
+import { ColorFilter } from 'src/core/ColorFilter.js';
+import { Graphics } from 'src/core/Graphics.js';
+import { Stage } from 'src/core/Stage.js';
+import { WindowLayer } from 'src/core/WindowLayer.js';
+
+import { AudioManager } from 'src/managers/AudioManager.js';
+import { DataManager } from 'src/managers/DataManager.js';
+import { EffectManager } from 'src/managers/EffectManager.js';
+import { FontManager } from 'src/managers/FontManager.js';
+import { ImageManager } from 'src/managers/ImageManager.js';
+import { SceneManager } from 'src/managers/SceneManager.js';
+
+import { Window_Base } from 'src/windows/Window_Base.js';
+import { Window_Selectable } from 'src/windows/Window_Selectable.js';
 
 import { Scene_Gameover } from './Scene_Gameover.js';
 

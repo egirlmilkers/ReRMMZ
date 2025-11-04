@@ -2,10 +2,14 @@
 //
 // The sprite for displaying an actor.
 
-import { Sprite } from '../core/index.js';
-import { BattleManager, ImageManager } from '../managers/index.js';
+import { Sprite } from 'src/core/Sprite.js';
+
+import { BattleManager } from 'src/managers/BattleManager.js';
+import { ImageManager } from 'src/managers/ImageManager.js';
+
 import { Sprite_Battler } from './Sprite_Battler.js';
-import { Sprite_StateOverlay, Sprite_Weapon } from '../sprites/index.js';
+import { Sprite_StateOverlay } from './Sprite_StateOverlay.js';
+import { Sprite_Weapon } from './Sprite_Weapon.js';
 
 export class Sprite_Actor extends Sprite_Battler {
 	static MOTIONS = {

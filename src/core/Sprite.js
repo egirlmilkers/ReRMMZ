@@ -1,4 +1,6 @@
-import {Bitmap, ColorFilter, Rectangle} from '../core/index.js';
+import { Bitmap } from "./Bitmap";
+import { ColorFilter } from "./ColorFilter";
+import { Rectangle } from "./Rectangle";
 
 /**
  * The basic object that is rendered to the game screen.
