@@ -1,5 +1,5 @@
-import { PluginManager } from './managers/PluginManager.js';
-import { SceneManager } from './managers/SceneManager.js';
+import { PluginManager } from "./managers/PluginManager.js";
+import { SceneManager } from "./managers/SceneManager.js";
 
 import { Scene_Boot } from "./scenes/Scene_Boot.js";
 
@@ -29,7 +29,7 @@ class Main {
 	}
 
 	run() {
-		console.log("Running Main.run...")
+		console.log("Running Main.run...");
 		this.showLoadingSpinner();
 		this.testXhr();
 		this.hookNwjsClose();
@@ -111,7 +111,9 @@ class Main {
 	}
 
 	makeErrorHtml(name, message) {
-		console.log(`Running makeErrorHtml -> name: ${name}, message: ${message}...`);
+		console.log(
+			`Running makeErrorHtml -> name: ${name}, message: ${message}...`,
+		);
 		const nameDiv = document.createElement("div");
 		const messageDiv = document.createElement("div");
 		nameDiv.id = "errorName";
@@ -161,7 +163,7 @@ class Main {
 	}
 
 	onEffekseerLoad() {
-		console.log("Running onEffekseerLoad...")
+		console.log("Running onEffekseerLoad...");
 		this.eraseLoadingSpinner();
 		SceneManager.run(Scene_Boot);
 	}

@@ -2,18 +2,18 @@
 //
 // The command window for the horizontal selection format.
 
-import { Window_Command } from './Window_Command.js';
+import { Window_Command } from "./Window_Command.js";
 
 export class Window_HorzCommand extends Window_Command {
-    constructor(rect) {
-        super(rect);
-    }
+	constructor(rect) {
+		super(rect);
+	}
 
-    maxCols() {
-        return 4;
-    }
+	maxCols() {
+		return 4;
+	}
 
-    itemTextAlign() {
-        return "center";
-    }
+	itemTextAlign() {
+		return "center";
+	}
 }

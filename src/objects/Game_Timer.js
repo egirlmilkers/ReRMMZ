@@ -4,46 +4,45 @@
 
 import { BattleManager } from "../managers/BattleManager";
 
-
 export class Game_Timer {
-    constructor() {
-        this._frames = 0;
-        this._working = false;
-    }
+	constructor() {
+		this._frames = 0;
+		this._working = false;
+	}
 
-    update(sceneActive) {
-        if (sceneActive && this._working && this._frames > 0) {
-            this._frames--;
-            if (this._frames === 0) {
-                this.onExpire();
-            }
-        }
-    }
+	update(sceneActive) {
+		if (sceneActive && this._working && this._frames > 0) {
+			this._frames--;
+			if (this._frames === 0) {
+				this.onExpire();
+			}
+		}
+	}
 
-    start(count) {
-        this._frames = count;
-        this._working = true;
-    }
+	start(count) {
+		this._frames = count;
+		this._working = true;
+	}
 
-    stop() {
-        this._working = false;
-    }
+	stop() {
+		this._working = false;
+	}
 
-    isWorking() {
-        return this._working;
-    }
+	isWorking() {
+		return this._working;
+	}
 
-    seconds() {
-        return Math.floor(this._frames / 60);
-    }
+	seconds() {
+		return Math.floor(this._frames / 60);
+	}
 
-    frames() {
-        return this._frames;
-    }
+	frames() {
+		return this._frames;
+	}
 
-    onExpire() {
-        BattleManager.abort();
-    }
+	onExpire() {
+		BattleManager.abort();
+	}
 }
 
 1;

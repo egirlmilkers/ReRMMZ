@@ -4,31 +4,33 @@
 
 import { DataManager } from "../managers/DataManager";
 
-
 export class Game_Variables {
-    constructor() {
-        this.clear();
-    }
+	constructor() {
+		this.clear();
+	}
 
-    clear() {
-        this._data = [];
-    }
+	clear() {
+		this._data = [];
+	}
 
-    value(variableId) {
-        return this._data[variableId] || 0;
-    }
+	value(variableId) {
+		return this._data[variableId] || 0;
+	}
 
-    setValue(variableId, value) {
-        if (variableId > 0 && variableId < DataManager.$dataSystem.variables.length) {
-            if (typeof value === "number") {
-                value = Math.floor(value);
-            }
-            this._data[variableId] = value;
-            this.onChange();
-        }
-    }
+	setValue(variableId, value) {
+		if (
+			variableId > 0 &&
+			variableId < DataManager.$dataSystem.variables.length
+		) {
+			if (typeof value === "number") {
+				value = Math.floor(value);
+			}
+			this._data[variableId] = value;
+			this.onChange();
+		}
+	}
 
-    onChange() {
-        DataManager.$gameMap.requestRefresh();
-    }
+	onChange() {
+		DataManager.$gameMap.requestRefresh();
+	}
 }

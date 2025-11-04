@@ -4,30 +4,29 @@
 
 import { DataManager } from "../managers/DataManager";
 
-
 export class Game_SelfSwitches {
-    constructor() {
-        this.clear();
-    }
+	constructor() {
+		this.clear();
+	}
 
-    clear() {
-        this._data = {};
-    }
+	clear() {
+		this._data = {};
+	}
 
-    value(key) {
-        return !!this._data[key];
-    }
+	value(key) {
+		return !!this._data[key];
+	}
 
-    setValue(key, value) {
-        if (value) {
-            this._data[key] = true;
-        } else {
-            delete this._data[key];
-        }
-        this.onChange();
-    }
+	setValue(key, value) {
+		if (value) {
+			this._data[key] = true;
+		} else {
+			delete this._data[key];
+		}
+		this.onChange();
+	}
 
-    onChange() {
-        DataManager.$gameMap.requestRefresh();
-    }
+	onChange() {
+		DataManager.$gameMap.requestRefresh();
+	}
 }

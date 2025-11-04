@@ -4,28 +4,30 @@
 
 import { DataManager } from "../managers/DataManager";
 
-
 export class Game_Switches {
-    constructor() {
-        this.clear();
-    }
+	constructor() {
+		this.clear();
+	}
 
-    clear() {
-        this._data = [];
-    }
+	clear() {
+		this._data = [];
+	}
 
-    value(switchId) {
-        return !!this._data[switchId];
-    }
+	value(switchId) {
+		return !!this._data[switchId];
+	}
 
-    setValue(switchId, value) {
-        if (switchId > 0 && switchId < DataManager.$dataSystem.switches.length) {
-            this._data[switchId] = value;
-            this.onChange();
-        }
-    }
+	setValue(switchId, value) {
+		if (
+			switchId > 0 &&
+			switchId < DataManager.$dataSystem.switches.length
+		) {
+			this._data[switchId] = value;
+			this.onChange();
+		}
+	}
 
-    onChange() {
-        DataManager.$gameMap.requestRefresh();
-    }
+	onChange() {
+		DataManager.$gameMap.requestRefresh();
+	}
 }

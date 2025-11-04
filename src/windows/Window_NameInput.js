@@ -2,13 +2,13 @@
 //
 // The window for selecting text characters on the name input screen.
 
-import { Input } from 'src/core/Input.js';
-import { Rectangle } from 'src/core/Rectangle.js';
+import { Input } from "src/core/Input.js";
+import { Rectangle } from "src/core/Rectangle.js";
 
-import { DataManager } from 'src/managers/DataManager.js';
-import { SoundManager } from 'src/managers/SoundManager.js';
+import { DataManager } from "src/managers/DataManager.js";
+import { SoundManager } from "src/managers/SoundManager.js";
 
-import { Window_Selectable } from './Window_Selectable.js';
+import { Window_Selectable } from "./Window_Selectable.js";
 
 export class Window_NameInput extends Window_Selectable {
 	// prettier-ignore
@@ -77,201 +77,206 @@ export class Window_NameInput extends Window_Selectable {
 			"０", "１", "２", "３", "４", "！", "＃", "＄", "％", "＆",
 			"５", "６", "７", "８", "９", "（", "）", "＊", "＋", "－",
 			"／", "＝", "＠", "＜", "＞", "：", "；", "　", "かな", "決定"];
-	
-    constructor(rect) {
-        super(rect);
-        this._editWindow = null;
-        this._page = 0;
-        this._index = 0;
-    }
 
-    setEditWindow(editWindow) {
-        this._editWindow = editWindow;
-        this.refresh();
-        this.updateCursor();
-        this.activate();
-    }
+	constructor(rect) {
+		super(rect);
+		this._editWindow = null;
+		this._page = 0;
+		this._index = 0;
+	}
 
-    table() {
-        if (DataManager.$gameSystem.isJapanese()) {
-            return [Window_NameInput.JAPAN1, Window_NameInput.JAPAN2, Window_NameInput.JAPAN3];
-        } else if (DataManager.$gameSystem.isRussian()) {
-            return [Window_NameInput.RUSSIA];
-        } else {
-            return [Window_NameInput.LATIN1, Window_NameInput.LATIN2];
-        }
-    }
+	setEditWindow(editWindow) {
+		this._editWindow = editWindow;
+		this.refresh();
+		this.updateCursor();
+		this.activate();
+	}
 
-    maxCols() {
-        return 10;
-    }
+	table() {
+		if (DataManager.$gameSystem.isJapanese()) {
+			return [
+				Window_NameInput.JAPAN1,
+				Window_NameInput.JAPAN2,
+				Window_NameInput.JAPAN3,
+			];
+		} else if (DataManager.$gameSystem.isRussian()) {
+			return [Window_NameInput.RUSSIA];
+		} else {
+			return [Window_NameInput.LATIN1, Window_NameInput.LATIN2];
+		}
+	}
 
-    maxItems() {
-        return 90;
-    }
+	maxCols() {
+		return 10;
+	}
 
-    itemWidth() {
-        return Math.floor((this.innerWidth - this.groupSpacing()) / 10);
-    }
+	maxItems() {
+		return 90;
+	}
 
-    groupSpacing() {
-        return 24;
-    }
+	itemWidth() {
+		return Math.floor((this.innerWidth - this.groupSpacing()) / 10);
+	}
 
-    character() {
-        return this._index < 88 ? this.table()[this._page][this._index] : "";
-    }
+	groupSpacing() {
+		return 24;
+	}
 
-    isPageChange() {
-        return this._index === 88;
-    }
+	character() {
+		return this._index < 88 ? this.table()[this._page][this._index] : "";
+	}
 
-    isOk() {
-        return this._index === 89;
-    }
+	isPageChange() {
+		return this._index === 88;
+	}
 
-    itemRect(index) {
-        const itemWidth = this.itemWidth();
-        const itemHeight = this.itemHeight();
-        const colSpacing = this.colSpacing();
-        const rowSpacing = this.rowSpacing();
-        const groupSpacing = this.groupSpacing();
-        const col = index % 10;
-        const group = Math.floor(col / 5);
-        const x = col * itemWidth + group * groupSpacing + colSpacing / 2;
-        const y = Math.floor(index / 10) * itemHeight + rowSpacing / 2;
-        const width = itemWidth - colSpacing;
-        const height = itemHeight - rowSpacing;
-        return new Rectangle(x, y, width, height);
-    }
+	isOk() {
+		return this._index === 89;
+	}
 
-    drawItem(index) {
-        const table = this.table();
-        const character = table[this._page][index];
-        const rect = this.itemLineRect(index);
-        this.drawText(character, rect.x, rect.y, rect.width, "center");
-    }
+	itemRect(index) {
+		const itemWidth = this.itemWidth();
+		const itemHeight = this.itemHeight();
+		const colSpacing = this.colSpacing();
+		const rowSpacing = this.rowSpacing();
+		const groupSpacing = this.groupSpacing();
+		const col = index % 10;
+		const group = Math.floor(col / 5);
+		const x = col * itemWidth + group * groupSpacing + colSpacing / 2;
+		const y = Math.floor(index / 10) * itemHeight + rowSpacing / 2;
+		const width = itemWidth - colSpacing;
+		const height = itemHeight - rowSpacing;
+		return new Rectangle(x, y, width, height);
+	}
 
-    updateCursor() {
-        const rect = this.itemRect(this._index);
-        this.setCursorRect(rect.x, rect.y, rect.width, rect.height);
-    }
+	drawItem(index) {
+		const table = this.table();
+		const character = table[this._page][index];
+		const rect = this.itemLineRect(index);
+		this.drawText(character, rect.x, rect.y, rect.width, "center");
+	}
 
-    isCursorMovable() {
-        return this.active;
-    }
+	updateCursor() {
+		const rect = this.itemRect(this._index);
+		this.setCursorRect(rect.x, rect.y, rect.width, rect.height);
+	}
 
-    cursorDown(wrap) {
-        if (this._index < 80 || wrap) {
-            this._index = (this._index + 10) % 90;
-        }
-    }
+	isCursorMovable() {
+		return this.active;
+	}
 
-    cursorUp(wrap) {
-        if (this._index >= 10 || wrap) {
-            this._index = (this._index + 80) % 90;
-        }
-    }
+	cursorDown(wrap) {
+		if (this._index < 80 || wrap) {
+			this._index = (this._index + 10) % 90;
+		}
+	}
 
-    cursorRight(wrap) {
-        if (this._index % 10 < 9) {
-            this._index++;
-        } else if (wrap) {
-            this._index -= 9;
-        }
-    }
+	cursorUp(wrap) {
+		if (this._index >= 10 || wrap) {
+			this._index = (this._index + 80) % 90;
+		}
+	}
 
-    cursorLeft(wrap) {
-        if (this._index % 10 > 0) {
-            this._index--;
-        } else if (wrap) {
-            this._index += 9;
-        }
-    }
+	cursorRight(wrap) {
+		if (this._index % 10 < 9) {
+			this._index++;
+		} else if (wrap) {
+			this._index -= 9;
+		}
+	}
 
-    cursorPagedown() {
-        this._page = (this._page + 1) % this.table().length;
-        this.refresh();
-    }
+	cursorLeft(wrap) {
+		if (this._index % 10 > 0) {
+			this._index--;
+		} else if (wrap) {
+			this._index += 9;
+		}
+	}
 
-    cursorPageup() {
-        this._page = (this._page + this.table().length - 1) % this.table().length;
-        this.refresh();
-    }
+	cursorPagedown() {
+		this._page = (this._page + 1) % this.table().length;
+		this.refresh();
+	}
 
-    processCursorMove() {
-        const lastPage = this._page;
-        super.processCursorMove();
-        this.updateCursor();
-        if (this._page !== lastPage) {
-            this.playCursorSound();
-        }
-    }
+	cursorPageup() {
+		this._page =
+			(this._page + this.table().length - 1) % this.table().length;
+		this.refresh();
+	}
 
-    processHandling() {
-        if (this.isOpen() && this.active) {
-            if (Input.isTriggered("shift")) {
-                this.processJump();
-            }
-            if (Input.isRepeated("cancel")) {
-                this.processBack();
-            }
-            if (Input.isRepeated("ok")) {
-                this.processOk();
-            }
-        }
-    }
+	processCursorMove() {
+		const lastPage = this._page;
+		super.processCursorMove();
+		this.updateCursor();
+		if (this._page !== lastPage) {
+			this.playCursorSound();
+		}
+	}
 
-    isCancelEnabled() {
-        return true;
-    }
+	processHandling() {
+		if (this.isOpen() && this.active) {
+			if (Input.isTriggered("shift")) {
+				this.processJump();
+			}
+			if (Input.isRepeated("cancel")) {
+				this.processBack();
+			}
+			if (Input.isRepeated("ok")) {
+				this.processOk();
+			}
+		}
+	}
 
-    processCancel() {
-        this.processBack();
-    }
+	isCancelEnabled() {
+		return true;
+	}
 
-    processJump() {
-        if (this._index !== 89) {
-            this._index = 89;
-            this.playCursorSound();
-        }
-    }
+	processCancel() {
+		this.processBack();
+	}
 
-    processBack() {
-        if (this._editWindow.back()) {
-            SoundManager.playCancel();
-        }
-    }
+	processJump() {
+		if (this._index !== 89) {
+			this._index = 89;
+			this.playCursorSound();
+		}
+	}
 
-    processOk() {
-        if (this.character()) {
-            this.onNameAdd();
-        } else if (this.isPageChange()) {
-            this.playOkSound();
-            this.cursorPagedown();
-        } else if (this.isOk()) {
-            this.onNameOk();
-        }
-    }
+	processBack() {
+		if (this._editWindow.back()) {
+			SoundManager.playCancel();
+		}
+	}
 
-    onNameAdd() {
-        if (this._editWindow.add(this.character())) {
-            this.playOkSound();
-        } else {
-            this.playBuzzerSound();
-        }
-    }
+	processOk() {
+		if (this.character()) {
+			this.onNameAdd();
+		} else if (this.isPageChange()) {
+			this.playOkSound();
+			this.cursorPagedown();
+		} else if (this.isOk()) {
+			this.onNameOk();
+		}
+	}
 
-    onNameOk() {
-        if (this._editWindow.name() === "") {
-            if (this._editWindow.restoreDefault()) {
-                this.playOkSound();
-            } else {
-                this.playBuzzerSound();
-            }
-        } else {
-            this.playOkSound();
-            this.callOkHandler();
-        }
-    }
+	onNameAdd() {
+		if (this._editWindow.add(this.character())) {
+			this.playOkSound();
+		} else {
+			this.playBuzzerSound();
+		}
+	}
+
+	onNameOk() {
+		if (this._editWindow.name() === "") {
+			if (this._editWindow.restoreDefault()) {
+				this.playOkSound();
+			} else {
+				this.playBuzzerSound();
+			}
+		} else {
+			this.playOkSound();
+			this.callOkHandler();
+		}
+	}
 }

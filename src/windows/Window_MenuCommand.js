@@ -2,114 +2,120 @@
 //
 // The window for selecting a command on the menu screen.
 
-import { DataManager } from 'src/managers/DataManager.js';
-import { TextManager } from 'src/managers/TextManager.js';
+import { DataManager } from "src/managers/DataManager.js";
+import { TextManager } from "src/managers/TextManager.js";
 
-import { Window_Command } from './Window_Command.js';
+import { Window_Command } from "./Window_Command.js";
 
 export class Window_MenuCommand extends Window_Command {
 	static _lastCommandSymbol = null;
 
-    constructor(rect) {
-        super(rect);
-        this.selectLast();
-        this._canRepeat = false;
-    }
+	constructor(rect) {
+		super(rect);
+		this.selectLast();
+		this._canRepeat = false;
+	}
 
-    static initCommandPosition() {
-        this._lastCommandSymbol = null;
-    }
+	static initCommandPosition() {
+		this._lastCommandSymbol = null;
+	}
 
-    makeCommandList() {
-        this.addMainCommands();
-        this.addFormationCommand();
-        this.addOriginalCommands();
-        this.addOptionsCommand();
-        this.addSaveCommand();
-        this.addGameEndCommand();
-    }
+	makeCommandList() {
+		this.addMainCommands();
+		this.addFormationCommand();
+		this.addOriginalCommands();
+		this.addOptionsCommand();
+		this.addSaveCommand();
+		this.addGameEndCommand();
+	}
 
-    addMainCommands() {
-        const enabled = this.areMainCommandsEnabled();
-        if (this.needsCommand("item")) {
-            this.addCommand(TextManager.item, "item", enabled);
-        }
-        if (this.needsCommand("skill")) {
-            this.addCommand(TextManager.skill, "skill", enabled);
-        }
-        if (this.needsCommand("equip")) {
-            this.addCommand(TextManager.equip, "equip", enabled);
-        }
-        if (this.needsCommand("status")) {
-            this.addCommand(TextManager.status, "status", enabled);
-        }
-    }
+	addMainCommands() {
+		const enabled = this.areMainCommandsEnabled();
+		if (this.needsCommand("item")) {
+			this.addCommand(TextManager.item, "item", enabled);
+		}
+		if (this.needsCommand("skill")) {
+			this.addCommand(TextManager.skill, "skill", enabled);
+		}
+		if (this.needsCommand("equip")) {
+			this.addCommand(TextManager.equip, "equip", enabled);
+		}
+		if (this.needsCommand("status")) {
+			this.addCommand(TextManager.status, "status", enabled);
+		}
+	}
 
-    addFormationCommand() {
-        if (this.needsCommand("formation")) {
-            const enabled = this.isFormationEnabled();
-            this.addCommand(TextManager.formation, "formation", enabled);
-        }
-    }
+	addFormationCommand() {
+		if (this.needsCommand("formation")) {
+			const enabled = this.isFormationEnabled();
+			this.addCommand(TextManager.formation, "formation", enabled);
+		}
+	}
 
-    addOriginalCommands() {
-        //
-    }
+	addOriginalCommands() {
+		//
+	}
 
-    addOptionsCommand() {
-        if (this.needsCommand("options")) {
-            const enabled = this.isOptionsEnabled();
-            this.addCommand(TextManager.options, "options", enabled);
-        }
-    }
+	addOptionsCommand() {
+		if (this.needsCommand("options")) {
+			const enabled = this.isOptionsEnabled();
+			this.addCommand(TextManager.options, "options", enabled);
+		}
+	}
 
-    addSaveCommand() {
-        if (this.needsCommand("save")) {
-            const enabled = this.isSaveEnabled();
-            this.addCommand(TextManager.save, "save", enabled);
-        }
-    }
+	addSaveCommand() {
+		if (this.needsCommand("save")) {
+			const enabled = this.isSaveEnabled();
+			this.addCommand(TextManager.save, "save", enabled);
+		}
+	}
 
-    addGameEndCommand() {
-        const enabled = this.isGameEndEnabled();
-        this.addCommand(TextManager.gameEnd, "gameEnd", enabled);
-    }
+	addGameEndCommand() {
+		const enabled = this.isGameEndEnabled();
+		this.addCommand(TextManager.gameEnd, "gameEnd", enabled);
+	}
 
-    needsCommand(name) {
-        const table = ["item", "skill", "equip", "status", "formation", "save"];
-        const index = table.indexOf(name);
-        if (index >= 0) {
-            return DataManager.$dataSystem.menuCommands[index];
-        }
-        return true;
-    }
+	needsCommand(name) {
+		const table = ["item", "skill", "equip", "status", "formation", "save"];
+		const index = table.indexOf(name);
+		if (index >= 0) {
+			return DataManager.$dataSystem.menuCommands[index];
+		}
+		return true;
+	}
 
-    areMainCommandsEnabled() {
-        return DataManager.$gameParty.exists();
-    }
+	areMainCommandsEnabled() {
+		return DataManager.$gameParty.exists();
+	}
 
-    isFormationEnabled() {
-        return DataManager.$gameParty.size() >= 2 && DataManager.$gameSystem.isFormationEnabled();
-    }
+	isFormationEnabled() {
+		return (
+			DataManager.$gameParty.size() >= 2 &&
+			DataManager.$gameSystem.isFormationEnabled()
+		);
+	}
 
-    isOptionsEnabled() {
-        return true;
-    }
+	isOptionsEnabled() {
+		return true;
+	}
 
-    isSaveEnabled() {
-        return !DataManager.isEventTest() && DataManager.$gameSystem.isSaveEnabled();
-    }
+	isSaveEnabled() {
+		return (
+			!DataManager.isEventTest() &&
+			DataManager.$gameSystem.isSaveEnabled()
+		);
+	}
 
-    isGameEndEnabled() {
-        return true;
-    }
+	isGameEndEnabled() {
+		return true;
+	}
 
-    processOk() {
-        Window_MenuCommand._lastCommandSymbol = this.currentSymbol();
-        super.processOk();
-    }
+	processOk() {
+		Window_MenuCommand._lastCommandSymbol = this.currentSymbol();
+		super.processOk();
+	}
 
-    selectLast() {
-        this.selectSymbol(Window_MenuCommand._lastCommandSymbol);
-    }
+	selectLast() {
+		this.selectSymbol(Window_MenuCommand._lastCommandSymbol);
+	}
 }

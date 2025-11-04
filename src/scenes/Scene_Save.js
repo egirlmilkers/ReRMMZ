@@ -2,54 +2,54 @@
 //
 // The scene class of the save screen.
 
-import { DataManager } from 'src/managers/DataManager.js';
-import { SoundManager } from 'src/managers/SoundManager.js';
-import { TextManager } from 'src/managers/TextManager.js';
+import { DataManager } from "src/managers/DataManager.js";
+import { SoundManager } from "src/managers/SoundManager.js";
+import { TextManager } from "src/managers/TextManager.js";
 
-import { Scene_File } from './Scene_File.js';
+import { Scene_File } from "./Scene_File.js";
 
 export class Scene_Save extends Scene_File {
-    constructor() {
-        super();
-    }
+	constructor() {
+		super();
+	}
 
-    mode() {
-        return "save";
-    }
+	mode() {
+		return "save";
+	}
 
-    helpWindowText() {
-        return TextManager.saveMessage;
-    }
+	helpWindowText() {
+		return TextManager.saveMessage;
+	}
 
-    firstSavefileId() {
-        return DataManager.$gameSystem.savefileId();
-    }
+	firstSavefileId() {
+		return DataManager.$gameSystem.savefileId();
+	}
 
-    onSavefileOk() {
-        super.onSavefileOk();
-        const savefileId = this.savefileId();
-        if (this.isSavefileEnabled(savefileId)) {
-            this.executeSave(savefileId);
-        } else {
-            this.onSaveFailure();
-        }
-    }
+	onSavefileOk() {
+		super.onSavefileOk();
+		const savefileId = this.savefileId();
+		if (this.isSavefileEnabled(savefileId)) {
+			this.executeSave(savefileId);
+		} else {
+			this.onSaveFailure();
+		}
+	}
 
-    executeSave(savefileId) {
-        DataManager.$gameSystem.setSavefileId(savefileId);
-        DataManager.$gameSystem.onBeforeSave();
-        DataManager.saveGame(savefileId)
-            .then(() => this.onSaveSuccess())
-            .catch(() => this.onSaveFailure());
-    }
+	executeSave(savefileId) {
+		DataManager.$gameSystem.setSavefileId(savefileId);
+		DataManager.$gameSystem.onBeforeSave();
+		DataManager.saveGame(savefileId)
+			.then(() => this.onSaveSuccess())
+			.catch(() => this.onSaveFailure());
+	}
 
-    onSaveSuccess() {
-        SoundManager.playSave();
-        this.popScene();
-    }
+	onSaveSuccess() {
+		SoundManager.playSave();
+		this.popScene();
+	}
 
-    onSaveFailure() {
-        SoundManager.playBuzzer();
-        this.activateListWindow();
-    }
+	onSaveFailure() {
+		SoundManager.playBuzzer();
+		this.activateListWindow();
+	}
 }

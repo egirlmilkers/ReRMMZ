@@ -7,7 +7,6 @@ import { Utils } from "../core/Utils";
 
 import { DataManager } from "./DataManager";
 
-
 export class ImageManager {
 	static standardIconWidth = 32;
 	static standardIconHeight = 32;
@@ -18,154 +17,154 @@ export class ImageManager {
 	static _system = {};
 	static _emptyBitmap = new Bitmap(1, 1);
 
-    constructor() {
-        throw new Error("This is a static class");
-    }
+	constructor() {
+		throw new Error("This is a static class");
+	}
 
-    static get iconWidth() {
+	static get iconWidth() {
 		return this.getIconSize();
 	}
 
-    static get iconHeight() {
+	static get iconHeight() {
 		return this.getIconSize();
 	}
 
-    static get faceWidth() {
+	static get faceWidth() {
 		return this.getFaceSize();
 	}
 
-    static get faceHeight() {
+	static get faceHeight() {
 		return this.getFaceSize();
 	}
 
-    static getIconSize() {
-        if ("iconSize" in DataManager.$dataSystem) {
-            return DataManager.$dataSystem.iconSize;
-        } else {
-            return this.defaultIconWidth;
-        }
-    }
+	static getIconSize() {
+		if ("iconSize" in DataManager.$dataSystem) {
+			return DataManager.$dataSystem.iconSize;
+		} else {
+			return this.defaultIconWidth;
+		}
+	}
 
-    static getFaceSize() {
-        if ("faceSize" in DataManager.$dataSystem) {
-            return DataManager.$dataSystem.faceSize;
-        } else {
-            return this.defaultFaceWidth;
-        }
-    }
+	static getFaceSize() {
+		if ("faceSize" in DataManager.$dataSystem) {
+			return DataManager.$dataSystem.faceSize;
+		} else {
+			return this.defaultFaceWidth;
+		}
+	}
 
-    static loadAnimation(filename) {
-        return this.loadBitmap("img/animations/", filename);
-    }
+	static loadAnimation(filename) {
+		return this.loadBitmap("img/animations/", filename);
+	}
 
-    static loadBattleback1(filename) {
-        return this.loadBitmap("img/battlebacks1/", filename);
-    }
+	static loadBattleback1(filename) {
+		return this.loadBitmap("img/battlebacks1/", filename);
+	}
 
-    static loadBattleback2(filename) {
-        return this.loadBitmap("img/battlebacks2/", filename);
-    }
+	static loadBattleback2(filename) {
+		return this.loadBitmap("img/battlebacks2/", filename);
+	}
 
-    static loadEnemy(filename) {
-        return this.loadBitmap("img/enemies/", filename);
-    }
+	static loadEnemy(filename) {
+		return this.loadBitmap("img/enemies/", filename);
+	}
 
-    static loadCharacter(filename) {
-        return this.loadBitmap("img/characters/", filename);
-    }
+	static loadCharacter(filename) {
+		return this.loadBitmap("img/characters/", filename);
+	}
 
-    static loadFace(filename) {
-        return this.loadBitmap("img/faces/", filename);
-    }
+	static loadFace(filename) {
+		return this.loadBitmap("img/faces/", filename);
+	}
 
-    static loadParallax(filename) {
-        return this.loadBitmap("img/parallaxes/", filename);
-    }
+	static loadParallax(filename) {
+		return this.loadBitmap("img/parallaxes/", filename);
+	}
 
-    static loadPicture(filename) {
-        return this.loadBitmap("img/pictures/", filename);
-    }
+	static loadPicture(filename) {
+		return this.loadBitmap("img/pictures/", filename);
+	}
 
-    static loadSvActor(filename) {
-        return this.loadBitmap("img/sv_actors/", filename);
-    }
+	static loadSvActor(filename) {
+		return this.loadBitmap("img/sv_actors/", filename);
+	}
 
-    static loadSvEnemy(filename) {
-        return this.loadBitmap("img/sv_enemies/", filename);
-    }
+	static loadSvEnemy(filename) {
+		return this.loadBitmap("img/sv_enemies/", filename);
+	}
 
-    static loadSystem(filename) {
-        return this.loadBitmap("img/system/", filename);
-    }
+	static loadSystem(filename) {
+		return this.loadBitmap("img/system/", filename);
+	}
 
-    static loadTileset(filename) {
-        return this.loadBitmap("img/tilesets/", filename);
-    }
+	static loadTileset(filename) {
+		return this.loadBitmap("img/tilesets/", filename);
+	}
 
-    static loadTitle1(filename) {
-        return this.loadBitmap("img/titles1/", filename);
-    }
+	static loadTitle1(filename) {
+		return this.loadBitmap("img/titles1/", filename);
+	}
 
-    static loadTitle2(filename) {
-        return this.loadBitmap("img/titles2/", filename);
-    }
+	static loadTitle2(filename) {
+		return this.loadBitmap("img/titles2/", filename);
+	}
 
-    static loadBitmap(folder, filename) {
-        if (filename) {
-            const url = "assets/" + folder + Utils.encodeURI(filename) + ".png";
-            return this.loadBitmapFromUrl(url);
-        } else {
-            return this._emptyBitmap;
-        }
-    }
+	static loadBitmap(folder, filename) {
+		if (filename) {
+			const url = "assets/" + folder + Utils.encodeURI(filename) + ".png";
+			return this.loadBitmapFromUrl(url);
+		} else {
+			return this._emptyBitmap;
+		}
+	}
 
-    static loadBitmapFromUrl(url) {
-        const cache = url.includes("/system/") ? this._system : this._cache;
-        if (!cache[url]) {
-            cache[url] = Bitmap.load(url);
-        }
-        return cache[url];
-    }
+	static loadBitmapFromUrl(url) {
+		const cache = url.includes("/system/") ? this._system : this._cache;
+		if (!cache[url]) {
+			cache[url] = Bitmap.load(url);
+		}
+		return cache[url];
+	}
 
-    static clear() {
-        const cache = this._cache;
-        for (const url in cache) {
-            cache[url].destroy();
-        }
-        this._cache = {};
-    }
+	static clear() {
+		const cache = this._cache;
+		for (const url in cache) {
+			cache[url].destroy();
+		}
+		this._cache = {};
+	}
 
-    static isReady() {
-        for (const cache of [this._cache, this._system]) {
-            for (const url in cache) {
-                const bitmap = cache[url];
-                if (bitmap.isError()) {
-                    this.throwLoadError(bitmap);
-                }
-                if (!bitmap.isReady()) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+	static isReady() {
+		for (const cache of [this._cache, this._system]) {
+			for (const url in cache) {
+				const bitmap = cache[url];
+				if (bitmap.isError()) {
+					this.throwLoadError(bitmap);
+				}
+				if (!bitmap.isReady()) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
-    static throwLoadError(bitmap) {
-        const retry = bitmap.retry.bind(bitmap);
-        throw ["LoadError", bitmap.url, retry];
-    }
+	static throwLoadError(bitmap) {
+		const retry = bitmap.retry.bind(bitmap);
+		throw ["LoadError", bitmap.url, retry];
+	}
 
-    static isObjectCharacter(filename) {
-        const sign = Utils.extractFileName(filename).match(/^[!$]+/);
-        return sign && sign[0].includes("!");
-    }
+	static isObjectCharacter(filename) {
+		const sign = Utils.extractFileName(filename).match(/^[!$]+/);
+		return sign && sign[0].includes("!");
+	}
 
-    static isBigCharacter(filename) {
-        const sign = Utils.extractFileName(filename).match(/^[!$]+/);
-        return sign && sign[0].includes("$");
-    }
+	static isBigCharacter(filename) {
+		const sign = Utils.extractFileName(filename).match(/^[!$]+/);
+		return sign && sign[0].includes("$");
+	}
 
-    static isZeroParallax(filename) {
-        return Utils.extractFileName(filename).charAt(0) === "!";
-    }
+	static isZeroParallax(filename) {
+		return Utils.extractFileName(filename).charAt(0) === "!";
+	}
 }

@@ -20,10 +20,10 @@ export default defineConfig([
 
 			globals: {
 				// Globals
-				"window": "readonly",
-				"document": "readonly",
-				"effekseer": "readonly"
-			}
+				window: "readonly",
+				document: "readonly",
+				effekseer: "readonly",
+			},
 		},
 		rules: {
 			// key ES6 upgrades
@@ -32,10 +32,10 @@ export default defineConfig([
 			"object-shorthand": "warn", // { a: a } should be { a }
 			"prefer-arrow-callback": "error", // Use () => {} for callbacks
 			"prefer-template": "error", // Use string templates over '+'
-		}
+		},
 	},
 
 	{
-		ignores: ["dist/", "local_modules/", "node_modules/"]
-	}
+		ignores: ["dist/", "local_modules/", "node_modules/"],
+	},
 ]);

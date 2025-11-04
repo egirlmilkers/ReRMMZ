@@ -2,74 +2,74 @@
 //
 // The scene class of the game over screen.
 
-import { Sprite } from 'src/core/Sprite.js';
-import { Input } from 'src/core/Input.js';
-import { TouchInput } from 'src/core/TouchInput.js';
+import { Sprite } from "src/core/Sprite.js";
+import { Input } from "src/core/Input.js";
+import { TouchInput } from "src/core/TouchInput.js";
 
-import { AudioManager } from 'src/managers/AudioManager.js';
-import { DataManager } from 'src/managers/DataManager.js';
-import { ImageManager } from 'src/managers/ImageManager.js';
-import { SceneManager } from 'src/managers/SceneManager.js';
+import { AudioManager } from "src/managers/AudioManager.js";
+import { DataManager } from "src/managers/DataManager.js";
+import { ImageManager } from "src/managers/ImageManager.js";
+import { SceneManager } from "src/managers/SceneManager.js";
 
-import { Scene_Base } from './Scene_Base.js';
-import { Scene_Title } from './Scene_Title.js';
+import { Scene_Base } from "./Scene_Base.js";
+import { Scene_Title } from "./Scene_Title.js";
 
 export class Scene_Gameover extends Scene_Base {
-    constructor() {
-        super();
-    }
+	constructor() {
+		super();
+	}
 
-    create() {
-        super.create();
-        this.playGameoverMusic();
-        this.createBackground();
-    }
+	create() {
+		super.create();
+		this.playGameoverMusic();
+		this.createBackground();
+	}
 
-    start() {
-        super.start();
-        this.adjustBackground();
-        this.startFadeIn(this.slowFadeSpeed(), false);
-    }
+	start() {
+		super.start();
+		this.adjustBackground();
+		this.startFadeIn(this.slowFadeSpeed(), false);
+	}
 
-    update() {
-        if (this.isActive() && !this.isBusy() && this.isTriggered()) {
-            this.gotoTitle();
-        }
-        super.update();
-    }
+	update() {
+		if (this.isActive() && !this.isBusy() && this.isTriggered()) {
+			this.gotoTitle();
+		}
+		super.update();
+	}
 
-    stop() {
-        super.stop();
-        this.fadeOutAll();
-    }
+	stop() {
+		super.stop();
+		this.fadeOutAll();
+	}
 
-    terminate() {
-        super.terminate();
-        AudioManager.stopAll();
-    }
+	terminate() {
+		super.terminate();
+		AudioManager.stopAll();
+	}
 
-    playGameoverMusic() {
-        AudioManager.stopBgm();
-        AudioManager.stopBgs();
-        AudioManager.playMe(DataManager.$dataSystem.gameoverMe);
-    }
+	playGameoverMusic() {
+		AudioManager.stopBgm();
+		AudioManager.stopBgs();
+		AudioManager.playMe(DataManager.$dataSystem.gameoverMe);
+	}
 
-    createBackground() {
-        this._backSprite = new Sprite();
-        this._backSprite.bitmap = ImageManager.loadSystem("GameOver");
-        this.addChild(this._backSprite);
-    }
+	createBackground() {
+		this._backSprite = new Sprite();
+		this._backSprite.bitmap = ImageManager.loadSystem("GameOver");
+		this.addChild(this._backSprite);
+	}
 
-    adjustBackground() {
-        this.scaleSprite(this._backSprite);
-        this.centerSprite(this._backSprite);
-    }
+	adjustBackground() {
+		this.scaleSprite(this._backSprite);
+		this.centerSprite(this._backSprite);
+	}
 
-    isTriggered() {
-        return Input.isTriggered("ok") || TouchInput.isTriggered();
-    }
+	isTriggered() {
+		return Input.isTriggered("ok") || TouchInput.isTriggered();
+	}
 
-    gotoTitle() {
-        SceneManager.goto(Scene_Title);
-    }
+	gotoTitle() {
+		SceneManager.goto(Scene_Title);
+	}
 }
