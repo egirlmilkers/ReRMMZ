@@ -3,12 +3,12 @@
 // The window for displaying number of items in possession and the actor's
 // equipment on the shop screen.
 
-import { Input } from "src/core/Input.js";
-import { TouchInput } from "src/core/TouchInput.js";
+import { Input } from "../core/Input.js";
+import { TouchInput } from "../core/TouchInput.js";
 
-import { ColorManager } from "src/managers/ColorManager.js";
-import { DataManager } from "src/managers/DataManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

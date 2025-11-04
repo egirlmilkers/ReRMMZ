@@ -2,14 +2,14 @@
 //
 // The scene class of the game over screen.
 
-import { Sprite } from "src/core/Sprite.js";
-import { Input } from "src/core/Input.js";
-import { TouchInput } from "src/core/TouchInput.js";
+import { Sprite } from "../core/Sprite.js";
+import { Input } from "../core/Input.js";
+import { TouchInput } from "../core/TouchInput.js";
 
-import { AudioManager } from "src/managers/AudioManager.js";
-import { DataManager } from "src/managers/DataManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
-import { SceneManager } from "src/managers/SceneManager.js";
+import { AudioManager } from "../managers/AudioManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
 
 import { Scene_Base } from "./Scene_Base.js";
 import { Scene_Title } from "./Scene_Title.js";

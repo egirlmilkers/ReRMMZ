@@ -2,8 +2,8 @@
 //
 // The window for selecting whether to fight or escape on the battle screen.
 
-import { BattleManager } from "src/managers/BattleManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { BattleManager } from "../managers/BattleManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_Command } from "./Window_Command.js";
 

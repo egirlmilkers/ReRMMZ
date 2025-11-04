@@ -2,13 +2,13 @@
 //
 // The window used for the event command [Show Choices].
 
-import { Graphics } from "src/core/Graphics";
-import { Rectangle } from "src/core/Rectangle";
+import { Graphics } from "../core/Graphics";
+import { Rectangle } from "../core/Rectangle";
 
-import { ConfigManager } from "src/managers/ConfigManager";
-import { DataManager } from "src/managers/DataManager";
+import { ConfigManager } from "../managers/ConfigManager";
+import { DataManager } from "../managers/DataManager";
 
-import { Sprite_Button } from "src/sprites/Sprite_Button";
+import { Sprite_Button } from "../sprites/Sprite_Button";
 
 import { Window_Command } from "./Window_Command";
 import { Window_Selectable } from "./Window_Selectable";

@@ -3,13 +3,13 @@
 // The window for inputting quantity of items to buy or sell on the shop
 // screen.
 
-import { Input } from "src/core/Input.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Input } from "../core/Input.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { ConfigManager } from "src/managers/ConfigManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
-import { Sprite_Button } from "src/sprites/Sprite_Button.js";
+import { Sprite_Button } from "../sprites/Sprite_Button.js";
 
 import { Window_Selectable } from "./Window_Selectable.js";
 

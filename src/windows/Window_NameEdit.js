@@ -2,11 +2,11 @@
 //
 // The window for editing an actor's name on the name input screen.
 
-import { Rectangle } from "src/core/Rectangle.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { ColorManager } from "src/managers/ColorManager.js";
-import { DataManager } from "src/managers/DataManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

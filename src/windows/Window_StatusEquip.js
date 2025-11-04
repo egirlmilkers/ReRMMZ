@@ -2,7 +2,7 @@
 //
 // The window for displaying equipment items on the status screen.
 
-import { ColorManager } from "src/managers/ColorManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

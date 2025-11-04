@@ -2,27 +2,27 @@
 //
 // The scene class of the battle screen.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { BattleManager } from "src/managers/BattleManager.js";
-import { ConfigManager } from "src/managers/ConfigManager.js";
-import { DataManager } from "src/managers/DataManager.js";
-import { AudioManager } from "src/managers/AudioManager.js";
-import { SceneManager } from "src/managers/SceneManager.js";
+import { BattleManager } from "../managers/BattleManager.js";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { AudioManager } from "../managers/AudioManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
 
-import { Spriteset_Battle } from "src/sprites/Spriteset_Battle.js";
-import { Sprite_Button } from "src/sprites/Sprite_Button.js";
+import { Spriteset_Battle } from "../sprites/Spriteset_Battle.js";
+import { Sprite_Button } from "../sprites/Sprite_Button.js";
 
-import { Window_BattleActor } from "src/windows/Window_BattleActor.js";
-import { Window_BattleEnemy } from "src/windows/Window_BattleEnemy.js";
-import { Window_BattleLog } from "src/windows/Window_BattleLog.js";
-import { Window_BattleStatus } from "src/windows/Window_BattleStatus.js";
-import { Window_PartyCommand } from "src/windows/Window_PartyCommand.js";
-import { Window_ActorCommand } from "src/windows/Window_ActorCommand.js";
-import { Window_Help } from "src/windows/Window_Help.js";
-import { Window_BattleSkill } from "src/windows/Window_BattleSkill.js";
-import { Window_BattleItem } from "src/windows/Window_BattleItem.js";
+import { Window_BattleActor } from "../windows/Window_BattleActor.js";
+import { Window_BattleEnemy } from "../windows/Window_BattleEnemy.js";
+import { Window_BattleLog } from "../windows/Window_BattleLog.js";
+import { Window_BattleStatus } from "../windows/Window_BattleStatus.js";
+import { Window_PartyCommand } from "../windows/Window_PartyCommand.js";
+import { Window_ActorCommand } from "../windows/Window_ActorCommand.js";
+import { Window_Help } from "../windows/Window_Help.js";
+import { Window_BattleSkill } from "../windows/Window_BattleSkill.js";
+import { Window_BattleItem } from "../windows/Window_BattleItem.js";
 
 import { Scene_Gameover } from "./Scene_Gameover.js";
 import { Scene_Map } from "./Scene_Map.js";

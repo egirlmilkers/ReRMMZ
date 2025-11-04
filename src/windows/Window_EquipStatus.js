@@ -2,9 +2,9 @@
 //
 // The window for displaying parameter changes on the equipment screen.
 
-import { ColorManager } from "src/managers/ColorManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

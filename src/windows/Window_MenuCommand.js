@@ -2,8 +2,8 @@
 //
 // The window for selecting a command on the menu screen.
 
-import { DataManager } from "src/managers/DataManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_Command } from "./Window_Command.js";
 

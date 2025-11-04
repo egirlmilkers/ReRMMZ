@@ -2,9 +2,9 @@
 //
 // The sprite for displaying an overlay image for a state.
 
-import { Sprite } from "src/core/Sprite";
+import { Sprite } from "../core/Sprite";
 
-import { ImageManager } from "src/managers/ImageManager";
+import { ImageManager } from "../managers/ImageManager";
 
 export class Sprite_StateOverlay extends Sprite {
 	constructor() {

@@ -2,7 +2,7 @@
 //
 // The window for selecting a command on the equipment screen.
 
-import { TextManager } from "src/managers/TextManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_HorzCommand } from "./Window_HorzCommand.js";
 

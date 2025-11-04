@@ -2,8 +2,8 @@
 //
 // The sprite for displaying a picture.
 
-import { DataManager } from "src/managers/DataManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
 import { Sprite_Clickable } from "./Sprite_Clickable.js";
 

@@ -2,12 +2,12 @@
 //
 // The sprite for displaying the timer.
 
-import { Bitmap } from "src/core/Bitmap";
-import { Graphics } from "src/core/Graphics";
-import { Sprite } from "src/core/Sprite";
+import { Bitmap } from "../core/Bitmap";
+import { Graphics } from "../core/Graphics";
+import { Sprite } from "../core/Sprite";
 
-import { ColorManager } from "src/managers/ColorManager";
-import { DataManager } from "src/managers/DataManager";
+import { ColorManager } from "../managers/ColorManager";
+import { DataManager } from "../managers/DataManager";
 
 export class Sprite_Timer extends Sprite {
 	constructor() {

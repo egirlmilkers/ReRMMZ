@@ -2,12 +2,12 @@
 //
 // The window used for the event command [Select Item].
 
-import { Graphics } from "src/core/Graphics";
+import { Graphics } from "../core/Graphics";
 
-import { ConfigManager } from "src/managers/ConfigManager";
-import { DataManager } from "src/managers/DataManager";
+import { ConfigManager } from "../managers/ConfigManager";
+import { DataManager } from "../managers/DataManager";
 
-import { Sprite_Button } from "src/sprites/Sprite_Button";
+import { Sprite_Button } from "../sprites/Sprite_Button";
 
 import { Window_ItemList } from "./Window_ItemList";
 import { Window_Selectable } from "./Window_Selectable";

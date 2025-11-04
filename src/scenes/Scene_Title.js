@@ -2,17 +2,17 @@
 //
 // The scene class of the title screen.
 
-import { Sprite } from "src/core/Sprite.js";
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
-import { Bitmap } from "src/core/Bitmap.js";
+import { Sprite } from "../core/Sprite.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
+import { Bitmap } from "../core/Bitmap.js";
 
-import { AudioManager } from "src/managers/AudioManager.js";
-import { DataManager } from "src/managers/DataManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
-import { SceneManager } from "src/managers/SceneManager.js";
+import { AudioManager } from "../managers/AudioManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
 
-import { Window_TitleCommand } from "src/windows/Window_TitleCommand.js";
+import { Window_TitleCommand } from "../windows/Window_TitleCommand.js";
 
 import { Scene_Base } from "./Scene_Base.js";
 import { Scene_Load } from "./Scene_Load.js";

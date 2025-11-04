@@ -2,7 +2,7 @@
 //
 // The window for selecting a skill type on the skill screen.
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
 import { Window_Command } from "./Window_Command.js";
 

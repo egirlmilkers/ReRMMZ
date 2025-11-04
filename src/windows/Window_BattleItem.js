@@ -2,7 +2,7 @@
 //
 // The window for selecting an item to use on the battle screen.
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
 import { Window_ItemList } from "./Window_ItemList.js";
 

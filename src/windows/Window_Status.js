@@ -2,8 +2,8 @@
 //
 // The window for displaying full status on the status screen.
 
-import { ColorManager } from "src/managers/ColorManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

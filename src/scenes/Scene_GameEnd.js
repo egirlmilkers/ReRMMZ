@@ -2,13 +2,13 @@
 //
 // The scene class of the game end screen.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { SceneManager } from "src/managers/SceneManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
 
-import { Window_GameEnd } from "src/windows/Window_GameEnd.js";
-import { Window_TitleCommand } from "src/windows/Window_TitleCommand.js";
+import { Window_GameEnd } from "../windows/Window_GameEnd.js";
+import { Window_TitleCommand } from "../windows/Window_TitleCommand.js";
 
 import { Scene_MenuBase } from "./Scene_MenuBase.js";
 import { Scene_Title } from "./Scene_Title.js";

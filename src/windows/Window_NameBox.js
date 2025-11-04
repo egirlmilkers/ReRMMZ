@@ -2,10 +2,10 @@
 //
 // The window for displaying a speaker name above the message window.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
 import { Window_Base } from "./Window_Base.js";
 

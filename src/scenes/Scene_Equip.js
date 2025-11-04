@@ -2,15 +2,15 @@
 //
 // The scene class of the equipment screen.
 
-import { Rectangle } from "src/core/Rectangle.js";
-import { Graphics } from "src/core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
 
-import { SoundManager } from "src/managers/SoundManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Window_EquipCommand } from "src/windows/Window_EquipCommand.js";
-import { Window_EquipItem } from "src/windows/Window_EquipItem.js";
-import { Window_EquipSlot } from "src/windows/Window_EquipSlot.js";
-import { Window_EquipStatus } from "src/windows/Window_EquipStatus.js";
+import { Window_EquipCommand } from "../windows/Window_EquipCommand.js";
+import { Window_EquipItem } from "../windows/Window_EquipItem.js";
+import { Window_EquipSlot } from "../windows/Window_EquipSlot.js";
+import { Window_EquipStatus } from "../windows/Window_EquipStatus.js";
 
 import { Scene_MenuBase } from "./Scene_MenuBase.js";
 

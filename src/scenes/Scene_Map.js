@@ -2,25 +2,25 @@
 //
 // The scene class of the map screen.
 
-import { Rectangle } from "src/core/Rectangle.js";
-import { Graphics } from "src/core/Graphics";
-import { Input } from "src/core/Input";
-import { TouchInput } from "src/core/TouchInput";
+import { Rectangle } from "../core/Rectangle.js";
+import { Graphics } from "../core/Graphics";
+import { Input } from "../core/Input";
+import { TouchInput } from "../core/TouchInput";
 
-import { AudioManager } from "src/managers/AudioManager";
-import { BattleManager } from "src/managers/BattleManager";
-import { ConfigManager } from "src/managers/ConfigManager";
-import { DataManager } from "src/managers/DataManager";
-import { EffectManager } from "src/managers/EffectManager";
-import { ImageManager } from "src/managers/ImageManager";
-import { SceneManager } from "src/managers/SceneManager";
-import { SoundManager } from "src/managers/SoundManager";
+import { AudioManager } from "../managers/AudioManager";
+import { BattleManager } from "../managers/BattleManager";
+import { ConfigManager } from "../managers/ConfigManager";
+import { DataManager } from "../managers/DataManager";
+import { EffectManager } from "../managers/EffectManager";
+import { ImageManager } from "../managers/ImageManager";
+import { SceneManager } from "../managers/SceneManager";
+import { SoundManager } from "../managers/SoundManager";
 
-import { Sprite_Button } from "src/sprites/Sprite_Button";
-import { Spriteset_Map } from "src/sprites/Spriteset_Map";
+import { Sprite_Button } from "../sprites/Sprite_Button";
+import { Spriteset_Map } from "../sprites/Spriteset_Map";
 
-import { Window_MapName } from "src/windows/Window_MapName";
-import { Window_MenuCommand } from "src/windows/Window_MenuCommand";
+import { Window_MapName } from "../windows/Window_MapName";
+import { Window_MenuCommand } from "../windows/Window_MenuCommand";
 
 import { Scene_Battle } from "./Scene_Battle";
 import { Scene_Debug } from "./Scene_Debug";

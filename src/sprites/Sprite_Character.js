@@ -2,10 +2,10 @@
 //
 // The sprite for displaying a character.
 
-import { Sprite } from "src/core/Sprite";
+import { Sprite } from "../core/Sprite";
 
-import { DataManager } from "src/managers/DataManager";
-import { ImageManager } from "src/managers/ImageManager";
+import { DataManager } from "../managers/DataManager";
+import { ImageManager } from "../managers/ImageManager";
 
 export class Sprite_Character extends Sprite {
 	constructor(character) {

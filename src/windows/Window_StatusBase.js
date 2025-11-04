@@ -2,15 +2,15 @@
 //
 // The superclass of windows for displaying actor status.
 
-import { BattleManager } from "src/managers/BattleManager.js";
-import { ColorManager } from "src/managers/ColorManager.js";
-import { DataManager } from "src/managers/DataManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { BattleManager } from "../managers/BattleManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
-import { Sprite_Gauge } from "src/sprites/Sprite_Gauge.js";
-import { Sprite_Name } from "src/sprites/Sprite_Name.js";
-import { Sprite_StateIcon } from "src/sprites/Sprite_StateIcon.js";
+import { Sprite_Gauge } from "../sprites/Sprite_Gauge.js";
+import { Sprite_Name } from "../sprites/Sprite_Name.js";
+import { Sprite_StateIcon } from "../sprites/Sprite_StateIcon.js";
 
 import { Window_Selectable } from "./Window_Selectable.js";
 

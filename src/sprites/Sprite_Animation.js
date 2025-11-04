@@ -2,12 +2,12 @@
 //
 // The sprite for displaying an animation.
 
-import { Graphics } from "src/core/Graphics";
-import { Point } from "src/core/Point";
-import { Sprite } from "src/core/Sprite";
+import { Graphics } from "../core/Graphics";
+import { Point } from "../core/Point";
+import { Sprite } from "../core/Sprite";
 
-import { AudioManager } from "src/managers/AudioManager";
-import { EffectManager } from "src/managers/EffectManager";
+import { AudioManager } from "../managers/AudioManager";
+import { EffectManager } from "../managers/EffectManager";
 
 export class Sprite_Animation extends Sprite {
 	constructor() {

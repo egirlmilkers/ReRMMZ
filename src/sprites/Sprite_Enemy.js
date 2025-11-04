@@ -2,9 +2,9 @@
 //
 // The sprite for displaying an enemy.
 
-import { DataManager } from "src/managers/DataManager";
-import { ImageManager } from "src/managers/ImageManager";
-import { SoundManager } from "src/managers/SoundManager";
+import { DataManager } from "../managers/DataManager";
+import { ImageManager } from "../managers/ImageManager";
+import { SoundManager } from "../managers/SoundManager";
 
 import { Sprite_Battler } from "./Sprite_Battler";
 import { Sprite_StateIcon } from "./Sprite_StateIcon";

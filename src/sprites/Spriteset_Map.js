@@ -2,14 +2,14 @@
 //
 // The set of sprites on the map screen.
 
-import { Graphics } from "src/core/Graphics";
-import { Sprite } from "src/core/Sprite";
-import { Tilemap } from "src/core/Tilemap";
-import { TilingSprite } from "src/core/TilingSprite";
-import { Weather } from "src/core/Weather";
+import { Graphics } from "../core/Graphics";
+import { Sprite } from "../core/Sprite";
+import { Tilemap } from "../core/Tilemap";
+import { TilingSprite } from "../core/TilingSprite";
+import { Weather } from "../core/Weather";
 
-import { DataManager } from "src/managers/DataManager";
-import { ImageManager } from "src/managers/ImageManager";
+import { DataManager } from "../managers/DataManager";
+import { ImageManager } from "../managers/ImageManager";
 
 import { Sprite_Balloon } from "./Sprite_Balloon";
 import { Sprite_Character } from "./Sprite_Character";

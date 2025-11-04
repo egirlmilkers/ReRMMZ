@@ -2,10 +2,10 @@
 //
 // The sprite for displaying an actor.
 
-import { Sprite } from "src/core/Sprite.js";
+import { Sprite } from "../core/Sprite.js";
 
-import { BattleManager } from "src/managers/BattleManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
+import { BattleManager } from "../managers/BattleManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
 import { Sprite_Battler } from "./Sprite_Battler.js";
 import { Sprite_StateOverlay } from "./Sprite_StateOverlay.js";

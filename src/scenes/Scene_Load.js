@@ -2,10 +2,10 @@
 //
 // The scene class of the load screen.
 
-import { DataManager } from "src/managers/DataManager.js";
-import { SceneManager } from "src/managers/SceneManager.js";
-import { SoundManager } from "src/managers/SoundManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Scene_File } from "./Scene_File.js";
 import { Scene_Map } from "./Scene_Map.js";

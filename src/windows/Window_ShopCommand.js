@@ -2,7 +2,7 @@
 //
 // The window for selecting buy/sell on the shop screen.
 
-import { TextManager } from "src/managers/TextManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_HorzCommand } from "./Window_HorzCommand.js";
 

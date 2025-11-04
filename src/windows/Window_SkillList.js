@@ -2,7 +2,7 @@
 //
 // The window for selecting a skill on the skill screen.
 
-import { ColorManager } from "src/managers/ColorManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
 
 import { Window_Selectable } from "./Window_Selectable.js";
 

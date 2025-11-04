@@ -2,14 +2,14 @@
 //
 // The scene class of the item screen.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "src/managers/DataManager.js";
-import { SoundManager } from "src/managers/SoundManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Window_ItemCategory } from "src/windows/Window_ItemCategory.js";
-import { Window_ItemList } from "src/windows/Window_ItemList.js";
+import { Window_ItemCategory } from "../windows/Window_ItemCategory.js";
+import { Window_ItemList } from "../windows/Window_ItemList.js";
 
 import { Scene_ItemBase } from "./Scene_ItemBase.js";
 

@@ -2,13 +2,13 @@
 //
 // The superclass of Spriteset_Map and Spriteset_Battle.
 
-import { ColorFilter } from "src/core/ColorFilter";
-import { Graphics } from "src/core/Graphics";
-import { Rectangle } from "src/core/Rectangle";
-import { ScreenSprite } from "src/core/ScreenSprite";
-import { Sprite } from "src/core/Sprite";
+import { ColorFilter } from "../core/ColorFilter";
+import { Graphics } from "../core/Graphics";
+import { Rectangle } from "../core/Rectangle";
+import { ScreenSprite } from "../core/ScreenSprite";
+import { Sprite } from "../core/Sprite";
 
-import { DataManager } from "src/managers/DataManager";
+import { DataManager } from "../managers/DataManager";
 
 import { Sprite_Animation } from "./Sprite_Animation";
 import { Sprite_AnimationMV } from "./Sprite_AnimationMV";

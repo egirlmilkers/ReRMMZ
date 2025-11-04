@@ -2,16 +2,16 @@
 //
 // The superclass of Scene_Item and Scene_Skill.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "src/managers/DataManager.js";
-import { SceneManager } from "src/managers/SceneManager.js";
-import { SoundManager } from "src/managers/SoundManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Game_Action } from "src/objects/Game_Action.js";
+import { Game_Action } from "../objects/Game_Action.js";
 
-import { Window_MenuActor } from "src/windows/Window_MenuActor.js";
+import { Window_MenuActor } from "../windows/Window_MenuActor.js";
 
 import { Scene_Map } from "./Scene_Map.js";
 import { Scene_MenuBase } from "./Scene_MenuBase.js";

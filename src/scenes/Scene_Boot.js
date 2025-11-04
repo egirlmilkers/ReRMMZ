@@ -2,18 +2,18 @@
 //
 // The scene class for initializing the entire game.
 
-import { Graphics } from "src/core/Graphics";
-import { Utils } from "src/core/Utils";
+import { Graphics } from "../core/Graphics";
+import { Utils } from "../core/Utils";
 
-import { ColorManager } from "src/managers/ColorManager";
-import { ConfigManager } from "src/managers/ConfigManager";
-import { DataManager } from "src/managers/DataManager";
-import { FontManager } from "src/managers/FontManager";
-import { ImageManager } from "src/managers/ImageManager";
-import { SceneManager } from "src/managers/SceneManager";
-import { SoundManager } from "src/managers/SoundManager";
+import { ColorManager } from "../managers/ColorManager";
+import { ConfigManager } from "../managers/ConfigManager";
+import { DataManager } from "../managers/DataManager";
+import { FontManager } from "../managers/FontManager";
+import { ImageManager } from "../managers/ImageManager";
+import { SceneManager } from "../managers/SceneManager";
+import { SoundManager } from "../managers/SoundManager";
 
-import { Window_TitleCommand } from "src/windows/Window_TitleCommand";
+import { Window_TitleCommand } from "../windows/Window_TitleCommand";
 
 import { Scene_Base } from "./Scene_Base";
 import { Scene_Battle } from "./Scene_Battle";

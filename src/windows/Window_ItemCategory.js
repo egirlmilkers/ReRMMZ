@@ -2,8 +2,8 @@
 //
 // The window for selecting a category of items on the item and shop screens.
 
-import { DataManager } from "src/managers/DataManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_HorzCommand } from "./Window_HorzCommand.js";
 

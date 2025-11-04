@@ -2,8 +2,8 @@
 //
 // The window for displaying the status of party members on the battle screen.
 
-import { DataManager } from "src/managers/DataManager.js";
-import { ImageManager } from "src/managers/ImageManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

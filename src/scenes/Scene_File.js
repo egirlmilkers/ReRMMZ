@@ -2,13 +2,13 @@
 //
 // The superclass of Scene_Save and Scene_Load.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Window_Help } from "src/windows/Window_Help.js";
-import { Window_SavefileList } from "src/windows/Window_SavefileList.js";
+import { Window_Help } from "../windows/Window_Help.js";
+import { Window_SavefileList } from "../windows/Window_SavefileList.js";
 
 import { Scene_MenuBase } from "./Scene_MenuBase.js";
 

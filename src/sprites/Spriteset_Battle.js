@@ -2,12 +2,12 @@
 //
 // The set of sprites on the battle screen.
 
-import { Graphics } from "src/core/Graphics";
-import { Sprite } from "src/core/Sprite";
+import { Graphics } from "../core/Graphics";
+import { Sprite } from "../core/Sprite";
 
-import { DataManager } from "src/managers/DataManager";
-import { ImageManager } from "src/managers/ImageManager";
-import { SceneManager } from "src/managers/SceneManager";
+import { DataManager } from "../managers/DataManager";
+import { ImageManager } from "../managers/ImageManager";
+import { SceneManager } from "../managers/SceneManager";
 
 import { Sprite_Actor } from "./Sprite_Actor";
 import { Sprite_Battleback } from "./Sprite_Battleback";

@@ -2,9 +2,9 @@
 //
 // The window for selecting a target actor on the item and skill screens.
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Action } from "src/objects/Game_Action.js";
+import { Game_Action } from "../objects/Game_Action.js";
 
 import { Window_MenuStatus } from "./Window_MenuStatus.js";
 

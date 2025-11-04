@@ -2,20 +2,20 @@
 //
 // The scene class of the shop screen.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "src/managers/DataManager.js";
-import { SoundManager } from "src/managers/SoundManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Window_Base } from "src/windows/Window_Base.js";
-import { Window_Gold } from "src/windows/Window_Gold.js";
-import { Window_ItemCategory } from "src/windows/Window_ItemCategory.js";
-import { Window_ShopBuy } from "src/windows/Window_ShopBuy.js";
-import { Window_ShopCommand } from "src/windows/Window_ShopCommand.js";
-import { Window_ShopNumber } from "src/windows/Window_ShopNumber.js";
-import { Window_ShopSell } from "src/windows/Window_ShopSell.js";
-import { Window_ShopStatus } from "src/windows/Window_ShopStatus.js";
+import { Window_Base } from "../windows/Window_Base.js";
+import { Window_Gold } from "../windows/Window_Gold.js";
+import { Window_ItemCategory } from "../windows/Window_ItemCategory.js";
+import { Window_ShopBuy } from "../windows/Window_ShopBuy.js";
+import { Window_ShopCommand } from "../windows/Window_ShopCommand.js";
+import { Window_ShopNumber } from "../windows/Window_ShopNumber.js";
+import { Window_ShopSell } from "../windows/Window_ShopSell.js";
+import { Window_ShopStatus } from "../windows/Window_ShopStatus.js";
 
 import { Scene_MenuBase } from "./Scene_MenuBase.js";
 

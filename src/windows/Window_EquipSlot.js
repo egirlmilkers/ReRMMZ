@@ -2,7 +2,7 @@
 //
 // The window for selecting an equipment slot on the equipment screen.
 
-import { ColorManager } from "src/managers/ColorManager.js";
+import { ColorManager } from "../managers/ColorManager.js";
 
 import { Window_StatusBase } from "./Window_StatusBase.js";
 

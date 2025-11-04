@@ -2,7 +2,7 @@
 //
 // The superclass of Sprite_Actor and Sprite_Enemy.
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
 import { Sprite_Clickable } from "./Sprite_Clickable.js";
 import { Sprite_Damage } from "./Sprite_Damage.js";

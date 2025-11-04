@@ -2,12 +2,12 @@
 //
 // The scene class of the options screen.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { ConfigManager } from "src/managers/ConfigManager.js";
+import { ConfigManager } from "../managers/ConfigManager.js";
 
-import { Window_Options } from "src/windows/Window_Options.js";
+import { Window_Options } from "../windows/Window_Options.js";
 
 import { Scene_MenuBase } from "./Scene_MenuBase.js";
 

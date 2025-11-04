@@ -2,14 +2,14 @@
 //
 // The scene class of the skill screen.
 
-import { Graphics } from "src/core/Graphics.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { SoundManager } from "src/managers/SoundManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Window_SkillList } from "src/windows/Window_SkillList.js";
-import { Window_SkillStatus } from "src/windows/Window_SkillStatus.js";
-import { Window_SkillType } from "src/windows/Window_SkillType.js";
+import { Window_SkillList } from "../windows/Window_SkillList.js";
+import { Window_SkillStatus } from "../windows/Window_SkillStatus.js";
+import { Window_SkillType } from "../windows/Window_SkillType.js";
 
 import { Scene_ItemBase } from "./Scene_ItemBase.js";
 import { Scene_MenuBase } from "./Scene_MenuBase.js";

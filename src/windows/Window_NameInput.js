@@ -2,11 +2,11 @@
 //
 // The window for selecting text characters on the name input screen.
 
-import { Input } from "src/core/Input.js";
-import { Rectangle } from "src/core/Rectangle.js";
+import { Input } from "../core/Input.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "src/managers/DataManager.js";
-import { SoundManager } from "src/managers/SoundManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
 import { Window_Selectable } from "./Window_Selectable.js";
 

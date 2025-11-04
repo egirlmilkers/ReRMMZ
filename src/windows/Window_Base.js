@@ -2,16 +2,16 @@
 //
 // The superclass of all windows within the game.
 
-import { Bitmap } from "src/core/Bitmap";
-import { Rectangle } from "src/core/Rectangle";
-import { Sprite } from "src/core/Sprite";
-import { Utils } from "src/core/Utils";
+import { Bitmap } from "../core/Bitmap";
+import { Rectangle } from "../core/Rectangle";
+import { Sprite } from "../core/Sprite";
+import { Utils } from "../core/Utils";
 
-import { ColorManager } from "src/managers/ColorManager";
-import { DataManager } from "src/managers/DataManager";
-import { ImageManager } from "src/managers/ImageManager";
-import { SoundManager } from "src/managers/SoundManager";
-import { TextManager } from "src/managers/TextManager";
+import { ColorManager } from "../managers/ColorManager";
+import { DataManager } from "../managers/DataManager";
+import { ImageManager } from "../managers/ImageManager";
+import { SoundManager } from "../managers/SoundManager";
+import { TextManager } from "../managers/TextManager";
 
 export class Window_Base extends Window {
 	constructor(rect) {

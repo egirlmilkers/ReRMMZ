@@ -3,13 +3,13 @@
 // The window for displaying battle progress. No frame is displayed, but it is
 // handled as a window for convenience.
 
-import { Input } from "src/core/Input.js";
-import { Rectangle } from "src/core/Rectangle.js";
-import { TouchInput } from "src/core/TouchInput.js";
+import { Input } from "../core/Input.js";
+import { Rectangle } from "../core/Rectangle.js";
+import { TouchInput } from "../core/TouchInput.js";
 
-import { DataManager } from "src/managers/DataManager.js";
-import { SoundManager } from "src/managers/SoundManager.js";
-import { TextManager } from "src/managers/TextManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
+import { TextManager } from "../managers/TextManager.js";
 
 import { Window_Base } from "./Window_Base.js";
 

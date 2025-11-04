@@ -2,7 +2,7 @@
 //
 // The window for selecting an item to buy on the shop screen.
 
-import { DataManager } from "src/managers/DataManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
 import { Window_Selectable } from "./Window_Selectable.js";
 
