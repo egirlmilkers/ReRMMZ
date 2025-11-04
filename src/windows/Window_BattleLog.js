@@ -3,15 +3,15 @@
 // The window for displaying battle progress. No frame is displayed, but it is
 // handled as a window for convenience.
 
-import { Input } from "../core/Input.js";
-import { Rectangle } from "../core/Rectangle.js";
-import { TouchInput } from "../core/TouchInput.js";
+import {Input} from "../core/Input.js";
+import {Rectangle} from "../core/Rectangle.js";
+import {TouchInput} from "../core/TouchInput.js";
 
-import { DataManager } from "../managers/DataManager.js";
-import { SoundManager } from "../managers/SoundManager.js";
-import { TextManager } from "../managers/TextManager.js";
+import {DataManager} from "../managers/DataManager.js";
+import {SoundManager} from "../managers/SoundManager.js";
+import {TextManager} from "../managers/TextManager.js";
 
-import { Window_Base } from "./Window_Base.js";
+import {Window_Base} from "./Window_Base.js";
 
 export class Window_BattleLog extends Window_Base {
 	constructor(rect) {
@@ -283,8 +283,8 @@ export class Window_BattleLog extends Window_Base {
 		const x = padding;
 		const y = index * itemHeight;
 		const width = this.innerWidth - padding * 2;
-		const height = itemHeight;
-		return new Rectangle(x, y, width, height);
+
+		return new Rectangle(x, y, width, itemHeight);
 	}
 
 	backColor() {

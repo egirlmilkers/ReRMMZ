@@ -108,11 +108,8 @@ export class Game_Vehicle extends Game_Character {
 			return DataManager.$gameMap.isBoatPassable(x2, y2);
 		} else if (this.isShip()) {
 			return DataManager.$gameMap.isShipPassable(x2, y2);
-		} else if (this.isAirship()) {
-			return true;
-		} else {
-			return false;
-		}
+		} else
+			return this.isAirship();
 	}
 
 	getOn() {

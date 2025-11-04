@@ -12,13 +12,14 @@ export class Window_DebugRange extends Window_Selectable {
 	static lastTopRow = 0;
 	static lastIndex = 0;
 
+	_maxSwitches = Math.ceil(
+		(DataManager.$dataSystem.switches.length - 1) / 10,
+	);
+	_maxVariables = Math.ceil(
+		(DataManager.$dataSystem.variables.length - 1) / 10,
+	);
+
 	constructor(rect) {
-		this._maxSwitches = Math.ceil(
-			(DataManager.$dataSystem.switches.length - 1) / 10,
-		);
-		this._maxVariables = Math.ceil(
-			(DataManager.$dataSystem.variables.length - 1) / 10,
-		);
 		super(rect);
 		this.refresh();
 		this.setTopRow(Window_DebugRange.lastTopRow);

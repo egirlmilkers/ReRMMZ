@@ -248,11 +248,8 @@ export class Game_Party extends Game_Unit {
 	hasItem(item, includeEquip) {
 		if (this.numItems(item) > 0) {
 			return true;
-		} else if (includeEquip && this.isAnyMemberEquipped(item)) {
-			return true;
-		} else {
-			return false;
-		}
+		} else
+			return includeEquip && this.isAnyMemberEquipped(item);
 	}
 
 	isAnyMemberEquipped(item) {

@@ -278,19 +278,13 @@ export class Game_Player extends Game_Character {
 		if (
 			DataManager.$gameMap.isEventRunning() ||
 			DataManager.$gameMessage.isBusy()
-		) {
-			return false;
-		}
-		if (this.isMoveRouteForcing() || this.areFollowersGathering()) {
-			return false;
-		}
-		if (this._vehicleGettingOn || this._vehicleGettingOff) {
-			return false;
-		}
-		if (this.isInVehicle() && !this.vehicle().canMove()) {
-			return false;
-		}
-		return true;
+		) return false;
+
+		if (this.isMoveRouteForcing() || this.areFollowersGathering()) return false;
+
+		if (this._vehicleGettingOn || this._vehicleGettingOff) return false;
+
+		return !(this.isInVehicle() && !this.vehicle().canMove());
 	}
 
 	getInputDirection() {

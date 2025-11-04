@@ -161,31 +161,23 @@ export class Game_CharacterBase {
 	canPass(x, y, d) {
 		const x2 = DataManager.$gameMap.roundXWithDirection(x, d);
 		const y2 = DataManager.$gameMap.roundYWithDirection(y, d);
-		if (!DataManager.$gameMap.isValid(x2, y2)) {
-			return false;
-		}
-		if (this.isThrough() || this.isDebugThrough()) {
-			return true;
-		}
-		if (!this.isMapPassable(x, y, d)) {
-			return false;
-		}
-		if (this.isCollidedWithCharacters(x2, y2)) {
-			return false;
-		}
-		return true;
+
+		if (!DataManager.$gameMap.isValid(x2, y2)) return false;
+
+		if (this.isThrough() || this.isDebugThrough()) return true;
+
+		if (!this.isMapPassable(x, y, d)) return false;
+
+		return !this.isCollidedWithCharacters(x2, y2);
 	}
 
 	canPassDiagonally(x, y, horz, vert) {
 		const x2 = DataManager.$gameMap.roundXWithDirection(x, horz);
 		const y2 = DataManager.$gameMap.roundYWithDirection(y, vert);
-		if (this.canPass(x, y, vert) && this.canPass(x, y2, horz)) {
-			return true;
-		}
-		if (this.canPass(x, y, horz) && this.canPass(x2, y, vert)) {
-			return true;
-		}
-		return false;
+
+		if (this.canPass(x, y, vert) && this.canPass(x, y2, horz)) return true;
+
+		return !!(this.canPass(x, y, horz) && this.canPass(x2, y, vert));
 	}
 
 	isMapPassable(x, y, d) {

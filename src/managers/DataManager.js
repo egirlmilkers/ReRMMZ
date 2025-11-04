@@ -101,7 +101,7 @@ export class DataManager {
 	}
 
 	static saveGlobalInfo() {
-		StorageManager.saveObject("global", this._globalInfo);
+		StorageManager.saveObject("global", this._globalInfo).catch(error => console.log("Failed to save global info:", error));
 	}
 
 	static isGlobalInfoLoaded() {

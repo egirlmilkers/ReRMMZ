@@ -185,13 +185,8 @@ export class BattleManager {
 			return true;
 		}
 		DataManager.$gameTroop.setupBattleEvent();
-		if (
-			DataManager.$gameTroop.isEventRunning() ||
-			SceneManager.isSceneChanging()
-		) {
-			return true;
-		}
-		return false;
+
+		return (DataManager.$gameTroop.isEventRunning() || this.checkBattleEnd());
 	}
 
 	static isBusy() {

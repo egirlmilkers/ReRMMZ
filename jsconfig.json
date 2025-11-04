@@ -3,7 +3,7 @@
 		"target": "es6",
 		"module": "es6",
 		"moduleResolution": "Bundler",
-		"lib": ["es6", "dom", "dom.iterable"],
+		"lib": ["es6"],
 
 		"strict": true,
 		"checkJs": true,

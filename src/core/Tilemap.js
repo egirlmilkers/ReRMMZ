@@ -426,11 +426,11 @@ export class Tilemap extends PIXI.Container {
 	}
 
 	_addShadow(layer, shadowBits, dx, dy) {
-		if (shadowBits & 0x0f) {
+		if (shadowBits && 0x0f) {
 			const w1 = this.tileWidth / 2;
 			const h1 = this.tileHeight / 2;
 			for (let i = 0; i < 4; i++) {
-				if (shadowBits & (1 << i)) {
+				if (shadowBits && (1 << i)) {
 					const dx1 = dx + (i % 2) * w1;
 					const dy1 = dy + Math.floor(i / 2) * h1;
 					layer.addRect(-1, 0, 0, dx1, dy1, w1, h1);
@@ -464,7 +464,7 @@ export class Tilemap extends PIXI.Container {
 	}
 
 	_isTableTile(tileId) {
-		return Tilemap.isTileA2(tileId) && this.flags[tileId] & 0x80;
+		return Tilemap.isTileA2(tileId) && this.flags[tileId] && 0x80;
 	}
 
 	_isOverpassPosition() /*mx, my*/ {

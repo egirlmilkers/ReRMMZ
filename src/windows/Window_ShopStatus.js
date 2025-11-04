@@ -148,13 +148,9 @@ export class Window_ShopStatus extends Window_StatusBase {
 	}
 
 	isPageChangeRequested() {
-		if (Input.isTriggered("shift")) {
-			return true;
-		}
-		if (TouchInput.isTriggered() && this.isTouchedInsideFrame()) {
-			return true;
-		}
-		return false;
+		if (Input.isTriggered("shift")) return true;
+
+		return TouchInput.isTriggered() && this.isTouchedInsideFrame();
 	}
 
 	changePage() {

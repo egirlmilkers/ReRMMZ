@@ -249,14 +249,14 @@ export class Graphics {
 	 * Shows the game screen.
 	 */
 	static showScreen() {
-		this._canvas.style.opacity = 1;
+		this._canvas.style.opacity = String(1);
 	}
 
 	/**
 	 * Hides the game screen.
 	 */
 	static hideScreen() {
-		this._canvas.style.opacity = 0;
+		this._canvas.style.opacity = String(0);
 	}
 
 	/**
@@ -468,7 +468,6 @@ export class Graphics {
 		if (this._canvas) {
 			this._canvas.style.opacity = 0.5;
 			this._canvas.style.filter = "blur(8px)";
-			this._canvas.style.webkitFilter = "blur(8px)";
 		}
 	}
 
@@ -476,7 +475,6 @@ export class Graphics {
 		if (this._canvas) {
 			this._canvas.style.opacity = 1;
 			this._canvas.style.filter = "";
-			this._canvas.style.webkitFilter = "";
 		}
 	}
 

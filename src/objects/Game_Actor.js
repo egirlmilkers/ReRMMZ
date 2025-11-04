@@ -362,15 +362,12 @@ export class Game_Actor extends Game_Battler {
 	isSkillWtypeOk(skill) {
 		const wtypeId1 = skill.requiredWtypeId1;
 		const wtypeId2 = skill.requiredWtypeId2;
-		if (
+
+		return (
 			(wtypeId1 === 0 && wtypeId2 === 0) ||
 			(wtypeId1 > 0 && this.isWtypeEquipped(wtypeId1)) ||
 			(wtypeId2 > 0 && this.isWtypeEquipped(wtypeId2))
-		) {
-			return true;
-		} else {
-			return false;
-		}
+		);
 	}
 
 	isWtypeEquipped(wtypeId) {

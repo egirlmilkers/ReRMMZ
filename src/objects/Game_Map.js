@@ -769,19 +769,14 @@ export class Game_Map {
 
 	setupStartingEvent() {
 		this.refreshIfNeeded();
-		if (this._interpreter.setupReservedCommonEvent()) {
-			return true;
-		}
-		if (this.setupTestEvent()) {
-			return true;
-		}
-		if (this.setupStartingMapEvent()) {
-			return true;
-		}
-		if (this.setupAutorunCommonEvent()) {
-			return true;
-		}
-		return false;
+
+		if (this._interpreter.setupReservedCommonEvent()) return true;
+
+		if (this.setupTestEvent()) return true;
+
+		if (this.setupStartingMapEvent()) return true;
+
+		return this.setupAutorunCommonEvent();
 	}
 
 	setupTestEvent() {

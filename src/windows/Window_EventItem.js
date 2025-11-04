@@ -89,13 +89,8 @@ export class Window_EventItem extends Window_ItemList {
 		if (itypeId === 2) {
 			// Key Item
 			return DataManager.$dataSystem.optKeyItemsNumber;
-		} else if (itypeId >= 3) {
-			// Hidden Item
-			return false;
-		} else {
-			// Normal Item
-			return true;
-		}
+		} else
+			return itypeId < 3; // False = Hidden Item, True = Normal Item
 	}
 
 	isEnabled() /*item*/ {

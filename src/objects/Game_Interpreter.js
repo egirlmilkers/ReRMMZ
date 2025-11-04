@@ -220,11 +220,7 @@ export class Game_Interpreter {
 			this._frameCount = Graphics.frameCount;
 			this._freezeChecker = 0;
 		}
-		if (this._freezeChecker++ >= 100000) {
-			return true;
-		} else {
-			return false;
-		}
+		return this._freezeChecker++ >= 100000;
 	}
 
 	terminate() {

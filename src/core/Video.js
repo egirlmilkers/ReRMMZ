@@ -91,7 +91,7 @@ export class Video {
 
 	static _onLoad() {
 		this._element.volume = this._volume;
-		this._element.play();
+		this._element.play().catch(error => console.error("Failed to play video:", error));
 		this._updateVisibility(true);
 		this._loading = false;
 	}

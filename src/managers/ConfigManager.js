@@ -61,7 +61,7 @@ export class ConfigManager {
 	}
 
 	static save() {
-		StorageManager.saveObject("config", this.makeData());
+		StorageManager.saveObject("config", this.makeData()).catch(error => console.log("Failed to save config:", error));
 	}
 
 	static isLoaded() {

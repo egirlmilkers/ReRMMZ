@@ -7,8 +7,9 @@ import { DataManager } from "../managers/DataManager.js";
 import { Window_Selectable } from "./Window_Selectable.js";
 
 export class Window_BattleEnemy extends Window_Selectable {
+	_enemies = [];
+
 	constructor(rect) {
-		this._enemies = [];
 		super(rect);
 		this.refresh();
 		this.hide();
