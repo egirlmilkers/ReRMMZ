@@ -156,7 +156,7 @@ export class DataManager {
 
 	static loadMapData(mapId) {
 		if (mapId > 0) {
-			const filename = `Map${mapId.padStart(3, "0")}.json`
+			const filename = `Map${String(mapId).padStart(3, "0")}.json`
 			this.loadDataFile("$dataMap", filename);
 		} else {
 			this.makeEmptyMap();

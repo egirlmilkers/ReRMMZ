@@ -62,7 +62,7 @@ export class Sprite_Timer extends Sprite {
 	timerText() {
 		const min = Math.floor(this._seconds / 60) % 60;
 		const sec = this._seconds % 60;
-		return min.padStart(2, "0") + ":" + sec.padStart(2, "0");
+		return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
 	}
 
 	updatePosition() {
