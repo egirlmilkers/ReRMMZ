@@ -2,10 +2,10 @@
 //
 // The sprite class with click handling functions.
 
-import { Point } from "../core/Point";
-import { Rectangle } from "../core/Rectangle";
-import { Sprite } from "../core/Sprite";
-import { TouchInput } from "../core/TouchInput";
+import { Point } from "../core/Point.js";
+import { Rectangle } from "../core/Rectangle.js";
+import { Sprite } from "../core/Sprite.js";
+import { TouchInput } from "../core/TouchInput.js";
 
 export class Sprite_Clickable extends Sprite {
 	constructor() {

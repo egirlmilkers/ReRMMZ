@@ -3,32 +3,32 @@
 // The scene class of the map screen.
 
 import { Rectangle } from "../core/Rectangle.js";
-import { Graphics } from "../core/Graphics";
-import { Input } from "../core/Input";
-import { TouchInput } from "../core/TouchInput";
+import { Graphics } from "../core/Graphics.js";
+import { Input } from "../core/Input.js";
+import { TouchInput } from "../core/TouchInput.js";
 
-import { AudioManager } from "../managers/AudioManager";
-import { BattleManager } from "../managers/BattleManager";
-import { ConfigManager } from "../managers/ConfigManager";
-import { DataManager } from "../managers/DataManager";
-import { EffectManager } from "../managers/EffectManager";
-import { ImageManager } from "../managers/ImageManager";
-import { SceneManager } from "../managers/SceneManager";
-import { SoundManager } from "../managers/SoundManager";
+import { AudioManager } from "../managers/AudioManager.js";
+import { BattleManager } from "../managers/BattleManager.js";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { EffectManager } from "../managers/EffectManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Sprite_Button } from "../sprites/Sprite_Button";
-import { Spriteset_Map } from "../sprites/Spriteset_Map";
+import { Sprite_Button } from "../sprites/Sprite_Button.js";
+import { Spriteset_Map } from "../sprites/Spriteset_Map.js";
 
-import { Window_MapName } from "../windows/Window_MapName";
-import { Window_MenuCommand } from "../windows/Window_MenuCommand";
+import { Window_MapName } from "../windows/Window_MapName.js";
+import { Window_MenuCommand } from "../windows/Window_MenuCommand.js";
 
-import { Scene_Battle } from "./Scene_Battle";
-import { Scene_Debug } from "./Scene_Debug";
-import { Scene_Gameover } from "./Scene_Gameover";
-import { Scene_Load } from "./Scene_Load";
-import { Scene_Menu } from "./Scene_Menu";
-import { Scene_Message } from "./Scene_Message";
-import { Scene_Title } from "./Scene_Title";
+import { Scene_Battle } from "./Scene_Battle.js";
+import { Scene_Debug } from "./Scene_Debug.js";
+import { Scene_Gameover } from "./Scene_Gameover.js";
+import { Scene_Load } from "./Scene_Load.js";
+import { Scene_Menu } from "./Scene_Menu.js";
+import { Scene_Message } from "./Scene_Message.js";
+import { Scene_Title } from "./Scene_Title.js";
 
 export class Scene_Map extends Scene_Message {
 	constructor() {

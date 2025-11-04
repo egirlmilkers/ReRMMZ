@@ -2,8 +2,8 @@
 //
 // The static class that loads Effekseer effects.
 
-import { Graphics } from "../core/Graphics";
-import { Utils } from "../core/Utils";
+import { Graphics } from "../core/Graphics.js";
+import { Utils } from "../core/Utils.js";
 
 export class EffectManager {
 	static _cache = {};

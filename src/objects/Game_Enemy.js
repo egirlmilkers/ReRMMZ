@@ -2,10 +2,10 @@
 //
 // The game object class for an enemy.
 
-import { DataManager } from "../managers/DataManager";
-import { SoundManager } from "../managers/SoundManager";
+import { DataManager } from "../managers/DataManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
 
-import { Game_Battler } from "./Game_Battler";
+import { Game_Battler } from "./Game_Battler.js";
 
 export class Game_Enemy extends Game_Battler {
 	constructor(enemyId, x, y) {

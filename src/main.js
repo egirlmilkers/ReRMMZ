@@ -19,7 +19,7 @@ const scriptUrls = [
 	"js/rmmz_windows.js",
 	"js/plugins.js",
 ];
-const effekseerWasmUrl = "../local_modules/effekseer-1.70e/effekseer.wasm";
+const effekseerWasmUrl = "../lib/effekseer/effekseer.wasm";
 
 class Main {
 	constructor() {

@@ -2,17 +2,17 @@
 //
 // The set of sprites on the battle screen.
 
-import { Graphics } from "../core/Graphics";
-import { Sprite } from "../core/Sprite";
+import { Graphics } from "../core/Graphics.js";
+import { Sprite } from "../core/Sprite.js";
 
-import { DataManager } from "../managers/DataManager";
-import { ImageManager } from "../managers/ImageManager";
-import { SceneManager } from "../managers/SceneManager";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
 
-import { Sprite_Actor } from "./Sprite_Actor";
-import { Sprite_Battleback } from "./Sprite_Battleback";
-import { Sprite_Enemy } from "./Sprite_Enemy";
-import { Spriteset_Base } from "./Spriteset_Base";
+import { Sprite_Actor } from "./Sprite_Actor.js";
+import { Sprite_Battleback } from "./Sprite_Battleback.js";
+import { Sprite_Enemy } from "./Sprite_Enemy.js";
+import { Spriteset_Base } from "./Spriteset_Base.js";
 
 export class Spriteset_Battle extends Spriteset_Base {
 	constructor() {

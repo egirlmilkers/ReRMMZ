@@ -2,7 +2,7 @@
 //
 // The static class that manages the configuration data.
 
-import { AudioManager } from "./AudioManager";
+import { AudioManager } from "./AudioManager.js";
 
 export class ConfigManager {
 	static alwaysDash = false;

@@ -1,6 +1,6 @@
-import { Bitmap } from "./Bitmap";
-import { Point } from "./Point";
-import { Rectangle } from "./Rectangle";
+import { Bitmap } from "./Bitmap.js";
+import { Point } from "./Point.js";
+import { Rectangle } from "./Rectangle.js";
 
 /**
  * The sprite object for a tiling image.

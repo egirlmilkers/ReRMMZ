@@ -2,15 +2,15 @@
 //
 // The window used for the event command [Select Item].
 
-import { Graphics } from "../core/Graphics";
+import { Graphics } from "../core/Graphics.js";
 
-import { ConfigManager } from "../managers/ConfigManager";
-import { DataManager } from "../managers/DataManager";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Sprite_Button } from "../sprites/Sprite_Button";
+import { Sprite_Button } from "../sprites/Sprite_Button.js";
 
-import { Window_ItemList } from "./Window_ItemList";
-import { Window_Selectable } from "./Window_Selectable";
+import { Window_ItemList } from "./Window_ItemList.js";
+import { Window_Selectable } from "./Window_Selectable.js";
 
 export class Window_EventItem extends Window_ItemList {
 	constructor(rect) {

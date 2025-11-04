@@ -6,7 +6,7 @@
  */
 export class ColorFilter extends PIXI.Filter {
 	constructor() {
-		super(null, this._fragmentSrc());
+		super(null, ColorFilter._fragmentSrc());
 		this.uniforms.hue = 0;
 		this.uniforms.colorTone = [0, 0, 0, 0];
 		this.uniforms.blendColor = [0, 0, 0, 0];
@@ -55,9 +55,8 @@ export class ColorFilter extends PIXI.Filter {
 		this.uniforms.brightness = Number(brightness);
 	}
 
-	_fragmentSrc() {
-		const src =
-			"varying vec2 vTextureCoord;" +
+	static _fragmentSrc() {
+		return "varying vec2 vTextureCoord;" +
 			"uniform sampler2D uSampler;" +
 			"uniform float hue;" +
 			"uniform vec4 colorTone;" +
@@ -139,6 +138,5 @@ export class ColorFilter extends PIXI.Filter {
 			"  b = b * brightness / 255.0;" +
 			"  gl_FragColor = vec4(r, g, b, a);" +
 			"}";
-		return src;
 	}
 }

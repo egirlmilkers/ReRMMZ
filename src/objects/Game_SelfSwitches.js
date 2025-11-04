@@ -2,7 +2,7 @@
 //
 // The game object class for self switches.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
 export class Game_SelfSwitches {
 	constructor() {

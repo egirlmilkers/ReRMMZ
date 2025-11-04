@@ -2,23 +2,24 @@
 //
 // The scene class for initializing the entire game.
 
-import { Graphics } from "../core/Graphics";
-import { Utils } from "../core/Utils";
+import { Graphics } from "../core/Graphics.js";
+import { Utils } from "../core/Utils.js";
 
-import { ColorManager } from "../managers/ColorManager";
-import { ConfigManager } from "../managers/ConfigManager";
-import { DataManager } from "../managers/DataManager";
-import { FontManager } from "../managers/FontManager";
-import { ImageManager } from "../managers/ImageManager";
-import { SceneManager } from "../managers/SceneManager";
-import { SoundManager } from "../managers/SoundManager";
+import { ColorManager } from "../managers/ColorManager.js";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { DataManager } from "../managers/DataManager.js";
+import { FontManager } from "../managers/FontManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
+import { SoundManager } from "../managers/SoundManager.js";
+import { StorageManager } from "../managers/StorageManager.js";
 
-import { Window_TitleCommand } from "../windows/Window_TitleCommand";
+import { Window_TitleCommand } from "../windows/Window_TitleCommand.js";
 
-import { Scene_Base } from "./Scene_Base";
-import { Scene_Battle } from "./Scene_Battle";
-import { Scene_Map } from "./Scene_Map";
-import { Scene_Splash } from "./Scene_Splash";
+import { Scene_Base } from "./Scene_Base.js";
+import { Scene_Battle } from "./Scene_Battle.js";
+import { Scene_Map } from "./Scene_Map.js";
+import { Scene_Splash } from "./Scene_Splash.js";
 
 export class Scene_Boot extends Scene_Base {
 	constructor() {

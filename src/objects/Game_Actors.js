@@ -2,9 +2,9 @@
 //
 // The wrapper class for an actor array.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Actor } from "./Game_Actor";
+import { Game_Actor } from "./Game_Actor.js";
 
 export class Game_Actors {
 	constructor() {

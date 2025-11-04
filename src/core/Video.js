@@ -1,4 +1,4 @@
-import { Graphics } from "./Graphics";
+import { Graphics } from "./Graphics.js";
 
 /**
  * The static class that handles video playback.

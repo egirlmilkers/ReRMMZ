@@ -3,15 +3,15 @@
 // The game object class for the player. It contains event starting
 // determinants and map scrolling functions.
 
-import { Input } from "../core/Input";
-import { TouchInput } from "../core/TouchInput";
+import { Input } from "../core/Input.js";
+import { TouchInput } from "../core/TouchInput.js";
 
-import { BattleManager } from "../managers/BattleManager";
-import { ConfigManager } from "../managers/ConfigManager";
-import { DataManager } from "../managers/DataManager";
+import { BattleManager } from "../managers/BattleManager.js";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Character } from "./Game_Character";
-import { Game_Followers } from "./Game_Followers";
+import { Game_Character } from "./Game_Character.js";
+import { Game_Followers } from "./Game_Followers.js";
 
 export class Game_Player extends Game_Character {
 	constructor() {

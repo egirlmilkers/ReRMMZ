@@ -3,10 +3,10 @@
 // The superclass of Game_Character. It handles basic information, such as
 // coordinates and images, shared by all characters.
 
-import { Graphics } from "../core/Graphics";
+import { Graphics } from "../core/Graphics.js";
 
-import { DataManager } from "../managers/DataManager";
-import { ImageManager } from "../managers/ImageManager";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
 export class Game_CharacterBase {
 	constructor() {

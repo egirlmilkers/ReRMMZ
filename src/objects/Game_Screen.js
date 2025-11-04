@@ -3,9 +3,9 @@
 // The game object class for screen effect data, such as changes in color tone
 // and flashes.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Picture } from "./Game_Picture";
+import { Game_Picture } from "./Game_Picture.js";
 
 export class Game_Screen {
 	constructor() {

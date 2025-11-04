@@ -2,7 +2,7 @@
 //
 // The static class that manages the plugins.
 
-import { Utils } from "../core/Utils";
+import { Utils } from "../core/Utils.js";
 
 export class PluginManager {
 	static _scripts = [];

@@ -2,11 +2,11 @@
 //
 // The sprite for displaying an old format animation.
 
-import { ScreenSprite } from "../core/ScreenSprite";
-import { Sprite } from "../core/Sprite";
+import { ScreenSprite } from "../core/ScreenSprite.js";
+import { Sprite } from "../core/Sprite.js";
 
-import { AudioManager } from "../managers/AudioManager";
-import { ImageManager } from "../managers/ImageManager";
+import { AudioManager } from "../managers/AudioManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
 export class Sprite_AnimationMV extends Sprite {
 	constructor() {

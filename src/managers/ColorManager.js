@@ -2,7 +2,7 @@
 //
 // The static class that handles the window colors.
 
-import { ImageManager } from "./ImageManager";
+import { ImageManager } from "./ImageManager.js";
 
 export class ColorManager {
 	constructor() {

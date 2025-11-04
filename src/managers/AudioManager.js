@@ -2,9 +2,9 @@
 //
 // The static class that handles BGM, BGS, ME and SE.
 
-import { WebAudio } from "../core/WebAudio";
-import { Graphics } from "../core/Graphics";
-import { Utils } from "../core/Utils";
+import { WebAudio } from "../core/WebAudio.js";
+import { Graphics } from "../core/Graphics.js";
+import { Utils } from "../core/Utils.js";
 
 export class AudioManager {
 	static _bgmVolume = 100;

@@ -2,19 +2,19 @@
 //
 // The set of sprites on the map screen.
 
-import { Graphics } from "../core/Graphics";
-import { Sprite } from "../core/Sprite";
-import { Tilemap } from "../core/Tilemap";
-import { TilingSprite } from "../core/TilingSprite";
-import { Weather } from "../core/Weather";
+import { Graphics } from "../core/Graphics.js";
+import { Sprite } from "../core/Sprite.js";
+import { Tilemap } from "../core/Tilemap.js";
+import { TilingSprite } from "../core/TilingSprite.js";
+import { Weather } from "../core/Weather.js";
 
-import { DataManager } from "../managers/DataManager";
-import { ImageManager } from "../managers/ImageManager";
+import { DataManager } from "../managers/DataManager.js";
+import { ImageManager } from "../managers/ImageManager.js";
 
-import { Sprite_Balloon } from "./Sprite_Balloon";
-import { Sprite_Character } from "./Sprite_Character";
-import { Sprite_Destination } from "./Sprite_Destination";
-import { Spriteset_Base } from "./Spriteset_Base";
+import { Sprite_Balloon } from "./Sprite_Balloon.js";
+import { Sprite_Character } from "./Sprite_Character.js";
+import { Sprite_Destination } from "./Sprite_Destination.js";
+import { Spriteset_Base } from "./Spriteset_Base.js";
 
 export class Spriteset_Map extends Spriteset_Base {
 	constructor() {

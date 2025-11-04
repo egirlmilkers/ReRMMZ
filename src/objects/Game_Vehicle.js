@@ -2,10 +2,10 @@
 //
 // The game object class for a vehicle.
 
-import { AudioManager } from "../managers/AudioManager";
-import { DataManager } from "../managers/DataManager";
+import { AudioManager } from "../managers/AudioManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Character } from "./Game_Character";
+import { Game_Character } from "./Game_Character.js";
 
 export class Game_Vehicle extends Game_Character {
 	constructor(type) {

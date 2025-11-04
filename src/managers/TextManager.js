@@ -2,7 +2,7 @@
 //
 // The static class that handles terms and messages.
 
-import { DataManager } from "./DataManager";
+import { DataManager } from "./DataManager.js";
 
 export class TextManager {
 	constructor() {

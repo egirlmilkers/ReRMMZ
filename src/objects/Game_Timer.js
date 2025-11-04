@@ -2,7 +2,7 @@
 //
 // The game object class for the timer.
 
-import { BattleManager } from "../managers/BattleManager";
+import { BattleManager } from "../managers/BattleManager.js";
 
 export class Game_Timer {
 	constructor() {

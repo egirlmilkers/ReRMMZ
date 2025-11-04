@@ -2,15 +2,15 @@
 //
 // The static class that manages battle progress.
 
-import { AudioManager } from "./AudioManager";
-import { DataManager } from "./DataManager";
-import { SceneManager } from "./SceneManager";
-import { SoundManager } from "./SoundManager";
-import { TextManager } from "./TextManager";
+import { AudioManager } from "./AudioManager.js";
+import { DataManager } from "./DataManager.js";
+import { SceneManager } from "./SceneManager.js";
+import { SoundManager } from "./SoundManager.js";
+import { TextManager } from "./TextManager.js";
 
-import { Game_Action } from "../objects/Game_Action";
+import { Game_Action } from "../objects/Game_Action.js";
 
-import { Scene_Gameover } from "../scenes/Scene_Gameover";
+import { Scene_Gameover } from "../scenes/Scene_Gameover.js";
 
 export class BattleManager {
 	constructor() {

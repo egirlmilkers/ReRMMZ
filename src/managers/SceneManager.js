@@ -2,18 +2,18 @@
 //
 // The static class that manages scene transitions.
 
-import { Bitmap } from "../core/Bitmap";
-import { Graphics } from "../core/Graphics";
-import { Input } from "../core/Input";
-import { TouchInput } from "../core/TouchInput";
-import { Utils } from "../core/Utils";
-import { Video } from "../core/Video";
-import { WebAudio } from "../core/WebAudio";
+import { Bitmap } from "../core/Bitmap.js";
+import { Graphics } from "../core/Graphics.js";
+import { Input } from "../core/Input.js";
+import { TouchInput } from "../core/TouchInput.js";
+import { Utils } from "../core/Utils.js";
+import { Video } from "../core/Video.js";
+import { WebAudio } from "../core/WebAudio.js";
 
-import { AudioManager } from "./AudioManager";
-import { EffectManager } from "./EffectManager";
-import { ImageManager } from "./ImageManager";
-import { PluginManager } from "./PluginManager";
+import { AudioManager } from "./AudioManager.js";
+import { EffectManager } from "./EffectManager.js";
+import { ImageManager } from "./ImageManager.js";
+import { PluginManager } from "./PluginManager.js";
 
 export class SceneManager {
 	static _scene = null;

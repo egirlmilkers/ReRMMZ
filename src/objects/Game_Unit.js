@@ -2,7 +2,7 @@
 //
 // The superclass of Game_Party and Game_Troop.
 
-import { BattleManager } from "../managers/BattleManager";
+import { BattleManager } from "../managers/BattleManager.js";
 
 export class Game_Unit {
 	constructor() {

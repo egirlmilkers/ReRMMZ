@@ -3,7 +3,7 @@
 // The game object class for handling skills, items, weapons, and armor. It is
 // required because save data should not include the database object itself.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
 export class Game_Item {
 	constructor(item) {

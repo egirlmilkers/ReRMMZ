@@ -2,7 +2,7 @@
 //
 // The game object class for switches.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
 export class Game_Switches {
 	constructor() {

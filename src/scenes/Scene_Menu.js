@@ -5,21 +5,21 @@
 import { Graphics } from "../core/Graphics.js";
 import { Rectangle } from "../core/Rectangle.js";
 
-import { DataManager } from "../managers/DataManager";
-import { SceneManager } from "../managers/SceneManager";
+import { DataManager } from "../managers/DataManager.js";
+import { SceneManager } from "../managers/SceneManager.js";
 
-import { Window_Gold } from "../windows/Window_Gold";
-import { Window_MenuCommand } from "../windows/Window_MenuCommand";
-import { Window_MenuStatus } from "../windows/Window_MenuStatus";
+import { Window_Gold } from "../windows/Window_Gold.js";
+import { Window_MenuCommand } from "../windows/Window_MenuCommand.js";
+import { Window_MenuStatus } from "../windows/Window_MenuStatus.js";
 
-import { Scene_Equip } from "./Scene_Equip";
-import { Scene_GameEnd } from "./Scene_GameEnd";
-import { Scene_Item } from "./Scene_Item";
-import { Scene_MenuBase } from "./Scene_MenuBase";
-import { Scene_Options } from "./Scene_Options";
-import { Scene_Save } from "./Scene_Save";
-import { Scene_Skill } from "./Scene_Skill";
-import { Scene_Status } from "./Scene_Status";
+import { Scene_Equip } from "./Scene_Equip.js";
+import { Scene_GameEnd } from "./Scene_GameEnd.js";
+import { Scene_Item } from "./Scene_Item.js";
+import { Scene_MenuBase } from "./Scene_MenuBase.js";
+import { Scene_Options } from "./Scene_Options.js";
+import { Scene_Save } from "./Scene_Save.js";
+import { Scene_Skill } from "./Scene_Skill.js";
+import { Scene_Status } from "./Scene_Status.js";
 
 export class Scene_Menu extends Scene_MenuBase {
 	constructor() {

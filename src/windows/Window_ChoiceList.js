@@ -2,16 +2,16 @@
 //
 // The window used for the event command [Show Choices].
 
-import { Graphics } from "../core/Graphics";
-import { Rectangle } from "../core/Rectangle";
+import { Graphics } from "../core/Graphics.js";
+import { Rectangle } from "../core/Rectangle.js";
 
-import { ConfigManager } from "../managers/ConfigManager";
-import { DataManager } from "../managers/DataManager";
+import { ConfigManager } from "../managers/ConfigManager.js";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Sprite_Button } from "../sprites/Sprite_Button";
+import { Sprite_Button } from "../sprites/Sprite_Button.js";
 
-import { Window_Command } from "./Window_Command";
-import { Window_Selectable } from "./Window_Selectable";
+import { Window_Command } from "./Window_Command.js";
+import { Window_Selectable } from "./Window_Selectable.js";
 
 export class Window_ChoiceList extends Window_Command {
 	constructor() {

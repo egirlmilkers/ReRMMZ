@@ -3,9 +3,9 @@
 // The game object class for a follower. A follower is an allied character,
 // other than the front character, displayed in the party.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Character } from "./Game_Character";
+import { Game_Character } from "./Game_Character.js";
 
 export class Game_Follower extends Game_Character {
 	constructor(memberIndex) {

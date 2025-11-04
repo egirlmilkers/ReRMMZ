@@ -3,9 +3,9 @@
 // The game object class for a common event. It contains functionality for
 // running parallel process events.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Interpreter } from "./Game_Interpreter";
+import { Game_Interpreter } from "./Game_Interpreter.js";
 
 export class Game_CommonEvent {
 	constructor(commonEventId) {

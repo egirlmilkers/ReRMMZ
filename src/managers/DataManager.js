@@ -2,25 +2,25 @@
 //
 // The static class that manages the database and game objects.
 
-import { Utils } from "../core/Utils";
-import { Graphics } from "../core/Graphics";
+import { Utils } from "../core/Utils.js";
+import { Graphics } from "../core/Graphics.js";
 
-import { Game_Actors } from "../objects/Game_Actors";
-import { Game_Map } from "../objects/Game_Map";
-import { Game_Message } from "../objects/Game_Message";
-import { Game_Party } from "../objects/Game_Party";
-import { Game_Player } from "../objects/Game_Player";
-import { Game_Screen } from "../objects/Game_Screen";
-import { Game_SelfSwitches } from "../objects/Game_SelfSwitches";
-import { Game_Switches } from "../objects/Game_Switches";
-import { Game_System } from "../objects/Game_System";
-import { Game_Temp } from "../objects/Game_Temp";
-import { Game_Timer } from "../objects/Game_Timer";
-import { Game_Troop } from "../objects/Game_Troop";
-import { Game_Variables } from "../objects/Game_Variables";
+import { Game_Actors } from "../objects/Game_Actors.js";
+import { Game_Map } from "../objects/Game_Map.js";
+import { Game_Message } from "../objects/Game_Message.js";
+import { Game_Party } from "../objects/Game_Party.js";
+import { Game_Player } from "../objects/Game_Player.js";
+import { Game_Screen } from "../objects/Game_Screen.js";
+import { Game_SelfSwitches } from "../objects/Game_SelfSwitches.js";
+import { Game_Switches } from "../objects/Game_Switches.js";
+import { Game_System } from "../objects/Game_System.js";
+import { Game_Temp } from "../objects/Game_Temp.js";
+import { Game_Timer } from "../objects/Game_Timer.js";
+import { Game_Troop } from "../objects/Game_Troop.js";
+import { Game_Variables } from "../objects/Game_Variables.js";
 
-import { BattleManager } from "./BattleManager";
-import { ImageManager } from "./ImageManager";
+import { BattleManager } from "./BattleManager.js";
+import { ImageManager } from "./ImageManager.js";
 
 export class DataManager {
 	static $dataActors = null;

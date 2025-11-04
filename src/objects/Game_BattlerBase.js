@@ -2,7 +2,7 @@
 //
 // The superclass of Game_Battler. It mainly contains parameters calculation.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
 export class Game_BattlerBase {
 	static TRAIT_ELEMENT_RATE = 11;

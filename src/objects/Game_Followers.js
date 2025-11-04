@@ -2,9 +2,9 @@
 //
 // The wrapper class for a follower array.
 
-import { DataManager } from "../managers/DataManager";
+import { DataManager } from "../managers/DataManager.js";
 
-import { Game_Follower } from "./Game_Follower";
+import { Game_Follower } from "./Game_Follower.js";
 
 export class Game_Followers {
 	constructor() {

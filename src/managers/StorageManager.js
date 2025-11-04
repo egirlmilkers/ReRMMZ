@@ -4,10 +4,10 @@
 
 import pako from "pako";
 
-import { JsonEx } from "../core/JsonEx";
-import { Utils } from "../core/Utils";
+import { JsonEx } from "../core/JsonEx.js";
+import { Utils } from "../core/Utils.js";
 
-import { DataManager } from "./DataManager";
+import { DataManager } from "./DataManager.js";
 
 export class StorageManager {
 	static _forageKeys = [];
