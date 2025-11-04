@@ -122,10 +122,10 @@ export class Game_Picture {
 		if (!this._tone) {
 			this._tone = [0, 0, 0, 0];
 		}
-		this._toneTarget = [...tone]
+		this._toneTarget = [...tone];
 		this._toneDuration = duration;
 		if (this._toneDuration === 0) {
-			this._tone = [...this._toneTarget]
+			this._tone = [...this._toneTarget];
 		}
 	}
 

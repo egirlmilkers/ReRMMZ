@@ -34,11 +34,11 @@ export class Game_Followers {
 	}
 
 	data() {
-		return [...this._data]
+		return [...this._data];
 	}
 
 	reverseData() {
-		return this._data.clone().reverse();
+		return [...this._data].reverse();
 	}
 
 	follower(index) {

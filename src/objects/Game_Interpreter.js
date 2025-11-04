@@ -379,7 +379,7 @@ export class Game_Interpreter {
 	}
 
 	setupChoices(params) {
-		const choices = [...params[0]]
+		const choices = [...params[0]];
 		const cancelType = params[1] < choices.length ? params[1] : -2;
 		const defaultType = params.length > 2 ? params[2] : 0;
 		const positionType = params.length > 3 ? params[3] : 2;

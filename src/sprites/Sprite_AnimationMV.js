@@ -278,7 +278,7 @@ export class Sprite_AnimationMV extends Sprite {
 	}
 
 	startFlash(color, duration) {
-		this._flashColor = [...color]
+		this._flashColor = [...color];
 		this._flashDuration = duration;
 	}
 

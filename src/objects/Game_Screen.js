@@ -146,15 +146,15 @@ export class Game_Screen {
 	}
 
 	startTint(tone, duration) {
-		this._toneTarget = [...tone]
+		this._toneTarget = [...tone];
 		this._toneDuration = duration;
 		if (this._toneDuration === 0) {
-			this._tone = [...this._toneTarget]
+			this._tone = [...this._toneTarget];
 		}
 	}
 
 	startFlash(color, duration) {
-		this._flashColor = [...color]
+		this._flashColor = [...color];
 		this._flashDuration = duration;
 	}
 
