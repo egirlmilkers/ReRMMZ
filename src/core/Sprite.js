@@ -211,7 +211,7 @@ export class Sprite extends PIXI.Sprite {
 	 * @returns {array} The blend color [r, g, b, a].
 	 */
 	getBlendColor() {
-		return this._blendColor.clone();
+		return [...this._blendColor]
 	}
 
 	/**
@@ -224,7 +224,7 @@ export class Sprite extends PIXI.Sprite {
 			throw new Error("Argument must be an array");
 		}
 		if (!this._blendColor.equals(color)) {
-			this._blendColor = color.clone();
+			this._blendColor = [...color]
 			this._updateColorFilter();
 		}
 	}
@@ -235,7 +235,7 @@ export class Sprite extends PIXI.Sprite {
 	 * @returns {array} The color tone [r, g, b, gray].
 	 */
 	getColorTone() {
-		return this._colorTone.clone();
+		return [...this._colorTone]
 	}
 
 	/**
@@ -248,7 +248,7 @@ export class Sprite extends PIXI.Sprite {
 			throw new Error("Argument must be an array");
 		}
 		if (!this._colorTone.equals(tone)) {
-			this._colorTone = tone.clone();
+			this._colorTone = [...tone]
 			this._updateColorFilter();
 		}
 	}

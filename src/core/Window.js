@@ -573,7 +573,7 @@ export class Window extends PIXI.Container {
 	}
 
 	_refreshCursor() {
-		const drect = this._cursorRect.clone();
+		const drect = [...this._cursorRect]
 		const srect = { x: 96, y: 96, width: 48, height: 48 };
 		const m = 4;
 		for (const child of this._cursorSprite.children) {

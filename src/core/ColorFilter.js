@@ -31,7 +31,7 @@ export class ColorFilter extends PIXI.Filter {
 		if (!(tone instanceof Array)) {
 			throw new Error("Argument must be an array");
 		}
-		this.uniforms.colorTone = tone.clone();
+		this.uniforms.colorTone = [...tone]
 	}
 
 	/**
@@ -43,7 +43,7 @@ export class ColorFilter extends PIXI.Filter {
 		if (!(color instanceof Array)) {
 			throw new Error("Argument must be an array");
 		}
-		this.uniforms.blendColor = color.clone();
+		this.uniforms.blendColor = [...color]
 	}
 
 	/**

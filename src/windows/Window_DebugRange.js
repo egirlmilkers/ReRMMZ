@@ -60,7 +60,7 @@ export class Window_DebugRange extends Window_Selectable {
 		const c = this.isSwitchMode(index) ? "S" : "V";
 		const start = this.topId(index);
 		const end = start + 9;
-		const text = c + " [" + start.padZero(4) + "-" + end.padZero(4) + "]";
+		const text = c + " [" + start.padStart(4, "0") + "-" + end.padStart(4, "0") + "]";
 		this.drawText(text, rect.x, rect.y, rect.width);
 	}
 

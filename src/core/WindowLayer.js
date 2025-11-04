@@ -32,7 +32,7 @@ export class WindowLayer extends PIXI.Container {
 
 		const graphics = new PIXI.Graphics();
 		const gl = renderer.gl;
-		const children = this.children.clone();
+		const children = [...this.children]
 
 		renderer.framebuffer.forceStencil();
 		graphics.transform = this.transform;

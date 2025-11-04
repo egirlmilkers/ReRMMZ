@@ -204,7 +204,7 @@ export class Game_System {
 		const hour = Math.floor(this.playtime() / 60 / 60);
 		const min = Math.floor(this.playtime() / 60) % 60;
 		const sec = this.playtime() % 60;
-		return hour.padZero(2) + ":" + min.padZero(2) + ":" + sec.padZero(2);
+		return hour.padStart(2, "0") + ":" + min.padStart(2, "0") + ":" + sec.padStart(2, "0");
 	}
 
 	saveBgm() {

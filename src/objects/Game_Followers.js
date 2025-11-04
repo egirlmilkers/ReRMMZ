@@ -34,7 +34,7 @@ export class Game_Followers {
 	}
 
 	data() {
-		return this._data.clone();
+		return [...this._data]
 	}
 
 	reverseData() {

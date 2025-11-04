@@ -132,7 +132,7 @@ export class Sprite_Animation extends Sprite {
 	processFlashTimings() {
 		for (const timing of this._animation.flashTimings) {
 			if (timing.frame === this._frameIndex) {
-				this._flashColor = timing.color.clone();
+				this._flashColor = [...timing.color]
 				this._flashDuration = timing.duration;
 			}
 		}

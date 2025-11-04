@@ -40,7 +40,7 @@ export class Window_StatusBase extends Window_Selectable {
 	}
 
 	placeActorName(actor, x, y) {
-		const key = "actor%1-name".format(actor.actorId());
+		const key = `actor${actor.actorId()}-name`;
 		const sprite = this.createInnerSprite(key, Sprite_Name);
 		sprite.setup(actor);
 		sprite.move(x, y);
@@ -48,7 +48,7 @@ export class Window_StatusBase extends Window_Selectable {
 	}
 
 	placeStateIcon(actor, x, y) {
-		const key = "actor%1-stateIcon".format(actor.actorId());
+		const key = `actor${actor.actorId()}-stateIcon`;
 		const sprite = this.createInnerSprite(key, Sprite_StateIcon);
 		sprite.setup(actor);
 		sprite.move(x, y);
@@ -56,7 +56,7 @@ export class Window_StatusBase extends Window_Selectable {
 	}
 
 	placeGauge(actor, type, x, y) {
-		const key = "actor%1-gauge-%2".format(actor.actorId(), type);
+		const key = `actor${actor.actorId()}-gauge-${type}`;
 		const sprite = this.createInnerSprite(key, Sprite_Gauge);
 		sprite.setup(actor, type);
 		sprite.move(x, y);

@@ -155,7 +155,7 @@ export class DataManager {
 
 	static loadMapData(mapId) {
 		if (mapId > 0) {
-			const filename = "Map%1.json".format(mapId.padZero(3));
+			const filename = `Map${mapId.padStart(3, "0")}.json`
 			this.loadDataFile("$dataMap", filename);
 		} else {
 			this.makeEmptyMap();
@@ -381,7 +381,7 @@ export class DataManager {
 	}
 
 	static makeSavename(savefileId) {
-		return "file%1".format(savefileId);
+		return `file${savefileId}`;
 	}
 
 	static selectSavefileForNewGame() {
