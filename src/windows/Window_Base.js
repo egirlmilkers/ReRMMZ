@@ -6,6 +6,7 @@ import { Bitmap } from "../core/Bitmap.js";
 import { Rectangle } from "../core/Rectangle.js";
 import { Sprite } from "../core/Sprite.js";
 import { Utils } from "../core/Utils.js";
+import { Window } from "../core/Window.js";
 
 import { ColorManager } from "../managers/ColorManager.js";
 import { DataManager } from "../managers/DataManager.js";

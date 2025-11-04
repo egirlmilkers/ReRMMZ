@@ -1,4 +1,4 @@
-import { clamp } from "./JsExtensions.js";
+import { clamp, equals } from "./JsExtensions.js";
 import { Bitmap } from "./Bitmap.js";
 import { ColorFilter } from "./ColorFilter.js";
 import { Rectangle } from "./Rectangle.js";
@@ -224,7 +224,7 @@ export class Sprite extends PIXI.Sprite {
 		if (!(color instanceof Array)) {
 			throw new Error("Argument must be an array");
 		}
-		if (!this._blendColor.equals(color)) {
+		if (!equals(this._blendColor, color)) {
 			this._blendColor = [...color]
 			this._updateColorFilter();
 		}
@@ -248,7 +248,7 @@ export class Sprite extends PIXI.Sprite {
 		if (!(tone instanceof Array)) {
 			throw new Error("Argument must be an array");
 		}
-		if (!this._colorTone.equals(tone)) {
+		if (!equals(this._colorTone, tone)) {
 			this._colorTone = [...tone]
 			this._updateColorFilter();
 		}

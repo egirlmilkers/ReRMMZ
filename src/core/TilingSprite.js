@@ -141,7 +141,7 @@ export class TilingSprite extends PIXI.TilingSprite {
 
 	_refresh() {
 		const texture = this.texture;
-		const frame = [...this._frame]
+		const frame = this._frame.clone();
 		if (frame.width === 0 && frame.height === 0 && this._bitmap) {
 			frame.width = this._bitmap.width;
 			frame.height = this._bitmap.height;
