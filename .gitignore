@@ -1,7 +1,6 @@
 # mine :3
 assets/**/
 .vscode
-lib/effekseer/**/
 
 # dependencies (bun install)
 node_modules

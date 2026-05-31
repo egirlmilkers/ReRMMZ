@@ -2,61 +2,62 @@
 //
 // The static class that manages the database and game objects.
 
-import { Graphics, Utils } from "../core/index.js";
-import {
-	BattleManager,
-	ImageManager,
-	StorageManager,
-} from "../managers/index.js";
-import {
-	Game_Actors,
-	Game_Map,
-	Game_Message,
-	Game_Party,
-	Game_Player,
-	Game_Screen,
-	Game_SelfSwitches,
-	Game_Switches,
-	Game_System,
-	Game_Temp,
-	Game_Timer,
-	Game_Troop,
-	Game_Variables,
-} from "../objects/index.js";
+import { Utils } from "../core/Utils.js";
+import { Graphics } from "../core/Graphics.js";
+
+import { Game_Actors } from "../objects/Game_Actors.js";
+import { Game_Map } from "../objects/Game_Map.js";
+import { Game_Message } from "../objects/Game_Message.js";
+import { Game_Party } from "../objects/Game_Party.js";
+import { Game_Player } from "../objects/Game_Player.js";
+import { Game_Screen } from "../objects/Game_Screen.js";
+import { Game_SelfSwitches } from "../objects/Game_SelfSwitches.js";
+import { Game_Switches } from "../objects/Game_Switches.js";
+import { Game_System } from "../objects/Game_System.js";
+import { Game_Temp } from "../objects/Game_Temp.js";
+import { Game_Timer } from "../objects/Game_Timer.js";
+import { Game_Troop } from "../objects/Game_Troop.js";
+import { Game_Variables } from "../objects/Game_Variables.js";
+
+import { BattleManager } from "./BattleManager.js";
+import { ImageManager } from "./ImageManager.js";
+import { StorageManager } from "./StorageManager.js";
 
 export class DataManager {
-	static $dataActors = null;
-	static $dataClasses = null;
-	static $dataSkills = null;
-	static $dataItems = null;
-	static $dataWeapons = null;
-	static $dataArmors = null;
-	static $dataEnemies = null;
-	static $dataTroops = null;
-	static $dataStates = null;
-	static $dataAnimations = null;
-	static $dataTilesets = null;
-	static $dataCommonEvents = null;
-	static $dataSystem = null;
-	static $dataMapInfos = null;
-	static $dataMap = null;
-	static $gameTemp = null;
-	static $gameSystem = null;
-	static $gameScreen = null;
-	static $gameTimer = null;
-	static $gameMessage = null;
-	static $gameSwitches = null;
-	static $gameVariables = null;
-	static $gameSelfSwitches = null;
-	static $gameActors = null;
-	static $gameParty = null;
-	static $gameTroop = null;
-	static $gameMap = null;
-	static $gamePlayer = null;
-	static $testEvent = null;
+	static $dataActors: RMMZ.Actor[];
+	static $dataClasses: RMMZ.Class[];
+	static $dataSkills: RMMZ.Skill[];
+	static $dataItems: RMMZ.Item[];
+	static $dataWeapons: RMMZ.Weapon[];
+	static $dataArmors: RMMZ.Armor[];
+	static $dataEnemies: RMMZ.Enemy[];
+	static $dataTroops: RMMZ.Troop[];
+	static $dataStates: RMMZ.State[];
+	static $dataAnimations: RMMZ.Animation[];
+	static $dataTilesets: RMMZ.Tileset[];
+	static $dataCommonEvents: RMMZ.CommonEvent[];
+	static $dataSystem: RMMZ.System;
+	static $dataMapInfos: RMMZ.MapInfo[];
+	static $dataMap: RMMZ.Map;
 
-	static _globalInfo = null;
-	static _errors = [];
+	static $gameTemp: Game_Temp;
+	static $gameSystem: Game_System;
+	static $gameScreen: Game_Screen;
+	static $gameTimer: Game_Timer;
+	static $gameMessage: Game_Message;
+	static $gameSwitches: Game_Switches;
+	static $gameVariables: Game_Variables;
+	static $gameSelfSwitches: Game_SelfSwitches;
+	static $gameActors: Game_Actors;
+	static $gameParty: Game_Party;
+	static $gameTroop: Game_Troop;
+	static $gameMap: Game_Map;
+	static $gamePlayer: Game_Player;
+	
+	static $testEvent: RMMZ.EventCommand[];
+
+	static _globalInfo: RMMZ.Global[];
+	static _errors: RMMZ.Error[] = [];
 
 	static _databaseFiles = [
 		{ name: "$dataActors", src: "Actors.json" },
@@ -82,126 +83,126 @@ export class DataManager {
 	static loadGlobalInfo() {
 		StorageManager.loadObject("global")
 			.then((globalInfo) => {
-				DataManager._globalInfo = globalInfo;
-				DataManager.removeInvalidGlobalInfo();
-				return 0;
+				this._globalInfo = globalInfo;
+				this.removeInvalidGlobalInfo();
 			})
 			.catch(() => {
-				DataManager._globalInfo = [];
+				this._globalInfo = [];
 			});
 	}
 
 	static removeInvalidGlobalInfo() {
-		const globalInfo = DataManager._globalInfo;
+		const globalInfo = this._globalInfo;
 		for (const info of globalInfo) {
 			const savefileId = globalInfo.indexOf(info);
-			if (!DataManager.savefileExists(savefileId)) {
+			if (!this.savefileExists(savefileId)) {
 				delete globalInfo[savefileId];
 			}
 		}
 	}
 
 	static saveGlobalInfo() {
-		StorageManager.saveObject("global", DataManager._globalInfo);
+		StorageManager.saveObject("global", this._globalInfo).catch(error => console.log("Failed to save global info:", error));
 	}
 
-	static isGlobalInfoLoaded() {
-		return !!DataManager._globalInfo;
+	static isGlobalInfoLoaded(): boolean {
+		return !!this._globalInfo;
 	}
 
 	static loadDatabase() {
-		const test = DataManager.isBattleTest() || DataManager.isEventTest();
+		const test = this.isBattleTest() || this.isEventTest();
 		const prefix = test ? "Test_" : "";
-		for (const databaseFile of DataManager._databaseFiles) {
-			DataManager.loadDataFile(databaseFile.name, prefix + databaseFile.src);
+		for (const databaseFile of this._databaseFiles) {
+			this.loadDataFile(databaseFile.name, prefix + databaseFile.src);
 		}
-		if (DataManager.isEventTest()) {
-			DataManager.loadDataFile("$testEvent", prefix + "Event.json");
+		if (this.isEventTest()) {
+			this.loadDataFile("$testEvent", prefix + "Event.json");
 		}
 	}
 
-	static loadDataFile(name, src) {
+	static loadDataFile(name: string, src: string) {
 		const xhr = new XMLHttpRequest();
 		const url = "assets/data/" + src;
-		DataManager[name] = null; // Instead of window[name], assign it to a property ON DataManager
+		(DataManager as any)[name] = null; // Instead of window[name], assign it to a property ON DataManager
 		xhr.open("GET", url);
 		xhr.overrideMimeType("application/json");
-		xhr.onload = () => DataManager.onXhrLoad(xhr, name, src, url);
-		xhr.onerror = () => DataManager.onXhrError(name, src, url);
+		xhr.onload = () => this.onXhrLoad(xhr, name, src, url);
+		xhr.onerror = () => this.onXhrError(name, src, url);
 		xhr.send();
 	}
 
-	static onXhrLoad(xhr, name, src, url) {
+	static onXhrLoad(xhr: XMLHttpRequest, name: string, src: string, url: string) {
 		if (xhr.status < 400) {
-			DataManager[name] = JSON.parse(xhr.responseText); // Assign the loaded data to DataManager, not window
-			DataManager.onLoad(DataManager[name]);
+			DataManager[name as keyof typeof DataManager] = JSON.parse(xhr.responseText); // Assign the loaded data to DataManager, not window
+			this.onLoad((DataManager as any)[name]);
 		} else {
-			DataManager.onXhrError(name, src, url);
+			this.onXhrError(name, src, url);
 		}
 	}
 
-	static onXhrError(name, src, url) {
+	static onXhrError(name: string, src: string, url: string) {
 		const error = { name: name, src: src, url: url };
-		DataManager._errors.push(error);
+		this._errors.push(error);
 	}
 
-	static isDatabaseLoaded() {
-		DataManager.checkError();
-		for (const databaseFile of DataManager._databaseFiles) {
-			if (!DataManager[databaseFile.name]) {
+	static isDatabaseLoaded(): boolean {
+		this.checkError();
+		for (const databaseFile of this._databaseFiles) {
+			if (!DataManager[databaseFile.name as keyof typeof DataManager]) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	static loadMapData(mapId) {
+	static loadMapData(mapId: number) {
 		if (mapId > 0) {
-			const filename = "Map%1.json".format(mapId.padZero(3));
-			DataManager.loadDataFile("$dataMap", filename);
+			const filename = `Map${String(mapId).padStart(3, "0")}.json`
+			this.loadDataFile("$dataMap", filename);
 		} else {
-			DataManager.makeEmptyMap();
+			this.makeEmptyMap();
 		}
 	}
 
 	static makeEmptyMap() {
-		DataManager.$dataMap = {};
-		DataManager.$dataMap.data = [];
-		DataManager.$dataMap.events = [];
-		DataManager.$dataMap.width = 100;
-		DataManager.$dataMap.height = 100;
-		DataManager.$dataMap.scrollType = 3;
+		DataManager.$dataMap = {
+			data: [],
+			events: [],
+			width: 100,
+			height: 100,
+			scrollType: 3
+		};
 	}
 
-	static isMapLoaded() {
-		DataManager.checkError();
+	static isMapLoaded(): boolean {
+		this.checkError();
 		return !!DataManager.$dataMap;
 	}
 
-	static onLoad(object) {
-		if (DataManager.isMapObject(object)) {
-			DataManager.extractMetadata(object);
-			DataManager.extractArrayMetadata(object.events);
+	static onLoad(object: RMMZ.DataObj | RMMZ.DataObj[]) {
+		if (this.isMapObject(object)){
+			this.extractMetadata(object);
+			this.extractArrayMetadata(object.events);
 		} else {
-			DataManager.extractArrayMetadata(object);
+			this.extractArrayMetadata(object);
 		}
 	}
 
-	static isMapObject(object) {
-		return !!(object.data && object.events);
+	static isMapObject(object: RMMZ.DataObj | RMMZ.DataObj[]): object is RMMZ.Map {
+		return 'data' in object && 'events' in object;
 	}
 
-	static extractArrayMetadata(array) {
+	static extractArrayMetadata(array: object) {
 		if (Array.isArray(array)) {
 			for (const data of array) {
 				if (data && "note" in data) {
-					DataManager.extractMetadata(data);
+					this.extractMetadata(data);
 				}
 			}
 		}
 	}
 
-	static extractMetadata(data) {
+	static extractMetadata(data: RMMZ.DataObj) {
 		const regExp = /<([^<>:]+)(:?)([^>]*)>/g;
 		data.meta = {};
 		for (;;) {
@@ -219,41 +220,41 @@ export class DataManager {
 	}
 
 	static checkError() {
-		if (DataManager._errors.length > 0) {
-			const error = DataManager._errors.shift();
+		if (this._errors.length > 0) {
+			const error = this._errors.shift() as RMMZ.Error;
 			const retry = () => {
-				DataManager.loadDataFile(error.name, error.src);
+				this.loadDataFile(error.name, error.src);
 			};
 			throw ["LoadError", error.url, retry];
 		}
 	}
 
-	static isBattleTest() {
+	static isBattleTest(): boolean {
 		return Utils.isOptionValid("btest");
 	}
 
-	static isEventTest() {
+	static isEventTest(): boolean {
 		return Utils.isOptionValid("etest");
 	}
 
-	static isTitleSkip() {
+	static isTitleSkip(): boolean {
 		return Utils.isOptionValid("tskip");
 	}
 
-	static isSkill(item) {
-		return item && DataManager.$dataSkills.includes(item);
+	static isSkill(item: RMMZ.DataObj): item is RMMZ.Skill {
+		return DataManager.$dataSkills.includes(item as RMMZ.Skill);
 	}
 
-	static isItem(item) {
-		return item && DataManager.$dataItems.includes(item);
+	static isItem(item: RMMZ.DataObj): item is RMMZ.Item {
+		return DataManager.$dataItems.includes(item as RMMZ.Item);
 	}
 
-	static isWeapon(item) {
-		return item && DataManager.$dataWeapons.includes(item);
+	static isWeapon(item: RMMZ.DataObj): item is RMMZ.Weapon {
+		return DataManager.$dataWeapons.includes(item as RMMZ.Weapon);
 	}
 
-	static isArmor(item) {
-		return item && DataManager.$dataArmors.includes(item);
+	static isArmor(item: RMMZ.DataObj): item is RMMZ.Armor {
+		return DataManager.$dataArmors.includes(item as RMMZ.Armor);
 	}
 
 	static createGameObjects() {
@@ -273,15 +274,15 @@ export class DataManager {
 	}
 
 	static setupNewGame() {
-		DataManager.createGameObjects();
-		DataManager.selectSavefileForNewGame();
+		this.createGameObjects();
+		this.selectSavefileForNewGame();
 		DataManager.$gameParty.setupStartingMembers();
 		DataManager.$gamePlayer.setupForNewGame();
 		Graphics.frameCount = 0;
 	}
 
 	static setupBattleTest() {
-		DataManager.createGameObjects();
+		this.createGameObjects();
 		DataManager.$gameParty.setupBattleTest();
 		BattleManager.setup(DataManager.$dataSystem.testTroopId, true, false);
 		BattleManager.setBattleTest(true);
@@ -289,36 +290,38 @@ export class DataManager {
 	}
 
 	static setupEventTest() {
-		DataManager.createGameObjects();
-		DataManager.selectSavefileForNewGame();
+		this.createGameObjects();
+		this.selectSavefileForNewGame();
 		DataManager.$gameParty.setupStartingMembers();
 		DataManager.$gamePlayer.reserveTransfer(-1, 8, 6);
 		DataManager.$gamePlayer.setTransparent(false);
 	}
 
-	static isAnySavefileExists() {
-		return DataManager._globalInfo.some((x) => x);
+	static isAnySavefileExists(): boolean {
+		return this._globalInfo.some((x) => x);
 	}
 
-	static latestSavefileId() {
-		const globalInfo = DataManager._globalInfo;
+	static latestSavefileId(): number {
+		const globalInfo = this._globalInfo;
 		const validInfo = globalInfo.slice(1).filter((x) => x);
 		const latest = Math.max(...validInfo.map((x) => x.timestamp));
 		const index = globalInfo.findIndex((x) => x && x.timestamp === latest);
 		return index > 0 ? index : 0;
 	}
 
-	static earliestSavefileId() {
-		const globalInfo = DataManager._globalInfo;
+	static earliestSavefileId(): number {
+		const globalInfo = this._globalInfo;
 		const validInfo = globalInfo.slice(1).filter((x) => x);
 		const earliest = Math.min(...validInfo.map((x) => x.timestamp));
-		const index = globalInfo.findIndex((x) => x && x.timestamp === earliest);
+		const index = globalInfo.findIndex(
+			(x) => x && x.timestamp === earliest,
+		);
 		return index > 0 ? index : 0;
 	}
 
-	static emptySavefileId() {
-		const globalInfo = DataManager._globalInfo;
-		const maxSavefiles = DataManager.maxSavefiles();
+	static emptySavefileId(): number {
+		const globalInfo = this._globalInfo;
+		const maxSavefiles = this.maxSavefiles();
 		if (globalInfo.length < maxSavefiles) {
 			return Math.max(1, globalInfo.length);
 		} else {
@@ -328,12 +331,12 @@ export class DataManager {
 	}
 
 	static loadAllSavefileImages() {
-		for (const info of DataManager._globalInfo.filter((x) => x)) {
-			DataManager.loadSavefileImages(info);
+		for (const info of this._globalInfo.filter((x) => x)) {
+			this.loadSavefileImages(info);
 		}
 	}
 
-	static loadSavefileImages(info) {
+	static loadSavefileImages(info: RMMZ.Global) {
 		if (info.characters && Symbol.iterator in info.characters) {
 			for (const character of info.characters) {
 				ImageManager.loadCharacter(character[0]);
@@ -346,47 +349,45 @@ export class DataManager {
 		}
 	}
 
-	static maxSavefiles() {
+	static maxSavefiles(): number {
 		return 20;
 	}
 
-	static savefileInfo(savefileId) {
-		const globalInfo = DataManager._globalInfo;
+	static savefileInfo(savefileId: number): RMMZ.Global | null {
+		const globalInfo = this._globalInfo;
 		return globalInfo[savefileId] ? globalInfo[savefileId] : null;
 	}
 
-	static savefileExists(savefileId) {
-		const saveName = DataManager.makeSavename(savefileId);
+	static savefileExists(savefileId: number): boolean {
+		const saveName = this.makeSavename(savefileId);
 		return StorageManager.exists(saveName);
 	}
 
-	static saveGame(savefileId) {
-		const contents = DataManager.makeSaveContents();
-		const saveName = DataManager.makeSavename(savefileId);
+	static saveGame(savefileId: number) {
+		const contents = this.makeSaveContents();
+		const saveName = this.makeSavename(savefileId);
 		return StorageManager.saveObject(saveName, contents).then(() => {
-			DataManager._globalInfo[savefileId] = DataManager.makeSavefileInfo();
-			DataManager.saveGlobalInfo();
-			return 0;
+			this._globalInfo[savefileId] = this.makeSavefileInfo();
+			this.saveGlobalInfo();
 		});
 	}
 
-	static loadGame(savefileId) {
-		const saveName = DataManager.makeSavename(savefileId);
+	static loadGame(savefileId: number) {
+		const saveName = this.makeSavename(savefileId);
 		return StorageManager.loadObject(saveName).then((contents) => {
-			DataManager.createGameObjects();
-			DataManager.extractSaveContents(contents);
-			DataManager.correctDataErrors();
-			return 0;
+			this.createGameObjects();
+			this.extractSaveContents(contents);
+			this.correctDataErrors();
 		});
 	}
 
-	static makeSavename(savefileId) {
-		return "file%1".format(savefileId);
+	static makeSavename(savefileId: number) {
+		return `file${savefileId}`;
 	}
 
 	static selectSavefileForNewGame() {
-		const emptySavefileId = DataManager.emptySavefileId();
-		const earliestSavefileId = DataManager.earliestSavefileId();
+		const emptySavefileId = this.emptySavefileId();
+		const earliestSavefileId = this.earliestSavefileId();
 		if (emptySavefileId > 0) {
 			DataManager.$gameSystem.setSavefileId(emptySavefileId);
 		} else {
@@ -394,33 +395,35 @@ export class DataManager {
 		}
 	}
 
-	static makeSavefileInfo() {
-		const info = {};
-		info.title = DataManager.$dataSystem.gameTitle;
-		info.characters = DataManager.$gameParty.charactersForSavefile();
-		info.faces = DataManager.$gameParty.facesForSavefile();
-		info.playtime = DataManager.$gameSystem.playtimeText();
-		info.timestamp = Date.now();
+	static makeSavefileInfo(): RMMZ.Global {
+		const info = {
+			title: DataManager.$dataSystem.gameTitle,
+			characters: DataManager.$gameParty.charactersForSavefile(),
+			faces: DataManager.$gameParty.facesForSavefile(),
+			playtime: DataManager.$gameSystem.playtimeText(),
+			timestamp: Date.now(),
+		};
 		return info;
 	}
 
-	static makeSaveContents() {
-		// A save data does not contain DataManager.$gameTemp, DataManager.$gameMessage, and DataManager.$gameTroop.
-		const contents = {};
-		contents.system = DataManager.$gameSystem;
-		contents.screen = DataManager.$gameScreen;
-		contents.timer = DataManager.$gameTimer;
-		contents.switches = DataManager.$gameSwitches;
-		contents.variables = DataManager.$gameVariables;
-		contents.selfSwitches = DataManager.$gameSelfSwitches;
-		contents.actors = DataManager.$gameActors;
-		contents.party = DataManager.$gameParty;
-		contents.map = DataManager.$gameMap;
-		contents.player = DataManager.$gamePlayer;
+	static makeSaveContents(): RMMZ.Save {
+		// A save data does not contain $gameTemp, $gameMessage, and $gameTroop.
+		const contents = {
+			system: DataManager.$gameSystem,
+			screen: DataManager.$gameScreen,
+			timer: DataManager.$gameTimer,
+			switches: DataManager.$gameSwitches,
+			variables: DataManager.$gameVariables,
+			selfSwitches: DataManager.$gameSelfSwitches,
+			actors: DataManager.$gameActors,
+			party: DataManager.$gameParty,
+			map: DataManager.$gameMap,
+			player: DataManager.$gamePlayer,
+		};
 		return contents;
 	}
 
-	static extractSaveContents(contents) {
+	static extractSaveContents(contents: RMMZ.Save) {
 		DataManager.$gameSystem = contents.system;
 		DataManager.$gameScreen = contents.screen;
 		DataManager.$gameTimer = contents.timer;

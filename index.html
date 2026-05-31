@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<!-- icons -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="user-scalable=no" />
+	<link rel="icon" href="./assets/icon/icon.png" type="image/png" />
+	<link rel="apple-touch-icon" href="./assets/icon/icon.png" />
+	<title>RMMZ</title>
+
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/game.css" />
+
+	<!-- javascript -->
+	<script src="./node_modules/pixi.js/dist/pixi.js"></script>
+	<script src="./node_modules/localforage/dist/localforage.js"></script>
+	<script src="./lib/effekseer/effekseer.js"></script>
+	<script src="./lib/vorbisdecoder.js"></script>
+
+	<script type="importmap">
+		{
+			"imports": {
+				"pako": "./node_modules/pako/dist/pako.esm.mjs"
+			}
+		}
+	</script>
+</head>
+
+<body style="background-color: black">
+	<script type="module" src="./dist/main.js"></script>
+</body>
+
+</html>

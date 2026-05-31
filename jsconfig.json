@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "es6",
+		"moduleResolution": "Bundler",
+		"lib": ["es6"],
+
+		"strict": true,
+		"checkJs": true,
+		"allowSyntheticDefaultImports": true,
+		"paths": {
+			"@effekseer": ["./lib/effekseer/effekseer.js"],
+			"@vorbis": ["./lib/vorbisdecoder.js"]
+		},
+		"rootDir": "src",
+		"outDir": "dist"
+	},
+	"include": [
+		"src",
+		"lib/effekseer/effekseer.d.ts",
+		"node_modules/pixi.js/pixi.js.d.ts"
+	],
+	"exclude": ["node_modules", "dist"]
+}

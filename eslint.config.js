@@ -1,58 +1,41 @@
 import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
-import ts from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import unicorn from "eslint-plugin-unicorn";
 import esx from "eslint-plugin-es-x";
 
 export default defineConfig([
-	// 1. Base rules
+	// 1. Base ESLint recommended rules (catches common bugs)
 	js.configs.recommended,
 
-	// 2. Enforce ES2025 syntax (errors on old syntax)
-	esx.configs["recommended-style-2025"],
+	// enforces ES6 (2015) syntax only
+	// will error on ES5 syntax AND any syntax newer than ES6
+	esx.configs["recommended-style-2015"],
 
-	// 3. This is the OVERKILL.
-	// Runs all strict, type-checking-required rules.
-	// This will lint based on your tsconfig.json.
-	...ts.configs["strict-type-checked"],
-
-	// 4. Aggressive modernization (optional chaining, etc.)
-	unicorn.configs["flat/recommended"],
-
-	// 5. Your main project configuration
 	{
-		name: "rermmz/typescript-main",
-		files: ["src/**/*.ts"], // <-- IMPORTANT: Only lints .ts files
+		name: "rermmz/js-es6",
+		files: ["src/**/*.js"],
 		languageOptions: {
-			ecmaVersion: "latest",
+			// Explicitly set the parser to ES6 (2015)
+			ecmaVersion: 2015,
 			sourceType: "module",
 
-			// Tell ESLint to use the TS parser
-			parser: tsParser,
-			parserOptions: {
-				// Tell the parser where your tsconfig is for type-aware rules
-				project: true,
-				tsconfigRootDir: ".",
-			},
 			globals: {
-				// Add your known globals (Pixi, etc.)
-				// Note: effekseer is here as a global from its .d.ts
-				"effekseer": "readonly",
-				"window": "readonly",
-				"document": "readonly"
+				// Globals
+				window: "readonly",
+				document: "readonly",
+				effekseer: "readonly",
 			},
 		},
-		plugins: {
-			// Define the plugins
-			"@typescript-eslint": ts,
-			"unicorn": unicorn,
-			"es-x": esx,
+		rules: {
+			// key ES6 upgrades
+			"no-var": "error", // Fail on 'var'
+			"prefer-const": "error", // Require 'const' or 'let'
+			"object-shorthand": "warn", // { a: a } should be { a }
+			"prefer-arrow-callback": "error", // Use () => {} for callbacks
+			"prefer-template": "error", // Use string templates over '+'
 		},
 	},
 
-	// 6. Global ignores
 	{
-		ignores: ["dist/", "lib/", "node_modules/", "eslint.config.js"],
+		ignores: ["dist/", "local_modules/", "node_modules/"],
 	},
 ]);
