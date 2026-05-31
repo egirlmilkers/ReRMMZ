@@ -83,7 +83,7 @@ export class DataManager {
 	static loadGlobalInfo() {
 		StorageManager.loadObject("global")
 			.then((globalInfo) => {
-				this._globalInfo = globalInfo;
+				this._globalInfo = globalInfo as RMMZ.Global[];
 				this.removeInvalidGlobalInfo();
 			})
 			.catch(() => {

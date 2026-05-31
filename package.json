@@ -4,14 +4,13 @@
 	"type": "module",
 	"module": "src/main.js",
 	"devDependencies": {
-		"@eslint/js": "^9.39.0",
-		"@types/bun": "latest",
+		"@eslint/js": "^9.39.4",
 		"@types/node": "^25.9.1",
 		"@types/nw.js": "^0.92.0",
-		"eslint": "^9.39.0",
-		"eslint-plugin-es-x": "^9.1.2",
-		"prettier": "^3.6.2",
-		"tsx": "^4.22.3",
+		"@types/pako": "^2.0.4",
+		"eslint": "^9.39.4",
+		"eslint-plugin-es-x": "^9.6.0",
+		"prettier": "^3.8.3",
 		"typescript": "^6.0.3"
 	},
 	"peerDependencies": {
@@ -24,7 +23,7 @@
 	},
 	"scripts": {
 		"start": "tsc && nw . --enable-features=NWESM",
-		"build": "bun build ./src/main.js --target browser --outfile=./dist/rmmz.js"
+		"build": "tsc"
 	},
 	"main": "index.html",
 	"chromium-args": "--force-color-profile=srgb --auto-open-devtools-for-tabs",
