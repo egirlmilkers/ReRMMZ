@@ -62,7 +62,8 @@ export class StorageManager {
 				if (zip.length >= 50000) {
 					console.warn("Save data is too big.");
 				}
-				resolve(zip);
+				// resolve(zip);
+				resolve(json)
 			} catch (e) {
 				reject(e);
 			}
@@ -74,7 +75,8 @@ export class StorageManager {
 			try {
 				if (zip) {
 					const json = pako.inflate(zip, { to: "string" });
-					resolve(json);
+					// resolve(json);
+					resolve(zip)
 				} else {
 					resolve("null");
 				}

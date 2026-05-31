@@ -35,18 +35,6 @@ export class Scene_Base extends Stage {
 		//
 	}
 
-	isActive() {
-		return this._active;
-	}
-
-	isReady() {
-		return (
-			ImageManager.isReady() &&
-			EffectManager.isReady() &&
-			FontManager.isReady()
-		);
-	}
-
 	start() {
 		this._started = true;
 		this._active = true;
@@ -63,6 +51,22 @@ export class Scene_Base extends Stage {
 		this._active = false;
 	}
 
+	terminate() {
+		//
+	}
+
+	isActive() {
+		return this._active;
+	}
+
+	isReady() {
+		return (
+			ImageManager.isReady() &&
+			EffectManager.isReady() &&
+			FontManager.isReady()
+		);
+	}
+
 	isStarted() {
 		return this._started;
 	}
@@ -73,10 +77,6 @@ export class Scene_Base extends Stage {
 
 	isFading() {
 		return this._fadeDuration > 0;
-	}
-
-	terminate() {
-		//
 	}
 
 	createWindowLayer() {

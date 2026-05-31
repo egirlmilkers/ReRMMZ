@@ -41,7 +41,7 @@ export class ImageManager {
 		if ("iconSize" in DataManager.$dataSystem) {
 			return DataManager.$dataSystem.iconSize;
 		} else {
-			return this.defaultIconWidth;
+			return this.standardIconWidth;
 		}
 	}
 
@@ -49,7 +49,7 @@ export class ImageManager {
 		if ("faceSize" in DataManager.$dataSystem) {
 			return DataManager.$dataSystem.faceSize;
 		} else {
-			return this.defaultFaceWidth;
+			return this.standardFaceWidth;
 		}
 	}
 

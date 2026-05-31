@@ -176,6 +176,7 @@ export class Scene_Shop extends Scene_MenuBase {
 		if (!this._categoryWindow.needsSelection()) {
 			this._sellWindow.y -= this._categoryWindow.height;
 			this._sellWindow.height += this._categoryWindow.height;
+			this._sellWindow.createContents();
 		}
 	}
 
@@ -250,6 +251,7 @@ export class Scene_Shop extends Scene_MenuBase {
 	onCategoryOk() {
 		this.activateSellWindow();
 		this._sellWindow.select(0);
+		this._sellWindow.setTopRow(0);
 	}
 
 	onCategoryCancel() {

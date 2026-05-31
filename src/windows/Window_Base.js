@@ -464,7 +464,7 @@ export class Window_Base extends Window {
 		const ph = ImageManager.iconHeight;
 		const sx = (iconIndex % 16) * pw;
 		const sy = Math.floor(iconIndex / 16) * ph;
-		this.contents.blt(bitmap, sx, sy, pw, ph, x, y);
+		this.contents.blt(bitmap, sx, sy, pw, ph, Math.floor(x), Math.floor(y));
 	}
 
 	// prettier-ignore

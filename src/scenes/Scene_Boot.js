@@ -27,12 +27,40 @@ export class Scene_Boot extends Scene_Base {
 		this._databaseLoaded = false;
 	}
 
+	// Overrides
 	create() {
 		super.create();
 		DataManager.loadDatabase();
 		StorageManager.updateForageKeys();
 	}
 
+	start() {
+		super.start();
+		SoundManager.preloadImportantSounds();
+		if (DataManager.isBattleTest()) {
+			DataManager.setupBattleTest();
+			SceneManager.goto(Scene_Battle);
+		} else if (DataManager.isEventTest()) {
+			DataManager.setupEventTest();
+			SceneManager.goto(Scene_Map);
+		} else if (DataManager.isTitleSkip()) {
+			this.checkPlayerLocation();
+			DataManager.setupNewGame();
+			SceneManager.goto(Scene_Map);
+		} else {
+			this.startNormalGame();
+		}
+		this.resizeScreen();
+		this.updateDocumentTitle();
+	}
+
+	// no update override
+
+	// no stop override
+
+	// no terminate override
+
+	// Check Overrides
 	isReady() {
 		if (!this._databaseLoaded) {
 			if (
@@ -49,6 +77,9 @@ export class Scene_Boot extends Scene_Base {
 		);
 	}
 
+	// no isBusy override
+
+	// Unique Methods
 	onDatabaseLoaded() {
 		this.setEncryptionInfo();
 		this.loadSystemImages();
@@ -81,26 +112,6 @@ export class Scene_Boot extends Scene_Base {
 
 	isPlayerDataLoaded() {
 		return DataManager.isGlobalInfoLoaded() && ConfigManager.isLoaded();
-	}
-
-	start() {
-		super.start();
-		SoundManager.preloadImportantSounds();
-		if (DataManager.isBattleTest()) {
-			DataManager.setupBattleTest();
-			SceneManager.goto(Scene_Battle);
-		} else if (DataManager.isEventTest()) {
-			DataManager.setupEventTest();
-			SceneManager.goto(Scene_Map);
-		} else if (DataManager.isTitleSkip()) {
-			this.checkPlayerLocation();
-			DataManager.setupNewGame();
-			SceneManager.goto(Scene_Map);
-		} else {
-			this.startNormalGame();
-		}
-		this.resizeScreen();
-		this.updateDocumentTitle();
 	}
 
 	startNormalGame() {

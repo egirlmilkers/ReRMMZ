@@ -18,7 +18,7 @@ export class Utils {
 	 * @type string
 	 * @constant
 	 */
-	static RPGMAKER_VERSION = "1.9.0";
+	static RPGMAKER_VERSION = "1.10.0";
 
 	constructor() {
 		throw new Error("This is a static class");
