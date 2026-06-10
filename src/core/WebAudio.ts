@@ -1,5 +1,7 @@
 import { Utils } from "./Utils.js";
 
+declare const VorbisDecoder: any;
+
 /**
  * The audio object of Web Audio API.
  *
@@ -7,7 +9,39 @@ import { Utils } from "./Utils.js";
  * @param {string} url - The url of the audio file.
  */
 export class WebAudio {
-	constructor(url) {
+	private static _context: AudioContext | null;
+	private static _masterGainNode: GainNode | null;
+	private static _masterVolume: number;
+
+	private _url: string;
+	private _data: Uint8Array | null;
+	private _fetchedSize: number;
+	private _fetchedData: never[];
+	private _buffers: never[];
+	private _sourceNodes: never[];
+	private _gainNode: GainNode | null;
+	private _pannerNode: null;
+	private _totalTime: number;
+	private _sampleRate: number;
+	private _loop: boolean;
+	private _loopStart: number;
+	private _loopLength: number;
+	private _loopStartTime: number;
+	private _loopLengthTime: number;
+	private _startTime: number;
+	private _volume: number;
+	private _pitch: number;
+	private _pan: number;
+	private _endTimer: null;
+	private _loadListeners: Function[];
+	private _stopListeners: Function[];
+	private _lastUpdateTime: number;
+	private _isLoaded: boolean;
+	private _isError: boolean;
+	private _isPlaying: boolean;
+	private _decoder: typeof VorbisDecoder;
+
+	constructor(url: string) {
 		this.clear();
 		this._url = url;
 		this._startLoading();
@@ -18,7 +52,7 @@ export class WebAudio {
 	 *
 	 * @returns {boolean} True if the audio system is available.
 	 */
-	static initialize() {
+	static initialize(): boolean {
 		this._context = null;
 		this._masterGainNode = null;
 		this._masterVolume = 1;
@@ -33,22 +67,21 @@ export class WebAudio {
 	 *
 	 * @param {number} value - The master volume (0 to 1).
 	 */
-	static setMasterVolume(value) {
+	static setMasterVolume(value: number) {
 		this._masterVolume = value;
 		this._resetVolume();
 	}
 
 	static _createContext() {
 		try {
-			const AudioContext =
-				window.AudioContext || window.webkitAudioContext;
+			const AudioContext = window.AudioContext;
 			this._context = new AudioContext();
 		} catch (e) {
 			this._context = null;
 		}
 	}
 
-	static _currentTime() {
+	static _currentTime(): number {
 		return this._context ? this._context.currentTime : 0;
 	}
 
@@ -98,7 +131,7 @@ export class WebAudio {
 	}
 
 	static _shouldMuteOnHide() {
-		return Utils.isMobileDevice() && !window.navigator.standalone;
+		return Utils.isMobileDevice() && !window.matchMedia('(display-mode: standalone)').matches;
 	}
 
 	static _resetVolume() {
@@ -110,7 +143,7 @@ export class WebAudio {
 		}
 	}
 
-	static _fadeIn(duration) {
+	static _fadeIn(duration: number) {
 		if (this._masterGainNode) {
 			const gain = this._masterGainNode.gain;
 			const volume = this._masterVolume;
@@ -120,7 +153,7 @@ export class WebAudio {
 		}
 	}
 
-	static _fadeOut(duration) {
+	static _fadeOut(duration: number) {
 		if (this._masterGainNode) {
 			const gain = this._masterGainNode.gain;
 			const volume = this._masterVolume;
@@ -144,7 +177,7 @@ export class WebAudio {
 		this._pannerNode = null;
 		this._totalTime = 0;
 		this._sampleRate = 0;
-		this._loop = 0;
+		this._loop = false;
 		this._loopStart = 0;
 		this._loopLength = 0;
 		this._loopStartTime = 0;
@@ -233,7 +266,7 @@ export class WebAudio {
 	 *
 	 * @returns {boolean} True if the audio data is ready to play.
 	 */
-	isReady() {
+	isReady(): boolean {
 		return this._buffers && this._buffers.length > 0;
 	}
 
@@ -242,7 +275,7 @@ export class WebAudio {
 	 *
 	 * @returns {boolean} True if a loading error has occurred.
 	 */
-	isError() {
+	isError(): boolean {
 		return this._isError;
 	}
 
@@ -251,7 +284,7 @@ export class WebAudio {
 	 *
 	 * @returns {boolean} True if the audio is playing.
 	 */
-	isPlaying() {
+	isPlaying(): boolean {
 		return this._isPlaying;
 	}
 
@@ -261,7 +294,7 @@ export class WebAudio {
 	 * @param {boolean} loop - Whether the audio data play in a loop.
 	 * @param {number} offset - The start position to play in seconds.
 	 */
-	play(loop, offset) {
+	play(loop: boolean, offset: number) {
 		this._loop = loop;
 		if (this.isReady()) {
 			offset = offset || 0;
@@ -282,7 +315,7 @@ export class WebAudio {
 		this._loadListeners = [];
 		if (this._stopListeners) {
 			while (this._stopListeners.length > 0) {
-				const listner = this._stopListeners.shift();
+				const listner = this._stopListeners.shift() as Function;
 				listner();
 			}
 		}
@@ -301,7 +334,7 @@ export class WebAudio {
 	 *
 	 * @param {number} duration - Fade-in time in seconds.
 	 */
-	fadeIn(duration) {
+	fadeIn(duration: number) {
 		if (this.isReady()) {
 			if (this._gainNode) {
 				const gain = this._gainNode.gain;
@@ -322,7 +355,7 @@ export class WebAudio {
 	 *
 	 * @param {number} duration - Fade-out time in seconds.
 	 */
-	fadeOut(duration) {
+	fadeOut(duration: number) {
 		if (this._gainNode) {
 			const gain = this._gainNode.gain;
 			const currentTime = WebAudio._currentTime();
@@ -355,7 +388,7 @@ export class WebAudio {
 	 *
 	 * @param {function} listner - The callback function.
 	 */
-	addLoadListener(listner) {
+	addLoadListener(listner: Function) {
 		this._loadListeners.push(listner);
 	}
 
@@ -364,7 +397,7 @@ export class WebAudio {
 	 *
 	 * @param {function} listner - The callback function.
 	 */
-	addStopListener(listner) {
+	addStopListener(listner: Function) {
 		this._stopListeners.push(listner);
 	}
 
@@ -429,14 +462,14 @@ export class WebAudio {
 		xhr.send();
 	}
 
-	_startFetching(url) {
-		const options = { credentials: "same-origin" };
+	_startFetching(url: string) {
+		const options = { mode: "same-origin" as const };
 		fetch(url, options)
 			.then((response) => this._onFetch(response))
 			.catch(() => this._onError());
 	}
 
-	_onXhrLoad(xhr) {
+	_onXhrLoad(xhr: XMLHttpRequest) {
 		if (xhr.status < 400) {
 			this._data = new Uint8Array(xhr.response);
 			this._isLoaded = true;
@@ -446,9 +479,9 @@ export class WebAudio {
 		}
 	}
 
-	_onFetch(response) {
+	_onFetch(response: Response) {
 		if (response.ok) {
-			const reader = response.body.getReader();
+			const reader = response.body?.getReader();
 			const readChunk = ({ done, value }) => {
 				if (done) {
 					this._isLoaded = true;

@@ -6,11 +6,13 @@ import { randomInt } from "../core/JsExtensions.js";
 import { BattleManager } from "../managers/BattleManager.js";
 
 export class Game_Unit {
+	private _inBattle: boolean;
+
 	constructor() {
 		this._inBattle = false;
 	}
 
-	inBattle() {
+	inBattle(): boolean {
 		return this._inBattle;
 	}
 

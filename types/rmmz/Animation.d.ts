@@ -11,6 +11,5 @@ declare namespace RMMZ {
 		scale: number;
 		soundTimings: SoundTiming[];
 		speed: number;
-
 	}
 }

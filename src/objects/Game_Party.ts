@@ -8,16 +8,26 @@ import { clamp, remove } from "../core/JsExtensions.js";
 import { DataManager } from "../managers/DataManager.js";
 import { TextManager } from "../managers/TextManager.js";
 
+import { Game_Actor } from "./Game_Actor.js";
 import { Game_Item } from "./Game_Item.js";
 import { Game_Unit } from "./Game_Unit.js";
 
 export class Game_Party extends Game_Unit {
-	static ABILITY_ENCOUNTER_HALF = 0;
-	static ABILITY_ENCOUNTER_NONE = 1;
-	static ABILITY_CANCEL_SURPRISE = 2;
-	static ABILITY_RAISE_PREEMPTIVE = 3;
-	static ABILITY_GOLD_DOUBLE = 4;
-	static ABILITY_DROP_ITEM_DOUBLE = 5;
+	static ABILITY_ENCOUNTER_HALF: number = 0;
+	static ABILITY_ENCOUNTER_NONE: number = 1;
+	static ABILITY_CANCEL_SURPRISE: number = 2;
+	static ABILITY_RAISE_PREEMPTIVE: number = 3;
+	static ABILITY_GOLD_DOUBLE: number = 4;
+	static ABILITY_DROP_ITEM_DOUBLE: number = 5;
+
+	private _gold: number;
+	private _steps: number;
+	private _lastItem: Game_Item;
+	private _menuActorId: number;
+	private _targetActorId: number;
+	private _actors: Game_Actor[];
+	
+	private _items;
 
 	constructor() {
 		super();

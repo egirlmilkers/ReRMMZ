@@ -7,47 +7,47 @@ import { Graphics } from "../core/Graphics.js";
 import { Utils } from "../core/Utils.js";
 
 export class AudioManager {
-	static _bgmVolume = 100;
-	static _bgsVolume = 100;
-	static _meVolume = 100;
-	static _seVolume = 100;
-	static _currentBgm = null;
-	static _currentBgs = null;
-	static _bgmBuffer = null;
-	static _bgsBuffer = null;
-	static _meBuffer = null;
-	static _seBuffers = [];
-	static _staticBuffers = [];
-	static _replayFadeTime = 0.5;
-	static _path = "assets/audio/";
+	private static _bgmVolume: number = 100;
+	private static _bgsVolume: number = 100;
+	private static _meVolume: number = 100;
+	private static _seVolume: number = 100;
+	private static _currentBgm: RMMZ.Audio | null;
+	private static _currentBgs: RMMZ.Audio | null;
+	private static _bgmBuffer: RMMZ.Audio | null;
+	private static _bgsBuffer: RMMZ.Audio | null;
+	private static _meBuffer: RMMZ.Audio | null;
+	private static _seBuffers = [];
+	private static _staticBuffers = [];
+	private static _replayFadeTime: number = 0.5;
+	private static _path: string = "assets/audio/";
 
 	constructor() {
 		throw new Error("This is a static class");
 	}
 
-	static get bgmVolume() {
+	static get bgmVolume(): number {
 		return this._bgmVolume;
 	}
 
-	static set bgmVolume(value) {
+	static set bgmVolume(value: number) {
 		this._bgmVolume = value;
 		this.updateBgmParameters(this._currentBgm);
 	}
 
-	static get bgsVolume() {
+	static get bgsVolume(): number {
 		return this._bgsVolume;
 	}
 
-	static set bgsVolume(value) {
+	static set bgsVolume(value: number) {
 		this._bgsVolume = value;
 		this.updateBgsParameters(this._currentBgs);
 	}
 
-	static get meVolume() {
+	static get meVolume(): number {
 		return this._meVolume;
 	}
 
-	static set meVolume(value) {
+	static set meVolume(value: number) {
 		this._meVolume = value;
 		this.updateMeParameters(this._currentMe);
 	}
@@ -60,7 +60,7 @@ export class AudioManager {
 		this._seVolume = value;
 	}
 
-	static playBgm(bgm, pos) {
+	static playBgm(bgm: RMMZ.Audio, pos: number) {
 		if (this.isCurrentBgm(bgm)) {
 			this.updateBgmParameters(bgm);
 		} else {
@@ -347,7 +347,7 @@ export class AudioManager {
 		return { name: "", volume: 0, pitch: 0 };
 	}
 
-	static createBuffer(folder, name) {
+	static createBuffer(folder: string, name: string) {
 		const ext = this.audioFileExt();
 		const url = this._path + folder + Utils.encodeURI(name) + ext;
 		const buffer = new WebAudio(url);
