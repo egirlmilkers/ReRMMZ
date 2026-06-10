@@ -9,7 +9,7 @@
 		"checkJs": true,
 		"allowSyntheticDefaultImports": true,
 
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"paths": {
 			"@effekseer": ["lib/effekseer/effekseer.js"],
 			"@vorbis": ["lib/vorbisdecoder.js"]
