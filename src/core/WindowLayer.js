@@ -4,20 +4,19 @@
  * @class
  * @extends PIXI.Container
  */
-export class WindowLayer extends PIXI.Container {
-	constructor() {
-		super();
+export class WindowLayer extends PIXI.Container
+{
+	constructor()
+	{
+		super()
 	}
 
 	/**
 	 * Updates the window layer for each frame.
 	 */
-	update() {
-		for (const child of this.children) {
-			if (child.update) {
-				child.update();
-			}
-		}
+	update()
+	{
+		for (const child of this.children) if (child.update) child.update()
 	}
 
 	/**
@@ -25,49 +24,48 @@ export class WindowLayer extends PIXI.Container {
 	 *
 	 * @param {PIXI.Renderer} renderer - The renderer.
 	 */
-	render(renderer) {
-		if (!this.visible) {
-			return;
-		}
+	render(renderer)
+	{
+		if (!this.visible) return
 
-		const graphics = new PIXI.Graphics();
-		const gl = renderer.gl;
-		const children = [...this.children];
+		const graphics = new PIXI.Graphics()
+		const gl = renderer.gl
+		const children = [...this.children]
 
-		renderer.framebuffer.forceStencil();
-		graphics.transform = this.transform;
-		renderer.batch.flush();
-		gl.enable(gl.STENCIL_TEST);
+		renderer.framebuffer.forceStencil()
+		graphics.transform = this.transform
+		renderer.batch.flush()
+		gl.enable(gl.STENCIL_TEST)
 
-		while (children.length > 0) {
-			const win = children.pop();
-			if (win._isWindow && win.visible && win.openness > 0) {
-				gl.stencilFunc(gl.EQUAL, 0, ~0);
-				gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
-				win.render(renderer);
-				renderer.batch.flush();
-				graphics.clear();
-				win.drawShape(graphics);
-				gl.stencilFunc(gl.ALWAYS, 1, ~0);
-				gl.stencilOp(gl.REPLACE, gl.REPLACE, gl.REPLACE);
-				gl.blendFunc(gl.ZERO, gl.ONE);
-				graphics.render(renderer);
-				renderer.batch.flush();
-				gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+		while (children.length > 0)
+		{
+			const win = children.pop()
+			if (win._isWindow && win.visible && win.openness > 0)
+			{
+				gl.stencilFunc(gl.EQUAL, 0, ~0)
+				gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP)
+				win.render(renderer)
+				renderer.batch.flush()
+				graphics.clear()
+				win.drawShape(graphics)
+				gl.stencilFunc(gl.ALWAYS, 1, ~0)
+				gl.stencilOp(gl.REPLACE, gl.REPLACE, gl.REPLACE)
+				gl.blendFunc(gl.ZERO, gl.ONE)
+				graphics.render(renderer)
+				renderer.batch.flush()
+				gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
 			}
 		}
 
-		gl.disable(gl.STENCIL_TEST);
-		gl.clear(gl.STENCIL_BUFFER_BIT);
-		gl.clearStencil(0);
-		renderer.batch.flush();
+		gl.disable(gl.STENCIL_TEST)
+		gl.clear(gl.STENCIL_BUFFER_BIT)
+		gl.clearStencil(0)
+		renderer.batch.flush()
 
-		for (const child of this.children) {
-			if (!child._isWindow && child.visible) {
-				child.render(renderer);
-			}
-		}
+		for (const child of this.children)
+			if (!child._isWindow && child.visible)
+				child.render(renderer)
 
-		renderer.batch.flush();
+		renderer.batch.flush()
 	}
 }

@@ -2,56 +2,52 @@
 //
 // The window for selecting a category of items on the item and shop screens.
 
-import { DataManager } from "../managers/DataManager.js";
-import { TextManager } from "../managers/TextManager.js";
+import { DataManager } from '../managers/DataManager.js'
+import { TextManager } from '../managers/TextManager.js'
 
-import { Window_HorzCommand } from "./Window_HorzCommand.js";
+import { Window_HorzCommand } from './Window_HorzCommand.js'
 
-export class Window_ItemCategory extends Window_HorzCommand {
-	constructor(rect) {
-		super(rect);
+export class Window_ItemCategory extends Window_HorzCommand
+{
+	constructor(rect)
+	{
+		super(rect)
 	}
 
-	maxCols() {
-		return 4;
+	maxCols()
+	{
+		return 4
 	}
 
-	update() {
-		super.update();
-		if (this._itemWindow) {
-			this._itemWindow.setCategory(this.currentSymbol());
-		}
+	update()
+	{
+		super.update()
+		if (this._itemWindow) this._itemWindow.setCategory(this.currentSymbol())
 	}
 
-	makeCommandList() {
-		if (this.needsCommand("item")) {
-			this.addCommand(TextManager.item, "item");
-		}
-		if (this.needsCommand("weapon")) {
-			this.addCommand(TextManager.weapon, "weapon");
-		}
-		if (this.needsCommand("armor")) {
-			this.addCommand(TextManager.armor, "armor");
-		}
-		if (this.needsCommand("keyItem")) {
-			this.addCommand(TextManager.keyItem, "keyItem");
-		}
+	makeCommandList()
+	{
+		if (this.needsCommand('item')) this.addCommand(TextManager.item, 'item')
+		if (this.needsCommand('weapon')) this.addCommand(TextManager.weapon, 'weapon')
+		if (this.needsCommand('armor')) this.addCommand(TextManager.armor, 'armor')
+		if (this.needsCommand('keyItem')) this.addCommand(TextManager.keyItem, 'keyItem')
 	}
 
-	needsCommand(name) {
-		const table = ["item", "weapon", "armor", "keyItem"];
-		const index = table.indexOf(name);
-		if (index >= 0) {
-			return DataManager.$dataSystem.itemCategories[index];
-		}
-		return true;
+	needsCommand(name)
+	{
+		const table = ['item', 'weapon', 'armor', 'keyItem']
+		const index = table.indexOf(name)
+		if (index >= 0) return DataManager.$dataSystem.itemCategories[index]
+		return true
 	}
 
-	setItemWindow(itemWindow) {
-		this._itemWindow = itemWindow;
+	setItemWindow(itemWindow)
+	{
+		this._itemWindow = itemWindow
 	}
 
-	needsSelection() {
-		return this.maxItems() >= 2;
+	needsSelection()
+	{
+		return this.maxItems() >= 2
 	}
 }

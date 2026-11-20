@@ -1,7 +1,7 @@
-import { clamp } from "./JsExtensions.js";
-import { Bitmap } from "./Bitmap.js";
-import { Point } from "./Point.js";
-import { Rectangle } from "./Rectangle.js";
+import { Bitmap } from './Bitmap.js'
+import { clamp } from './JsExtensions.js'
+import { Point } from './Point.js'
+import { Rectangle } from './Rectangle.js'
 
 /**
  * The sprite object for a tiling image.
@@ -10,30 +10,33 @@ import { Rectangle } from "./Rectangle.js";
  * @extends PIXI.TilingSprite
  * @param {Bitmap} bitmap - The image for the tiling sprite.
  */
-export class TilingSprite extends PIXI.TilingSprite {
-	static _emptyBaseTexture = null;
+export class TilingSprite extends PIXI.TilingSprite
+{
+	static _emptyBaseTexture = null
 
-	constructor(bitmap) {
-		if (!TilingSprite._emptyBaseTexture) {
-			TilingSprite._emptyBaseTexture = new PIXI.BaseTexture();
-			TilingSprite._emptyBaseTexture.setSize(1, 1);
+	constructor(bitmap)
+	{
+		if (!TilingSprite._emptyBaseTexture)
+		{
+			TilingSprite._emptyBaseTexture = new PIXI.BaseTexture()
+			TilingSprite._emptyBaseTexture.setSize(1, 1)
 		}
-		const frame = new Rectangle();
-		const texture = new PIXI.Texture(TilingSprite._emptyBaseTexture, frame);
-		super(texture);
-		this._bitmap = bitmap;
-		this._width = 0;
-		this._height = 0;
-		this._frame = frame;
+		const frame = new Rectangle()
+		const texture = new PIXI.Texture(TilingSprite._emptyBaseTexture, frame)
+		super(texture)
+		this._bitmap = bitmap
+		this._width = 0
+		this._height = 0
+		this._frame = frame
 
 		/**
 		 * The origin point of the tiling sprite for scrolling.
 		 *
 		 * @type Point
 		 */
-		this.origin = new Point();
+		this.origin = new Point()
 
-		this._onBitmapChange();
+		this._onBitmapChange()
 	}
 
 	/**
@@ -42,14 +45,17 @@ export class TilingSprite extends PIXI.TilingSprite {
 	 * @type Bitmap
 	 * @name TilingSprite#bitmap
 	 */
-	get bitmap() {
-		return this._bitmap;
+	get bitmap()
+	{
+		return this._bitmap
 	}
 
-	set bitmap(value) {
-		if (this._bitmap !== value) {
-			this._bitmap = value;
-			this._onBitmapChange();
+	set bitmap(value)
+	{
+		if (this._bitmap !== value)
+		{
+			this._bitmap = value
+			this._onBitmapChange()
 		}
 	}
 
@@ -59,31 +65,31 @@ export class TilingSprite extends PIXI.TilingSprite {
 	 * @type number
 	 * @name TilingSprite#opacity
 	 */
-	get opacity() {
-		return this.alpha * 255;
+	get opacity()
+	{
+		return this.alpha * 255
 	}
 
-	set opacity(value) {
-		this.alpha = clamp(value, 0, 255) / 255;
+	set opacity(value)
+	{
+		this.alpha = clamp(value, 0, 255) / 255
 	}
 
 	/**
 	 * Destroys the tiling sprite.
 	 */
-	destroy() {
-		const options = { children: true, texture: true };
-		super.destroy(options);
+	destroy()
+	{
+		const options = { children: true, texture: true }
+		super.destroy(options)
 	}
 
 	/**
 	 * Updates the tiling sprite for each frame.
 	 */
-	update() {
-		for (const child of this.children) {
-			if (child.update) {
-				child.update();
-			}
-		}
+	update()
+	{
+		for (const child of this.children) if (child.update) child.update()
 	}
 
 	/**
@@ -94,11 +100,12 @@ export class TilingSprite extends PIXI.TilingSprite {
 	 * @param {number} width - The width of the tiling sprite.
 	 * @param {number} height - The height of the tiling sprite.
 	 */
-	move(x, y, width, height) {
-		this.x = x || 0;
-		this.y = y || 0;
-		this._width = width || 0;
-		this._height = height || 0;
+	move(x, y, width, height)
+	{
+		this.x = x || 0
+		this.y = y || 0
+		this._width = width || 0
+		this._height = height || 0
 	}
 
 	/**
@@ -109,52 +116,59 @@ export class TilingSprite extends PIXI.TilingSprite {
 	 * @param {number} width - The width of the frame.
 	 * @param {number} height - The height of the frame.
 	 */
-	setFrame(x, y, width, height) {
-		this._frame.x = x;
-		this._frame.y = y;
-		this._frame.width = width;
-		this._frame.height = height;
-		this._refresh();
+	setFrame(x, y, width, height)
+	{
+		this._frame.x = x
+		this._frame.y = y
+		this._frame.width = width
+		this._frame.height = height
+		this._refresh()
 	}
 
 	/**
 	 * Updates the transform on all children of this container for rendering.
 	 */
-	updateTransform() {
-		this.tilePosition.x = Math.round(-this.origin.x);
-		this.tilePosition.y = Math.round(-this.origin.y);
-		super.updateTransform();
+	updateTransform()
+	{
+		this.tilePosition.x = Math.round(-this.origin.x)
+		this.tilePosition.y = Math.round(-this.origin.y)
+		super.updateTransform()
 	}
 
-	_onBitmapChange() {
-		if (this._bitmap) {
-			this._bitmap.addLoadListener(this._onBitmapLoad.bind(this));
-		} else {
-			this.texture.frame = new Rectangle();
+	_onBitmapChange()
+	{
+		if (this._bitmap) this._bitmap.addLoadListener(this._onBitmapLoad.bind(this))
+		else this.texture.frame = new Rectangle()
+	}
+
+	_onBitmapLoad()
+	{
+		this.texture.baseTexture = this._bitmap.baseTexture
+		this._refresh()
+	}
+
+	_refresh()
+	{
+		const texture = this.texture
+		const frame = this._frame.clone()
+		if (frame.width === 0 && frame.height === 0 && this._bitmap)
+		{
+			frame.width = this._bitmap.width
+			frame.height = this._bitmap.height
 		}
-	}
-
-	_onBitmapLoad() {
-		this.texture.baseTexture = this._bitmap.baseTexture;
-		this._refresh();
-	}
-
-	_refresh() {
-		const texture = this.texture;
-		const frame = this._frame.clone();
-		if (frame.width === 0 && frame.height === 0 && this._bitmap) {
-			frame.width = this._bitmap.width;
-			frame.height = this._bitmap.height;
-		}
-		if (texture) {
-			if (texture.baseTexture) {
-				try {
-					texture.frame = frame;
-				} catch (e) {
-					texture.frame = new Rectangle();
+		if (texture)
+		{
+			if (texture.baseTexture)
+			{
+				try
+				{
+					texture.frame = frame
+				} catch (e)
+				{
+					texture.frame = new Rectangle()
 				}
 			}
-			texture._updateID++;
+			texture._updateID++
 		}
 	}
 }

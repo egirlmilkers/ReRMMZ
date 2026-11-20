@@ -3,467 +3,496 @@
 // The game object class for the party. Information such as gold and items is
 // included.
 
-import { clamp, remove } from "../core/JsExtensions.js";
+import { clamp, remove } from '../core/JsExtensions.js'
 
-import { DataManager } from "../managers/DataManager.js";
-import { TextManager } from "../managers/TextManager.js";
+import { DataManager } from '../managers/DataManager.js'
+import { TextManager } from '../managers/TextManager.js'
 
-import { Game_Item } from "./Game_Item.js";
-import { Game_Unit } from "./Game_Unit.js";
+import { Game_Item } from './Game_Item.js'
+import { Game_Unit } from './Game_Unit.js'
 
-export class Game_Party extends Game_Unit {
-	static ABILITY_ENCOUNTER_HALF = 0;
-	static ABILITY_ENCOUNTER_NONE = 1;
-	static ABILITY_CANCEL_SURPRISE = 2;
-	static ABILITY_RAISE_PREEMPTIVE = 3;
-	static ABILITY_GOLD_DOUBLE = 4;
-	static ABILITY_DROP_ITEM_DOUBLE = 5;
+export class Game_Party extends Game_Unit
+{
+	static ABILITY_ENCOUNTER_HALF = 0
+	static ABILITY_ENCOUNTER_NONE = 1
+	static ABILITY_CANCEL_SURPRISE = 2
+	static ABILITY_RAISE_PREEMPTIVE = 3
+	static ABILITY_GOLD_DOUBLE = 4
+	static ABILITY_DROP_ITEM_DOUBLE = 5
 
-	constructor() {
-		super();
-		this._gold = 0;
-		this._steps = 0;
-		this._lastItem = new Game_Item();
-		this._menuActorId = 0;
-		this._targetActorId = 0;
-		this._actors = [];
-		this.initAllItems();
+	constructor()
+	{
+		super()
+		this._gold = 0
+		this._steps = 0
+		this._lastItem = new Game_Item()
+		this._menuActorId = 0
+		this._targetActorId = 0
+		this._actors = []
+		this.initAllItems()
 	}
 
-	initAllItems() {
-		this._items = {};
-		this._weapons = {};
-		this._armors = {};
+	initAllItems()
+	{
+		this._items = {}
+		this._weapons = {}
+		this._armors = {}
 	}
 
-	exists() {
-		return this._actors.length > 0;
+	exists()
+	{
+		return this._actors.length > 0
 	}
 
-	size() {
-		return this.members().length;
+	size()
+	{
+		return this.members().length
 	}
 
-	isEmpty() {
-		return this.size() === 0;
+	isEmpty()
+	{
+		return this.size() === 0
 	}
 
-	members() {
-		return this.inBattle() ? this.battleMembers() : this.allMembers();
+	members()
+	{
+		return this.inBattle() ? this.battleMembers() : this.allMembers()
 	}
 
-	allMembers() {
-		return this._actors.map((id) => DataManager.$gameActors.actor(id));
+	allMembers()
+	{
+		return this._actors.map(id => DataManager.$gameActors.actor(id))
 	}
 
-	battleMembers() {
-		return this.allBattleMembers().filter((actor) => actor.isAppeared());
+	battleMembers()
+	{
+		return this.allBattleMembers().filter(actor => actor.isAppeared())
 	}
 
-	hiddenBattleMembers() {
-		return this.allBattleMembers().filter((actor) => actor.isHidden());
+	hiddenBattleMembers()
+	{
+		return this.allBattleMembers().filter(actor => actor.isHidden())
 	}
 
-	allBattleMembers() {
-		return this.allMembers().slice(0, this.maxBattleMembers());
+	allBattleMembers()
+	{
+		return this.allMembers().slice(0, this.maxBattleMembers())
 	}
 
-	maxBattleMembers() {
-		return 4;
+	maxBattleMembers()
+	{
+		return 4
 	}
 
-	leader() {
-		return this.battleMembers()[0];
+	leader()
+	{
+		return this.battleMembers()[0]
 	}
 
-	removeInvalidMembers() {
-		for (const actorId of this._actors) {
-			if (!DataManager.$dataActors[actorId]) {
-				remove(this._actors, actorId);
-			}
-		}
+	removeInvalidMembers()
+	{
+		for (const actorId of this._actors)
+			if (!DataManager.$dataActors[actorId])
+				remove(this._actors, actorId)
 	}
 
-	reviveBattleMembers() {
-		for (const actor of this.battleMembers()) {
-			if (actor.isDead()) {
-				actor.setHp(1);
-			}
-		}
+	reviveBattleMembers()
+	{
+		for (const actor of this.battleMembers()) if (actor.isDead()) actor.setHp(1)
 	}
 
-	items() {
-		return Object.keys(this._items).map((id) => DataManager.$dataItems[id]);
+	items()
+	{
+		return Object.keys(this._items).map(id => DataManager.$dataItems[id])
 	}
 
-	weapons() {
+	weapons()
+	{
 		return Object.keys(this._weapons).map(
-			(id) => DataManager.$dataWeapons[id],
-		);
+			id => DataManager.$dataWeapons[id]
+		)
 	}
 
-	armors() {
+	armors()
+	{
 		return Object.keys(this._armors).map(
-			(id) => DataManager.$dataArmors[id],
-		);
+			id => DataManager.$dataArmors[id]
+		)
 	}
 
-	equipItems() {
-		return this.weapons().concat(this.armors());
+	equipItems()
+	{
+		return this.weapons().concat(this.armors())
 	}
 
-	allItems() {
-		return this.items().concat(this.equipItems());
+	allItems()
+	{
+		return this.items().concat(this.equipItems())
 	}
 
-	itemContainer(item) {
-		if (!item) {
-			return null;
-		} else if (DataManager.isItem(item)) {
-			return this._items;
-		} else if (DataManager.isWeapon(item)) {
-			return this._weapons;
-		} else if (DataManager.isArmor(item)) {
-			return this._armors;
-		} else {
-			return null;
-		}
+	itemContainer(item)
+	{
+		if (!item) return null
+		else if (DataManager.isItem(item)) return this._items
+		else if (DataManager.isWeapon(item)) return this._weapons
+		else if (DataManager.isArmor(item)) return this._armors
+		else return null
 	}
 
-	setupStartingMembers() {
-		this._actors = [];
-		for (const actorId of DataManager.$dataSystem.partyMembers) {
-			if (DataManager.$gameActors.actor(actorId)) {
-				this._actors.push(actorId);
+	setupStartingMembers()
+	{
+		this._actors = []
+		for (const actorId of DataManager.$dataSystem.partyMembers)
+			if (DataManager.$gameActors.actor(actorId))
+				this._actors.push(actorId)
+	}
+
+	name()
+	{
+		const numBattleMembers = this.battleMembers().length
+		if (numBattleMembers === 0) return ''
+		else if (numBattleMembers === 1) return this.leader().name()
+		else return TextManager.partyName.format(this.leader().name())
+	}
+
+	setupBattleTest()
+	{
+		this.setupBattleTestMembers()
+		this.setupBattleTestItems()
+	}
+
+	setupBattleTestMembers()
+	{
+		for (const battler of DataManager.$dataSystem.testBattlers)
+		{
+			const actor = DataManager.$gameActors.actor(battler.actorId)
+			if (actor)
+			{
+				actor.changeLevel(battler.level, false)
+				actor.initEquips(battler.equips)
+				actor.recoverAll()
+				this.addActor(battler.actorId)
 			}
 		}
 	}
 
-	name() {
-		const numBattleMembers = this.battleMembers().length;
-		if (numBattleMembers === 0) {
-			return "";
-		} else if (numBattleMembers === 1) {
-			return this.leader().name();
-		} else {
-			return TextManager.partyName.format(this.leader().name());
-		}
+	setupBattleTestItems()
+	{
+		for (const item of DataManager.$dataItems)
+			if (item && item.name.length > 0)
+				this.gainItem(item, this.maxItems(item))
 	}
 
-	setupBattleTest() {
-		this.setupBattleTestMembers();
-		this.setupBattleTestItems();
+	highestLevel()
+	{
+		return Math.max(...this.members().map(actor => actor.level))
 	}
 
-	setupBattleTestMembers() {
-		for (const battler of DataManager.$dataSystem.testBattlers) {
-			const actor = DataManager.$gameActors.actor(battler.actorId);
-			if (actor) {
-				actor.changeLevel(battler.level, false);
-				actor.initEquips(battler.equips);
-				actor.recoverAll();
-				this.addActor(battler.actorId);
+	addActor(actorId)
+	{
+		if (!this._actors.includes(actorId))
+		{
+			this._actors.push(actorId)
+			DataManager.$gamePlayer.refresh()
+			DataManager.$gameMap.requestRefresh()
+			DataManager.$gameTemp.requestBattleRefresh()
+			if (this.inBattle())
+			{
+				const actor = DataManager.$gameActors.actor(actorId)
+				if (this.battleMembers().includes(actor)) actor.onBattleStart()
 			}
 		}
 	}
 
-	setupBattleTestItems() {
-		for (const item of DataManager.$dataItems) {
-			if (item && item.name.length > 0) {
-				this.gainItem(item, this.maxItems(item));
+	removeActor(actorId)
+	{
+		if (this._actors.includes(actorId))
+		{
+			const actor = DataManager.$gameActors.actor(actorId)
+			const wasBattleMember = this.battleMembers().includes(actor)
+			remove(this._actors, actorId)
+			DataManager.$gamePlayer.refresh()
+			DataManager.$gameMap.requestRefresh()
+			DataManager.$gameTemp.requestBattleRefresh()
+			if (this.inBattle() && wasBattleMember) actor.onBattleEnd()
+		}
+	}
+
+	gold()
+	{
+		return this._gold
+	}
+
+	gainGold(amount)
+	{
+		this._gold = clamp(this._gold + amount, 0, this.maxGold())
+	}
+
+	loseGold(amount)
+	{
+		this.gainGold(-amount)
+	}
+
+	maxGold()
+	{
+		return 99999999
+	}
+
+	steps()
+	{
+		return this._steps
+	}
+
+	increaseSteps()
+	{
+		this._steps++
+	}
+
+	numItems(item)
+	{
+		const container = this.itemContainer(item)
+		return container ? container[item.id] || 0 : 0
+	}
+
+	maxItems()
+	/*item*/ {
+		return 99
+	}
+
+	hasMaxItems(item)
+	{
+		return this.numItems(item) >= this.maxItems(item)
+	}
+
+	hasItem(item, includeEquip)
+	{
+		if (this.numItems(item) > 0) return true
+		else return includeEquip && this.isAnyMemberEquipped(item)
+	}
+
+	isAnyMemberEquipped(item)
+	{
+		return this.members().some(actor => actor.equips().includes(item))
+	}
+
+	gainItem(item, amount, includeEquip)
+	{
+		const container = this.itemContainer(item)
+		if (container)
+		{
+			const lastNumber = this.numItems(item)
+			const newNumber = lastNumber + amount
+			container[item.id] = clamp(newNumber, 0, this.maxItems(item))
+			if (container[item.id] === 0) delete container[item.id]
+			if (includeEquip && newNumber < 0) this.discardMembersEquip(item, -newNumber)
+			DataManager.$gameMap.requestRefresh()
+		}
+	}
+
+	discardMembersEquip(item, amount)
+	{
+		let n = amount
+		for (const actor of this.members())
+		{
+			while (n > 0 && actor.isEquipped(item))
+			{
+				actor.discardEquip(item)
+				n--
 			}
 		}
 	}
 
-	highestLevel() {
-		return Math.max(...this.members().map((actor) => actor.level));
+	loseItem(item, amount, includeEquip)
+	{
+		this.gainItem(item, -amount, includeEquip)
 	}
 
-	addActor(actorId) {
-		if (!this._actors.includes(actorId)) {
-			this._actors.push(actorId);
-			DataManager.$gamePlayer.refresh();
-			DataManager.$gameMap.requestRefresh();
-			DataManager.$gameTemp.requestBattleRefresh();
-			if (this.inBattle()) {
-				const actor = DataManager.$gameActors.actor(actorId);
-				if (this.battleMembers().includes(actor)) {
-					actor.onBattleStart();
-				}
-			}
-		}
+	consumeItem(item)
+	{
+		if (DataManager.isItem(item) && item.consumable) this.loseItem(item, 1)
 	}
 
-	removeActor(actorId) {
-		if (this._actors.includes(actorId)) {
-			const actor = DataManager.$gameActors.actor(actorId);
-			const wasBattleMember = this.battleMembers().includes(actor);
-			remove(this._actors, actorId);
-			DataManager.$gamePlayer.refresh();
-			DataManager.$gameMap.requestRefresh();
-			DataManager.$gameTemp.requestBattleRefresh();
-			if (this.inBattle() && wasBattleMember) {
-				actor.onBattleEnd();
-			}
-		}
+	canUse(item)
+	{
+		return this.members().some(actor => actor.canUse(item))
 	}
 
-	gold() {
-		return this._gold;
+	canInput()
+	{
+		return this.members().some(actor => actor.canInput())
 	}
 
-	gainGold(amount) {
-		this._gold = clamp((this._gold + amount), 0, this.maxGold());
+	isAllDead()
+	{
+		if (Game_Unit.prototype.isAllDead.call(this)) return this.inBattle() || !this.isEmpty()
+		else return false
 	}
 
-	loseGold(amount) {
-		this.gainGold(-amount);
+	isEscaped()
+	{
+		return this.isAllDead() && this.hiddenBattleMembers().length > 0
 	}
 
-	maxGold() {
-		return 99999999;
+	onPlayerWalk()
+	{
+		for (const actor of this.members()) actor.onPlayerWalk()
 	}
 
-	steps() {
-		return this._steps;
+	menuActor()
+	{
+		let actor = DataManager.$gameActors.actor(this._menuActorId)
+		if (!this.members().includes(actor)) actor = this.members()[0]
+		return actor
 	}
 
-	increaseSteps() {
-		this._steps++;
+	setMenuActor(actor)
+	{
+		this._menuActorId = actor.actorId()
 	}
 
-	numItems(item) {
-		const container = this.itemContainer(item);
-		return container ? container[item.id] || 0 : 0;
-	}
-
-	maxItems() /*item*/ {
-		return 99;
-	}
-
-	hasMaxItems(item) {
-		return this.numItems(item) >= this.maxItems(item);
-	}
-
-	hasItem(item, includeEquip) {
-		if (this.numItems(item) > 0) {
-			return true;
+	makeMenuActorNext()
+	{
+		let index = this.members().indexOf(this.menuActor())
+		if (index >= 0)
+		{
+			index = (index + 1) % this.members().length
+			this.setMenuActor(this.members()[index])
 		} else
-			return includeEquip && this.isAnyMemberEquipped(item);
-	}
-
-	isAnyMemberEquipped(item) {
-		return this.members().some((actor) => actor.equips().includes(item));
-	}
-
-	gainItem(item, amount, includeEquip) {
-		const container = this.itemContainer(item);
-		if (container) {
-			const lastNumber = this.numItems(item);
-			const newNumber = lastNumber + amount;
-			container[item.id] = clamp(newNumber, 0, this.maxItems(item));
-			if (container[item.id] === 0) {
-				delete container[item.id];
-			}
-			if (includeEquip && newNumber < 0) {
-				this.discardMembersEquip(item, -newNumber);
-			}
-			DataManager.$gameMap.requestRefresh();
+		{
+			this.setMenuActor(this.members()[0])
 		}
 	}
 
-	discardMembersEquip(item, amount) {
-		let n = amount;
-		for (const actor of this.members()) {
-			while (n > 0 && actor.isEquipped(item)) {
-				actor.discardEquip(item);
-				n--;
-			}
+	makeMenuActorPrevious()
+	{
+		let index = this.members().indexOf(this.menuActor())
+		if (index >= 0)
+		{
+			index = (index + this.members().length - 1) % this.members().length
+			this.setMenuActor(this.members()[index])
+		} else
+		{
+			this.setMenuActor(this.members()[0])
 		}
 	}
 
-	loseItem(item, amount, includeEquip) {
-		this.gainItem(item, -amount, includeEquip);
+	targetActor()
+	{
+		let actor = DataManager.$gameActors.actor(this._targetActorId)
+		if (!this.members().includes(actor)) actor = this.members()[0]
+		return actor
 	}
 
-	consumeItem(item) {
-		if (DataManager.isItem(item) && item.consumable) {
-			this.loseItem(item, 1);
-		}
+	setTargetActor(actor)
+	{
+		this._targetActorId = actor.actorId()
 	}
 
-	canUse(item) {
-		return this.members().some((actor) => actor.canUse(item));
+	lastItem()
+	{
+		return this._lastItem.object()
 	}
 
-	canInput() {
-		return this.members().some((actor) => actor.canInput());
+	setLastItem(item)
+	{
+		this._lastItem.setObject(item)
 	}
 
-	isAllDead() {
-		if (Game_Unit.prototype.isAllDead.call(this)) {
-			return this.inBattle() || !this.isEmpty();
-		} else {
-			return false;
-		}
+	swapOrder(index1, index2)
+	{
+		const temp = this._actors[index1]
+		this._actors[index1] = this._actors[index2]
+		this._actors[index2] = temp
+		DataManager.$gamePlayer.refresh()
 	}
 
-	isEscaped() {
-		return this.isAllDead() && this.hiddenBattleMembers().length > 0;
-	}
-
-	onPlayerWalk() {
-		for (const actor of this.members()) {
-			actor.onPlayerWalk();
-		}
-	}
-
-	menuActor() {
-		let actor = DataManager.$gameActors.actor(this._menuActorId);
-		if (!this.members().includes(actor)) {
-			actor = this.members()[0];
-		}
-		return actor;
-	}
-
-	setMenuActor(actor) {
-		this._menuActorId = actor.actorId();
-	}
-
-	makeMenuActorNext() {
-		let index = this.members().indexOf(this.menuActor());
-		if (index >= 0) {
-			index = (index + 1) % this.members().length;
-			this.setMenuActor(this.members()[index]);
-		} else {
-			this.setMenuActor(this.members()[0]);
-		}
-	}
-
-	makeMenuActorPrevious() {
-		let index = this.members().indexOf(this.menuActor());
-		if (index >= 0) {
-			index = (index + this.members().length - 1) % this.members().length;
-			this.setMenuActor(this.members()[index]);
-		} else {
-			this.setMenuActor(this.members()[0]);
-		}
-	}
-
-	targetActor() {
-		let actor = DataManager.$gameActors.actor(this._targetActorId);
-		if (!this.members().includes(actor)) {
-			actor = this.members()[0];
-		}
-		return actor;
-	}
-
-	setTargetActor(actor) {
-		this._targetActorId = actor.actorId();
-	}
-
-	lastItem() {
-		return this._lastItem.object();
-	}
-
-	setLastItem(item) {
-		this._lastItem.setObject(item);
-	}
-
-	swapOrder(index1, index2) {
-		const temp = this._actors[index1];
-		this._actors[index1] = this._actors[index2];
-		this._actors[index2] = temp;
-		DataManager.$gamePlayer.refresh();
-	}
-
-	charactersForSavefile() {
-		return this.battleMembers().map((actor) => [
+	charactersForSavefile()
+	{
+		return this.battleMembers().map(actor => [
 			actor.characterName(),
-			actor.characterIndex(),
-		]);
+			actor.characterIndex()
+		])
 	}
 
-	facesForSavefile() {
-		return this.battleMembers().map((actor) => [
+	facesForSavefile()
+	{
+		return this.battleMembers().map(actor => [
 			actor.faceName(),
-			actor.faceIndex(),
-		]);
+			actor.faceIndex()
+		])
 	}
 
-	partyAbility(abilityId) {
-		return this.battleMembers().some((actor) =>
-			actor.partyAbility(abilityId),
-		);
+	partyAbility(abilityId)
+	{
+		return this.battleMembers().some(actor => actor.partyAbility(abilityId))
 	}
 
-	hasEncounterHalf() {
-		return this.partyAbility(Game_Party.ABILITY_ENCOUNTER_HALF);
+	hasEncounterHalf()
+	{
+		return this.partyAbility(Game_Party.ABILITY_ENCOUNTER_HALF)
 	}
 
-	hasEncounterNone() {
-		return this.partyAbility(Game_Party.ABILITY_ENCOUNTER_NONE);
+	hasEncounterNone()
+	{
+		return this.partyAbility(Game_Party.ABILITY_ENCOUNTER_NONE)
 	}
 
-	hasCancelSurprise() {
-		return this.partyAbility(Game_Party.ABILITY_CANCEL_SURPRISE);
+	hasCancelSurprise()
+	{
+		return this.partyAbility(Game_Party.ABILITY_CANCEL_SURPRISE)
 	}
 
-	hasRaisePreemptive() {
-		return this.partyAbility(Game_Party.ABILITY_RAISE_PREEMPTIVE);
+	hasRaisePreemptive()
+	{
+		return this.partyAbility(Game_Party.ABILITY_RAISE_PREEMPTIVE)
 	}
 
-	hasGoldDouble() {
-		return this.partyAbility(Game_Party.ABILITY_GOLD_DOUBLE);
+	hasGoldDouble()
+	{
+		return this.partyAbility(Game_Party.ABILITY_GOLD_DOUBLE)
 	}
 
-	hasDropItemDouble() {
-		return this.partyAbility(Game_Party.ABILITY_DROP_ITEM_DOUBLE);
+	hasDropItemDouble()
+	{
+		return this.partyAbility(Game_Party.ABILITY_DROP_ITEM_DOUBLE)
 	}
 
-	ratePreemptive(troopAgi) {
-		let rate = this.agility() >= troopAgi ? 0.05 : 0.03;
-		if (this.hasRaisePreemptive()) {
-			rate *= 4;
-		}
-		return rate;
+	ratePreemptive(troopAgi)
+	{
+		let rate = this.agility() >= troopAgi ? 0.05 : 0.03
+		if (this.hasRaisePreemptive()) rate *= 4
+		return rate
 	}
 
-	rateSurprise(troopAgi) {
-		let rate = this.agility() >= troopAgi ? 0.03 : 0.05;
-		if (this.hasCancelSurprise()) {
-			rate = 0;
-		}
-		return rate;
+	rateSurprise(troopAgi)
+	{
+		let rate = this.agility() >= troopAgi ? 0.03 : 0.05
+		if (this.hasCancelSurprise()) rate = 0
+		return rate
 	}
 
-	performVictory() {
-		for (const actor of this.members()) {
-			actor.performVictory();
-		}
+	performVictory()
+	{
+		for (const actor of this.members()) actor.performVictory()
 	}
 
-	performEscape() {
-		for (const actor of this.members()) {
-			actor.performEscape();
-		}
+	performEscape()
+	{
+		for (const actor of this.members()) actor.performEscape()
 	}
 
-	removeBattleStates() {
-		for (const actor of this.members()) {
-			actor.removeBattleStates();
-		}
+	removeBattleStates()
+	{
+		for (const actor of this.members()) actor.removeBattleStates()
 	}
 
-	requestMotionRefresh() {
-		for (const actor of this.members()) {
-			actor.requestMotionRefresh();
-		}
+	requestMotionRefresh()
+	{
+		for (const actor of this.members()) actor.requestMotionRefresh()
 	}
 
-	onEscapeFailure() {
-		for (const actor of this.members()) {
-			actor.onEscapeFailure();
-		}
+	onEscapeFailure()
+	{
+		for (const actor of this.members()) actor.onEscapeFailure()
 	}
 }

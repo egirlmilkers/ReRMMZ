@@ -2,160 +2,184 @@
 //
 // The game object class for temporary data that is not included in save data.
 
-import { Utils } from "../core/Utils.js";
+import { Utils } from '../core/Utils.js'
 
-import { DataManager } from "../managers/DataManager.js";
+import { DataManager } from '../managers/DataManager.js'
 
-export class Game_Temp {
-	constructor() {
-		this._isPlaytest = Utils.isOptionValid("test");
-		this._destinationX = null;
-		this._destinationY = null;
-		this._touchTarget = null;
-		this._touchState = "";
-		this._needsBattleRefresh = false;
-		this._commonEventQueue = [];
-		this._animationQueue = [];
-		this._balloonQueue = [];
-		this._lastActionData = [0, 0, 0, 0, 0, 0];
+export class Game_Temp
+{
+	constructor()
+	{
+		this._isPlaytest = Utils.isOptionValid('test')
+		this._destinationX = null
+		this._destinationY = null
+		this._touchTarget = null
+		this._touchState = ''
+		this._needsBattleRefresh = false
+		this._commonEventQueue = []
+		this._animationQueue = []
+		this._balloonQueue = []
+		this._lastActionData = [0, 0, 0, 0, 0, 0]
 	}
 
-	isPlaytest() {
-		return this._isPlaytest;
+	isPlaytest()
+	{
+		return this._isPlaytest
 	}
 
-	setDestination(x, y) {
-		this._destinationX = x;
-		this._destinationY = y;
+	setDestination(x, y)
+	{
+		this._destinationX = x
+		this._destinationY = y
 	}
 
-	clearDestination() {
-		this._destinationX = null;
-		this._destinationY = null;
+	clearDestination()
+	{
+		this._destinationX = null
+		this._destinationY = null
 	}
 
-	isDestinationValid() {
-		return this._destinationX !== null;
+	isDestinationValid()
+	{
+		return this._destinationX !== null
 	}
 
-	destinationX() {
-		return this._destinationX;
+	destinationX()
+	{
+		return this._destinationX
 	}
 
-	destinationY() {
-		return this._destinationY;
+	destinationY()
+	{
+		return this._destinationY
 	}
 
-	setTouchState(target, state) {
-		this._touchTarget = target;
-		this._touchState = state;
+	setTouchState(target, state)
+	{
+		this._touchTarget = target
+		this._touchState = state
 	}
 
-	clearTouchState() {
-		this._touchTarget = null;
-		this._touchState = "";
+	clearTouchState()
+	{
+		this._touchTarget = null
+		this._touchState = ''
 	}
 
-	touchTarget() {
-		return this._touchTarget;
+	touchTarget()
+	{
+		return this._touchTarget
 	}
 
-	touchState() {
-		return this._touchState;
+	touchState()
+	{
+		return this._touchState
 	}
 
-	requestBattleRefresh() {
-		if (DataManager.$gameParty.inBattle()) {
-			this._needsBattleRefresh = true;
-		}
+	requestBattleRefresh()
+	{
+		if (DataManager.$gameParty.inBattle()) this._needsBattleRefresh = true
 	}
 
-	clearBattleRefreshRequest() {
-		this._needsBattleRefresh = false;
+	clearBattleRefreshRequest()
+	{
+		this._needsBattleRefresh = false
 	}
 
-	isBattleRefreshRequested() {
-		return this._needsBattleRefresh;
+	isBattleRefreshRequested()
+	{
+		return this._needsBattleRefresh
 	}
 
-	reserveCommonEvent(commonEventId) {
-		this._commonEventQueue.push(commonEventId);
+	reserveCommonEvent(commonEventId)
+	{
+		this._commonEventQueue.push(commonEventId)
 	}
 
-	retrieveCommonEvent() {
-		return DataManager.$dataCommonEvents[this._commonEventQueue.shift()];
+	retrieveCommonEvent()
+	{
+		return DataManager.$dataCommonEvents[this._commonEventQueue.shift()]
 	}
 
-	clearCommonEventReservation() {
-		this._commonEventQueue.length = 0;
+	clearCommonEventReservation()
+	{
+		this._commonEventQueue.length = 0
 	}
 
-	isCommonEventReserved() {
-		return this._commonEventQueue.length > 0;
+	isCommonEventReserved()
+	{
+		return this._commonEventQueue.length > 0
 	}
 
 	// prettier-ignore
-	requestAnimation(targets, animationId, mirror = false) {
-        if (DataManager.$dataAnimations[animationId]) {
-            const request = {
-                targets: targets,
-                animationId: animationId,
-                mirror: mirror
-            };
-            this._animationQueue.push(request);
-            for (const target of targets) {
-                if (target.startAnimation) {
-                    target.startAnimation();
-                }
-            }
-        }
-    }
-
-	retrieveAnimation() {
-		return this._animationQueue.shift();
-	}
-
-	requestBalloon(target, balloonId) {
-		const request = { target: target, balloonId: balloonId };
-		this._balloonQueue.push(request);
-		if (target.startBalloon) {
-			target.startBalloon();
+	requestAnimation(targets, animationId, mirror = false)
+	{
+		if (DataManager.$dataAnimations[animationId])
+		{
+			const request = {
+				targets: targets,
+				animationId: animationId,
+				mirror: mirror
+			}
+			this._animationQueue.push(request)
+			for (const target of targets) if (target.startAnimation) target.startAnimation()
 		}
 	}
 
-	retrieveBalloon() {
-		return this._balloonQueue.shift();
+	retrieveAnimation()
+	{
+		return this._animationQueue.shift()
 	}
 
-	lastActionData(type) {
-		return this._lastActionData[type] || 0;
+	requestBalloon(target, balloonId)
+	{
+		const request = { target: target, balloonId: balloonId }
+		this._balloonQueue.push(request)
+		if (target.startBalloon) target.startBalloon()
 	}
 
-	setLastActionData(type, value) {
-		this._lastActionData[type] = value;
+	retrieveBalloon()
+	{
+		return this._balloonQueue.shift()
 	}
 
-	setLastUsedSkillId(skillID) {
-		this.setLastActionData(0, skillID);
+	lastActionData(type)
+	{
+		return this._lastActionData[type] || 0
 	}
 
-	setLastUsedItemId(itemID) {
-		this.setLastActionData(1, itemID);
+	setLastActionData(type, value)
+	{
+		this._lastActionData[type] = value
 	}
 
-	setLastSubjectActorId(actorID) {
-		this.setLastActionData(2, actorID);
+	setLastUsedSkillId(skillID)
+	{
+		this.setLastActionData(0, skillID)
 	}
 
-	setLastSubjectEnemyIndex(enemyIndex) {
-		this.setLastActionData(3, enemyIndex);
+	setLastUsedItemId(itemID)
+	{
+		this.setLastActionData(1, itemID)
 	}
 
-	setLastTargetActorId(actorID) {
-		this.setLastActionData(4, actorID);
+	setLastSubjectActorId(actorID)
+	{
+		this.setLastActionData(2, actorID)
 	}
 
-	setLastTargetEnemyIndex(enemyIndex) {
-		this.setLastActionData(5, enemyIndex);
+	setLastSubjectEnemyIndex(enemyIndex)
+	{
+		this.setLastActionData(3, enemyIndex)
+	}
+
+	setLastTargetActorId(actorID)
+	{
+		this.setLastActionData(4, actorID)
+	}
+
+	setLastTargetEnemyIndex(enemyIndex)
+	{
+		this.setLastActionData(5, enemyIndex)
 	}
 }

@@ -1,4 +1,4 @@
-import { clamp } from "./JsExtensions.js";
+import { clamp } from './JsExtensions.js'
 
 /**
  * The sprite which covers the entire game screen.
@@ -6,16 +6,18 @@ import { clamp } from "./JsExtensions.js";
  * @class
  * @extends PIXI.Container
  */
-export class ScreenSprite extends PIXI.Container {
-	constructor() {
-		super();
-		this._graphics = new PIXI.Graphics();
-		this.addChild(this._graphics);
-		this.opacity = 0;
-		this._red = -1;
-		this._green = -1;
-		this._blue = -1;
-		this.setBlack();
+export class ScreenSprite extends PIXI.Container
+{
+	constructor()
+	{
+		super()
+		this._graphics = new PIXI.Graphics()
+		this.addChild(this._graphics)
+		this.opacity = 0
+		this._red = -1
+		this._green = -1
+		this._blue = -1
+		this.setBlack()
 	}
 
 	/**
@@ -24,34 +26,39 @@ export class ScreenSprite extends PIXI.Container {
 	 * @type number
 	 * @name ScreenSprite#opacity
 	 */
-	get opacity() {
-		return this.alpha * 255;
+	get opacity()
+	{
+		return this.alpha * 255
 	}
 
-	set opacity(value) {
-		this.alpha = clamp(value, 0, 255) / 255;
+	set opacity(value)
+	{
+		this.alpha = clamp(value, 0, 255) / 255
 	}
 
 	/**
 	 * Destroys the screen sprite.
 	 */
-	destroy() {
-		const options = { children: true, texture: true };
-		super.destroy(options);
+	destroy()
+	{
+		const options = { children: true, texture: true }
+		super.destroy(options)
 	}
 
 	/**
 	 * Sets black to the color of the screen sprite.
 	 */
-	setBlack() {
-		this.setColor(0, 0, 0);
+	setBlack()
+	{
+		this.setColor(0, 0, 0)
 	}
 
 	/**
 	 * Sets white to the color of the screen sprite.
 	 */
-	setWhite() {
-		this.setColor(255, 255, 255);
+	setWhite()
+	{
+		this.setColor(255, 255, 255)
 	}
 
 	/**
@@ -61,18 +68,20 @@ export class ScreenSprite extends PIXI.Container {
 	 * @param {number} g - The green value in the range (0, 255).
 	 * @param {number} b - The blue value in the range (0, 255).
 	 */
-	setColor(r, g, b) {
-		if (this._red !== r || this._green !== g || this._blue !== b) {
-			r = clamp(Math.round(r || 0), 0, 255);
-			g = clamp(Math.round(g || 0), 0, 255);
-			b = clamp(Math.round(b || 0), 0, 255);
-			this._red = r;
-			this._green = g;
-			this._blue = b;
-			const graphics = this._graphics;
-			graphics.clear();
-			graphics.beginFill((r << 16) | (g << 8) | b, 1);
-			graphics.drawRect(-50000, -50000, 100000, 100000);
+	setColor(r, g, b)
+	{
+		if (this._red !== r || this._green !== g || this._blue !== b)
+		{
+			r = clamp(Math.round(r || 0), 0, 255)
+			g = clamp(Math.round(g || 0), 0, 255)
+			b = clamp(Math.round(b || 0), 0, 255)
+			this._red = r
+			this._green = g
+			this._blue = b
+			const graphics = this._graphics
+			graphics.clear()
+			graphics.beginFill((r << 16) | (g << 8) | b, 1)
+			graphics.drawRect(-50000, -50000, 100000, 100000)
 		}
 	}
 }

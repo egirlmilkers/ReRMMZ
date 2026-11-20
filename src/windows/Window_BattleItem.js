@@ -2,28 +2,33 @@
 //
 // The window for selecting an item to use on the battle screen.
 
-import { DataManager } from "../managers/DataManager.js";
+import { DataManager } from '../managers/DataManager.js'
 
-import { Window_ItemList } from "./Window_ItemList.js";
+import { Window_ItemList } from './Window_ItemList.js'
 
-export class Window_BattleItem extends Window_ItemList {
-	constructor(rect) {
-		super(rect);
-		this.hide();
+export class Window_BattleItem extends Window_ItemList
+{
+	constructor(rect)
+	{
+		super(rect)
+		this.hide()
 	}
 
-	includes(item) {
-		return DataManager.$gameParty.canUse(item);
+	includes(item)
+	{
+		return DataManager.$gameParty.canUse(item)
 	}
 
-	show() {
-		this.selectLast();
-		this.showHelpWindow();
-		super.show();
+	show()
+	{
+		this.selectLast()
+		this.showHelpWindow()
+		super.show()
 	}
 
-	hide() {
-		this.hideHelpWindow();
-		super.hide();
+	hide()
+	{
+		this.hideHelpWindow()
+		super.hide()
 	}
 }

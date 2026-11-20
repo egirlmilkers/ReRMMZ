@@ -3,14 +3,15 @@
  *
  * @namespace
  */
-export class Utils {
+export class Utils
+{
 	/**
 	 * The name of the RPG Maker. "MZ" in the current version.
 	 *
 	 * @type string
 	 * @constant
 	 */
-	static RPGMAKER_NAME = "MZ";
+	static RPGMAKER_NAME = 'MZ'
 
 	/**
 	 * The version of the RPG Maker.
@@ -18,10 +19,11 @@ export class Utils {
 	 * @type string
 	 * @constant
 	 */
-	static RPGMAKER_VERSION = "1.10.0";
+	static RPGMAKER_VERSION = '1.10.0'
 
-	constructor() {
-		throw new Error("This is a static class");
+	constructor()
+	{
+		throw new Error('This is a static class')
 	}
 
 	/**
@@ -32,19 +34,18 @@ export class Utils {
 	 * @returns {boolean} True if the current version is greater than or equal
 	 *                    to the given version.
 	 */
-	static checkRMVersion(version) {
-		const array1 = this.RPGMAKER_VERSION.split(".");
-		const array2 = String(version).split(".");
-		for (let i = 0; i < array1.length; i++) {
-			const v1 = parseInt(array1[i]);
-			const v2 = parseInt(array2[i]);
-			if (v1 > v2) {
-				return true;
-			} else if (v1 < v2) {
-				return false;
-			}
+	static checkRMVersion(version)
+	{
+		const array1 = this.RPGMAKER_VERSION.split('.')
+		const array2 = String(version).split('.')
+		for (let i = 0; i < array1.length; i++)
+		{
+			const v1 = parseInt(array1[i])
+			const v2 = parseInt(array2[i])
+			if (v1 > v2) return true
+			else if (v1 < v2) return false
 		}
-		return true;
+		return true
 	}
 
 	/**
@@ -53,15 +54,12 @@ export class Utils {
 	 * @param {string} name - The option name.
 	 * @returns {boolean} True if the option is in the query string.
 	 */
-	static isOptionValid(name) {
-		const args = location.search.slice(1);
-		if (args.split("&").includes(name)) {
-			return true;
-		}
-		if (this.isNwjs() && nw.App.argv.length > 0) {
-			return nw.App.argv[0].split("&").includes(name);
-		}
-		return false;
+	static isOptionValid(name)
+	{
+		const args = location.search.slice(1)
+		if (args.split('&').includes(name)) return true
+		if (this.isNwjs() && nw.App.argv.length > 0) return nw.App.argv[0].split('&').includes(name)
+		return false
 	}
 
 	/**
@@ -69,8 +67,9 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the platform is NW.js.
 	 */
-	static isNwjs() {
-		return typeof require === "function" && typeof process === "object";
+	static isNwjs()
+	{
+		return typeof require === 'function' && typeof process === 'object'
 	}
 
 	/**
@@ -78,9 +77,10 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the platform is a mobile device.
 	 */
-	static isMobileDevice() {
-		const r = /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/i;
-		return !!navigator.userAgent.match(r);
+	static isMobileDevice()
+	{
+		const r = /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/i
+		return !!navigator.userAgent.match(r)
 	}
 
 	/**
@@ -88,13 +88,14 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser is Mobile Safari.
 	 */
-	static isMobileSafari() {
-		const agent = navigator.userAgent;
+	static isMobileSafari()
+	{
+		const agent = navigator.userAgent
 		return !!(
-			agent.match(/iPhone|iPad|iPod/) &&
-			agent.match(/AppleWebKit/) &&
-			!agent.match("CriOS")
-		);
+			agent.match(/iPhone|iPad|iPod/)
+			&& agent.match(/AppleWebKit/)
+			&& !agent.match('CriOS')
+		)
 	}
 
 	/**
@@ -102,9 +103,10 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser is Android Chrome.
 	 */
-	static isAndroidChrome() {
-		const agent = navigator.userAgent;
-		return !!(agent.match(/Android/) && agent.match(/Chrome/));
+	static isAndroidChrome()
+	{
+		const agent = navigator.userAgent
+		return !!(agent.match(/Android/) && agent.match(/Chrome/))
 	}
 
 	/**
@@ -112,8 +114,9 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser is accessing local files.
 	 */
-	static isLocal() {
-		return window.location.href.startsWith("file:");
+	static isLocal()
+	{
+		return window.location.href.startsWith('file:')
 	}
 
 	/**
@@ -121,12 +124,15 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser supports WebGL.
 	 */
-	static canUseWebGL() {
-		try {
-			const canvas = document.createElement("canvas");
-			return !!canvas.getContext("webgl");
-		} catch (e) {
-			return false;
+	static canUseWebGL()
+	{
+		try
+		{
+			const canvas = document.createElement('canvas')
+			return !!canvas.getContext('webgl')
+		} catch (e)
+		{
+			return false
 		}
 	}
 
@@ -135,8 +141,9 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser supports Web Audio API.
 	 */
-	static canUseWebAudioAPI() {
-		return !!(window.AudioContext || window.webkitAudioContext);
+	static canUseWebAudioAPI()
+	{
+		return !!(window.AudioContext || window.webkitAudioContext)
 	}
 
 	/**
@@ -144,8 +151,9 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser supports CSS Font Loading.
 	 */
-	static canUseCssFontLoading() {
-		return !!(document.fonts && document.fonts.ready);
+	static canUseCssFontLoading()
+	{
+		return !!(document.fonts && document.fonts.ready)
 	}
 
 	/**
@@ -153,12 +161,13 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser supports IndexedDB.
 	 */
-	static canUseIndexedDB() {
+	static canUseIndexedDB()
+	{
 		return !!(
-			window.indexedDB ||
-			window.mozIndexedDB ||
-			window.webkitIndexedDB
-		);
+			window.indexedDB
+			|| window.mozIndexedDB
+			|| window.webkitIndexedDB
+		)
 	}
 
 	/**
@@ -166,14 +175,13 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser can play ogg files.
 	 */
-	static canPlayOgg() {
-		if (!Utils._audioElement) {
-			Utils._audioElement = document.createElement("audio");
-		}
+	static canPlayOgg()
+	{
+		if (!Utils._audioElement) Utils._audioElement = document.createElement('audio')
 		return !!(
-			Utils._audioElement &&
-			Utils._audioElement.canPlayType('audio/ogg; codecs="vorbis"')
-		);
+			Utils._audioElement
+			&& Utils._audioElement.canPlayType('audio/ogg; codecs="vorbis"')
+		)
 	}
 
 	/**
@@ -181,14 +189,13 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the browser can play webm files.
 	 */
-	static canPlayWebm() {
-		if (!Utils._videoElement) {
-			Utils._videoElement = document.createElement("video");
-		}
+	static canPlayWebm()
+	{
+		if (!Utils._videoElement) Utils._videoElement = document.createElement('video')
 		return !!(
-			Utils._videoElement &&
-			Utils._videoElement.canPlayType('video/webm; codecs="vp8, vorbis"')
-		);
+			Utils._videoElement
+			&& Utils._videoElement.canPlayType('video/webm; codecs="vp8, vorbis"')
+		)
 	}
 
 	/**
@@ -197,8 +204,9 @@ export class Utils {
 	 * @param {string} str - The input string.
 	 * @returns {string} Encoded string.
 	 */
-	static encodeURI(str) {
-		return encodeURIComponent(str).replace(/%2F/g, "/");
+	static encodeURI(str)
+	{
+		return encodeURIComponent(str).replace(/%2F/g, '/')
 	}
 
 	/**
@@ -207,8 +215,9 @@ export class Utils {
 	 * @param {string} filename - The filename with subfolders.
 	 * @returns {string} The filename without subfolders.
 	 */
-	static extractFileName(filename) {
-		return filename.split("/").pop();
+	static extractFileName(filename)
+	{
+		return filename.split('/').pop()
 	}
 
 	/**
@@ -217,16 +226,17 @@ export class Utils {
 	 * @param {string} str - The input string.
 	 * @returns {string} Escaped string.
 	 */
-	static escapeHtml(str) {
+	static escapeHtml(str)
+	{
 		const entityMap = {
-			"&": "&amp;",
-			"<": "&lt;",
-			">": "&gt;",
-			'"': "&quot;",
-			"'": "&#39;",
-			"/": "&#x2F;",
-		};
-		return String(str).replace(/[&<>"'/]/g, (s) => entityMap[s]);
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#39;',
+			'/': '&#x2F;'
+		}
+		return String(str).replace(/[&<>"'/]/g, s => entityMap[s])
 	}
 
 	/**
@@ -234,9 +244,10 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the string contains any Arabic characters.
 	 */
-	static containsArabic(str) {
-		const regExp = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
-		return regExp.test(str);
+	static containsArabic(str)
+	{
+		const regExp = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/
+		return regExp.test(str)
 	}
 
 	/**
@@ -246,11 +257,12 @@ export class Utils {
 	 * @param {boolean} hasAudio - Whether the audio files are encrypted.
 	 * @param {string} key - The encryption key.
 	 */
-	static setEncryptionInfo(hasImages, hasAudio, key) {
+	static setEncryptionInfo(hasImages, hasAudio, key)
+	{
 		// [Note] This function is implemented for module independence.
-		this._hasEncryptedImages = hasImages;
-		this._hasEncryptedAudio = hasAudio;
-		this._encryptionKey = key;
+		this._hasEncryptedImages = hasImages
+		this._hasEncryptedAudio = hasAudio
+		this._encryptionKey = key
 	}
 
 	/**
@@ -258,8 +270,9 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the image files are encrypted.
 	 */
-	static hasEncryptedImages() {
-		return this._hasEncryptedImages;
+	static hasEncryptedImages()
+	{
+		return this._hasEncryptedImages
 	}
 
 	/**
@@ -267,8 +280,9 @@ export class Utils {
 	 *
 	 * @returns {boolean} True if the audio files are encrypted.
 	 */
-	static hasEncryptedAudio() {
-		return this._hasEncryptedAudio;
+	static hasEncryptedAudio()
+	{
+		return this._hasEncryptedAudio
 	}
 
 	/**
@@ -277,18 +291,15 @@ export class Utils {
 	 * @param {ArrayBuffer} source - The data to be decrypted.
 	 * @returns {ArrayBuffer} The decrypted data.
 	 */
-	static decryptArrayBuffer(source) {
-		const header = new Uint8Array(source, 0, 16);
-		const headerHex = Array.from(header, (x) => x.toString(16)).join(",");
-		if (headerHex !== "52,50,47,4d,56,0,0,0,0,3,1,0,0,0,0,0") {
-			throw new Error("Decryption error");
-		}
-		const body = source.slice(16);
-		const view = new DataView(body);
-		const key = this._encryptionKey.match(/.{2}/g);
-		for (let i = 0; i < 16; i++) {
-			view.setUint8(i, view.getUint8(i) ^ parseInt(key[i], 16));
-		}
-		return body;
+	static decryptArrayBuffer(source)
+	{
+		const header = new Uint8Array(source, 0, 16)
+		const headerHex = Array.from(header, x => x.toString(16)).join(',')
+		if (headerHex !== '52,50,47,4d,56,0,0,0,0,3,1,0,0,0,0,0') throw new Error('Decryption error')
+		const body = source.slice(16)
+		const view = new DataView(body)
+		const key = this._encryptionKey.match(/.{2}/g)
+		for (let i = 0; i < 16; i++) view.setUint8(i, view.getUint8(i) ^ parseInt(key[i], 16))
+		return body
 	}
 }

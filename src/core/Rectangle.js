@@ -8,8 +8,10 @@
  * @param {number} width - The width of the rectangle.
  * @param {number} height - The height of the rectangle.
  */
-export class Rectangle extends PIXI.Rectangle {
-	constructor(x, y, width, height) {
-		super(x, y, width, height);
+export class Rectangle extends PIXI.Rectangle
+{
+	constructor(x, y, width, height)
+	{
+		super(x, y, width, height)
 	}
 }
