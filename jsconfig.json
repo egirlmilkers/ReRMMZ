@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "es2017",
-		"module": "preserve",
+		"module": "esnext",
 		"moduleResolution": "Bundler",
 		"lib": ["es2017", "dom"],
 
@@ -13,9 +13,8 @@
 			"@effekseer": ["./lib/effekseer/effekseer.js"],
 			"@vorbis": ["./lib/vorbisdecoder.js"]
 		},
-		"rootDir": "src",
 		"outDir": "dist",
-		"types": ["pixi.js", "nw.js", "chrome"]
+		"types": ["pixi.js", "nw.js", "chrome", "localforage"]
 	},
 	"include": [
 		"src",

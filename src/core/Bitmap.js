@@ -1,5 +1,3 @@
-import PIXI from 'pixi.js'
-
 import { Graphics } from './Graphics.js'
 import { Rectangle } from './Rectangle.js'
 import { Stage } from './Stage.js'
@@ -14,10 +12,10 @@ import { Utils } from './Utils.js'
  */
 export class Bitmap
 {
-	_canvas = null
-	_context = null
-	_baseTexture = null
-	_image = null
+	_canvas
+	_context
+	_baseTexture
+	_image
 	_url = ''
 	_paintOpacity = 255
 	_smooth = true

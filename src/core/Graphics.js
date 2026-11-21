@@ -1,5 +1,3 @@
-import { EffekseerContext } from 'effekseer'
-
 import { Stage } from './Stage.js'
 import { Utils } from './Utils.js'
 import { Video } from './Video.js'
@@ -87,7 +85,7 @@ export class Graphics
 	 * The context object of Effekseer.
 	 *
 	 * @readonly
-	 * @type EffekseerContext
+	 * @type effekseer.EffekseerContext
 	 * @name Graphics.effekseer
 	 */
 	static get effekseer()
@@ -577,7 +575,8 @@ export class Graphics
 	static _isFullScreen()
 	{
 		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
-		return (document.fullScreenElement || document.mozFullScreen || document.webkitFullscreenElement)
+		return (document.fullScreenElement || document.mozFullScreen
+			|| document.webkitFullscreenElement)
 	}
 
 	static _requestFullScreen()

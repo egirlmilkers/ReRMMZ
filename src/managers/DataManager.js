@@ -286,6 +286,7 @@ export class DataManager
 
 	static createGameObjects()
 	{
+		console.info('Creating game objects...')
 		DataManager.$gameTemp = new Game_Temp()
 		DataManager.$gameSystem = new Game_System()
 		DataManager.$gameScreen = new Game_Screen()

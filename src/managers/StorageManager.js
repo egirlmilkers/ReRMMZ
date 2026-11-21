@@ -3,7 +3,7 @@
 // The static class that manages storage for saving game data.
 
 import localforage from 'localforage'
-import pako from 'pako'
+import * as pako from 'pako'
 
 import { JsonEx } from '../core/JsonEx.js'
 import { Utils } from '../core/Utils.js'
@@ -30,6 +30,11 @@ export class StorageManager
 		return this.objectToJson(object)
 			.then(json => this.jsonToZip(json))
 			.then(zip => this.saveZip(saveName, zip))
+			.catch(e =>
+			{
+				console.error('save failed:', e)
+				throw e
+			})
 	}
 
 	static loadObject(saveName)
@@ -37,6 +42,11 @@ export class StorageManager
 		return this.loadZip(saveName)
 			.then(zip => this.zipToJson(zip))
 			.then(json => this.jsonToObject(json))
+			.catch(e =>
+			{
+				console.error('load failed:', e)
+				throw e
+			})
 	}
 
 	static objectToJson(object)
@@ -75,11 +85,10 @@ export class StorageManager
 		{
 			try
 			{
-				// @ts-ignore [Object literal may only specify known properties, and 'to' does not exist in type 'DeflateOptions'.]
 				const zip = pako.deflate(json, { to: 'string', level: 1 })
+				// const zip = json
 				if (zip.length >= 50000) console.warn('Save data is too big.')
-				// resolve(zip);
-				resolve(json)
+				resolve(zip)
 			} catch (e)
 			{
 				reject(e)
@@ -93,8 +102,14 @@ export class StorageManager
 		{
 			try
 			{
-				if (zip) resolve(zip)
-				else resolve('null')
+				if (zip)
+				{
+					const json = pako.inflate(zip, { to: 'string' })
+					resolve(json)
+				} else
+				{
+					resolve('null')
+				}
 			} catch (e)
 			{
 				reject(e)

@@ -15,22 +15,14 @@
 	<link rel="stylesheet" type="text/css" href="./assets/css/game.css" />
 
 	<!-- javascript -->
-	<script src="./node_modules/pixi.js/dist/pixi.js"></script>
-	<script src="./node_modules/localforage/dist/localforage.js"></script>
 	<script src="./lib/effekseer/effekseer.js"></script>
 	<script src="./lib/vorbisdecoder.js"></script>
 
-	<script type="importmap">
-		{
-			"imports": {
-				"pako": "./node_modules/pako/dist/pako.esm.mjs"
-			}
-		}
-	</script>
+	<script src="./dist/pixi.js"></script>
 </head>
 
 <body style="background-color: black">
-	<script type="module" src="./src/main.js"></script>
+	<script type="module" src="./dist/rmmz.js"></script>
 </body>
 
 </html>

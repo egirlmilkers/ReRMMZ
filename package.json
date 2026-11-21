@@ -2,23 +2,24 @@
 	"name": "rmmz",
 	"version": "1.10.0",
 	"type": "module",
-	"module": "src/main.js",
 	"devDependencies": {
-		"@eslint/js": "^10.0.1",
-		"@types/nw.js": "^0.115.0"
+		"@types/chrome": "^0.3.7",
+		"@types/nw.js": "^0.115.0",
+		"esbuild": "^0.28.2"
 	},
 	"peerDependencies": {
-		"typescript": "^5"
+		"typescript": "^7"
 	},
 	"dependencies": {
-		"@types/chrome": "^0.3.7",
 		"localforage": "^1.10.0",
-		"pako": "^3.0.3",
-		"pixi.js": "5"
+		"pako": "^1.0.11",
+		"pixi.js": "^5.3.12"
 	},
 	"scripts": {
-		"start": "nw . --enable-features=NWESM",
-		"build": "bun build ./src/main.js --target browser --outfile=./dist/rmmz.js"
+		"start": "pnpm build && nw .",
+		"build": "node esbuild.config.mjs && pnpm build:pixi",
+		"watch": "node esbuild.config.mjs --watch",
+		"build:pixi": "esbuild pixi.js --bundle --minify --global-name=PIXI --outfile=./dist/pixi.js"
 	},
 	"main": "index.html",
 	"chromium-args": "--force-color-profile=srgb --auto-open-devtools-for-tabs",
