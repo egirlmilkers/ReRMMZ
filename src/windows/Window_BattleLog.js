@@ -256,7 +256,7 @@ export class Window_BattleLog extends Window_Base
 	}
 
 	// prettier-ignore
-	showEnemyAttackAnimation()
+	showEnemyAttackAnimation(_, __)
 	/* subject, targets */
 	{
 		SoundManager.playEnemyAttack()
@@ -510,7 +510,7 @@ export class Window_BattleLog extends Window_Base
 		}
 	}
 
-	displayAffectedStatus(target)
+	displayAffectedStatus(target, _)
 	{
 		if (target.result().isStatusAffected())
 		{

@@ -74,6 +74,7 @@ export class Sprite_Animation extends Sprite
 				{
 					if (this._effect.isLoaded)
 					{
+						// @ts-ignore [Error: Expected 4 arguments, but got 1. effekseer.d.ts(285, 39): An argument for 'x', 'y', 'z' was not provided.]
 						this._handle = Graphics.effekseer.play(this._effect)
 						this._started = true
 					} else
@@ -190,8 +191,11 @@ export class Sprite_Animation extends Sprite
 			this.setProjectionMatrix(renderer)
 			this.setCameraMatrix(renderer)
 			this.setViewport(renderer)
+			// @ts-ignore [Property 'beginDraw' does not exist on type 'EffekseerContext'.]
 			Graphics.effekseer.beginDraw()
+			// @ts-ignore [Property 'drawHandle' does not exist on type 'EffekseerContext'.]
 			Graphics.effekseer.drawHandle(this._handle)
+			// @ts-ignore [Property 'endDraw' does not exist on type 'EffekseerContext'.]
 			Graphics.effekseer.endDraw()
 			this.resetViewport(renderer)
 			this.onAfterRender(renderer)
@@ -203,7 +207,9 @@ export class Sprite_Animation extends Sprite
 		const x = this._mirror ? -1 : 1
 		const y = -1
 		const p = -(this._viewportSize / renderer.view.height)
-		// prettier-ignore
+		// @ts-ignore prettier-ignore
+		// Argument of type 'number[]' is not assignable to parameter of type 'Float32Array<ArrayBufferLike>'.
+		// Type 'number[]' is missing the following properties from type 'Float32Array<ArrayBufferLike>': BYTES_PER_ELEMENT, buffer, byteLength, byteOffset, and 3 more.
 		Graphics.effekseer.setProjectionMatrix([
 			x,
 			0,
@@ -224,9 +230,11 @@ export class Sprite_Animation extends Sprite
 		])
 	}
 
-	setCameraMatrix()
+	setCameraMatrix(_)
 	/*renderer*/ {
-		// prettier-ignore
+		// @ts-ignore prettier-ignore
+		// Argument of type 'number[]' is not assignable to parameter of type 'Float32Array<ArrayBufferLike>'.
+		// Type 'number[]' is missing the following properties from type 'Float32Array<ArrayBufferLike>': BYTES_PER_ELEMENT, buffer, byteLength, byteOffset, and 3 more.
 		Graphics.effekseer.setCameraMatrix([
 			1,
 			0,

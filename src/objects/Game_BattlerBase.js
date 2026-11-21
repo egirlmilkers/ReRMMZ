@@ -477,7 +477,7 @@ export class Game_BattlerBase
 		)
 	}
 
-	paramBase()
+	paramBase(_)
 	/*paramId*/ {
 		return 0
 	}
@@ -498,7 +498,7 @@ export class Game_BattlerBase
 		else return 0
 	}
 
-	paramMax()
+	paramMax(_)
 	/*paramId*/ {
 		return Infinity
 	}
@@ -893,7 +893,7 @@ export class Game_BattlerBase
 		else return 0
 	}
 
-	isSkillWtypeOk()
+	isSkillWtypeOk(_)
 	/*skill*/ {
 		return true
 	}

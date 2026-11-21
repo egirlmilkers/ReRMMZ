@@ -566,6 +566,10 @@ export class Game_Player extends Game_Character
 		}
 	}
 
+	// @ts-ignore
+	// Property 'checkEventTriggerTouch' in type 'Game_Player' is not assignable to the same property in base type 'Game_Character'.
+	//   Type '(x: any, y: any) => void' is not assignable to type '(_: any, __: any) => boolean'.
+	//     Type 'void' is not assignable to type 'boolean'.
 	checkEventTriggerTouch(x, y)
 	{
 		if (this.canStartLocalEvents()) this.startMapEvent(x, y, [1, 2], true)

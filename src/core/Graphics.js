@@ -1,3 +1,5 @@
+import { EffekseerContext } from 'effekseer'
+
 import { Stage } from './Stage.js'
 import { Utils } from './Utils.js'
 import { Video } from './Video.js'
@@ -412,7 +414,7 @@ export class Graphics
 		}
 	}
 
-	static _makeErrorHtml(name, message /*, error*/)
+	static _makeErrorHtml(name, message, _)
 	{
 		const nameDiv = document.createElement('div')
 		const messageDiv = document.createElement('div')
@@ -456,7 +458,7 @@ export class Graphics
 	{
 		this._canvas.width = this._width
 		this._canvas.height = this._height
-		this._canvas.style.zIndex = 1
+		this._canvas.style.zIndex = '1'
 		this._centerElement(this._canvas)
 	}
 
@@ -500,6 +502,7 @@ export class Graphics
 	{
 		const elements = document.body.getElementsByTagName('*')
 		const oncontextmenu = () => false
+		// @ts-ignore [Property 'oncontextmenu' does not exist on type 'Element'.] - method haphazardly adds it anyways incase it does
 		for (const element of elements) element.oncontextmenu = oncontextmenu
 	}
 
@@ -507,7 +510,7 @@ export class Graphics
 	{
 		if (this._canvas)
 		{
-			this._canvas.style.opacity = 0.5
+			this._canvas.style.opacity = '0.5'
 			this._canvas.style.filter = 'blur(8px)'
 		}
 	}
@@ -516,7 +519,7 @@ export class Graphics
 	{
 		if (this._canvas)
 		{
-			this._canvas.style.opacity = 1
+			this._canvas.style.opacity = '1'
 			this._canvas.style.filter = ''
 		}
 	}
@@ -573,26 +576,33 @@ export class Graphics
 
 	static _isFullScreen()
 	{
-		return (
-			document.fullScreenElement
-			|| document.mozFullScreen
-			|| document.webkitFullscreenElement
-		)
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
+		return (document.fullScreenElement || document.mozFullScreen || document.webkitFullscreenElement)
 	}
 
 	static _requestFullScreen()
 	{
 		const element = document.body
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
 		if (element.requestFullScreen) element.requestFullScreen()
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
 		else if (element.mozRequestFullScreen) element.mozRequestFullScreen()
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
 		else if (element.webkitRequestFullScreen)
+		{
+			// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
+			// [Property 'ALLOW_KEYBOARD_INPUT' does not exist on type '{ new (): Element; prototype: Element; }'.]
 			element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+		}
 	}
 
 	static _cancelFullScreen()
 	{
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
 		if (document.cancelFullScreen) document.cancelFullScreen()
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
 		else if (document.mozCancelFullScreen) document.mozCancelFullScreen()
+		// @ts-ignore [Properties does not exist on type 'Document'.] - here for backwards compatibility
 		else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen()
 	}
 

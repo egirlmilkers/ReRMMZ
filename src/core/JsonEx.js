@@ -75,6 +75,7 @@ export class JsonEx
 			if (value['@'])
 			{
 				const constructor = window[value['@']]
+				// @ts-ignore [Property 'prototype' does not exist on type 'Window'.]
 				if (constructor) Object.setPrototypeOf(value, constructor.prototype)
 			}
 			for (const key of Object.keys(value)) value[key] = this._decode(value[key])

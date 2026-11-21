@@ -48,7 +48,7 @@ export class EffectManager
 		this._cache = {}
 	}
 
-	static onLoad()
+	static onLoad(_)
 	/*url*/ {
 		//
 	}

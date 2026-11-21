@@ -1,23 +1,20 @@
 {
 	"name": "rmmz",
-	"version": "1.9.0",
+	"version": "1.10.0",
 	"type": "module",
 	"module": "src/main.js",
 	"devDependencies": {
-		"@eslint/js": "^9.39.0",
-		"@types/bun": "latest",
-		"@types/nw.js": "^0.92.0",
-		"eslint": "^9.39.0",
-		"eslint-plugin-es-x": "^9.1.2",
-		"prettier": "^3.6.2"
+		"@eslint/js": "^10.0.1",
+		"@types/nw.js": "^0.115.0"
 	},
 	"peerDependencies": {
 		"typescript": "^5"
 	},
 	"dependencies": {
+		"@types/chrome": "^0.3.7",
 		"localforage": "^1.10.0",
-		"pako": "^2.1.0",
-		"pixi.js": "5.3.12"
+		"pako": "^3.0.3",
+		"pixi.js": "5"
 	},
 	"scripts": {
 		"start": "nw . --enable-features=NWESM",

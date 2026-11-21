@@ -105,6 +105,8 @@ export class Sprite_AnimationMV extends Sprite
 		while (object)
 		{
 			x += object.x
+			// @ts-ignore [Type 'Container' is not assignable to type 'this'.
+			// 'this' could be instantiated with an arbitrary type which could be unrelated to 'Container'.]
 			object = object.parent
 		}
 		return x
@@ -117,6 +119,8 @@ export class Sprite_AnimationMV extends Sprite
 		while (object)
 		{
 			y += object.y
+			// @ts-ignore [Type 'Container' is not assignable to type 'this'.
+			// 'this' could be instantiated with an arbitrary type which could be unrelated to 'Container'.]
 			object = object.parent
 		}
 		return y

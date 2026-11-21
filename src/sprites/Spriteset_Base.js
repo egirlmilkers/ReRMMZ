@@ -18,6 +18,9 @@ import { Sprite_Timer } from './Sprite_Timer.js'
 
 export class Spriteset_Base extends Sprite
 {
+	_effectsContainer
+	_animationSprites
+
 	constructor()
 	{
 		super()
@@ -134,7 +137,7 @@ export class Spriteset_Base extends Sprite
 		this.x += Math.round(screen.shake())
 	}
 
-	findTargetSprite()
+	findTargetSprite(_)
 	/*target*/ {
 		return null
 	}
@@ -186,6 +189,8 @@ export class Spriteset_Base extends Sprite
 		const baseDelay = this.animationBaseDelay()
 		const previous = delay > baseDelay ? this.lastAnimationSprite() : null
 		if (this.animationShouldMirror(targets[0])) mirror = !mirror
+		// @ts-ignore [Property 'targetObjects' does not exist on type 'Sprite_Animation | Sprite_AnimationMV'.
+		//   Property 'targetObjects' does not exist on type 'Sprite_Animation'.]
 		sprite.targetObjects = targets
 		sprite.setup(targetSprites, animation, mirror, delay, previous)
 		this._effectsContainer.addChild(sprite)

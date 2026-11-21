@@ -77,6 +77,7 @@ export class Sprite_Enemy extends Sprite_Battler
 	setHue(hue)
 	{
 		super.setHue(hue)
+		// @ts-ignore [Property 'setHue' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) if (child.setHue) child.setHue(-hue)
 	}
 

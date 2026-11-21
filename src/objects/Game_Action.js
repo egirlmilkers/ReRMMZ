@@ -28,13 +28,16 @@ export class Game_Action
 	static HITTYPE_PHYSICAL = 1
 	static HITTYPE_MAGICAL = 2
 
-	constructor(subject, forcing)
+	_reflectionTarget = undefined
+	_subjectActorId = 0
+	_subjectEnemyIndex = -1
+	_forcing = false
+
+	constructor(subject, forcing = false)
 	{
-		this._subjectActorId = 0
-		this._subjectEnemyIndex = -1
-		this._forcing = forcing || false
 		this.setSubject(subject)
 		this.clear()
+		this._forcing = forcing
 	}
 
 	clear()
@@ -515,7 +518,7 @@ export class Game_Action
 		else return 0
 	}
 
-	itemHit()
+	itemHit(_)
 	/*target*/ {
 		const successRate = this.item().successRate
 		if (this.isPhysical()) return successRate * 0.01 * this.subject().hit
@@ -867,7 +870,7 @@ export class Game_Action
 		}
 	}
 
-	itemEffectCommonEvent()
+	itemEffectCommonEvent(_, __)
 	/*target, effect*/ {
 		//
 	}
@@ -877,7 +880,7 @@ export class Game_Action
 		target.result().success = true
 	}
 
-	applyItemUserEffect()
+	applyItemUserEffect(_)
 	/*target*/ {
 		const value = Math.floor(this.item().tpGain * this.subject().tcr)
 		this.subject().gainSilentTp(value)

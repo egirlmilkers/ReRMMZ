@@ -133,6 +133,7 @@ export class Spriteset_Map extends Spriteset_Base
 		this._shadowSprite.bitmap = ImageManager.loadSystem('Shadow1')
 		this._shadowSprite.anchor.x = 0.5
 		this._shadowSprite.anchor.y = 1
+		// @ts-ignore [Property 'z' does not exist on type 'Sprite'.]
 		this._shadowSprite.z = 6
 		this._tilemap.addChild(this._shadowSprite)
 	}
@@ -140,6 +141,7 @@ export class Spriteset_Map extends Spriteset_Base
 	createDestination()
 	{
 		this._destinationSprite = new Sprite_Destination()
+		// @ts-ignore [Property 'z' does not exist on type 'Sprite_Destination'.]
 		this._destinationSprite.z = 9
 		this._tilemap.addChild(this._destinationSprite)
 	}
@@ -216,6 +218,7 @@ export class Spriteset_Map extends Spriteset_Base
 		if (targetSprite)
 		{
 			const sprite = new Sprite_Balloon()
+			// @ts-ignore [Property 'targetObject' does not exist on type 'Sprite_Balloon'.]
 			sprite.targetObject = request.target
 			sprite.setup(targetSprite, request.balloonId)
 			this._effectsContainer.addChild(sprite)

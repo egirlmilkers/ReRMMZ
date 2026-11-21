@@ -148,6 +148,7 @@ export class Scene_Base extends Stage
 
 	updateChildren()
 	{
+		// @ts-ignore [Property 'update' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) if (child.update) child.update()
 	}
 

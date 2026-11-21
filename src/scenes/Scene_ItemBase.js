@@ -18,6 +18,8 @@ import { Scene_MenuBase } from './Scene_MenuBase.js'
 
 export class Scene_ItemBase extends Scene_MenuBase
 {
+	_itemWindow
+
 	constructor()
 	{
 		super()
@@ -107,6 +109,9 @@ export class Scene_ItemBase extends Scene_MenuBase
 			this.activateItemWindow()
 		}
 	}
+
+	playSeForItem()
+	{}
 
 	useItem()
 	{

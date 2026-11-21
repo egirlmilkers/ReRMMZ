@@ -425,6 +425,8 @@ export class Window_Base extends Window
 				textState.y = this.obtainEscapeParam(textState)
 				break
 			case 'FS':
+				// @ts-ignore [Error: Type 'number | ""' is not assignable to type 'number'.
+				//   Type 'string' is not assignable to type 'number'.]
 				this.contents.fontSize = this.obtainEscapeParam(textState)
 				break
 			case '{':

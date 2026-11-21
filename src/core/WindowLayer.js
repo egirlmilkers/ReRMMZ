@@ -16,6 +16,7 @@ export class WindowLayer extends PIXI.Container
 	 */
 	update()
 	{
+		// @ts-ignore
 		for (const child of this.children) if (child.update) child.update()
 	}
 
@@ -32,6 +33,7 @@ export class WindowLayer extends PIXI.Container
 		const gl = renderer.gl
 		const children = [...this.children]
 
+		// @ts-ignore
 		renderer.framebuffer.forceStencil()
 		graphics.transform = this.transform
 		renderer.batch.flush()
@@ -40,13 +42,16 @@ export class WindowLayer extends PIXI.Container
 		while (children.length > 0)
 		{
 			const win = children.pop()
+			// @ts-ignore
 			if (win._isWindow && win.visible && win.openness > 0)
 			{
 				gl.stencilFunc(gl.EQUAL, 0, ~0)
 				gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP)
+				// @ts-ignore
 				win.render(renderer)
 				renderer.batch.flush()
 				graphics.clear()
+				// @ts-ignore
 				win.drawShape(graphics)
 				gl.stencilFunc(gl.ALWAYS, 1, ~0)
 				gl.stencilOp(gl.REPLACE, gl.REPLACE, gl.REPLACE)
@@ -63,8 +68,14 @@ export class WindowLayer extends PIXI.Container
 		renderer.batch.flush()
 
 		for (const child of this.children)
+		{
+			// @ts-ignore
 			if (!child._isWindow && child.visible)
+			{
+				// @ts-ignore
 				child.render(renderer)
+			}
+		}
 
 		renderer.batch.flush()
 	}

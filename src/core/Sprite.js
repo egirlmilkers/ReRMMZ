@@ -63,6 +63,7 @@ export class Sprite extends PIXI.Sprite
 	 * @type number
 	 * @name Sprite#width
 	 */
+	// @ts-ignore [Is defined as a property in class 'Sprite', but is overridden here in 'Sprite' as an accessor.]
 	get width()
 	{
 		return this._frame.width
@@ -80,6 +81,7 @@ export class Sprite extends PIXI.Sprite
 	 * @type number
 	 * @name Sprite#height
 	 */
+	// @ts-ignore [Is defined as a property in class 'Sprite', but is overridden here in 'Sprite' as an accessor.]
 	get height()
 	{
 		return this._frame.height
@@ -113,6 +115,7 @@ export class Sprite extends PIXI.Sprite
 	 * @type number
 	 * @name Sprite#blendMode
 	 */
+	// @ts-ignore [Is defined as a property in class 'Sprite', but is overridden here in 'Sprite' as an accessor.]
 	get blendMode()
 	{
 		if (this._colorFilter) return this._colorFilter.blendMode
@@ -128,7 +131,7 @@ export class Sprite extends PIXI.Sprite
 	/**
 	 * Destroys the sprite.
 	 */
-	destroy()
+	destroy(_)
 	{
 		const options = { children: true, texture: true }
 		super.destroy(options)
@@ -139,6 +142,7 @@ export class Sprite extends PIXI.Sprite
 	 */
 	update()
 	{
+		// @ts-ignore [Property 'update' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) if (child.update) child.update()
 	}
 
@@ -328,6 +332,7 @@ export class Sprite extends PIXI.Sprite
 					texture.frame = new Rectangle()
 				}
 			}
+			// @ts-ignore [Property '_updateID' is protected and only accessible within class 'Texture' and its subclasses.]
 			texture._updateID++
 		}
 	}

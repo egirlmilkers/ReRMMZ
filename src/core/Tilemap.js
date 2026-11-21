@@ -81,6 +81,7 @@ export class Tilemap extends PIXI.Container
 	 * @type number
 	 * @name Tilemap#width
 	 */
+	// @ts-ignore [Is defined as a property in class 'Container', but is overridden here in 'Tilemap' as an accessor.]
 	get width()
 	{
 		return this._width
@@ -97,6 +98,7 @@ export class Tilemap extends PIXI.Container
 	 * @type number
 	 * @name Tilemap#height
 	 */
+	// @ts-ignore [Is defined as a property in class 'Container', but is overridden here in 'Tilemap' as an accessor.]
 	get height()
 	{
 		return this._height
@@ -133,7 +135,6 @@ export class Tilemap extends PIXI.Container
 	/**
 	 * Checks whether the tileset is ready to render.
 	 *
-	 * @type boolean
 	 * @returns {boolean} True if the tilemap is ready.
 	 */
 	isReady()
@@ -149,6 +150,7 @@ export class Tilemap extends PIXI.Container
 	{
 		this.animationCount++
 		this.animationFrame = Math.floor(this.animationCount / 30)
+		// @ts-ignore [Property 'update' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) if (child.update) child.update()
 	}
 
@@ -222,8 +224,10 @@ export class Tilemap extends PIXI.Container
 		 *  9 : Destination
 		 */
 		this._lowerLayer = new Tilemap.CombinedLayer()
+		// @ts-ignore [Property 'z' does not exist on type 'CombinedLayer'.]
 		this._lowerLayer.z = 0
 		this._upperLayer = new Tilemap.CombinedLayer()
+		// @ts-ignore [Property 'z' does not exist on type 'CombinedLayer'.]
 		this._upperLayer.z = 4
 		this.addChild(this._lowerLayer)
 		this.addChild(this._upperLayer)
@@ -364,7 +368,7 @@ export class Tilemap extends PIXI.Container
 			setNumber = 1
 			bx = tx * 2
 			by = (ty - 2) * 3
-			isTable = this._isTableTile(tileId)
+			isTable = !!this._isTableTile(tileId)
 		} else if (Tilemap.isTileA3(tileId))
 		{
 			setNumber = 2
@@ -486,7 +490,7 @@ export class Tilemap extends PIXI.Container
 		return Tilemap.isTileA2(tileId) && this.flags[tileId] && 0x80
 	}
 
-	_isOverpassPosition()
+	_isOverpassPosition(_, __)
 	/*mx, my*/ {
 		return false
 	}
@@ -762,6 +766,7 @@ Tilemap.Layer = class extends PIXI.Container
 		this._needsTexturesUpdate = false
 		this._needsVertexUpdate = false
 		this._images = []
+		// @ts-ignore [Property 'for2d' does not exist on type 'typeof State'.]
 		this._state = PIXI.State.for2d()
 		this._createVao()
 	}
@@ -865,6 +870,14 @@ Tilemap.Layer = class extends PIXI.Container
 		const numElements = this._elements.length
 		if (this._indexArray.length < numElements * 6 * 2)
 		{
+			// @ts-ignore
+			// Type 'Uint16Array<ArrayBufferLike> | Uint32Array<ArrayBufferLike>' is not assignable to type 'Float32Array<ArrayBuffer>'.
+			//   Type 'Uint16Array<ArrayBufferLike>' is not assignable to type 'Float32Array<ArrayBuffer>'.
+			//     Types of property 'buffer' are incompatible.
+			//       Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+			//         Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+			//           Types of property '[Symbol.toStringTag]' are incompatible.
+			//             Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
 			this._indexArray = PIXI.utils.createIndicesForQuads(
 				numElements * 2
 			)
@@ -952,16 +965,19 @@ Tilemap.CombinedLayer = class extends PIXI.Container
 
 	setBitmaps(bitmaps)
 	{
+		// @ts-ignore [Property 'setBitmaps' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) child.setBitmaps(bitmaps)
 	}
 
 	clear()
 	{
+		// @ts-ignore [Property 'clear' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) child.clear()
 	}
 
 	size()
 	{
+		// @ts-ignore [Property 'size' does not exist on type 'DisplayObject'.]
 		return this.children.reduce((r, child) => r + child.size(), 0)
 	}
 
@@ -970,8 +986,10 @@ Tilemap.CombinedLayer = class extends PIXI.Container
 	{
 		for (const child of this.children)
 		{
+			// @ts-ignore [Property 'size' does not exist on type 'DisplayObject'.]
 			if (child.size() < Tilemap.Layer.MAX_SIZE)
 			{
+				// @ts-ignore [Property 'addRect' does not exist on type 'DisplayObject'.]
 				child.addRect(setNumber, sx, sy, dx, dy, w, h)
 				break
 			}
@@ -980,6 +998,7 @@ Tilemap.CombinedLayer = class extends PIXI.Container
 
 	isReady()
 	{
+		// @ts-ignore [Property 'isReady' does not exist on type 'DisplayObject'.]
 		return this.children.every(child => child.isReady())
 	}
 }
@@ -1000,6 +1019,7 @@ Tilemap.Renderer = class extends PIXI.ObjectRenderer
 	{
 		super.destroy()
 		this._destroyInternalTextures()
+		// @ts-ignore [Property 'destroy' does not exist on type 'Shader'.]
 		this._shader.destroy()
 		this._shader = null
 	}
@@ -1107,4 +1127,6 @@ Tilemap.Renderer = class extends PIXI.ObjectRenderer
 	}
 }
 
+// @ts-ignore [Argument of type 'typeof Renderer' is not assignable to parameter of type '(...params: any[]) => any'.
+// Type 'typeof Renderer' provides no match for the signature '(...params: any[]): any'.]
 PIXI.Renderer.registerPlugin('rpgtilemap', Tilemap.Renderer)

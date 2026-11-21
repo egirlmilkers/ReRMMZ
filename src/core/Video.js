@@ -85,12 +85,12 @@ export class Video
 		this._element.id = 'gameVideo'
 		this._element.style.position = 'absolute'
 		this._element.style.margin = 'auto'
-		this._element.style.top = 0
-		this._element.style.left = 0
-		this._element.style.right = 0
-		this._element.style.bottom = 0
-		this._element.style.opacity = 0
-		this._element.style.zIndex = 2
+		this._element.style.top = '0'
+		this._element.style.left = '0'
+		this._element.style.right = '0'
+		this._element.style.bottom = '0'
+		this._element.style.opacity = '0'
+		this._element.style.zIndex = '2'
 		this._element.setAttribute('playsinline', '')
 		this._element.oncontextmenu = () => false
 		document.body.appendChild(this._element)
@@ -123,12 +123,12 @@ export class Video
 	{
 		if (videoVisible) Graphics.hideScreen()
 		else Graphics.showScreen()
-		this._element.style.opacity = videoVisible ? 1 : 0
+		this._element.style.opacity = videoVisible ? '1' : '0'
 	}
 
 	static _isVisible()
 	{
-		return this._element.style.opacity > 0
+		return parseInt(this._element.style.opacity) > 0
 	}
 
 	static _setupEventHandlers()

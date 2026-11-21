@@ -2033,7 +2033,7 @@ export class Game_Interpreter
 		return true
 	}
 
-	pluginCommand()
+	pluginCommand(_, __)
 	{
 		// deprecated
 	}

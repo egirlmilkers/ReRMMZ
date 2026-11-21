@@ -89,6 +89,7 @@ export class TilingSprite extends PIXI.TilingSprite
 	 */
 	update()
 	{
+		// @ts-ignore
 		for (const child of this.children) if (child.update) child.update()
 	}
 
@@ -168,6 +169,7 @@ export class TilingSprite extends PIXI.TilingSprite
 					texture.frame = new Rectangle()
 				}
 			}
+			// @ts-ignore
 			texture._updateID++
 		}
 	}

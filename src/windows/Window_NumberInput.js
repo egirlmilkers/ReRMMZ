@@ -211,7 +211,7 @@ export class Window_NumberInput extends Window_Selectable
 	{
 		const rect = this.itemLineRect(index)
 		const align = 'center'
-		const s = this._number.padZero(this._maxDigits)
+		const s = `${String(this._number).padStart(this._maxDigits, '0')}`
 		const c = s.slice(index, index + 1)
 		this.resetTextColor()
 		this.drawText(c, rect.x, rect.y, rect.width, align)

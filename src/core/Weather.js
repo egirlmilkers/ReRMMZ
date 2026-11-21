@@ -13,37 +13,39 @@ import { Sprite } from './Sprite.js'
  */
 export class Weather extends PIXI.Container
 {
+	_width = Graphics.width
+	_height = Graphics.height
+	_sprites = []
+
+	/**
+	 * The type of the weather in ["none", "rain", "storm", "snow"].
+	 *
+	 * @type string
+	 */
+	type = 'none'
+
+	/**
+	 * The power of the weather in the range (0, 9).
+	 *
+	 * @type number
+	 */
+	power = 0
+
+	/**
+	 * The origin point of the weather for scrolling.
+	 *
+	 * @type Point
+	 */
+	origin = new Point()
+
+	viewport
+
 	constructor()
 	{
 		super()
 
-		this._width = Graphics.width
-		this._height = Graphics.height
-		this._sprites = []
-
 		this._createBitmaps()
 		this._createDimmer()
-
-		/**
-		 * The type of the weather in ["none", "rain", "storm", "snow"].
-		 *
-		 * @type string
-		 */
-		this.type = 'none'
-
-		/**
-		 * The power of the weather in the range (0, 9).
-		 *
-		 * @type number
-		 */
-		this.power = 0
-
-		/**
-		 * The origin point of the weather for scrolling.
-		 *
-		 * @type Point
-		 */
-		this.origin = new Point()
 	}
 
 	/**

@@ -53,6 +53,11 @@ export class Sprite_Actor extends Sprite_Battler
 		this.createStateSprite()
 	}
 
+	// @ts-ignore
+	// Error: Property 'mainSprite' in type 'Sprite_Actor' is not assignable to the same property in base type 'Sprite_Battler'.
+	//   Type '() => Sprite' is not assignable to type '() => this'.
+	//     Type 'Sprite' is not assignable to type 'this'.
+	// 	     'this' could be instantiated with an arbitrary type which could be unrelated to 'Sprite'.
 	mainSprite()
 	{
 		return this._mainSprite

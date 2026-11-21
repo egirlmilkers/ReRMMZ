@@ -585,7 +585,7 @@ export class Window_Selectable extends Window_Scrollable
 		}
 	}
 
-	drawItem()
+	drawItem(_)
 	/*index*/ {
 		//
 	}

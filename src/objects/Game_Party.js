@@ -254,7 +254,7 @@ export class Game_Party extends Game_Unit
 		return container ? container[item.id] || 0 : 0
 	}
 
-	maxItems()
+	maxItems(_)
 	/*item*/ {
 		return 99
 	}

@@ -5,6 +5,9 @@
  */
 export class Utils
 {
+	static _audioElement
+	static _videoElement
+
 	/**
 	 * The name of the RPG Maker. "MZ" in the current version.
 	 *
@@ -143,6 +146,7 @@ export class Utils
 	 */
 	static canUseWebAudioAPI()
 	{
+		// @ts-ignore
 		return !!(window.AudioContext || window.webkitAudioContext)
 	}
 
@@ -165,7 +169,9 @@ export class Utils
 	{
 		return !!(
 			window.indexedDB
+			// @ts-ignore
 			|| window.mozIndexedDB
+			// @ts-ignore
 			|| window.webkitIndexedDB
 		)
 	}

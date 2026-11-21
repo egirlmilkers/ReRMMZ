@@ -286,7 +286,7 @@ export class TouchInput
 		}
 	}
 
-	static _onMiddleButtonDown()
+	static _onMiddleButtonDown(_)
 	/*event*/ {
 		//
 	}
@@ -339,6 +339,7 @@ export class TouchInput
 				event.preventDefault()
 			}
 		}
+		// @ts-ignore
 		if (window.cordova || window.navigator.standalone) event.preventDefault()
 	}
 

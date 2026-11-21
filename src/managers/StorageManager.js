@@ -2,6 +2,7 @@
 //
 // The static class that manages storage for saving game data.
 
+import localforage from 'localforage'
 import pako from 'pako'
 
 import { JsonEx } from '../core/JsonEx.js'
@@ -74,6 +75,7 @@ export class StorageManager
 		{
 			try
 			{
+				// @ts-ignore [Object literal may only specify known properties, and 'to' does not exist in type 'DeflateOptions'.]
 				const zip = pako.deflate(json, { to: 'string', level: 1 })
 				if (zip.length >= 50000) console.warn('Save data is too big.')
 				// resolve(zip);
@@ -91,15 +93,8 @@ export class StorageManager
 		{
 			try
 			{
-				if (zip)
-				{
-					const json = pako.inflate(zip, { to: 'string' })
-					// resolve(json);
-					resolve(zip)
-				} else
-				{
-					resolve('null')
-				}
+				if (zip) resolve(zip)
+				else resolve('null')
 			} catch (e)
 			{
 				reject(e)

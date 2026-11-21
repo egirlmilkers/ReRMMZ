@@ -8,6 +8,11 @@ import { Utils } from './Utils.js'
  */
 export class WebAudio
 {
+	_url
+
+	name
+	frameCount
+
 	constructor(url)
 	{
 		this.clear()
@@ -46,6 +51,7 @@ export class WebAudio
 	{
 		try
 		{
+			// @ts-ignore
 			const AudioContext = window.AudioContext || window.webkitAudioContext
 			this._context = new AudioContext()
 		} catch (e)
@@ -104,6 +110,7 @@ export class WebAudio
 
 	static _shouldMuteOnHide()
 	{
+		// @ts-ignore
 		return Utils.isMobileDevice() && !window.navigator.standalone
 	}
 
@@ -227,6 +234,7 @@ export class WebAudio
 		if (this._pitch !== value)
 		{
 			this._pitch = value
+			// @ts-ignore
 			if (this.isPlaying()) this.play(this._loop, 0)
 		}
 	}
@@ -284,7 +292,7 @@ export class WebAudio
 	 * @param {boolean} loop - Whether the audio data play in a loop.
 	 * @param {number} offset - The start position to play in seconds.
 	 */
-	play(loop, offset)
+	play(loop, offset = 0)
 	{
 		this._loop = loop
 		if (this.isReady())
@@ -414,6 +422,7 @@ export class WebAudio
 	retry()
 	{
 		this._startLoading()
+		// @ts-ignore
 		if (this._isPlaying) this.play(this._loop, 0)
 	}
 
@@ -435,11 +444,13 @@ export class WebAudio
 
 	_shouldUseDecoder()
 	{
+		// @ts-ignore
 		return !Utils.canPlayOgg() && typeof VorbisDecoder === 'function'
 	}
 
 	_createDecoder()
 	{
+		// @ts-ignore
 		this._decoder = new VorbisDecoder(
 			WebAudio._context,
 			this._onDecode.bind(this),
@@ -474,6 +485,7 @@ export class WebAudio
 	_startFetching(url)
 	{
 		const options = { credentials: 'same-origin' }
+		// @ts-ignore
 		fetch(url, options)
 			.then(response => this._onFetch(response))
 			.catch(() => this._onError())

@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
-		"target": "es6",
-		"module": "es6",
+		"target": "es2017",
+		"module": "preserve",
 		"moduleResolution": "Bundler",
-		"lib": ["es6"],
+		"lib": ["es2017", "dom"],
 
-		"strict": true,
-		"checkJs": false,
+		"strict": false,
+		"checkJs": true,
 		"allowSyntheticDefaultImports": true,
 
 		"paths": {
@@ -14,12 +14,12 @@
 			"@vorbis": ["./lib/vorbisdecoder.js"]
 		},
 		"rootDir": "src",
-		"outDir": "dist"
+		"outDir": "dist",
+		"types": ["pixi.js", "nw.js", "chrome"]
 	},
 	"include": [
 		"src",
-		"lib/effekseer/effekseer.d.ts",
-		"node_modules/pixi.js/pixi.js.d.ts"
+		"lib/effekseer/effekseer.d.ts"
 	],
 	"exclude": [
 		"node_modules",

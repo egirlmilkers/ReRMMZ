@@ -21,6 +21,7 @@ export class Sprite_Damage extends Sprite
 
 	destroy(options)
 	{
+		// @ts-ignore [Property 'bitmap' does not exist on type 'DisplayObject'.]
 		for (const child of this.children) if (child.bitmap) child.bitmap.destroy()
 		super.destroy(options)
 	}
@@ -81,6 +82,7 @@ export class Sprite_Damage extends Sprite
 		const w = Math.floor(h * 3.0)
 		const sprite = this.createChildSprite(w, h)
 		sprite.bitmap.drawText('Miss', 0, 0, w, h, 'center')
+		// @ts-ignore [Property 'dy' does not exist on type 'Sprite'.]
 		sprite.dy = 0
 	}
 
@@ -94,6 +96,7 @@ export class Sprite_Damage extends Sprite
 			const sprite = this.createChildSprite(w, h)
 			sprite.bitmap.drawText(string[i], 0, 0, w, h, 'center')
 			sprite.x = (i - (string.length - 1) / 2) * w
+			// @ts-ignore [Property 'dy' does not exist on type 'Sprite'.]
 			sprite.dy = -i
 		}
 	}
@@ -105,6 +108,7 @@ export class Sprite_Damage extends Sprite
 		sprite.anchor.x = 0.5
 		sprite.anchor.y = 1
 		sprite.y = -40
+		// @ts-ignore [Property 'ry' does not exist on type 'Sprite'.]
 		sprite.ry = sprite.y
 		this.addChild(sprite)
 		return sprite

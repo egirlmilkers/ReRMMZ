@@ -339,6 +339,10 @@ export class Game_Event extends Game_Character
 		this.setPattern(this._originalPattern)
 	}
 
+	// @ts-ignore
+	// Property 'checkEventTriggerTouch' in type 'Game_Event' is not assignable to the same property in base type 'Game_Character'.
+	//   Type '(x: any, y: any) => void' is not assignable to type '(_: any, __: any) => boolean'.
+	//     Type 'void' is not assignable to type 'boolean'.
 	checkEventTriggerTouch(x, y)
 	{
 		if (!DataManager.$gameMap.isEventRunning())

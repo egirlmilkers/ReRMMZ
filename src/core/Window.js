@@ -150,6 +150,7 @@ export class Window extends PIXI.Container
 	 * @type number
 	 * @name Window#width
 	 */
+	// @ts-ignore
 	get width()
 	{
 		return this._width
@@ -167,6 +168,7 @@ export class Window extends PIXI.Container
 	 * @type number
 	 * @name Window#height
 	 */
+	// @ts-ignore
 	get height()
 	{
 		return this._height
@@ -325,7 +327,7 @@ export class Window extends PIXI.Container
 	/**
 	 * Destroys the window.
 	 */
-	destroy()
+	destroy(_)
 	{
 		const options = { children: true, texture: true }
 		super.destroy(options)
@@ -337,6 +339,7 @@ export class Window extends PIXI.Container
 	update()
 	{
 		if (this.active) this._animationCount++
+		// @ts-ignore
 		for (const child of this.children) if (child.update) child.update()
 	}
 
@@ -605,8 +608,11 @@ export class Window extends PIXI.Container
 		sprite.move(m, m)
 		sprite.scale.x = w / 95
 		sprite.scale.y = h / 95
+		// @ts-ignore
 		tilingSprite.bitmap = this._windowskin
+		// @ts-ignore
 		tilingSprite.setFrame(0, 96, 96, 96)
+		// @ts-ignore
 		tilingSprite.move(0, 0, w, h)
 		tilingSprite.scale.x = 1 / sprite.scale.x
 		tilingSprite.scale.y = 1 / sprite.scale.y
@@ -618,6 +624,7 @@ export class Window extends PIXI.Container
 		const drect = { x: 0, y: 0, width: this._width, height: this._height }
 		const srect = { x: 96, y: 0, width: 96, height: 96 }
 		const m = 24
+		// @ts-ignore
 		for (const child of this._frameSprite.children) child.bitmap = this._windowskin
 		this._setRectPartsGeometry(this._frameSprite, srect, drect, m)
 	}
@@ -627,6 +634,7 @@ export class Window extends PIXI.Container
 		const drect = this._cursorRect.clone()
 		const srect = { x: 96, y: 96, width: 48, height: 48 }
 		const m = 4
+		// @ts-ignore
 		for (const child of this._cursorSprite.children) child.bitmap = this._windowskin
 		this._setRectPartsGeometry(this._cursorSprite, srect, drect, m)
 	}

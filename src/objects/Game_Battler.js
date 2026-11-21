@@ -765,7 +765,7 @@ export class Game_Battler extends Game_BattlerBase
 		if (!action.isGuard()) this.setActionState('acting')
 	}
 
-	performAction()
+	performAction(_)
 	/*action*/ {
 		//
 	}

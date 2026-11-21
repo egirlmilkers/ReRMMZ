@@ -49,6 +49,7 @@ export class PluginManager
 		script.async = false
 		script.defer = true
 		script.onerror = this.onError.bind(this)
+		// @ts-ignore [Property '_url' does not exist on type 'HTMLScriptElement'.]
 		script._url = url
 		document.body.appendChild(script)
 	}

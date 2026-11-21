@@ -12,11 +12,12 @@ export class AudioManager
 	static _bgsVolume = 100
 	static _meVolume = 100
 	static _seVolume = 100
-	static _currentBgm = null
-	static _currentBgs = null
-	static _bgmBuffer = null
-	static _bgsBuffer = null
-	static _meBuffer = null
+	static _currentBgm
+	static _currentBgs
+	static _currentMe
+	static _bgmBuffer
+	static _bgsBuffer
+	static _meBuffer
 	static _seBuffers = []
 	static _staticBuffers = []
 	static _replayFadeTime = 0.5

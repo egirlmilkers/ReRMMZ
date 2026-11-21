@@ -523,7 +523,7 @@ export class Game_CharacterBase
 		this.checkEventTriggerTouch(x2, y2)
 	}
 
-	checkEventTriggerTouch()
+	checkEventTriggerTouch(_, __)
 	/*x, y*/ {
 		return false
 	}

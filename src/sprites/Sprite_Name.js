@@ -81,6 +81,9 @@ export class Sprite_Name extends Sprite
 		}
 	}
 
+	// @ts-ignore
+	// [Property 'name' in type 'Sprite_Name' is not assignable to the same property in base type 'Sprite'. Type '() => any' is not assignable to type 'string'.]
+	// [Class 'Sprite' defines instance member property 'name', but extended class 'Sprite_Name' defines it as instance member function.]
 	name()
 	{
 		return this._battler ? this._battler.name() : ''

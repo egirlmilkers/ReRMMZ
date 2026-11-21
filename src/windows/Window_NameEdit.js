@@ -29,10 +29,15 @@ export class Window_NameEdit extends Window_StatusBase
 		this._maxLength = maxLength
 		this._name = actor.name().slice(0, this._maxLength)
 		this._index = this._name.length
+		// @ts-ignore [Type 'string' is not assignable to type 'number'.]
 		this._defaultName = this._name
 		ImageManager.loadFace(actor.faceName())
 	}
 
+	// @ts-ignore
+	// [Property 'name' in type 'Window_NameEdit' is not assignable to the same property in base type 'Window_StatusBase'.
+	//   Type '() => string' is not assignable to type 'string'.]
+	// [Class 'Window_StatusBase' defines instance member property 'name', but extended class 'Window_NameEdit' defines it as instance member function.]
 	name()
 	{
 		return this._name
@@ -40,6 +45,7 @@ export class Window_NameEdit extends Window_StatusBase
 
 	restoreDefault()
 	{
+		// @ts-ignore [Type 'number' is not assignable to type 'string'.]
 		this._name = this._defaultName
 		this._index = this._name.length
 		this.refresh()

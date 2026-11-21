@@ -121,12 +121,12 @@ export class ColorManager
 		else return this.normalColor()
 	}
 
-	static mpColor()
+	static mpColor(_)
 	/*actor*/ {
 		return this.normalColor()
 	}
 
-	static tpColor()
+	static tpColor(_)
 	/*actor*/ {
 		return this.normalColor()
 	}

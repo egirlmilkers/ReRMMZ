@@ -1,3 +1,5 @@
+import PIXI from 'pixi.js'
+
 import { Graphics } from './Graphics.js'
 import { Rectangle } from './Rectangle.js'
 import { Stage } from './Stage.js'
@@ -12,70 +14,68 @@ import { Utils } from './Utils.js'
  */
 export class Bitmap
 {
+	_canvas = null
+	_context = null
+	_baseTexture = null
+	_image = null
+	_url = ''
+	_paintOpacity = 255
+	_smooth = true
+	_loadListeners = []
+	_loadingState = 'none' // "none", "loading", "loaded", or "error"
+
+	/**
+	 * The face name of the font.
+	 *
+	 * @type string
+	 */
+	fontFace = 'sans-serif'
+
+	/**
+	 * The size of the font in pixels.
+	 *
+	 * @type number
+	 */
+	fontSize = 16
+
+	/**
+	 * Whether the font is bold.
+	 *
+	 * @type boolean
+	 */
+	fontBold = false
+
+	/**
+	 * Whether the font is italic.
+	 *
+	 * @type boolean
+	 */
+	fontItalic = false
+
+	/**
+	 * The color of the text in CSS format.
+	 *
+	 * @type string
+	 */
+	textColor = '#ffffff'
+
+	/**
+	 * The color of the outline of the text in CSS format.
+	 *
+	 * @type string
+	 */
+	outlineColor = 'rgba(0, 0, 0, 0.5)'
+
+	/**
+	 * The width of the outline of the text.
+	 *
+	 * @type number
+	 */
+	outlineWidth = 3
+
 	constructor(width, height)
 	{
-		this._canvas = null
-		this._context = null
-		this._baseTexture = null
-		this._image = null
-		this._url = ''
-		this._paintOpacity = 255
-		this._smooth = true
-		this._loadListeners = []
-
-		// "none", "loading", "loaded", or "error"
-		this._loadingState = 'none'
-
 		if (width > 0 && height > 0) this._createCanvas(width, height)
-
-		/**
-		 * The face name of the font.
-		 *
-		 * @type string
-		 */
-		this.fontFace = 'sans-serif'
-
-		/**
-		 * The size of the font in pixels.
-		 *
-		 * @type number
-		 */
-		this.fontSize = 16
-
-		/**
-		 * Whether the font is bold.
-		 *
-		 * @type boolean
-		 */
-		this.fontBold = false
-
-		/**
-		 * Whether the font is italic.
-		 *
-		 * @type boolean
-		 */
-		this.fontItalic = false
-
-		/**
-		 * The color of the text in CSS format.
-		 *
-		 * @type string
-		 */
-		this.textColor = '#ffffff'
-
-		/**
-		 * The color of the outline of the text in CSS format.
-		 *
-		 * @type string
-		 */
-		this.outlineColor = 'rgba(0, 0, 0, 0.5)'
-
-		/**
-		 * The width of the outline of the text.
-		 *
-		 * @type number
-		 */
-		this.outlineWidth = 3
 	}
 
 	/**
@@ -447,7 +447,7 @@ export class Bitmap
 	 * @param {string} color2 - The gradient ending color.
 	 * @param {boolean} vertical - Whether the gradient should be draw as vertical or not.
 	 */
-	gradientFillRect(x, y, width, height, color1, color2, vertical)
+	gradientFillRect(x, y, width, height, color1, color2, vertical = undefined)
 	{
 		const context = this.context
 		const x1 = vertical ? x : x + width
